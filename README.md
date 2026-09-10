@@ -6,17 +6,17 @@ UI components in HTML, CSS and JavaScript, with tools for coding agents.
 
 **110 interactive components** in HTML, CSS and JavaScript. No runtime dependencies, remote fonts or stock icon libraries. Preview components and download their source files. The plugin helps a coding agent find and integrate components.
 
-[Install the plugin](#plugin-installation) · [Components](#components) · [Integration guide](docs/integration.md) · [Quality notes](QA.md)
+[Open the library](https://sltowl.github.io/sl-ui-library/) · [Install the plugin](#plugin-installation) · [Components](#components) · [Integration guide](docs/integration.md) · [Quality notes](QA.md)
 
 ## Component demos
 
-[![Cursor-free 3D studio film of real component interactions](docs/media/studio-motion.gif)](docs/media/studio-motion.mp4)
+[![Cursor-free 3D studio film of real component interactions](docs/media/studio-motion.gif)](https://sltowl.github.io/sl-ui-library/media/studio-motion.mp4)
 
 The demo shows saving, liking, theme switching, rating and tab navigation. It uses the library's components with CSS 3D styling. No cursor.
 
-[Watch / download MP4](docs/media/studio-motion.mp4) · [WebM](docs/media/studio-motion.webm) · [Live 3D scene](http://127.0.0.1:4321/studio-motion.html) · [Interactive showcase](http://127.0.0.1:4321/showcase.html)
+[Watch / download MP4](https://sltowl.github.io/sl-ui-library/media/studio-motion.mp4) · [WebM](https://sltowl.github.io/sl-ui-library/media/studio-motion.webm) · [Live 3D scene](https://sltowl.github.io/sl-ui-library/studio-motion.html) · [Interactive showcase](https://sltowl.github.io/sl-ui-library/showcase.html)
 
-The localhost links work after starting your own copy. A public demo is not deployed during private review. Studio photography is generated artwork; the film uses real controls with a presentation-only 3D treatment.
+Studio photography is generated artwork; the film uses library components with CSS 3D styling. The hosted links become available after the Pages deployment succeeds.
 
 ## Components
 
@@ -57,7 +57,7 @@ The complete initial catalog works offline. Other coding agents can use the same
 
 An opt-in data updater is prepared for the release channel. Once published and enabled by the user, it checks for a newer catalog on use, at most once per day, with an offline fallback. Existing components in your app are never silently replaced. Plugin code and skill updates remain host-managed.
 
-**Private review:** the public update channel is not live. No telemetry is enabled. Owner-only release-download reporting is provided as a local tool, not a tracker; asset downloads are not unique installations. See the [update and metrics details](docs/agents.md).
+**Update status:** the public update channel is not live. No telemetry is enabled. Owner-only release-download reporting is provided as a local tool, not a tracker; asset downloads are not unique installations. See the [update and metrics details](docs/agents.md).
 
 ## Component integration
 
@@ -69,7 +69,7 @@ Archive, rename and creation demos only change preview state. In production, sho
 
 This repository contains the complete static library. GitHub stores the source; GitHub Pages can serve it as a website after deployment. Visitors to a hosted version will not need terminal commands or Node.js.
 
-**No public demo has been deployed.** The prepared Pages workflow is manual and refuses to run while this repository is private. Hosting and the final demo URL will be configured after review.
+The site is published from `public/` by the [Pages workflow](https://github.com/SLtowl/sl-ui-library/actions/workflows/pages.yml). Check its latest deployment before sharing the website; a failed run means the site has not been updated.
 
 <details>
 <summary>For developers: run a local copy</summary>
@@ -80,7 +80,7 @@ Requires Node.js 22 or newer. From the repository:
 npm start
 ```
 
-This builds the exports and starts [the local library](http://127.0.0.1:4321/). No dependency installation is required. Use HTTP, not a double-clicked HTML file.
+This builds the exports and starts a local server. Open `http://127.0.0.1:4321/` on the same computer. No dependency installation is required. Use HTTP, not a double-clicked HTML file.
 
 </details>
 
@@ -114,6 +114,6 @@ Cover, collection table and closing image: generated studio artwork. Film: actua
 
 ## Release status and licensing
 
-[SLtowl/sl-ui-library](https://github.com/SLtowl/sl-ui-library) is in private review. No public site, marketplace publication or analytics collection has been enabled. Publication requires the owner's approval.
+[SLtowl/sl-ui-library](https://github.com/SLtowl/sl-ui-library) is public. The plugin is included in this repository; no separate marketplace release or analytics collection is enabled.
 
-No code license has been selected; private access is not an open-source license. Instrument Sans includes its OFL license.
+No code license has been selected. Public visibility does not grant an open-source license. Instrument Sans includes its OFL license.

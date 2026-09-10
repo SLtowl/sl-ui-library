@@ -16,7 +16,7 @@ test('discovery, reserved categories and invalid input',async()=>{
  assert.equal((await run(['list','navigation'])).components.length,10);
  assert.equal((await run(['list','feedback'])).components.length,0);
  assert.ok((await run(['search','dialog'])).components.some(c=>c.id==='matte-modal-overlay'));
- assert.ok((await run(['search','навигация'])).count>0);
+ assert.ok((await run(['search','navigation'])).count>0);
  assert.ok((await run(['inspect','matte-modal-overlay'])).files['modal-overlay'].includes('genie.js'));
  await assert.rejects(()=>run(['inspect','missing']));
  await assert.rejects(()=>run(['read','../../private','index.html']));

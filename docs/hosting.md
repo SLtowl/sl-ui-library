@@ -20,7 +20,7 @@ The manual workflow at `.github/workflows/pages.yml` runs the same build and che
 
 ## Owner-controlled publication
 
-The repository is currently private and the site is not deployed. The workflow deliberately skips deployment while the repository is private. This is our review safeguard, not a statement that GitHub never supports private-repository Pages.
+The repository is public. Check its Pages workflow for the current deployment status. The workflow deliberately skips deployment while the repository is private. This is our review safeguard, not a statement that GitHub never supports private-repository Pages.
 
 After the owner approves publication:
 
@@ -30,7 +30,6 @@ After the owner approves publication:
 4. Use the successful deployment's reported URL. Check the catalog, interactive previews, source tabs and downloads at that URL before announcing it.
 5. Replace README localhost demo links with the verified hosted URLs. Keep localhost only in local-development instructions.
 
-No remote deployment has been verified yet. GitHub hosting can process visitor request information under its own policies; absence of library analytics is not a promise of no host-side logging.
+The Pages workflow must succeed before announcing the hosted URLs. GitHub hosting can process visitor request information under its own policies; absence of library analytics is not a promise of no host-side logging.
 
 Official reference: [GitHub Pages custom workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
-

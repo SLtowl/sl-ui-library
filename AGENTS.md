@@ -8,4 +8,4 @@ Feedback and Data display intentionally remain empty in this release. Do not add
 
 Demo actions only change preview state. Do not claim a server operation succeeded merely because a demo confirmation appeared. Integration work must connect the real operation explicitly.
 
-The repository is in private review. Do not change visibility, deploy Pages, publish packages, install plugins into personal configuration or grant a code license unless the owner requests it.
+The repository is public. Deploy only the static public/ directory through the approved Pages workflow. Do not change repository visibility, publish packages, install plugins into personal configuration or grant a code license unless the owner requests it.

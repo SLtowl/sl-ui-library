@@ -9,8 +9,7 @@
       "keywords": [
         "button",
         "save",
-        "cancel",
-        "кнопки"
+        "cancel"
       ]
     },
     {
@@ -20,9 +19,7 @@
       "keywords": [
         "field",
         "text",
-        "search",
-        "поля",
-        "ввод"
+        "search"
       ]
     },
     {
@@ -32,8 +29,7 @@
       "keywords": [
         "switch",
         "toggle",
-        "segment",
-        "переключатели"
+        "segment"
       ]
     },
     {
@@ -44,9 +40,7 @@
         "checkbox",
         "radio",
         "check",
-        "select",
-        "чекбоксы",
-        "выбор"
+        "select"
       ]
     },
     {
@@ -55,9 +49,7 @@
       "description": "Single-value sliders, range selectors and stepped controls.",
       "keywords": [
         "range",
-        "volume",
-        "ползунки",
-        "диапазон"
+        "volume"
       ]
     },
     {
@@ -67,8 +59,7 @@
       "keywords": [
         "dropdown",
         "context",
-        "command",
-        "меню"
+        "command"
       ]
     },
     {
@@ -78,9 +69,7 @@
       "keywords": [
         "tabs",
         "breadcrumbs",
-        "pagination",
-        "вкладки",
-        "навигация"
+        "pagination"
       ]
     },
     {
@@ -91,9 +80,7 @@
         "modal",
         "dialog",
         "drawer",
-        "tooltip",
-        "модальные",
-        "подсказки"
+        "tooltip"
       ]
     },
     {
@@ -105,9 +92,7 @@
         "alert",
         "progress",
         "loading",
-        "skeleton",
-        "уведомления",
-        "загрузка"
+        "skeleton"
       ]
     },
     {
@@ -119,10 +104,7 @@
         "table",
         "card",
         "badge",
-        "accordion",
-        "списки",
-        "таблицы",
-        "карточки"
+        "accordion"
       ]
     }
   ],
@@ -148,11 +130,7 @@
         "confirm",
         "confirmation",
         "primary",
-        "secondary",
-        "сохранить",
-        "сохранение",
-        "отмена",
-        "кнопка"
+        "secondary"
       ],
       "page": "./component.html?component=matte-save-cancel",
       "preview": "./packages/pair/index.html?embed=1&scale=1",
@@ -208,9 +186,7 @@
         "clipboard",
         "copied",
         "text",
-        "confirmation",
-        "копировать",
-        "копирование"
+        "confirmation"
       ],
       "page": "./component.html?component=matte-copy",
       "preview": "./packages/copy/index.html?embed=1&scale=1",
@@ -498,9 +474,7 @@
         "remove",
         "trash",
         "deleted",
-        "destructive",
-        "удалить",
-        "удаление"
+        "destructive"
       ],
       "page": "./component.html?component=matte-delete",
       "preview": "./packages/delete/index.html?embed=1&scale=1",
@@ -558,9 +532,7 @@
         "uploading",
         "complete",
         "progress",
-        "input",
-        "загрузить",
-        "загрузка"
+        "input"
       ],
       "page": "./component.html?component=matte-upload",
       "preview": "./packages/upload/index.html?embed=1&scale=1",
@@ -619,9 +591,7 @@
         "copy link",
         "send",
         "sent",
-        "native share",
-        "поделиться",
-        "ссылка"
+        "native share"
       ],
       "page": "./component.html?component=matte-share",
       "preview": "./packages/share/index.html?embed=1&scale=1",
@@ -680,9 +650,7 @@
         "unfollow",
         "person",
         "profile",
-        "toggle",
-        "подписаться",
-        "подписка"
+        "toggle"
       ],
       "page": "./component.html?component=matte-follow",
       "preview": "./packages/follow/index.html?embed=1&scale=1",

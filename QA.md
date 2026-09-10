@@ -21,7 +21,7 @@ All 110 catalog components and 112 export variants. The latest pass exercises ev
 - All 110 components in both category and component-detail mini-previews at 1440, 390 and 320px page widths: 660 preview contexts, each exercised through two open/select/reset cycles. Bounds cover direct preview content, opened menu/overlay panels and overlay action footers, not only standalone pages.
 - All 440 displayed HTML, CSS, integration JavaScript and full-controller source views match their actual exported files exactly.
 - 110 unique components, 112 unique variants; category counts match README.
-- 595 package HTML/CSS/JavaScript files: no hard-coded Cyrillic UI strings or replacement-character encoding damage. Russian search aliases in catalog metadata are intentional and not interface labels.
+- 595 package HTML/CSS/JavaScript files: no hard-coded Cyrillic UI strings or replacement-character encoding damage. Catalog search keywords are English.
 - User-entered Unicode and HTML-looking names remain literal text, never translated or rendered as markup.
 - 90 earlier components: 720 rapid interaction cycles, reset, valid SVG geometry, no script/resource errors or downloads. Clipboard/share adapters were stubbed during the audit.
 - All 20 new packages initialize alone without borrowing icons or DOM from sibling review cards.
@@ -41,7 +41,7 @@ Visibility hardening: preview documents now use complete `srcdoc` markup, mounte
 
 Navigation previously requested 50 package assets on category entry, and Overlays requested 86 (including ten font URLs per category). Their previews now use precompiled content and controllers in in-memory frames with a shared FontFace. Category entry and Reset request zero additional assets after the common library runtime is loaded. The isolated native-dialog viewport is retained; no `eval`, inline script execution or relaxed script CSP is needed. Additional tests cover the compiled runtime's Genie reversal, forms, Pin, cross-frame focus, action palette, tour, tree keyboard handling, reduced motion and mobile bounds.
 
-Automated UI checks ran in installed Chrome on Windows using Playwright. Firefox, Safari and real touch devices were not tested. The owner created `SLtowl/sl-ui-library` as a private review repository. Public deployment is not enabled; the Pages workflow also blocks private repositories. A project-code license remains an owner decision. Check the repository's Actions tab for the current remote CI result.
+Automated UI checks ran in installed Chrome on Windows using Playwright. Firefox, Safari and real touch devices were not tested. The repository is public. Check the Pages workflow for deployment status; private repositories remain blocked by its safeguard. A project-code license remains an owner decision. Check the repository's Actions tab for the current remote CI result.
 
 ## Repository and agent toolkit
 

@@ -30,7 +30,7 @@ The agent can map library colors to your application's design tokens while prese
 
 ## Updates
 
-The entire initial catalog works offline. This private-review build does **not** contact an update server. The release includes a tested, opt-in data updater, but the public channel has not been published or enabled.
+The entire initial catalog works offline. The bundled catalog does **not** contact an update server by default. The release includes a tested, opt-in data updater, but the public channel has not been published or enabled.
 
 After the owner publishes a versioned channel, users may ask the agent to enable catalog updates. The agent runs `library.mjs updates enable` only with that authorization. Thereafter the next use checks at most once per 24 hours. Failed requests, invalid hashes and unsupported data fall back to the last valid local bundle. `updates disable` returns to bundled offline data. New source is downloaded as data and reviewed before integration; it is not executed by the updater.
 

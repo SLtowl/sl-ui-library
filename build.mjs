@@ -7,6 +7,10 @@ await import('./build-views.mjs');
 const publicRoot=new URL('./public/',import.meta.url);
 const pluginRoot=new URL('./plugins/sl-ui-library/assets/',import.meta.url);
 await mkdir(new URL('downloads/',publicRoot),{recursive:true});
+await mkdir(new URL('media/',publicRoot),{recursive:true});
+for (const name of ['studio-motion.mp4', 'studio-motion.webm']) {
+ await writeFile(new URL('media/'+name,publicRoot),await readFile(new URL('./docs/media/'+name,import.meta.url)));
+}
 await mkdir(pluginRoot,{recursive:true});
 const blobs={},packages={};
 for(const variant of components.flatMap(c=>c.variants)){
