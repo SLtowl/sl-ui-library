@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Matte Bookmark button</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./preview.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>
+    body { margin: 0; min-height: 100svh; display: grid; place-content: center; background: #f5f4f2; font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    body.embedded { background: transparent; }
+    .bookmark-feedback { position: fixed; bottom: 14px; left: 16px; right: 16px; margin: 0; color: #515555; font-size: 12px; line-height: 1.5; text-align: center; }
+  </style>
+</head>
+<body>
+  <button class="sl-bookmark" id="bookmark-button" type="button" aria-label="Bookmark" aria-pressed="false" disabled>
+          <span class="sl-bookmark__surface" aria-hidden="true">
+            <span class="sl-bookmark__wash"></span>
+            <span class="sl-bookmark__icon">
+              <svg class="sl-bookmark__ribbon" viewBox="0 0 24 24" fill="none" focusable="false">
+                <path class="sl-bookmark__outline" d="M6 20V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v15l-6-4-6 4Z"/>
+                <path class="sl-bookmark__fill" d="M6 20V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v15l-6-4-6 4Z"/>
+              </svg>
+            </span>
+            <span class="sl-bookmark__label">Bookmark</span>
+          </span>
+        </button>
+  <p class="bookmark-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+</body>
+</html>

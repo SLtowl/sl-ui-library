@@ -1,0 +1,84 @@
+@font-face { font-family: 'Instrument Sans'; src: url('./instrument-sans-variable.woff2') format('woff2'); font-weight: 400 700; font-style: normal; font-display: swap; }
+.sl-bookmark {
+  --bookmark-unit: 1px;
+  --bookmark-ink: #202222;
+  --bookmark-hover: #2c2e2e;
+  --bookmark-active: #3d4040;
+  --bookmark-text: #fafaf9;
+  --bookmark-focus: #565b5b;
+  --bookmark-ease: cubic-bezier(.4, 0, .2, 1);
+  display: block;
+  position: relative;
+  flex: none;
+  width: calc(236 * var(--bookmark-unit));
+  height: calc(52 * var(--bookmark-unit));
+  padding: 0;
+  border: 0;
+  border-radius: calc(13 * var(--bookmark-unit));
+  appearance: none;
+  background: transparent;
+  color: var(--bookmark-text);
+  font: 550 calc(19 * var(--bookmark-unit))/1.1 'Instrument Sans', sans-serif;
+  letter-spacing: -.02em;
+  text-align: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.sl-bookmark *, .sl-bookmark *::before, .sl-bookmark *::after { box-sizing: border-box; }
+.sl-bookmark:disabled, .sl-bookmark[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
+.sl-bookmark:focus-visible { outline: 2px solid var(--bookmark-focus); outline-offset: 6px; }
+.sl-bookmark .sl-bookmark__surface {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: inherit;
+  background: var(--bookmark-ink);
+  box-shadow: inset 0 1px #ffffff12, 0 1px 2px #0000000d;
+  transition: transform 350ms cubic-bezier(.22, 1, .36, 1), background-color 350ms ease, box-shadow 350ms ease;
+}
+@media (hover: hover) and (forced-colors: none) {
+  .sl-bookmark:not(:disabled):not([aria-disabled="true"]):hover .sl-bookmark__surface {
+    transform: translateY(-2px);
+    background-color: var(--bookmark-hover);
+    box-shadow: inset 0 1px #ffffff17, 0 6px 12px -8px #00000047;
+  }
+}
+.sl-bookmark:not(:disabled):not([aria-disabled="true"]):active .sl-bookmark__surface { transform: translateY(1px) scale(.98); transition-duration: 120ms; }
+.sl-bookmark .sl-bookmark__wash { position: absolute; inset: 0; z-index: -1; background: var(--bookmark-active); opacity: 0; transition: opacity 540ms var(--bookmark-ease); }
+.sl-bookmark[aria-pressed="true"] .sl-bookmark__wash { opacity: 1; }
+.sl-bookmark .sl-bookmark__label { position: absolute; inset: 0 calc(56 * var(--bookmark-unit)); display: grid; place-items: center; text-align: center; white-space: nowrap; }
+.sl-bookmark .sl-bookmark__icon { position: absolute; left: calc(18 * var(--bookmark-unit)); top: 50%; width: calc(22 * var(--bookmark-unit)); height: calc(24 * var(--bookmark-unit)); transform: translateY(-50%); }
+.sl-bookmark .sl-bookmark__ribbon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform-box: view-box;
+  transform-origin: 50% 12.5%;
+  transform: translateY(0) scaleY(1);
+  transition: transform 540ms var(--bookmark-ease);
+}
+.sl-bookmark[aria-pressed="true"] .sl-bookmark__ribbon { transform: translateY(calc(-1.2 * var(--bookmark-unit))) scaleY(.88); }
+.sl-bookmark .sl-bookmark__fill { fill: currentColor; stroke: none; clip-path: inset(0 0 100% 0); transition: clip-path 540ms var(--bookmark-ease); }
+.sl-bookmark[aria-pressed="true"] .sl-bookmark__fill { clip-path: inset(0); }
+@media (prefers-reduced-motion: reduce) {
+  .sl-bookmark *, .sl-bookmark *::before, .sl-bookmark *::after { transition: none !important; animation: none !important; }
+  .sl-bookmark .sl-bookmark__surface, .sl-bookmark:hover .sl-bookmark__surface, .sl-bookmark:active .sl-bookmark__surface, .sl-bookmark[aria-pressed] .sl-bookmark__ribbon { transform: none !important; }
+  .sl-bookmark:active .sl-bookmark__surface { opacity: .9; }
+}
+@media (forced-colors: active) {
+  .sl-bookmark .sl-bookmark__surface { forced-color-adjust: none; border: 1px solid ButtonText; background: ButtonFace; color: ButtonText; box-shadow: none; }
+  .sl-bookmark[aria-pressed="true"] .sl-bookmark__surface { background: Highlight; color: HighlightText; border-color: Highlight; }
+  .sl-bookmark .sl-bookmark__wash { display: none; }
+  .sl-bookmark:focus-visible { outline-color: Highlight; }
+}

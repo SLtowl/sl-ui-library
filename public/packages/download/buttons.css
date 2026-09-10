@@ -1,0 +1,64 @@
+@font-face { font-family: 'Instrument Sans'; src: url('./instrument-sans-variable.woff2') format('woff2'); font-weight: 400 700; font-style: normal; font-display: swap; }
+.sl-download {
+  --download-unit: 1px;
+  --download-ink: #202222;
+  --download-hover: #2c2e2e;
+  --download-active: #3d4040;
+  --download-text: #fafaf9;
+  --download-focus: #565b5b;
+  --download-ease: cubic-bezier(.22,1,.36,1);
+  display: block;
+  position: relative;
+  width: calc(208 * var(--download-unit));
+  height: calc(52 * var(--download-unit));
+  padding: 0;
+  border: 0;
+  border-radius: calc(13 * var(--download-unit));
+  appearance: none;
+  background: transparent;
+  color: var(--download-text);
+  font: 550 calc(19 * var(--download-unit))/1.1 'Instrument Sans', sans-serif;
+  letter-spacing: -.02em;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.sl-download *, .sl-download *::before, .sl-download *::after { box-sizing: border-box; }
+.sl-download:disabled { opacity: .5; cursor: not-allowed; }
+.sl-download[aria-disabled="true"] { cursor: wait; }
+.sl-download:focus-visible { outline: 2px solid var(--download-focus); outline-offset: 6px; }
+.sl-download__surface { position: absolute; inset: 0; display: grid; place-items: center; overflow: hidden; isolation: isolate; border-radius: inherit; background: var(--download-ink); box-shadow: inset 0 1px #ffffff12,0 1px 2px #0000000d; transition: transform 350ms var(--download-ease),background-color 350ms ease,box-shadow 350ms ease; }
+@media (hover: hover) {
+  .sl-download:not(:disabled):not([aria-disabled="true"]):hover .sl-download__surface { transform: translateY(-2px); background: var(--download-hover); box-shadow: inset 0 1px #ffffff17,0 6px 12px -8px #00000047; }
+}
+.sl-download:not(:disabled):not([aria-disabled="true"]):active .sl-download__surface { transform: translateY(1px) scale(.98); transition-duration: 120ms; }
+.sl-download__wash { position: absolute; inset: 0; z-index: -1; background: var(--download-active); opacity: 0; transition: opacity 550ms cubic-bezier(.4,0,.2,1); }
+.sl-download[data-download-state="ready"] .sl-download__wash { opacity: 1; }
+.sl-download__label { display: block; position: relative; white-space: nowrap; }
+.sl-download__icon { position: absolute; left: calc(23 * var(--download-unit)); top: 50%; width: calc(23 * var(--download-unit)); height: calc(24 * var(--download-unit)); transform: translateY(-50%); }
+.sl-download__icon svg { display: block; width: 100%; height: 100%; overflow: visible; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.sl-download__arrow { transform-box: view-box; transform-origin: 12px 17px; transition: transform 420ms cubic-bezier(.32,0,.16,1) 180ms,opacity 220ms ease 220ms; }
+.sl-download__tray { transform-box: view-box; transform-origin: 12px 17px; transform: translate(0,0) scale(1); transition: transform 520ms cubic-bezier(.22,1,.36,1); }
+.sl-download__tray-left, .sl-download__tray-right { transform-box: view-box; transform-origin: 9px 20.5px; transition: transform 520ms cubic-bezier(.22,1,.36,1); }
+.sl-download__rim-left, .sl-download__rim-right { transform-box: view-box; transition: transform 260ms ease,opacity 180ms ease; }
+.sl-download__rim-left { transform-origin: 4.5px 20.5px; }
+.sl-download__rim-right { transform-origin: 19.5px 20.5px; }
+.sl-download[data-download-icon="pending"] .sl-download__arrow,
+.sl-download[data-download-icon="ready"] .sl-download__arrow { transform: translateY(3.5px) scale(.18); opacity: 0; transition-delay: 0ms,130ms; }
+.sl-download[data-download-icon="ready"] .sl-download__tray { transform: translate(1.5px,-4.7px) scale(1.5); transition-delay: 60ms; }
+.sl-download[data-download-icon="ready"] .sl-download__tray-left { transform: rotate(45deg); transition-delay: 60ms; }
+.sl-download[data-download-icon="ready"] .sl-download__tray-right { transform: rotate(-45deg); transition-delay: 60ms; }
+.sl-download[data-download-icon="ready"] .sl-download__rim-left,
+.sl-download[data-download-icon="ready"] .sl-download__rim-right { transform: scaleY(.15); opacity: 0; }
+.sl-download[data-download-static] .sl-download__icon * { transition: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .sl-download *, .sl-download svg, .sl-download path { transition: none !important; animation: none !important; }
+  .sl-download .sl-download__surface, .sl-download:hover .sl-download__surface, .sl-download:active .sl-download__surface { transform: none; }
+  .sl-download:active .sl-download__surface { opacity: .9; }
+}
+@media (forced-colors: active) {
+  .sl-download__surface { border: 1px solid ButtonText; background: ButtonFace; color: ButtonText; }
+  .sl-download__wash { display: none; }
+  .sl-download:focus-visible { outline-color: Highlight; }
+}

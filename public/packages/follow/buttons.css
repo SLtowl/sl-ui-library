@@ -1,0 +1,79 @@
+@font-face { font-family: 'Instrument Sans'; src: url('./instrument-sans-variable.woff2') format('woff2'); font-weight: 400 700; font-style: normal; font-display: swap; }
+.sl-follow {
+  --follow-unit: 1px;
+  --follow-ink: #202222;
+  --follow-hover: #2c2e2e;
+  --follow-active: #3d4040;
+  --follow-text: #fafaf9;
+  --follow-focus: #565b5b;
+  --follow-ease: cubic-bezier(.4, 0, .2, 1);
+  display: block;
+  position: relative;
+  flex: none;
+  width: calc(236 * var(--follow-unit));
+  height: calc(52 * var(--follow-unit));
+  padding: 0;
+  border: 0;
+  border-radius: calc(13 * var(--follow-unit));
+  appearance: none;
+  background: transparent;
+  color: var(--follow-text);
+  font: 550 calc(19 * var(--follow-unit))/1.1 'Instrument Sans', sans-serif;
+  letter-spacing: -.02em;
+  text-align: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.sl-follow *, .sl-follow *::before, .sl-follow *::after { box-sizing: border-box; }
+.sl-follow:disabled, .sl-follow[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
+.sl-follow:focus-visible { outline: 2px solid var(--follow-focus); outline-offset: 6px; }
+.sl-follow .sl-follow__surface {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: inherit;
+  background: var(--follow-ink);
+  box-shadow: inset 0 1px #ffffff12, 0 1px 2px #0000000d;
+  transition: transform 350ms cubic-bezier(.22, 1, .36, 1), background-color 350ms ease, box-shadow 350ms ease;
+}
+@media (hover: hover) and (forced-colors: none) {
+  .sl-follow:not(:disabled):not([aria-disabled="true"]):hover .sl-follow__surface { transform: translateY(-2px); background-color: var(--follow-hover); box-shadow: inset 0 1px #ffffff17, 0 6px 12px -8px #00000047; }
+}
+.sl-follow:not(:disabled):not([aria-disabled="true"]):active .sl-follow__surface { transform: translateY(1px) scale(.98); transition-duration: 120ms; }
+.sl-follow .sl-follow__wash { position: absolute; inset: 0; z-index: -1; background: var(--follow-active); opacity: 0; transition: opacity 480ms var(--follow-ease); }
+.sl-follow[aria-pressed="true"] .sl-follow__wash { opacity: 1; }
+.sl-follow .sl-follow__label { position: absolute; inset: 0 calc(56 * var(--follow-unit)); display: grid; place-items: center; text-align: center; white-space: nowrap; }
+.sl-follow .sl-follow__icon { position: absolute; left: calc(18 * var(--follow-unit)); top: 50%; width: calc(28 * var(--follow-unit)); height: calc(24 * var(--follow-unit)); transform: translateY(-50%); }
+.sl-follow .sl-follow__person { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.sl-follow .sl-follow__mark { position: absolute; left: calc(18 * var(--follow-unit)); top: calc(11 * var(--follow-unit)); width: calc(8 * var(--follow-unit)); height: calc(8 * var(--follow-unit)); }
+.sl-follow .sl-follow__mark-short, .sl-follow .sl-follow__mark-long {
+  position: absolute;
+  left: 0;
+  top: calc(3.1 * var(--follow-unit));
+  width: calc(8 * var(--follow-unit));
+  height: calc(1.8 * var(--follow-unit));
+  border-radius: calc(.9 * var(--follow-unit));
+  background: currentColor;
+  transform-origin: center;
+  transition: transform 480ms var(--follow-ease);
+}
+.sl-follow .sl-follow__mark-short { transform: translate(0, 0) rotate(0) scaleX(1); }
+.sl-follow .sl-follow__mark-long { transform: translate(0, 0) rotate(90deg) scaleX(1); }
+.sl-follow[aria-pressed="true"] .sl-follow__mark-short { transform: translate(calc(-1 * var(--follow-unit)), calc(1.3 * var(--follow-unit))) rotate(45deg) scaleX(.58); }
+.sl-follow[aria-pressed="true"] .sl-follow__mark-long { transform: translate(calc(2.65 * var(--follow-unit)), calc(-.2 * var(--follow-unit))) rotate(-48deg) scaleX(1.07); }
+@media (prefers-reduced-motion: reduce) {
+  .sl-follow *, .sl-follow *::before, .sl-follow *::after { transition: none !important; animation: none !important; }
+  .sl-follow .sl-follow__surface { transform: none !important; }
+  .sl-follow:active .sl-follow__surface { opacity: .9; }
+}
+@media (forced-colors: active) {
+  .sl-follow .sl-follow__surface { forced-color-adjust: none; border: 1px solid ButtonText; background: ButtonFace; color: ButtonText; box-shadow: none; }
+  .sl-follow[aria-pressed="true"] .sl-follow__surface { background: Highlight; color: HighlightText; border-color: Highlight; }
+  .sl-follow .sl-follow__wash { display: none; }
+  .sl-follow:focus-visible { outline-color: Highlight; }
+}

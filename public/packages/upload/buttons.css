@@ -1,0 +1,61 @@
+@font-face { font-family: 'Instrument Sans'; src: url('./instrument-sans-variable.woff2') format('woff2'); font-weight: 400 700; font-style: normal; font-display: swap; }
+.sl-upload {
+  --upload-unit: 1px;
+  --upload-ink: #202222;
+  --upload-hover: #2c2e2e;
+  --upload-active: #3d4040;
+  --upload-text: #fafaf9;
+  --upload-focus: #565b5b;
+  --upload-ease: cubic-bezier(.22,1,.36,1);
+  display: block;
+  position: relative;
+  width: calc(224 * var(--upload-unit));
+  height: calc(52 * var(--upload-unit));
+  padding: 0;
+  border: 0;
+  border-radius: calc(13 * var(--upload-unit));
+  appearance: none;
+  background: transparent;
+  color: var(--upload-text);
+  font: 550 calc(19 * var(--upload-unit))/1.1 'Instrument Sans', sans-serif;
+  letter-spacing: -.02em;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.sl-upload *, .sl-upload *::before, .sl-upload *::after { box-sizing: border-box; }
+.sl-upload:disabled { opacity: .5; cursor: not-allowed; }
+.sl-upload[aria-disabled="true"] { cursor: wait; }
+.sl-upload:focus-visible { outline: 2px solid var(--upload-focus); outline-offset: 6px; }
+.sl-upload__surface { position: absolute; inset: 0; display: grid; place-items: center; overflow: hidden; isolation: isolate; border-radius: inherit; background: var(--upload-ink); box-shadow: inset 0 1px #ffffff12,0 1px 2px #0000000d; transition: transform 350ms var(--upload-ease),background-color 350ms ease,box-shadow 350ms ease; }
+@media (hover: hover) {
+  .sl-upload:not(:disabled):not([aria-disabled="true"]):hover .sl-upload__surface { transform: translateY(-2px); background: var(--upload-hover); box-shadow: inset 0 1px #ffffff17,0 6px 12px -8px #00000047; }
+}
+.sl-upload:not(:disabled):not([aria-disabled="true"]):active .sl-upload__surface { transform: translateY(1px) scale(.98); transition-duration: 120ms; }
+.sl-upload__wash { position: absolute; inset: 0; z-index: -1; background: var(--upload-active); opacity: 0; transition: opacity 550ms cubic-bezier(.4,0,.2,1); }
+.sl-upload[data-upload-state="complete"] .sl-upload__wash { opacity: 1; }
+.sl-upload__label { display: block; position: relative; white-space: nowrap; }
+.sl-upload__icon { position: absolute; left: calc(24 * var(--upload-unit)); top: 50%; width: calc(24 * var(--upload-unit)); height: calc(24 * var(--upload-unit)); transform: translateY(-50%); }
+.sl-upload__icon svg { display: block; width: 100%; height: 100%; overflow: visible; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.sl-upload__arrow { transform-box: view-box; transform-origin: 12px 12px; transition: transform 500ms cubic-bezier(.32,0,.16,1) 180ms,opacity 280ms ease 180ms; }
+.sl-upload__tray { transform-box: view-box; transform-origin: 12px 20px; transition: transform 480ms var(--upload-ease),opacity 260ms ease; }
+.sl-upload__progress { transform-box: view-box; transform-origin: 4.5px 20.5px; transform: scaleX(var(--upload-progress,0)); opacity: 0; transition: transform 180ms ease,opacity 180ms ease; }
+.sl-upload__check { transform-box: view-box; transform-origin: 12px 12px; transform: translateY(3px) scale(.85); opacity: 0; stroke-dasharray: 1; stroke-dashoffset: 1; transition: transform 500ms var(--upload-ease),opacity 180ms ease,stroke-dashoffset 400ms ease; }
+.sl-upload[data-upload-icon="pending"] .sl-upload__arrow,
+.sl-upload[data-upload-icon="complete"] .sl-upload__arrow { transform: translateY(-8px) scale(.82); opacity: 0; transition-delay: 0ms,100ms; }
+.sl-upload[data-upload-state="pending"][data-upload-progress] .sl-upload__tray { opacity: .35; }
+.sl-upload[data-upload-state="pending"][data-upload-progress] .sl-upload__progress { opacity: 1; }
+.sl-upload[data-upload-icon="complete"] .sl-upload__tray { transform: translateY(-3px) scaleX(.35); opacity: 0; }
+.sl-upload[data-upload-icon="complete"] .sl-upload__check { transform: translateY(0) scale(1); opacity: 1; stroke-dashoffset: 0; transition-delay: 140ms,140ms,140ms; }
+.sl-upload[data-upload-static] .sl-upload__icon * { transition: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .sl-upload *, .sl-upload svg, .sl-upload path { transition: none !important; animation: none !important; }
+  .sl-upload .sl-upload__surface, .sl-upload:hover .sl-upload__surface, .sl-upload:active .sl-upload__surface { transform: none; }
+  .sl-upload:active .sl-upload__surface { opacity: .9; }
+}
+@media (forced-colors: active) {
+  .sl-upload__surface { border: 1px solid ButtonText; background: ButtonFace; color: ButtonText; }
+  .sl-upload__wash { display: none; }
+  .sl-upload:focus-visible { outline-color: Highlight; }
+}

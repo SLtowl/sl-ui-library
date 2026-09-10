@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Matte Number input</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./preview.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>
+    body { margin: 0; min-height: 100svh; padding: 24px; box-sizing: border-box; display: grid; place-content: center; background: #f5f4f2; font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    body.embedded { background: transparent; }
+    .example-note { position: fixed; bottom: 14px; inset-inline: 16px; margin: 0; color: #515555; font-size: 12px; line-height: 1.5; text-align: center; }
+    .embedded .example-note { display: none; }
+  </style>
+</head>
+<body>
+  <div class="sl-field sl-field--number" id="number-field" data-validation="neutral">
+            <div class="sl-field__control">
+              <input class="sl-field__input" id="demo-number" type="number" placeholder=" " value="3" min="0" max="12" step="1" required inputmode="numeric" aria-describedby="number-help">
+              <label class="sl-field__label" for="demo-number">Quantity</label>
+              <div class="sl-field__steps"><button class="sl-field__step" type="button" data-step="-1" aria-label="Decrease quantity" aria-controls="demo-number"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 12h12"/></svg></button><button class="sl-field__step" type="button" data-step="1" aria-label="Increase quantity" aria-controls="demo-number"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 12h12M12 6v12"/></svg></button></div>
+            </div>
+            <p class="sl-field__helper" id="number-help" role="status" aria-live="polite">Choose 0 to 12 in steps of 1.</p>
+          </div>
+  <p class="example-note">A native number input constrained from 0 to 12.</p>
+</body>
+</html>

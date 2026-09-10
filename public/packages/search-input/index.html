@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Matte Search input</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./preview.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>
+    body { margin: 0; min-height: 100svh; padding: 24px; box-sizing: border-box; display: grid; place-content: center; background: #f5f4f2; font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    body.embedded { background: transparent; }
+    .example-note { position: fixed; bottom: 14px; inset-inline: 16px; margin: 0; color: #515555; font-size: 12px; line-height: 1.5; text-align: center; }
+    .embedded .example-note { display: none; }
+  </style>
+</head>
+<body>
+  <div class="sl-field sl-field--search" id="search-field" data-search-open="false">
+            <div class="sl-field__control">
+              <svg class="sl-field__leading" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+              <input class="sl-field__input" id="demo-search" type="search" placeholder=" " autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-controls="search-options" aria-expanded="false" aria-describedby="search-help">
+              <label class="sl-field__label" for="demo-search">Find a component</label>
+              <button class="sl-field__action sl-field__clear" type="button" aria-label="Clear search" aria-controls="demo-search" hidden><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
+            </div>
+            <div class="sl-field__popup" aria-hidden="true" inert><ul class="sl-field__options" id="search-options" role="listbox" aria-label="Component suggestions"></ul><p class="sl-field__empty" hidden>No matches. Try another word.</p></div>
+            <p class="sl-field__helper" id="search-help" role="status" aria-live="polite">Search the local component list.</p>
+          </div>
+  <p class="example-note">Filters the local component list. No request is made.</p>
+</body>
+</html>

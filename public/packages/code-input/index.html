@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Matte Verification code input</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./preview.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>
+    body { margin: 0; min-height: 100svh; padding: 24px; box-sizing: border-box; display: grid; place-content: center; background: #f5f4f2; font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    body.embedded { background: transparent; }
+    .example-note { position: fixed; bottom: 14px; inset-inline: 16px; margin: 0; color: #515555; font-size: 12px; line-height: 1.5; text-align: center; }
+    .embedded .example-note { display: none; }
+  </style>
+</head>
+<body>
+  <div class="sl-field sl-field--code" id="code-field" data-length="0" data-complete="false" data-result="neutral">
+            <label class="sl-code__label" for="demo-code">Verification code</label>
+            <div class="sl-code__control">
+              <input class="sl-code__input" id="demo-code" type="text" inputmode="numeric" autocomplete="one-time-code" data-code-length="6" pattern="[0-9]{6}" aria-describedby="code-help">
+              <div class="sl-code__cells" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+            <p class="sl-field__helper" id="code-help" role="status" aria-live="polite">Enter 482731 to see the accepted state.</p>
+          </div>
+  <p class="example-note">The bundled demo accepts 482731. It makes no verification request.</p>
+</body>
+</html>

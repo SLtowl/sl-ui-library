@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matte Copy button</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./preview.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>
+    body { margin: 0; min-height: 100svh; display: grid; place-content: center; background: #f5f4f2; font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    body.embedded { background: transparent; }
+    .copy-feedback { position: fixed; bottom: 14px; left: 16px; right: 16px; margin: 0; color: #515555; font-size: 12px; line-height: 1.5; text-align: center; }
+  </style>
+</head>
+<body>
+  <button class="sl-copy" id="copy-button" type="button" aria-label="Copy text" data-state="idle" disabled>
+          <span class="sl-copy__surface" aria-hidden="true">
+            <span class="sl-copy__wash"></span>
+            <span class="sl-copy__icon">
+              <svg class="sl-copy__sheets" viewBox="0 0 24 24" fill="none" focusable="false"><rect class="sl-copy__back" x="3.5" y="3.5" width="12" height="14" rx="3"/><rect class="sl-copy__front" x="8.5" y="7.5" width="12" height="14" rx="3"/></svg>
+              <svg class="sl-copy__check" viewBox="0 0 24 24" fill="none" focusable="false"><path d="M4 12.5 9.2 17.5 20 6.5" pathLength="1"/></svg>
+            </span>
+            <span class="sl-copy__label">Copy</span>
+          </span>
+        </button>
+  <p class="copy-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+</body>
+</html>

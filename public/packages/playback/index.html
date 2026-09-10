@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Matte Play / Pause button</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./preview.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>
+    body { margin: 0; min-height: 100svh; display: grid; place-content: center; background: #f5f4f2; font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    body.embedded { background: transparent; }
+    .playback-feedback { position: fixed; bottom: 14px; left: 16px; right: 16px; margin: 0; color: #515555; font-size: 12px; line-height: 1.5; text-align: center; }
+  </style>
+</head>
+<body>
+  <button class="sl-playback" id="playback-button" type="button" data-playing="false" aria-label="Play" disabled>
+          <span class="sl-playback__surface" aria-hidden="true">
+            <span class="sl-playback__icon">
+              <span class="sl-playback__piece sl-playback__piece--left"></span>
+              <span class="sl-playback__piece sl-playback__piece--right"></span>
+            </span>
+            <span class="sl-playback__label">Play</span>
+          </span>
+        </button>
+  <p class="playback-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+</body>
+</html>

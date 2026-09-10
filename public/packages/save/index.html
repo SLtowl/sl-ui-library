@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matte save button</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./preview.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>
+    body { margin: 0; background: #f5f4f2; min-height: 100svh; display: grid; place-content: center; font-family: 'Instrument Sans', sans-serif; }
+    .example-note { position: fixed; bottom: 20px; inset-inline: 20px; text-align: center; color: #696966; font-size: 12px; }
+    .embedded { background: transparent; }
+    .embedded .example-note { display: none; }
+  </style>
+</head>
+<body>
+  <div class="button-kit">
+<button class="bk-button bk-button--save" data-action="save" type="button" data-state="idle" disabled>
+        <span class="bk-surface" aria-hidden="true">
+          <span class="bk-progress"></span>
+          <span class="bk-label bk-label-idle">Save changes</span>
+          <span class="bk-label bk-label-saving">Saving<span class="bk-ellipsis">…</span></span>
+          <span class="bk-label bk-label-saved">
+            <svg class="bk-check" viewBox="0 0 24 24" fill="none" focusable="false"><path d="M4 12.5 9.2 17.5 20 6.5" pathLength="1"/></svg>
+            <span class="bk-saved-text">Saved</span>
+          </span>
+        </span>
+        <span class="bk-sr-only">Save changes</span>
+      </button>
+
+    <span class="bk-sr-only" data-feedback role="status" aria-live="polite" aria-atomic="true"></span>
+  </div>
+  <p class="example-note">Interactive demo. No data is sent. Replace onSave in example.js with your own request.</p>
+</body>
+</html>

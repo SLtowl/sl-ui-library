@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Matte Email input</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./preview.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>
+    body { margin: 0; min-height: 100svh; padding: 24px; box-sizing: border-box; display: grid; place-content: center; background: #f5f4f2; font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    body.embedded { background: transparent; }
+    .example-note { position: fixed; bottom: 14px; inset-inline: 16px; margin: 0; color: #515555; font-size: 12px; line-height: 1.5; text-align: center; }
+    .embedded .example-note { display: none; }
+  </style>
+</head>
+<body>
+  <div class="sl-field sl-field--email" id="email-field" data-validation="neutral">
+            <div class="sl-field__control">
+              <input class="sl-field__input" id="demo-email" type="email" placeholder=" " autocomplete="off" spellcheck="false" aria-describedby="email-help">
+              <label class="sl-field__label" for="demo-email">Email address</label>
+              <svg class="sl-field__validation" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g class="sl-field__invalid-icon"><path pathLength="1" d="m8.25 8.25 7.5 7.5"/><path pathLength="1" d="m15.75 8.25-7.5 7.5"/></g><path class="sl-field__valid-icon" pathLength="1" d="m5.5 12 4 4 9-9"/></svg>
+            </div>
+            <p class="sl-field__helper" id="email-help" role="status" aria-live="polite">Use an address such as name@example.com.</p>
+          </div>
+  <p class="example-note">Checks email syntax only. It does not contact a mailbox.</p>
+</body>
+</html>

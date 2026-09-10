@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matte Like button</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./preview.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>
+    body { margin: 0; min-height: 100svh; display: grid; place-content: center; background: #f5f4f2; font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    body.embedded { background: transparent; }
+    .like-feedback { position: fixed; bottom: 14px; left: 16px; right: 16px; margin: 0; color: #515555; font-size: 12px; line-height: 1.5; text-align: center; }
+  </style>
+</head>
+<body>
+  <button class="sl-like" id="like-button" type="button" aria-label="Like" aria-pressed="false" disabled>
+          <span class="sl-like__surface" aria-hidden="true">
+            <span class="sl-like__wash"></span>
+            <span class="sl-like__icon">
+              <svg class="sl-like__heart" viewBox="0 0 24 24" fill="none" focusable="false">
+                <path class="sl-like__outline" d="M12 20S3 14.5 3 8.5a4.6 4.6 0 0 1 9-1.4 4.6 4.6 0 0 1 9 1.4C21 14.5 12 20 12 20Z"/>
+                <path class="sl-like__fill" d="M12 20S3 14.5 3 8.5a4.6 4.6 0 0 1 9-1.4 4.6 4.6 0 0 1 9 1.4C21 14.5 12 20 12 20Z"/>
+              </svg>
+            </span>
+            <span class="sl-like__label">Like</span>
+          </span>
+        </button>
+  <p class="like-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+</body>
+</html>

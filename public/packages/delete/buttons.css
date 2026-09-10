@@ -1,0 +1,62 @@
+@font-face { font-family: 'Instrument Sans'; src: url('./instrument-sans-variable.woff2') format('woff2'); font-weight: 400 700; font-style: normal; font-display: swap; }
+.sl-delete {
+  --delete-unit: 1px;
+  --delete-ink: #202222;
+  --delete-hover: #2c2e2e;
+  --delete-active: #3d4040;
+  --delete-text: #fafaf9;
+  --delete-focus: #565b5b;
+  --delete-ease: cubic-bezier(.4, 0, .2, 1);
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  flex: none;
+  width: calc(248 * var(--delete-unit));
+  height: calc(52 * var(--delete-unit));
+  padding: 0;
+  border: 0;
+  border-radius: calc(13 * var(--delete-unit));
+  appearance: none;
+  background: transparent;
+  color: var(--delete-text);
+  font: 550 calc(19 * var(--delete-unit))/1.1 'Instrument Sans', sans-serif;
+  letter-spacing: -.02em;
+  text-align: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.sl-delete *, .sl-delete *::before, .sl-delete *::after { box-sizing: border-box; }
+.sl-delete:disabled { opacity: .5; cursor: not-allowed; }
+.sl-delete[aria-disabled="true"] { cursor: default; }
+.sl-delete[data-state="pending"] { cursor: progress; }
+.sl-delete:focus-visible { outline: 2px solid var(--delete-focus); outline-offset: 6px; }
+.sl-delete .sl-delete__surface { --delete-face: var(--delete-ink); position: absolute; inset: 0; display: grid; place-items: center; overflow: hidden; border-radius: inherit; background: var(--delete-face); box-shadow: inset 0 1px #ffffff12, 0 1px 2px #0000000d; transition: transform 350ms cubic-bezier(.22, 1, .36, 1), background-color 350ms ease, box-shadow 350ms ease; }
+.sl-delete:is([data-state="pending"], [data-state="deleted"]) .sl-delete__surface { --delete-face: var(--delete-active); }
+@media (hover: hover) and (forced-colors: none) {
+  .sl-delete:not(:disabled):not([aria-disabled="true"]):hover .sl-delete__surface { transform: translateY(-2px); box-shadow: inset 0 1px #ffffff17, 0 6px 12px -8px #00000047; }
+  .sl-delete:not(:disabled):not([aria-disabled="true"]):hover .sl-delete__surface { --delete-face: var(--delete-hover); }
+}
+.sl-delete:not(:disabled):not([aria-disabled="true"]):active .sl-delete__surface { transform: translateY(1px) scale(.98); transition-duration: 120ms; }
+.sl-delete .sl-delete__label { position: absolute; inset: 0 calc(56 * var(--delete-unit)); display: grid; place-items: center; white-space: nowrap; text-align: center; }
+.sl-delete .sl-delete__icon { position: absolute; left: calc(18 * var(--delete-unit)); top: 50%; width: calc(24 * var(--delete-unit)); height: calc(24 * var(--delete-unit)); transform: translateY(-50%); }
+.sl-delete .sl-delete__trash { display: block; width: 100%; height: 100%; overflow: visible; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.sl-delete .sl-delete__lid { transform-box: view-box; transform-origin: 75% 25%; }
+/* One quiet open/close gesture, independent of the action's completion time. */
+.sl-delete[data-delete-motion] .sl-delete__lid { animation: sl-delete-lid-cycle 620ms var(--delete-ease); }
+.sl-delete:disabled .sl-delete__lid { animation: none !important; }
+@keyframes sl-delete-lid-cycle {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  42% { transform: translateY(-1px) rotate(18deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sl-delete *, .sl-delete *::before, .sl-delete *::after { transition: none !important; animation: none !important; }
+  .sl-delete .sl-delete__surface, .sl-delete .sl-delete__lid { transform: none !important; }
+  .sl-delete:active .sl-delete__surface { opacity: .9; }
+}
+@media (forced-colors: active) {
+  .sl-delete .sl-delete__surface { --delete-face: ButtonFace; forced-color-adjust: none; border: 1px solid ButtonText; background: var(--delete-face); color: ButtonText; box-shadow: none; }
+  .sl-delete:is([data-state="pending"], [data-state="deleted"]) .sl-delete__surface { --delete-face: Highlight; color: HighlightText; border-color: Highlight; }
+  .sl-delete:focus-visible { outline-color: Highlight; }
+}

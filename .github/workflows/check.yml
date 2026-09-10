@@ -1,0 +1,16 @@
+name: Check library
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm run build
+      - run: npm run check
+      - name: Generated assets stay in sync
+        run: git diff --exit-code -- public plugins/sl-ui-library/assets

@@ -1,0 +1,194 @@
+@font-face{font-family:'Instrument Sans';src:url('./instrument-sans-variable.woff2') format('woff2');font-weight:400 700;font-display:swap}
+.sl-check-card {
+  --check-ink: #202222;
+  --check-paper: #eef0ee;
+  --check-muted: #aeb5b2;
+  --check-ease: cubic-bezier(.22,.61,.36,1);
+  width: min(320px,100%); min-width: 0; margin: 0; padding: 6px;
+  border: 1px solid #ffffff0b; border-radius: 14px;
+  color: #f7f8f7; background: var(--check-ink);
+  box-shadow: inset 0 1px #ffffff0d, 0 2px 5px #00000010;
+  font-family: 'Instrument Sans',sans-serif; text-align: left;
+}
+.sl-check-card, .sl-check-card * { box-sizing: border-box; }
+.sl-check { position: relative; display: flex; align-items: center; gap: 16px; min-height: 68px; padding: 12px; border-radius: 9px; cursor: pointer; transition: background-color 300ms ease; }
+.sl-check:hover { background: #ffffff06; }
+.sl-check__input { position: absolute; width: 1px; height: 1px; margin: 0; opacity: 0; }
+.sl-check__box { position: relative; isolation: isolate; display: grid; place-items: center; flex: none; width: 28px; height: 28px; overflow: hidden; border: 1px solid #737b77; border-radius: 8px; background: #121414; box-shadow: inset 0 1px 2px #0004; transition: border-color 350ms ease, transform 260ms var(--check-ease); }
+.sl-check__box::before { content: ""; position: absolute; inset: -1px; z-index: -1; background: var(--check-paper); opacity: 0; transition: opacity 380ms ease, transform 520ms var(--check-ease); }
+.sl-check__box svg { display: block; width: 23px; height: 23px; stroke: var(--check-ink); stroke-width: 1.65; stroke-linecap: round; stroke-linejoin: round; }
+.sl-check__tick { stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; transition: stroke-dashoffset 480ms var(--check-ease), opacity 240ms ease; }
+.sl-check__dash { opacity: 0; transition: opacity 220ms ease; }
+.sl-check__input:checked + .sl-check__box, .sl-check__input:indeterminate + .sl-check__box { border-color: var(--check-paper); }
+.sl-check__input:checked + .sl-check__box::before, .sl-check__input:indeterminate + .sl-check__box::before { opacity: 1; }
+.sl-check__input:checked + .sl-check__box .sl-check__tick { opacity: 1; stroke-dashoffset: 0; transition-delay: 70ms; }
+.sl-check__input:indeterminate + .sl-check__box .sl-check__tick { opacity: 0; }
+.sl-check__input:indeterminate + .sl-check__box .sl-check__dash { opacity: 1; }
+.sl-check__input:focus-visible + .sl-check__box { outline: 2px solid var(--check-paper); outline-offset: 4px; }
+.sl-check:active .sl-check__box { transform: scale(.94); }
+.sl-check:has(.sl-check__input:disabled) { opacity: .5; cursor: not-allowed; }
+.sl-check__copy { display: grid; gap: 4px; min-width: 0; }
+.sl-check__title { position: relative; width: fit-content; font-size: 15px; font-weight: 540; line-height: 20px; }
+.sl-check__hint { color: var(--check-muted); font-size: 12px; line-height: 17px; }
+/* Short, coordinated fill: no delayed second beat after the surface settles. */
+.sl-check--fill .sl-check__box { border-radius: 4px; transition: border-color 240ms ease, transform 220ms var(--check-ease); }
+.sl-check--fill .sl-check__box::before { transform: scale(.65); border-radius: 3px; transition: opacity 200ms ease, transform 280ms var(--check-ease); }
+.sl-check--fill .sl-check__tick { stroke-dashoffset: 0; transform: scale(.9); transform-origin: 12px 12px; transition: opacity 180ms ease, transform 260ms var(--check-ease); }
+.sl-check--fill .sl-check__input:checked + .sl-check__box::before { transform: scale(1); }
+.sl-check--fill .sl-check__input:checked + .sl-check__box .sl-check__tick { transform: scale(1); transition-delay: 20ms; }
+/* Circular checkbox, not a radio: selections remain independent. */
+.sl-check--outline .sl-check__box { width: 30px; height: 30px; border-radius: 50%; }
+.sl-check--outline .sl-check__box::before { border-radius: 50%; transform: scale(.65); transition: opacity 200ms ease, transform 280ms var(--check-ease); }
+.sl-check--outline .sl-check__input:checked + .sl-check__box::before { transform: scale(1); }
+.sl-check--outline .sl-check__tick { stroke-dashoffset: 0; transform: scale(.9); transform-origin: 12px 12px; transition: opacity 180ms ease, transform 260ms var(--check-ease); }
+.sl-check--outline .sl-check__input:checked + .sl-check__box .sl-check__tick { transform: scale(1); transition-delay: 20ms; }
+.sl-check--task .sl-check__title { transition: color 440ms ease; }
+.sl-check--task .sl-check__title::after { content: ""; position: absolute; left: 0; right: 0; top: 52%; height: 1px; background: #b8c0bb; transform: scaleX(0); transform-origin: left; transition: transform 600ms var(--check-ease); }
+.sl-check--task .sl-check__input:checked ~ .sl-check__copy .sl-check__title { color: #aeb5b2; }
+.sl-check--task .sl-check__input:checked ~ .sl-check__copy .sl-check__title::after { transform: scaleX(1); transition-delay: 90ms; }
+.sl-check-group__children { margin: 0 12px 5px; padding-top: 7px; border-top: 1px solid #ffffff12; }
+.sl-check-group__children .sl-check { min-height: 45px; padding: 7px 0; }
+.sl-check-group__children .sl-check__box { width: 24px; height: 24px; border-radius: 7px; }
+.sl-check-group__children .sl-check__box svg { width: 21px; height: 21px; }
+.sl-check-group__children .sl-check__title { font-size: 14px; font-weight: 450; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width:420px) { .sl-check { gap: 12px; padding-inline: 10px; } .sl-check__title { font-size: 14px; } }
+@media (prefers-reduced-motion:reduce) { .sl-check-card *, .sl-check-card *::before, .sl-check-card *::after { transition: none !important; animation: none !important; } .sl-check:active .sl-check__box { transform: none; } }
+@media (forced-colors:active) {
+  .sl-check-card { color: CanvasText; background: Canvas; border-color: CanvasText; }
+  .sl-check__hint { color: CanvasText; }
+  .sl-check__box { forced-color-adjust: none; background: Canvas; border-color: CanvasText; }
+  .sl-check__box::before { background: Highlight; }
+  .sl-check__box svg { stroke: HighlightText; }
+  .sl-check--outline .sl-check__box svg { stroke: HighlightText; }
+  .sl-check--outline .sl-check__input:checked + .sl-check__box { border-color: Highlight; }
+  .sl-check__input:focus-visible + .sl-check__box { outline-color: Highlight; }
+}
+
+/* Only the twenty new studies; the original five keep their own motion. */
+.check-jumps { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 28px; }
+.check-jumps a { color: #b8bebb; font-size: 14px; text-decoration: none; border-bottom: 1px solid #626966; padding-block: 8px; }
+.check-jumps a:hover { color: #fff; }
+.check-jumps a:focus-visible { outline: 2px solid #ddd; outline-offset: 4px; }
+.check-section { grid-column: 1 / -1; padding-top: 26px; scroll-margin-top: 30px; }
+.check-section h2 { margin: 0 0 4px; font-size: 28px; letter-spacing: -.03em; }
+[data-variation] .toggle-heading h2 { font-size: 21px; }
+[data-variation] .sl-check__title { line-height: 1.4; }
+.sl-check--round .sl-check__box { border-radius: 50%; width: 30px; height: 30px; }
+.sl-check--sharp .sl-check__box { border-radius: 4px; }
+.mark-stroke { opacity: 0; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 360ms var(--check-ease), opacity 240ms ease; }
+.sl-check__input:checked + .sl-check__box .mark-stroke { opacity: 1; stroke-dashoffset: 0; }
+.sl-check--cross .stroke-two { transition-delay: 0ms; }
+.sl-check--cross .sl-check__input:checked + .sl-check__box .stroke-two { transition-delay: 75ms; }
+.sl-check--cross-turn .mark-stroke { stroke-dashoffset: 0; transform-origin: 12px 12px; transform: rotate(-35deg) scale(.7); transition: transform 400ms var(--check-ease), opacity 240ms ease; }
+.sl-check--cross-turn .sl-check__input:checked + .sl-check__box .mark-stroke { transform: rotate(0) scale(1); transition-delay: 0ms; }
+.sl-check--icon .sl-check__box { width: 36px; height: 36px; }
+.sl-check--icon .sl-check__box svg { stroke: #adb6b0; transition: stroke 320ms ease; }
+.sl-check--icon .sl-check__input:checked + .sl-check__box svg { stroke: var(--check-ink); }
+.mark-icon { transform-origin: 12px 12px; fill: transparent; transition: fill 360ms ease, transform 460ms var(--check-ease); }
+.sl-check--star .sl-check__input:checked + .sl-check__box .mark-icon { fill: var(--check-ink); transform: rotate(12deg) scale(.93); }
+.sl-check--heart .mark-icon { transform: scale(.88); }
+.sl-check--heart .sl-check__input:checked + .sl-check__box .mark-icon { fill: var(--check-ink); transform: scale(1); }
+.sl-check--bookmark .mark-icon { transform: translateY(-2px); }
+.sl-check--bookmark .sl-check__input:checked + .sl-check__box .mark-icon { transform: translateY(0); fill: var(--check-ink); }
+.sl-check--shield .sl-check__box::before { border-radius: 7px; transform: scale(.5); }
+.sl-check--shield .sl-check__input:checked + .sl-check__box::before { transform: scale(1); }
+.sl-check--shield .sl-check__input:checked + .sl-check__box .mark-stroke { transition-delay: 80ms; }
+.sl-check--pin .mark-icon { transform: translateY(-1px) rotate(-15deg); transform-origin: 12px 12px; }
+.sl-check--pin .sl-check__input:checked + .sl-check__box .mark-icon { transform: translateY(0) rotate(0); }
+.sl-check--bell .mark-icon { transform: rotate(-10deg); transform-origin: 12px 4px; }
+.sl-check--bell .sl-check__input:checked + .sl-check__box .mark-icon { transform: rotate(0); }
+.sl-check--bell .sl-check__input:checked + .sl-check__box .mark-stroke { transition-delay: 120ms; }
+.sl-check--ring .sl-check__box { border-color: #647069; }
+.sl-check--ring .sl-check__box::before, .sl-check--corner .sl-check__box::before { display: none; }
+.sl-check--ring .sl-check__box svg, .sl-check--corner .sl-check__box svg { stroke: var(--check-paper); }
+.check-ring { stroke-dasharray: 1; stroke-dashoffset: 1; transform: rotate(-90deg); transform-origin: 12px 12px; transition: stroke-dashoffset 520ms var(--check-ease); }
+.sl-check--ring .sl-check__input:checked + .sl-check__box .check-ring { stroke-dashoffset: 0; }
+.sl-check--ring .sl-check__input:checked + .sl-check__box { border-color: #647069; }
+.sl-check--corner .sl-check__box { overflow: visible; border: 0; background: transparent; box-shadow: none; }
+.check-corners { transform-origin: 12px 12px; transform: scale(1.08); opacity: .45; transition: transform 400ms var(--check-ease), opacity 320ms ease; }
+.sl-check--corner .sl-check__input:checked + .sl-check__box .check-corners { transform: scale(.9); opacity: 1; }
+
+.check-caption { margin: 12px 12px 14px; color: #c3cbc6; font-size: 13px; line-height: 1.4; }
+.check-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 0 10px 12px; }
+.sl-check--chip { min-height: 40px; padding: 8px 28px; justify-content: center; gap: 0; background: #111313; border: 1px solid #525a55; border-radius: 30px; transition: background-color 320ms ease, border-color 320ms ease; }
+.sl-check--chip .sl-check__copy { transform: translateX(0); transition: transform 360ms var(--check-ease); }
+.sl-check--chip:has(:checked) .sl-check__copy { transform: translateX(12px); }
+.sl-check--chip .sl-check__title { font-size: 13px; }
+.sl-check--chip .sl-check__box { position: absolute; left: 16px; top: calc(50% - 9px); width: 18px; height: 18px; border: 0; background: transparent; box-shadow: none; opacity: 0; transition: opacity 180ms ease; }
+.sl-check--chip:has(:checked) .sl-check__box { opacity: 1; }
+.sl-check--chip .sl-check__box::before { display: none; }
+.sl-check--chip .sl-check__box svg { width: 18px; height: 18px; stroke: var(--check-paper); }
+.sl-check--chip:has(:checked) { background: #3b423d; border-color: #afb8b1; }
+.sl-check--chip .sl-check__tick { stroke-dashoffset: 1; transition: opacity 180ms ease, stroke-dashoffset 360ms var(--check-ease); }
+.sl-check--chip .sl-check__input:checked + .sl-check__box .sl-check__tick { stroke-dashoffset: 0; transition-delay: 70ms; }
+.sl-check--chip:has(:focus-visible) { outline: 2px solid var(--check-paper); outline-offset: 3px; }
+.sl-check--chip .sl-check__input:focus-visible + .sl-check__box { outline: none; }
+.check-days { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); gap: 3px; padding: 0 9px 12px; }
+.check-day { position: relative; min-width: 0; cursor: pointer; }
+.check-day > span { position: relative; display: grid; place-content: center; height: 44px; border: 1px solid #555e58; border-radius: 20px; color: #b6bfb9; font-size: 12px; transition: color 300ms ease, background-color 300ms ease, border-color 300ms ease; }
+.check-day i { position: absolute; bottom: 5px; left: calc(50% - 2px); width: 4px; height: 4px; background: #232724; border-radius: 50%; transform: scale(0); transition: transform 340ms var(--check-ease); }
+.check-day input:checked + span { background: var(--check-paper); color: var(--check-ink); border-color: var(--check-paper); }
+.check-day input:checked + span i { transform: scale(1); }
+.check-day input:focus-visible + span, .check-tile input:focus-visible + span, .check-swatch input:focus-visible + span { outline: 2px solid var(--check-paper); outline-offset: 3px; }
+.check-tiles { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; padding: 8px; }
+.check-tile { position: relative; min-width: 0; cursor: pointer; }
+.check-tile__face { display: flex; min-height: 128px; flex-direction: column; align-items: center; justify-content: center; gap: 10px; border: 1px solid #626a65; border-radius: 10px; background: #161917; color: #b7c0b9; transition: border-color 340ms ease, background-color 340ms ease, color 340ms ease; font-size: 12px; }
+.tile-art { width: 29px; height: 29px; transition: transform 420ms var(--check-ease); }
+.check-tile svg, .row-art { stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.tile-check { position: absolute; width: 17px; height: 17px; right: 8px; top: 8px; }
+.check-tile input:checked + span { border-color: #c2cbc5; background: #363d38; color: #f1f4f2; }
+.check-tile input:checked + span .tile-art { transform: translateY(-2px); }
+.check-tile input:checked + span .sl-check__tick { stroke-dashoffset: 0; opacity: 1; }
+.check-swatches { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; padding: 0 10px 12px; }
+.check-swatch { position: relative; display: grid; justify-items: center; gap: 9px; cursor: pointer; }
+.swatch-face { position: relative; display: grid; place-content: center; width: 60px; height: 60px; border: 1px solid #707a73; border-radius: 50%; box-shadow: 0 0 0 3px transparent; transition: box-shadow 350ms ease, border-color 350ms ease; }
+.texture-0 { background: #414944; }
+.texture-1 { background: repeating-linear-gradient(45deg,#2b312d 0 4px,#535e56 4px 5px); }
+.texture-2 { background: radial-gradient(#748078 1px,transparent 1.5px) 0 0 / 7px 7px,#2d342f; }
+.swatch-face svg { width: 24px; height: 24px; stroke: #202222; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; background: #f0f3f1; border-radius: 50%; opacity: 0; transform: scale(.65); transition: transform 380ms var(--check-ease), opacity 240ms ease; }
+.check-swatch input:checked + span { border-color: #e2e8e4; box-shadow: 0 0 0 3px #77867c; }
+.check-swatch input:checked + span svg { opacity: 1; transform: scale(1); }
+.check-swatch input:checked + span .sl-check__tick { stroke-dashoffset: 0; opacity: 1; }
+.swatch-label { font-size: 12px; color: #bcc5bf; }
+
+.check-list .sl-check { min-height: 52px; padding: 10px 12px; gap: 12px; }
+.check-list .sl-check__title { font-size: 13px; }
+.check-list .sl-check__box { width: 24px; height: 24px; }
+.check-list .sl-check__box svg { width: 20px; height: 20px; }
+.check-list .sl-check + .sl-check { border-top: 1px solid #ffffff0a; }
+.check-exclusions .sl-check__title { transition: opacity 300ms ease; }
+.check-exclusions .sl-check:has(:checked) .sl-check__title { opacity: .55; text-decoration: line-through; text-decoration-thickness: 1px; }
+.sl-check--right .sl-check__box { order: 3; margin-left: auto; }
+.sl-check--right .sl-check__copy { flex: 1; }
+.row-art { width: 22px; height: 22px; color: #bcc5bf; flex: none; }
+.check-filelist .sl-check:has(:checked) { background: #373e38; }
+.check-filelist .sl-check { transition: background-color 400ms ease; }
+.check-table-head { display: flex; justify-content: space-between; margin: 10px 12px 6px 48px; color: #a3ada6; font-size: 11px; }
+.check-table .sl-check { border-radius: 0; min-height: 45px; }
+.check-table .sl-check__copy { display: flex; flex: 1; align-items: center; justify-content: space-between; gap: 8px; }
+.check-table .sl-check__hint { font-size: 11px; }
+.check-table .sl-check:has(:checked) { background: #303832; }
+.check-tree { margin: 0 8px 10px 23px; border-left: 1px solid #546159; padding-left: 10px; }
+.check-tree .sl-check { position: relative; min-height: 43px; border: 0; padding-right: 4px; }
+.check-tree .sl-check::before { content: ""; position: absolute; left: -10px; width: 12px; height: 1px; background: #546159; }
+.check-nested > .sl-check { min-height: 65px; }
+@media (max-width:420px) {
+  .swatch-face { width: 49px; height: 49px; }
+  .check-swatches { gap: 7px; padding-inline: 6px; }
+  .check-list .sl-check { padding-inline: 8px; gap: 9px; }
+  .check-list .sl-check__title { font-size: 12px; }
+  .check-days { padding-inline: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sl-check-card *, .sl-check-card *::before, .sl-check-card *::after { animation: none !important; transition: none !important; }
+}
+@media (forced-colors:active) {
+  .sl-check--icon .sl-check__box svg { stroke: CanvasText; }
+  .sl-check--icon .sl-check__input:checked + .sl-check__box svg { stroke: HighlightText; }
+  .sl-check--icon .sl-check__input:checked + .sl-check__box .mark-icon { fill: transparent; }
+  .sl-check--ring .sl-check__box svg, .sl-check--corner .sl-check__box svg, .sl-check--chip .sl-check__box svg { stroke: CanvasText; }
+  .check-day > span, .check-tile__face, .swatch-face { forced-color-adjust: none; color: CanvasText; background: Canvas; border-color: CanvasText; }
+  .check-day input:checked + span, .check-tile input:checked + span, .check-swatch input:checked + span { background: Highlight; color: HighlightText; border-color: HighlightText; }
+  .check-day input:checked + span i { background: HighlightText; }
+}

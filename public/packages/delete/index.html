@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <style>html,body{background-color:#f5f4f2;color:#202222}body{margin:0}</style>
+  <title>Matte Delete button</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./preview.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>
+    body { min-height: 100svh; display: grid; place-content: center; font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    body.embedded { background: transparent; }
+    .delete-feedback, .example-note { position: fixed; left: 16px; right: 16px; margin: 0; color: #515555; font-size: 12px; line-height: 1.5; text-align: center; }
+    .delete-feedback { bottom: 14px; }
+    .example-note { bottom: 50px; }
+    .embedded .example-note { display: none; }
+  </style>
+</head>
+<body>
+  <button class="sl-delete" id="delete-button" type="button" data-state="idle" aria-label="Delete" disabled>
+          <span class="sl-delete__surface" aria-hidden="true">
+            <span class="sl-delete__icon">
+              <svg class="sl-delete__trash" viewBox="0 0 24 24" fill="none" focusable="false">
+                <path class="sl-delete__bin" d="m7 8 .8 12h8.4L17 8M10 11l.3 6M14 11l-.3 6"/>
+                <g class="sl-delete__lid"><path d="M5 6h14M9 6V4h6v2"/></g>
+              </svg>
+            </span>
+            <span class="sl-delete__label">Delete</span>
+          </span>
+        </button>
+  <p class="delete-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+  <p class="example-note" data-delete-example>Local sample item. Click Delete to remove this text only.</p>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Matte Download button</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./preview.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>
+    body { margin: 0; min-height: 100svh; display: grid; place-content: center; background: #f5f4f2; font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    body.embedded { background: transparent; }
+    .download-feedback { position: fixed; bottom: 14px; left: 16px; right: 16px; margin: 0; color: #515555; font-size: 12px; line-height: 1.5; text-align: center; }
+  </style>
+</head>
+<body>
+  <button class="sl-download" id="download-button" type="button" aria-label="Download file" data-download-state="idle" disabled>
+          <span class="sl-download__surface" aria-hidden="true">
+            <span class="sl-download__wash"></span>
+            <span class="sl-download__icon">
+              <svg viewBox="0 0 24 24" fill="none" focusable="false">
+                <path class="sl-download__arrow" d="M12 3.5v10m-3.5-3.5 3.5 3.5 3.5-3.5"/>
+                <g class="sl-download__tray">
+                  <path class="sl-download__tray-left" d="M4.5 20.5H9"/>
+                  <path class="sl-download__tray-right" d="M9 20.5H19.5"/>
+                  <path class="sl-download__rim-left" d="M4.5 16.5v4"/>
+                  <path class="sl-download__rim-right" d="M19.5 20.5v-4"/>
+                </g>
+              </svg>
+            </span>
+            <span class="sl-download__label">Download</span>
+          </span>
+        </button>
+  <p class="download-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+</body>
+</html>

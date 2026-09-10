@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <style>html,body{background-color:#f5f4f2;color:#202222}body{margin:0}</style>
+  <title>Matte Follow button</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./preview.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>
+    body { min-height: 100svh; display: grid; place-content: center; font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    body.embedded { background: transparent; }
+    .follow-feedback, .example-note { position: fixed; left: 16px; right: 16px; margin: 0; color: #515555; font-size: 12px; line-height: 1.5; text-align: center; }
+    .follow-feedback { bottom: 14px; }
+    .example-note { bottom: 50px; }
+    .embedded .example-note { display: none; }
+  </style>
+</head>
+<body>
+  <button class="sl-follow" id="follow-button" type="button" aria-label="Follow" aria-pressed="false" disabled>
+          <span class="sl-follow__surface" aria-hidden="true">
+            <span class="sl-follow__wash"></span>
+            <span class="sl-follow__icon">
+              <svg class="sl-follow__person" viewBox="0 0 28 24" fill="none" focusable="false"><circle cx="8" cy="7" r="3"/><path d="M2 20v-1a6 6 0 0 1 12 0v1"/></svg>
+              <span class="sl-follow__mark"><span class="sl-follow__mark-short"></span><span class="sl-follow__mark-long"></span></span>
+            </span>
+            <span class="sl-follow__label">Follow</span>
+          </span>
+        </button>
+  <p class="follow-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+  <p class="example-note">Local state only. No account is followed and no network request is made.</p>
+</body>
+</html>

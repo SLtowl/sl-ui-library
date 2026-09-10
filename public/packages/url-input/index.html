@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Matte URL input</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./preview.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>
+    body { margin: 0; min-height: 100svh; padding: 24px; box-sizing: border-box; display: grid; place-content: center; background: #f5f4f2; font-family: 'Instrument Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    body.embedded { background: transparent; }
+    .example-note { position: fixed; bottom: 14px; inset-inline: 16px; margin: 0; color: #515555; font-size: 12px; line-height: 1.5; text-align: center; }
+    .embedded .example-note { display: none; }
+  </style>
+</head>
+<body>
+  <div class="sl-field sl-field--url" id="url-field" data-validation="neutral">
+            <div class="sl-field__control">
+              <svg class="sl-field__leading sl-field__globe" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.25"/><path class="sl-field__globe-axis" d="M3.9 12h16.2M12 3.75c2.35 2.2 3.55 4.95 3.55 8.25S14.35 18.05 12 20.25M12 3.75C9.65 5.95 8.45 8.7 8.45 12S9.65 18.05 12 20.25"/></svg>
+              <input class="sl-field__input" id="demo-url" type="url" placeholder=" " autocomplete="url" spellcheck="false" required aria-describedby="url-help">
+              <label class="sl-field__label" for="demo-url">Website URL</label>
+              <svg class="sl-field__validation" viewBox="0 0 24 24" fill="none" aria-hidden="true"><g class="sl-field__invalid-icon"><path pathLength="1" d="m8.25 8.25 7.5 7.5"/><path pathLength="1" d="m15.75 8.25-7.5 7.5"/></g><path class="sl-field__valid-icon" pathLength="1" d="m5.5 12 4 4 9-9"/></svg>
+            </div>
+            <p class="sl-field__helper" id="url-help" role="status" aria-live="polite">Use a complete address such as https://example.com.</p>
+          </div>
+  <p class="example-note">Checks URL syntax locally. It does not visit the address.</p>
+</body>
+</html>

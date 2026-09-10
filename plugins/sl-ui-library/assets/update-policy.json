@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "published": false,
+  "feed": "https://raw.githubusercontent.com/SLtowl/sl-ui-library/main/plugin-channel.json",
+  "intervalHours": 24
+}

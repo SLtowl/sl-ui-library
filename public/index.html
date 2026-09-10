@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <style>html,body{background-color:#020303;color:#f3f5f6}html{color-scheme:dark}body{margin:0}</style>
+  <meta name="description" content="Browse UI components by type. Try each interaction, inspect its source, and download it for your project.">
+  <title>Components · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="preload" href="./assets/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./library.css">
+  <link rel="stylesheet" href="./catalog.css">
+  <link rel="modulepreload" href="./view-data.js">
+  <link rel="modulepreload" href="./preview-data.js?v=instant-4">
+  <script src="./navigation.js?v=instant-4" type="module"></script>
+</head>
+<body data-page="home">
+  <a class="skip-link" href="#main">Skip to components</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="wordmark" href="./">SL UI Library</a>
+      <nav class="navigation" aria-label="Library">
+        <a class="nav-item is-current" href="./" aria-current="page">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="3" y="3" width="10" height="10" rx="3"/><rect x="19" y="3" width="10" height="10" rx="3"/><rect x="3" y="19" width="10" height="10" rx="3"/><rect x="19" y="19" width="10" height="10" rx="3"/></svg>
+          <span>Components</span>
+        </a>
+        <button class="nav-item" id="open-usage" type="button" aria-haspopup="dialog">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 7C12 3.5 7 3.5 2.5 4.5v23C7 26 12 26 16 29c4-3 9-3 13.5-1.5v-23C25 3.5 20 3.5 16 7Z"/><path d="M16 7v22M7 11h4M7 17h4M21 11h4M21 17h4"/></svg>
+          <span>Usage</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="catalog-main category-home" tabindex="-1">
+    <div class="home-intro">
+      <h1>Components</h1>
+      <p>Choose a type to explore its components.</p>
+    </div>
+    <nav class="category-tiles" id="category-tiles" aria-label="Component categories"></nav>
+    <noscript><p><a href="./component.html?component=matte-save-cancel">Open Save &amp; Cancel</a>. Enable JavaScript to browse all categories.</p></noscript>
+  </main>
+  <dialog id="usage-dialog" aria-labelledby="usage-title">
+    <div class="dialog-header"><h2 id="usage-title">Using the library</h2><button id="close-usage" class="close-button" type="button" aria-label="Close usage"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <div class="usage-content">
+      <section><h3>Start with a type</h3><p>Choose an icon tile on the home page to open a component category. Inside that category, search by name, action or motion.</p></section>
+      <section><h3>Try it before you take it</h3><p>Use a component’s live preview, then open it to see its HTML, CSS and JavaScript. Select the part you need and copy a file or download the complete zip.</p></section>
+      <section><h3>Keep structure and motion separate</h3><p>A component belongs to one type. Different motion treatments stay inside that type. Pair, Save and Cancel are export options for one component, not three separate components.</p></section>
+      <section><h3>Bring it into your project</h3><p>The current component uses plain HTML, CSS and JavaScript with a bundled font. Its download works offline. Edit the CSS variables and connect the actions to your own logic.</p></section>
+    </div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "sl-ui-library",
+  "version": "1.0.0",
+  "description": "Describe your interface. Let the agent choose real SL UI components, adapt their palette and integrate working source.",
+  "author": {
+    "name": "SL"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "SL UI Library",
+    "shortDescription": "Handcrafted components for your next interface.",
+    "longDescription": "Let the agent choose from 110 HTML, CSS and JavaScript components by intent, inspect their real source, adapt your palette and integrate a complete package. The initial library works offline. Optional catalog updates require a published channel and explicit opt-in.",
+    "developerName": "SL",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"],
+    "defaultPrompt": ["Add a topic picker using my app's palette.", "Build a compact project dialog for my app.", "Choose suitable navigation for my dashboard."],
+    "brandColor": "#202523",
+    "screenshots": ["./assets/navigation.png", "./assets/overlays.png"]
+  }
+}
