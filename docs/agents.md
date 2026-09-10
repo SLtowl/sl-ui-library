@@ -88,4 +88,4 @@ Internal JSON operations are `list`, `search`, `inspect`, `read`, `palette`, `in
 
 `npm run build` regenerates the public plugin ZIP. `npm run check` verifies host metadata, exact archive contents, discovery, source retrieval and export after extraction outside the repository, alongside component and security tests.
 
-These are package-level checks. End-to-end installation, skill selection and integration inside real ChatGPT and Claude accounts have not been certified by those platforms. Public directory submission remains a separate step.
+The README commands have also been executed in Codex and Claude Code on Windows. Both hosts reported the plugin installed and enabled; both installed copies passed catalog/source checks and exported a recolored button. Pointer, keyboard and repeated interaction were checked in the exported browser example. Automatic skill selection in a fresh chat and platform certification are not claimed. See the [dated installation evidence](../QA.md#native-installation-check--2026-09-11). Public directory submission remains a separate step.

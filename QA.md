@@ -53,7 +53,22 @@ The repository includes actual Chrome screenshots and a cursor-free studio inter
 
 The downloadable plugin includes a portable Agent Plugins manifest, Claude and Codex compatibility manifests, one provider-neutral skill, the offline catalog and all component sources. Thirteen Node tests pass, including exact ZIP-to-source comparison and discovery, source reading, palette inventory and export from a freshly extracted archive outside this repository.
 
-The Claude repository marketplace points to the self-contained plugin directory. No MCP endpoint, hook, account credential or automatic host configuration is added. Local package checks do not certify installation or semantic skill selection inside ChatGPT or Claude; those host acceptance checks and OpenAI public-directory submission remain outstanding.
+The shared repository marketplace points to the self-contained plugin directory. No MCP endpoint, hook or account credential is included. Installation changes host configuration only when explicitly requested through the application's plugin manager.
+
+## Native installation check — 2026-09-11
+
+Both one-line README commands were executed on Windows against the public GitHub repository. Codex and Claude Code 2.1.207 reported `sl-ui-library@sl-ui-library` version 1.0.0 installed and enabled in user scope. Codex also passed a repeat installation. Claude's native manifest validator passed. No official-directory submission was made.
+
+Checks used each application's installed cache, not the development checkout:
+
+- Catalog discovery returned 110 components; all 824 source-file entries across 112 variants passed SHA-256 verification.
+- Searching for a like interaction returned `matte-like`; its actual HTML, CSS, controller and integration example were read.
+- Both installed copies exported the Like button with a five-color violet palette. The two exports matched byte-for-byte.
+- The six non-CSS files were unchanged, including JavaScript and the font. The original library CSS remained unchanged.
+- Violet text contrast was 13.24:1 at rest, 10.76:1 on hover and 7.67:1 when selected, using the specified solid color tokens.
+- Browser checks covered Like → Liked → Like, Enter, Space, twelve repeated clicks, settled labels, visible keyboard focus and a 390px viewport. No console warnings or errors were observed.
+
+The browser interaction was performed on the exported example. The installed skill was read explicitly by the testing agent. Automatic selection from a fresh natural-language chat, ordinary ChatGPT web installation, platform certification and other browsers remain separate checks. Start a new task after installation to load the plugin.
 
 ## Privacy review
 
