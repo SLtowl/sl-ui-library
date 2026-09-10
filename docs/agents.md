@@ -14,45 +14,37 @@ In a chat, the agent can prepare files for download. It can integrate them into 
 
 ### Claude Code
 
-Add the repository marketplace and install its plugin:
+One terminal line registers this repository and installs its plugin:
 
-```text
-/plugin marketplace add SLtowl/sl-ui-library
-/plugin install sl-ui-library@sl-ui-library
+```sh
+claude plugin marketplace add SLtowl/sl-ui-library && claude plugin install sl-ui-library@sl-ui-library
 ```
 
-The repository contains `.claude-plugin/marketplace.json`; its entry points to `plugins/sl-ui-library/`. Both host manifests use the same skill and source data. The plugin remains self-contained when Claude copies it into its cache. Reload plugins or start a new session after installation.
+In an interactive Claude Code session, use two slash commands: `/plugin marketplace add SLtowl/sl-ui-library`, then `/plugin install sl-ui-library@sl-ui-library`. The first step is only needed to connect the repository. No official directory submission is needed for this GitHub installation.
 
-Claude Code offers marketplace auto-updates; third-party marketplaces do not enable them by default. Users can choose that option in **/plugin → Marketplaces**. Uploaded ZIP copies do not update automatically; upload a newer package when needed. [Marketplace installation and updates](https://code.claude.com/docs/en/discover-plugins).
+Claude Code offers marketplace auto-updates; third-party marketplaces do not enable them by default. Users can choose that option in **/plugin → Marketplaces**. Uploaded ZIP copies do not update automatically. [Marketplace installation and updates](https://code.claude.com/docs/en/discover-plugins).
+
+## Codex
+
+```sh
+codex plugin marketplace add SLtowl/sl-ui-library && codex plugin add sl-ui-library@sl-ui-library
+```
+
+Requires an installed Codex CLI with plugin marketplace support and Git available to it. Start a new Codex task after installation so the skill is loaded. The plugin is copied into Codex's managed cache; it does not depend on a development checkout.
+
+Both terminal lines work in macOS/Linux shells, Windows Command Prompt and PowerShell 7+. Windows PowerShell 5 does not support `&&`: run the two commands separately and stop if the first fails. Do not reinstall the AI application just to add this plugin.
+
+The repository uses one shared `.claude-plugin/marketplace.json` named `sl-ui-library`, supported by both hosts. The redundant repository catalog named `personal` was removed to avoid colliding with users' personal marketplaces. The plugin keeps its portable, Claude and Codex manifests, with the same skill and offline source bundle.
+
+To update a Git-backed Codex installation, use `codex plugin marketplace upgrade sl-ui-library`, then `codex plugin add sl-ui-library@sl-ui-library`, and start a new task. Updates never replace components already exported into projects.
+
+The optional `node install.mjs` wrapper remains for local development from a reviewed checkout. It only registers that local checkout through Codex CLI, refuses a same-name source elsewhere and supports `--dry-run`. It is not the public installation command.
 
 ## ChatGPT
 
-### Local desktop testing
+The Codex commands install into Codex, not an ordinary ChatGPT web conversation. ChatGPT desktop Work can discover supported local plugin sources, depending on the client and workspace. Uploading a ZIP as a chat attachment is not a plugin installation. [OpenAI local plugin packaging](https://developers.openai.com/plugins/build/plugins).
 
-In a ChatGPT desktop environment with **Work / Codex** and local projects:
-
-1. Download and extract this repository, then open it as a project.
-2. Restart the desktop app so it discovers the repository marketplace.
-3. Open **Plugins**, choose the repository's **Personal** source and install **SL UI Library**.
-4. Start a new task with the plugin enabled.
-
-The existing repository marketplace is named `personal`; it is not the same as the user's global personal configuration. No setup script modifies that global marketplace directly. Local marketplace support varies by surface. It is not a way to install into ordinary ChatGPT on the web. [OpenAI local plugin packaging](https://developers.openai.com/plugins/build/plugins).
-
-### Public directory status
-
-**Not submitted or approved.** A public Install link for ChatGPT requires a separate skills-only submission and publication in the shared ChatGPT / Codex Plugins Directory. A GitHub repository or a ZIP attached to a conversation is not a directory installation.
-
-The generated ZIP is the package for review. The owner still needs a verified developer identity, appropriate submission access, listing and policy information, host acceptance tests, and approval. No identity verification, policy attestation or terms acceptance is performed by the build. [OpenAI submission requirements](https://developers.openai.com/plugins/deploy/submission).
-
-### Optional Codex CLI setup
-
-From a downloaded, reviewed checkout with Node.js 22+ and Codex CLI:
-
-```sh
-node install.mjs
-```
-
-This wrapper only registers the local repository marketplace and installs the Codex plugin through the host CLI. It is not a universal installer. `node install.mjs --dry-run` previews the commands without changing configuration. A conflicting marketplace name stops the installer instead of overwriting another source.
+A public ChatGPT Plugins Directory listing has not been submitted or approved. That is a separate distribution option, not a prerequisite for the GitHub-based Claude Code and Codex commands above. The owner has deferred official publication.
 
 ## Using the plugin
 

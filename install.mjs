@@ -6,9 +6,9 @@ import {promisify} from 'node:util';
 const root=fileURLToPath(new URL('./',import.meta.url));
 export async function installPlugin(args=[],execute=promisify(execFile)){
  if(args.some(a=>a!=='--dry-run'))throw new Error('Usage: node install.mjs [--dry-run]');
- const marketplace=JSON.parse(await readFile(new URL('.agents/plugins/marketplace.json',import.meta.url),'utf8'));
+ const marketplace=JSON.parse(await readFile(new URL('.claude-plugin/marketplace.json',import.meta.url),'utf8'));
  if(!/^[A-Za-z0-9_-]+$/.test(marketplace.name))throw new Error('Invalid marketplace name');
- if(!marketplace.plugins?.some(p=>p.name==='sl-ui-library'&&p.source?.source==='local'&&p.source?.path==='./plugins/sl-ui-library'))throw new Error('Marketplace does not point to the expected local plugin');
+ if(!marketplace.plugins?.some(p=>p.name==='sl-ui-library'&&p.source==='./plugins/sl-ui-library'))throw new Error('Marketplace does not point to the expected local plugin');
  const selector=`sl-ui-library@${marketplace.name}`;
  const commands=[['plugin','marketplace','add',root,'--json'],['plugin','add',selector,'--json']];
  if(args.includes('--dry-run'))return {dryRun:true,commands:commands.map(args=>({executable:'codex',args})),changes:'Registers this local checkout and installs its plugin in Codex. No components are copied into your projects.'};

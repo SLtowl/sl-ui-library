@@ -28,50 +28,51 @@ Studio photography is generated artwork; the film uses library components with C
 
 ## Plugin installation
 
-The plugin includes the catalog, component source and a skill for selecting components and adapting their colors. Install it in your AI application, then describe the interface you need.
+Install directly from this GitHub repository. No official marketplace listing or library account is required.
 
-[Download the plugin ZIP](https://sltowl.github.io/sl-ui-library/downloads/sl-ui-library-plugin.zip) · [Platform setup and availability](docs/agents.md)
+### Claude Code
 
-### Claude
+Paste this line into a terminal with Claude Code installed:
 
-Open **Customize → Plugins** and upload the plugin ZIP using the custom-plugin option. Enable the plugin, then use its **use-sl-ui** skill or ask for a component in normal language. This is a skills-based plugin, not a remote connector. [Claude's installation guide](https://support.claude.com/en/articles/13837440-use-plugins-in-claude).
+```sh
+claude plugin marketplace add SLtowl/sl-ui-library && claude plugin install sl-ui-library@sl-ui-library
+```
 
-### ChatGPT
-
-For local testing in **ChatGPT desktop Work / Codex**, open the downloaded repository as a project, restart the desktop app, then open **Plugins** and install **SL UI Library** from the repository's **Personal** marketplace. Local sources are not the public Plugins Directory and are not available on every ChatGPT surface.
-
-**Public ChatGPT installation is not live yet.** The archive is prepared for a skills-only submission; OpenAI review and publication are still required before we can provide a public Install link. Uploading a ZIP to an ordinary chat is not a plugin installation. [OpenAI's packaging guide](https://developers.openai.com/plugins/build/plugins).
-
-<details>
-<summary>Claude Code and Codex CLI</summary>
-
-In Claude Code:
+Inside a Claude Code chat, run the same setup as two slash commands:
 
 ```text
 /plugin marketplace add SLtowl/sl-ui-library
 /plugin install sl-ui-library@sl-ui-library
 ```
 
-For Codex CLI only, from a downloaded, reviewed checkout with Node.js 22+:
+### Codex
+
+Paste this line into a terminal with Codex installed:
 
 ```sh
-node install.mjs
+codex plugin marketplace add SLtowl/sl-ui-library && codex plugin add sl-ui-library@sl-ui-library
 ```
 
-That command installs into Codex; it does not install into Claude or ChatGPT on the web.
+These one-line commands work in macOS/Linux shells, Windows Command Prompt and PowerShell 7+. In Windows PowerShell 5, run the two commands separately; continue only if the first succeeds. They register the repository and install the plugin through the application's own plugin manager. They do not install the AI application or copy buttons into your projects.
 
-</details>
+Start a new task after installation. Then ask, for example:
 
-The agent runs the source tools in its code-execution environment. Node.js 22+ is needed for the bundled CLI; this is not a terminal command the user needs to run for each button. Availability depends on the host's plugin and code-execution permissions.
+> Add a like button from SL UI Library. Use a violet background and light text, and keep its animation and keyboard interaction.
 
-Example request:
+The agent selects a component, reads its bundled HTML, CSS and JavaScript, and exports it with the requested palette. The complete catalog works offline after installation. The bundled source CLI requires Node.js 22+.
 
-> Add a project-creation dialog from SL UI Library. Match my app’s midnight-blue palette, keep the soft motion and connect it to my create-project action.
+### Claude and ChatGPT without a terminal
 
-The agent reads the catalog, chooses a component by purpose, retrieves its HTML, CSS and JavaScript, and adapts the colors. Integration and contrast still need verification in your application.
+**Claude:** [download the plugin ZIP](https://sltowl.github.io/sl-ui-library/downloads/sl-ui-library-plugin.zip) and use **Customize → Plugins** to upload a custom plugin, where supported.
+
+**ChatGPT web:** the terminal commands above do not install into an ordinary chat. A public ChatGPT Install link is not available yet; official directory publication is planned separately. Codex installation works without that publication.
+
+[Platform setup, supported clients and updates](docs/agents.md) · [Claude Code plugin documentation](https://code.claude.com/docs/en/discover-plugins) · [OpenAI plugin documentation](https://developers.openai.com/plugins/build/plugins)
 
 <details>
 <summary>Only need one component?</summary>
+
+From a downloaded repository:
 
 ```sh
 node component.mjs like ./my-button
@@ -80,8 +81,6 @@ node component.mjs like ./my-button
 This exports one complete example to a new folder. Its parent must exist; existing destinations and symlink parents are refused. Source files are verified before writing.
 
 </details>
-
-The complete initial catalog works offline after installation. Local package tests pass; full in-app installation and prompt-selection checks in Claude and ChatGPT remain separate host acceptance tests. See the [agent guide](docs/agents.md) for setup, palette handling and internals.
 
 ### Catalog updates
 

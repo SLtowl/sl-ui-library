@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {readFile, mkdtemp, mkdir, writeFile} from 'node:fs/promises';
+import {readFile, mkdtemp, mkdir, writeFile, access} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join, dirname} from 'node:path';
 import {promisify} from 'node:util';
@@ -18,6 +18,9 @@ test('portable and host manifests identify the same self-contained plugin', asyn
  }
  const marketplace = JSON.parse(await readFile(new URL('.claude-plugin/marketplace.json', root)));
  assert.equal(marketplace.name, 'sl-ui-library');
+ await assert.rejects(() => access(new URL('.agents/plugins/marketplace.json', root)), {code:'ENOENT'});
+ const readme = await readFile(new URL('README.md', root), 'utf8');
+ for (const command of ['claude plugin marketplace add SLtowl/sl-ui-library && claude plugin install sl-ui-library@sl-ui-library', 'codex plugin marketplace add SLtowl/sl-ui-library && codex plugin add sl-ui-library@sl-ui-library']) assert.ok(readme.includes(command));
  assert.equal(marketplace.plugins[0].source, './plugins/' + portable.name);
  const files = await pluginFiles();
  for (const name of ['skills/use-sl-ui/SKILL.md','scripts/library.mjs','scripts/updates.mjs','assets/catalog.json','assets/source-bundle.json','assets/update-policy.json']) assert.ok(files.has(name), name);

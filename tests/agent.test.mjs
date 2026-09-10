@@ -79,8 +79,9 @@ test('one-command installer plans safely and delegates only to Codex CLI',async(
  const calls=[];
  const result=await installPlugin([],async(exe,args)=>{calls.push({exe,args});return {stdout:JSON.stringify({marketplaces:[]})};});
  assert.equal(result.installed,true);assert.equal(calls.length,3);assert.ok(calls.every(c=>c.exe==='codex'));
- const same=await installPlugin([],async()=>({stdout:JSON.stringify({marketplaces:[{name:'personal',root:dry.commands[0].args[3]}]})}));assert.equal(same.installed,true);
- await assert.rejects(()=>installPlugin([],async()=>({stdout:JSON.stringify({marketplaces:[{name:'personal',path:'/different'}]})})),/already exists/);
+ assert.equal(dry.commands[1].args[2],'sl-ui-library@sl-ui-library');
+ const same=await installPlugin([],async()=>({stdout:JSON.stringify({marketplaces:[{name:'sl-ui-library',root:dry.commands[0].args[3]}]})}));assert.equal(same.installed,true);
+ await assert.rejects(()=>installPlugin([],async()=>({stdout:JSON.stringify({marketplaces:[{name:'sl-ui-library',path:'/different'}]})})),/already exists/);
  await assert.rejects(()=>installPlugin(['--force']));
 });
 test('unpublished or unapproved updates make no network requests',async()=>{
