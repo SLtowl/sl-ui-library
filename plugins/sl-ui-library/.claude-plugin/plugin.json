@@ -1,0 +1,17 @@
+{
+  "name": "sl-ui-library",
+  "version": "1.0.0",
+  "description": "Find SL UI components by intent, adapt their palette and integrate the bundled HTML, CSS and JavaScript.",
+  "author": {
+    "name": "SLtowl"
+  },
+  "homepage": "https://sltowl.github.io/sl-ui-library/",
+  "repository": "https://github.com/SLtowl/sl-ui-library",
+  "keywords": [
+    "ui",
+    "components",
+    "frontend",
+    "design",
+    "animation"
+  ]
+}

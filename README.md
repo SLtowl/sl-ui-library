@@ -1,6 +1,6 @@
 # SL UI Library
 
-UI components in HTML, CSS and JavaScript, with tools for coding agents.
+An AI plugin for finding and integrating UI components, with a browsable HTML, CSS and JavaScript library.
 
 ![Graphite SL UI Library controls in a warm studio composition](docs/media/cover.png)
 
@@ -16,7 +16,7 @@ The demo shows saving, liking, theme switching, rating and tab navigation. It us
 
 [Watch / download MP4](https://sltowl.github.io/sl-ui-library/media/studio-motion.mp4) · [WebM](https://sltowl.github.io/sl-ui-library/media/studio-motion.webm) · [Live 3D scene](https://sltowl.github.io/sl-ui-library/studio-motion.html) · [Interactive showcase](https://sltowl.github.io/sl-ui-library/showcase.html)
 
-Studio photography is generated artwork; the film uses library components with CSS 3D styling. The hosted links become available after the Pages deployment succeeds.
+Studio photography is generated artwork; the film uses library components with CSS 3D styling.
 
 ## Components
 
@@ -28,11 +28,41 @@ Studio photography is generated artwork; the film uses library components with C
 
 ## Plugin installation
 
-From a downloaded, reviewed checkout, with Node.js 22+ and Codex CLI available:
+The plugin includes the catalog, component source and a skill for selecting components and adapting their colors. Install it in your AI application, then describe the interface you need.
+
+[Download the plugin ZIP](https://sltowl.github.io/sl-ui-library/downloads/sl-ui-library-plugin.zip) · [Platform setup and availability](docs/agents.md)
+
+### Claude
+
+Open **Customize → Plugins** and upload the plugin ZIP using the custom-plugin option. Enable the plugin, then use its **use-sl-ui** skill or ask for a component in normal language. This is a skills-based plugin, not a remote connector. [Claude's installation guide](https://support.claude.com/en/articles/13837440-use-plugins-in-claude).
+
+### ChatGPT
+
+For local testing in **ChatGPT desktop Work / Codex**, open the downloaded repository as a project, restart the desktop app, then open **Plugins** and install **SL UI Library** from the repository's **Personal** marketplace. Local sources are not the public Plugins Directory and are not available on every ChatGPT surface.
+
+**Public ChatGPT installation is not live yet.** The archive is prepared for a skills-only submission; OpenAI review and publication are still required before we can provide a public Install link. Uploading a ZIP to an ordinary chat is not a plugin installation. [OpenAI's packaging guide](https://developers.openai.com/plugins/build/plugins).
+
+<details>
+<summary>Claude Code and Codex CLI</summary>
+
+In Claude Code:
+
+```text
+/plugin marketplace add SLtowl/sl-ui-library
+/plugin install sl-ui-library@sl-ui-library
+```
+
+For Codex CLI only, from a downloaded, reviewed checkout with Node.js 22+:
 
 ```sh
 node install.mjs
 ```
+
+That command installs into Codex; it does not install into Claude or ChatGPT on the web.
+
+</details>
+
+The agent runs the source tools in its code-execution environment. Node.js 22+ is needed for the bundled CLI; this is not a terminal command the user needs to run for each button. Availability depends on the host's plugin and code-execution permissions.
 
 Example request:
 
@@ -51,7 +81,7 @@ This exports one complete example to a new folder. Its parent must exist; existi
 
 </details>
 
-The complete initial catalog works offline. Other coding agents can use the same portable source tools. See the [agent guide](docs/agents.md) for host setup, palette handling and internals.
+The complete initial catalog works offline after installation. Local package tests pass; full in-app installation and prompt-selection checks in Claude and ChatGPT remain separate host acceptance tests. See the [agent guide](docs/agents.md) for setup, palette handling and internals.
 
 ### Catalog updates
 
@@ -67,7 +97,7 @@ Archive, rename and creation demos only change preview state. In production, sho
 
 ## Library website
 
-This repository contains the complete static library. GitHub stores the source; GitHub Pages can serve it as a website after deployment. Visitors to a hosted version will not need terminal commands or Node.js.
+This repository contains the complete static library. GitHub stores the source; GitHub Pages serves the public website. Visitors to a hosted version will not need terminal commands or Node.js.
 
 The site is published from `public/` by the [Pages workflow](https://github.com/SLtowl/sl-ui-library/actions/workflows/pages.yml). Check its latest deployment before sharing the website; a failed run means the site has not been updated.
 
@@ -89,10 +119,10 @@ This builds the exports and starts a local server. Open `http://127.0.0.1:4321/`
 ```text
 public/                 Interactive site and component source
   packages/             Self-contained component examples
-plugins/sl-ui-library/  Agent skill, catalog and source tools
+plugins/sl-ui-library/  Portable plugin, host manifests, skill and source tools
 docs/                   Guides, studio photography and film
 tests/                  Automated checks
-install.mjs             Whole-plugin setup
+install.mjs             Optional Codex CLI installer
 component.mjs           Optional single-component export
 ```
 
@@ -114,6 +144,6 @@ Cover, collection table and closing image: generated studio artwork. Film: actua
 
 ## Release status and licensing
 
-[SLtowl/sl-ui-library](https://github.com/SLtowl/sl-ui-library) is public. The plugin is included in this repository; no separate marketplace release or analytics collection is enabled.
+[SLtowl/sl-ui-library](https://github.com/SLtowl/sl-ui-library) is public. The plugin archive and Claude Code repository marketplace are available. A public ChatGPT Plugins Directory listing has not been submitted or approved. No analytics collection is enabled.
 
 No code license has been selected. Public visibility does not grant an open-source license. Instrument Sans includes its OFL license.

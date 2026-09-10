@@ -1,0 +1,13 @@
+{
+  "name": "sl-ui-library",
+  "owner": {
+    "name": "SLtowl"
+  },
+  "plugins": [
+    {
+      "name": "sl-ui-library",
+      "source": "./plugins/sl-ui-library",
+      "description": "SL UI components with semantic selection, palette adaptation and bundled source."
+    }
+  ]
+}

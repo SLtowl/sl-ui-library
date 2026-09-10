@@ -32,4 +32,6 @@ if(!/^\d+\.\d+\.\d+$/.test(version))throw new Error('Catalog releases require a 
 const catalog={schemaVersion:1,version,categories,components:components.map(c=>({...c,files:Object.fromEntries(c.variants.map(v=>[v,Object.keys(packages[v])]))}))};
 await writeFile(new URL('catalog.json',pluginRoot),JSON.stringify(catalog,null,2)+'\n');
 await writeFile(new URL('source-bundle.json',pluginRoot),JSON.stringify({schemaVersion:1,packages,blobs})+'\n');
-console.log(`Built ${components.length} components, ${Object.keys(packages).length} exports and offline plugin data.`);
+const {buildPlugin}=await import('./build-plugin.mjs');
+const plugin=await buildPlugin();
+console.log(`Built ${components.length} components, ${Object.keys(packages).length} exports, offline plugin data and ${plugin.archive}.`);

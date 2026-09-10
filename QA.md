@@ -49,6 +49,12 @@ The self-contained build regenerates catalog previews, route/source templates, a
 
 The repository includes actual Chrome screenshots and a cursor-free studio interaction film on a light, perspective-transformed surface. Generated cover/studio/table imagery is promotional rather than presented as screenshots. The agent CLI works outside the repository when the complete plugin folder is copied; no repository-relative source dependency is required.
 
+## Plugin package compatibility
+
+The downloadable plugin includes a portable Agent Plugins manifest, Claude and Codex compatibility manifests, one provider-neutral skill, the offline catalog and all component sources. Thirteen Node tests pass, including exact ZIP-to-source comparison and discovery, source reading, palette inventory and export from a freshly extracted archive outside this repository.
+
+The Claude repository marketplace points to the self-contained plugin directory. No MCP endpoint, hook, account credential or automatic host configuration is added. Local package checks do not certify installation or semantic skill selection inside ChatGPT or Claude; those host acceptance checks and OpenAI public-directory submission remain outstanding.
+
 ## Privacy review
 
 The final local release/template snapshot was scanned across 1,038 files, including 791 text files. No supported credential-token patterns, private-key blocks, personal machine paths or non-example email addresses were found. The PNG files contain no EXIF or embedded text metadata. The studio MP4 metadata contains format/encoder information, not personal identifiers. The public author identity and fictional demo names are intentional.

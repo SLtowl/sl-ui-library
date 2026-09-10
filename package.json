@@ -9,7 +9,7 @@
     "prestart": "node build.mjs",
     "start": "node serve.mjs",
     "build": "node build.mjs",
-    "check": "node verify.mjs && node --test tests/agent.test.mjs",
+    "check": "node verify.mjs && node --test tests/agent.test.mjs tests/plugin-package.test.mjs",
     "agent": "node plugins/sl-ui-library/scripts/library.mjs"
   }
 }
