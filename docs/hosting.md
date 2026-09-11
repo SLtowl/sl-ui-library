@@ -24,7 +24,7 @@ The repository is public. Check its Pages workflow for the current deployment st
 
 After the owner approves publication:
 
-1. Confirm repository visibility and code licensing separately. Do not infer a code license from public visibility.
+1. Review the project's MIT license and retain the separate OFL notices for bundled fonts when redistributing.
 2. In repository Settings → Pages, select GitHub Actions as the publishing source.
 3. Run the **Deploy static library** workflow on the reviewed branch.
 4. Use the successful deployment's reported URL. Check the catalog, interactive previews, source tabs and downloads at that URL before announcing it.

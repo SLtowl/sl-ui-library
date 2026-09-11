@@ -41,7 +41,7 @@ Visibility hardening: preview documents now use complete `srcdoc` markup, mounte
 
 Navigation previously requested 50 package assets on category entry, and Overlays requested 86 (including ten font URLs per category). Their previews now use precompiled content and controllers in in-memory frames with a shared FontFace. Category entry and Reset request zero additional assets after the common library runtime is loaded. The isolated native-dialog viewport is retained; no `eval`, inline script execution or relaxed script CSP is needed. Additional tests cover the compiled runtime's Genie reversal, forms, Pin, cross-frame focus, action palette, tour, tree keyboard handling, reduced motion and mobile bounds.
 
-Automated UI checks ran in installed Chrome on Windows using Playwright. Firefox, Safari and real touch devices were not tested. The repository is public. Check the Pages workflow for deployment status; private repositories remain blocked by its safeguard. A project-code license remains an owner decision. Check the repository's Actions tab for the current remote CI result.
+Automated UI checks ran in installed Chrome on Windows using Playwright. Firefox, Safari and real touch devices were not tested. The repository is public. Check the Pages workflow for deployment status; private repositories remain blocked by its safeguard. Project code is licensed under MIT; bundled fonts retain their separate licenses. Check the repository's Actions tab for the current remote CI result.
 
 ## Repository and agent toolkit
 

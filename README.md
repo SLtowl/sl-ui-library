@@ -6,7 +6,7 @@ An AI plugin for finding and integrating UI components, with a browsable HTML, C
 
 **110 interactive components** in HTML, CSS and JavaScript. No runtime dependencies, remote fonts or stock icon libraries. Preview components and download their source files. The plugin helps a coding agent find and integrate components.
 
-[Open the library](https://sltowl.github.io/sl-ui-library/) · [Install the plugin](#plugin-installation) · [Components](#components) · [Integration guide](docs/integration.md) · [Quality notes](QA.md)
+[Open the library](https://sltowl.github.io/sl-ui-library/) · [Install the plugin](#plugin-installation) · [Components](#components) · [Integration guide](docs/integration.md) · [Quality notes](QA.md) · [MIT License](LICENSE)
 
 ## Component demos
 
@@ -141,8 +141,12 @@ See [QA evidence and limitations](QA.md). Chrome is the current automated browse
 
 Cover, collection table and closing image: generated studio artwork. Film: actual controls with a 3D presentation layer. [Media provenance](docs/media.md).
 
-## Release status and licensing
+## Release status
 
 [SLtowl/sl-ui-library](https://github.com/SLtowl/sl-ui-library) is public. The plugin archive and Claude Code repository marketplace are available. A public ChatGPT Plugins Directory listing has not been submitted or approved. No analytics collection is enabled.
 
-No code license has been selected. Public visibility does not grant an open-source license. Instrument Sans includes its OFL license.
+## License
+
+The library and agent plugin are licensed under the [MIT License](LICENSE). You can use, modify and redistribute the code, including in commercial projects, provided you retain the copyright and license notices.
+
+The bundled Instrument Sans font is licensed separately under the SIL Open Font License 1.1. Its [OFL notice](public/packages/like/OFL.txt) remains included with component downloads.
