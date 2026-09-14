@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Log frequency band</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{box-sizing:border-box;margin:0;padding:24px;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;background:#f5f4f2}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="sliders-frequency-band-v11" aria-label="Log frequency band">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h7m5 0h6M3 17h12m5 0h1"/><rect x="10" y="3.5" width="5" height="7" rx="1.5"/><rect x="15" y="13.5" width="5" height="7" rx="1.5"/></svg>Log frequency band</h2>
+    <p class="sl-context">Filter · 20 Hz to 20 kHz</p>
+    <div class="sl-frequency" aria-hidden="true"><span data-frequency></span></div><div class="sl-scale"><span>20 Hz</span><span>632 Hz</span><span>20 kHz</span></div>
+    <label class="sl-field"><span class="sl-label"><span>Low cutoff</span><span class="sl-value" data-value="0" aria-hidden="true">200.0 Hz</span></span><span class="sl-track" data-track="0" style="--fill:33.33333333333333%"><input type="range" name="frequency-band-0" min="0" max="120" step="1" value="40" aria-label="Low cutoff" aria-valuetext="200.0 Hz"></span></label>
+    <label class="sl-field"><span class="sl-label"><span>High cutoff</span><span class="sl-value" data-value="1" aria-hidden="true">2000.0 Hz</span></span><span class="sl-track" data-track="1" style="--fill:66.66666666666666%"><input type="range" name="frequency-band-1" min="0" max="120" step="1" value="80" aria-label="High cutoff" aria-valuetext="2000.0 Hz"></span></label>
+    <p class="sl-summary" data-summary>3.32 octaves</p>
+    <p class="sl-hint">Each step multiplies frequency by 1.0593.</p>
+
+  </section>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inherited setting</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { box-sizing: border-box; margin: 0; min-height: 100svh; padding: 24px; display: grid; place-items: center; background: #f5f4f2; }</style>
+</head>
+<body>
+<section class="sl-component" data-kind="selection-inherited-setting-v11" aria-label="Inherited setting">
+  <header class="sl-head"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4v10a4 4 0 0 0 4 4h8M14 14l4 4-4 4M10 6h9"/><circle cx="6" cy="4" r="2"/></svg><div><h2>Inherited setting</h2><p>Keep a default or make it yours.</p></div></header>
+  <div class="sl-segments " role="radiogroup" aria-label="Spelling assistance source" data-field="source"><button type="button" role="radio" data-choice="workspace" aria-checked="true" tabindex="0">Workspace</button><button type="button" role="radio" data-choice="custom" aria-checked="false" tabindex="-1">Custom</button></div><div class="sl-source-line"><span>Workspace default</span><strong data-workspace>On</strong></div><div class="sl-row"><span>Spelling assistance<small>Your personal choice</small></span><button type="button" class="sl-toggle" role="switch" aria-label="Personal spelling assistance" aria-checked="false" data-toggle="custom" disabled><span class="sl-toggle-word" aria-hidden="true">Off</span><span class="sl-toggle-track" aria-hidden="true"></span></button></div><div class="sl-effective"><span>Effective setting</span><strong data-effective>On</strong></div>
+  <p class="sl-status" role="status" data-status>Following workspace default</p>
+</section>
+</body>
+</html>

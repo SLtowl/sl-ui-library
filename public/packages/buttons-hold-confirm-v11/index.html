@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hold to confirm · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-hold-confirm" data-phase="idle" aria-label="Hold to confirm" aria-busy="false">
+    <p class="ab-eyebrow">Deliberate action</p>
+    <h2>Archive draft</h2>
+    <p class="ab-description">Move this draft out of the active list.</p>
+    <div class="ab-actions"><button type="button" class="ab-wide ab-hold" data-hold><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 8h12v12H6zM4 4h16v4H4zM10 12h4"/></svg><span data-label>Hold to archive</span><span class="ab-hold-fill" data-fill aria-hidden="true"></span></button><button type="button" class="ab-quiet ab-wide" data-confirm-open aria-expanded="false">Confirm without holding</button></div>
+<div class="ab-reveal" data-panel data-open="false" aria-hidden="true" inert><div><div class="ab-inset"><p class="ab-description">Archive this draft?</p><div class="ab-actions"><button type="button" class="ab-primary" data-confirm>Yes, archive</button><button type="button" class="ab-quiet" data-back>Go back</button></div></div></div></div>
+<button type="button" class="ab-quiet ab-wide" data-cancel hidden>Cancel action</button>
+    <p class="ab-status" data-status role="status" aria-live="polite" aria-atomic="true">Hold for 1.2 seconds, or confirm in two steps.</p>
+    <p class="ab-note" data-note>Connect onConfirm to archive the draft.</p>
+  </section>
+</body>
+</html>

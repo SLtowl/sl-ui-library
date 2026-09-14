@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bounded allocation</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{box-sizing:border-box;margin:0;padding:24px;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;background:#f5f4f2}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="sliders-allocation-v11" aria-label="Bounded allocation">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h7m5 0h6M3 17h12m5 0h1"/><rect x="10" y="3.5" width="5" height="7" rx="1.5"/><rect x="15" y="13.5" width="5" height="7" rx="1.5"/></svg>Bounded allocation</h2>
+    <p class="sl-context">Project budget · 100 hours</p>
+    <div class="sl-allocation" aria-hidden="true"><i data-part="0"></i><i data-part="1"></i><i data-part="2"></i></div><div class="sl-remainder"><span>QA · remaining</span><strong data-qa>25 h</strong></div>
+    <label class="sl-field"><span class="sl-label"><span>Design</span><span class="sl-value" data-value="0" aria-hidden="true">40 h</span></span><span class="sl-track" data-track="0" style="--fill:42.857142857142854%"><input type="range" name="allocation-0" min="10" max="80" step="1" value="40" aria-label="Design" aria-valuetext="40 h"></span></label>
+    <label class="sl-field"><span class="sl-label"><span>Engineering</span><span class="sl-value" data-value="1" aria-hidden="true">35 h</span></span><span class="sl-track" data-track="1" style="--fill:35.714285714285715%"><input type="range" name="allocation-1" min="10" max="80" step="1" value="35" aria-label="Engineering" aria-valuetext="35 h"></span></label>
+    <p class="sl-summary" data-summary>40 + 35 + 25 = 100 h</p>
+    <p class="sl-hint">Each discipline keeps at least 10 h.</p>
+    <div class="sl-actions"><button type="button" data-action="balance">40 / 40 / 20</button></div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document checkpoint menu</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; background: #f5f4f2; padding: 24px; box-sizing: border-box; }</style>
+</head>
+<body>
+  <div class="sl-component" data-kind="menus-checkpoint-menu-v11" data-open="false">
+    <p class="sl-eyebrow">Local document history</p>
+    <button class="sl-trigger" data-trigger type="button" aria-expanded="false" aria-haspopup="dialog"><svg class="" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M7 3h7l5 5v13H7Z M14 3v6h5M4 7v12m6-6h6m-6 4h4"/></svg><span data-label>Browse checkpoints</span><svg class="sl-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="m7 10 5 5 5-5"/></svg></button>
+    <div class="sl-panel" data-panel tabindex="-1" role="dialog" aria-label="Document checkpoint menu" aria-hidden="true" inert>
+      <div class="sl-scroll"><section data-group><h3>Saved checkpoints</h3><button class="sl-option" type="button" data-key="version:v3" aria-pressed="true"><span><strong>Final copy</strong><small>Today · 10:20</small></span><span class="sl-mark" aria-hidden="true">✓</span></button><button class="sl-option" type="button" data-key="version:v2" aria-pressed="false"><span><strong>Review draft</strong><small>Today · 09:40</small></span><span class="sl-mark" aria-hidden="true">✓</span></button><button class="sl-option" type="button" data-key="version:v1" aria-pressed="false"><span><strong>First outline</strong><small>Yesterday · 16:15</small></span><span class="sl-mark" aria-hidden="true">✓</span></button></section></div><p class="sl-note" data-version-copy>Share the release notes with the team.</p><div class="sl-footer"><button type="button" class="sl-action" data-key="dismiss" >Cancel</button><button type="button" class="sl-action" data-key="restore" disabled>Use version</button></div>
+    </div>
+    <div class="sl-summary" role="region" aria-label="Local result" tabindex="0"><p class="sl-document-caption">Current version</p><h2 class="sl-document-title" data-summary>Final copy</h2><p data-document>Share the release notes with the team.</p><button type="button" class="sl-action" data-key="undo" disabled>Undo restore</button></div>
+    <p class="sl-feedback" data-feedback role="status" aria-live="polite">Preview a version before using it locally.</p>
+  </div>
+</body>
+</html>

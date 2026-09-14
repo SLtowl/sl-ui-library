@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Landmark jump and return</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./buttons.css">
+<script src="./buttons.js" defer></script>
+<script src="./example.js" defer></script>
+<style>body{margin:0;min-height:100svh;display:grid;place-items:center;background:#edf0f1;padding:24px;box-sizing:border-box}</style>
+</head>
+<body>
+<div class="sl-component" data-kind="navigation-landmark-jump-v11">
+<header class="nv-heading"><div><span class="nv-kicker">On this page</span><h2>Jump, then return</h2></div><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 21V3m0 1h13l-3 4 3 4H6M16 16v4H9m3-3-3 3 3 3"/></svg></header><div class="nv-row nv-between"><button type="button" data-toggle aria-expanded="false" class="nv-button nv-outline"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>Jump to</button><button type="button" data-return disabled class="nv-button "><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m13 5-7 7 7 7M6 12h14"/></svg>Return</button></div><div class="nv-disclosure" data-menu data-open="false" inert><div><nav class="nv-list" aria-label="Page landmarks"><button type="button" data-jump="0" class="nv-button ">Overview</button><button type="button" data-jump="1" class="nv-button ">Requirements</button><button type="button" data-jump="2" class="nv-button ">Review</button></nav></div></div><div class="nv-scroll nv-reading" data-pane tabindex="0" role="region" aria-label="Scrollable navigation review"><section data-landmark="0"><span class="nv-kicker">Overview</span><h3 tabindex="-1">Navigation review</h3><p>A compact route should reveal where it leads. Labels stay visible and every destination has useful content.</p></section><section data-landmark="1"><span class="nv-kicker">Requirements</span><h3 tabindex="-1">Interaction requirements</h3><p>All essential controls fit inside the preview. Keyboard focus follows the destination and returns to the original control.</p></section><section data-landmark="2"><span class="nv-kicker">Review</span><h3 tabindex="-1">Review checklist</h3><p>Try rapid reversal, resize to a narrow width and test with motion reduced. Keep user content as literal text.</p></section></div><p class="nv-hint">Jump moves focus. Return restores your previous position.</p>
+</div>
+</body>
+</html>

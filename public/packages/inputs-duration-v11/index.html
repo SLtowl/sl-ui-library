@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Duration input — SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="inputs-duration-v11" aria-label="Duration input">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 2h6m-3 0v3m6 1 2 2"/><circle cx="12" cy="14" r="8"/><path d="M12 9v5l3 2"/></svg>Duration input</h2>
+    <fieldset><legend>Session length</legend><div class="sl-row"><label><span>Hours</span><input class="sl-hours" type="number" min="0" max="23" step="1" value="1" aria-describedby="duration-help"></label><label><span>Minutes</span><input class="sl-minutes" type="number" min="0" max="59" step="1" value="30" aria-describedby="duration-help"></label></div></fieldset>
+    <div class="sl-actions"><button type="button" data-step="-15">−15 min</button><button type="button" data-step="15">+15 min</button></div>
+    <output>90 minutes total</output>
+    <p class="sl-status" id="duration-help" role="status">Up to 23 hours and 59 minutes.</p>
+  </section>
+</body>
+</html>

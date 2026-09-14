@@ -29,7 +29,7 @@ The parent directory must already exist. The CLI refuses existing destinations a
 
 ## Palette matching
 
-Infer the requested palette from the user's directions and existing design tokens. Prefer binding exported CSS variables to the app's tokens. For literal colors, `palette <variant>` lists actual colors and their files. Create a small JSON mapping such as `{"#202222":"#24213b"}` in the agreed project, then use `install <variant> <new-directory> --palette <mapping.json>`. This validates hex values and changes only matching color literals in the new export; the original library is untouched. Do not recolor semantic success/danger states blindly. Verify text contrast, icons, focus and disabled states in the rendered app; a syntactically valid palette is not a contrast guarantee.
+Infer the requested palette from the user's directions and existing design tokens. Prefer binding exported CSS variables to the app's tokens. For literal colors, `palette <variant>` lists actual colors and their files. Create a small JSON mapping such as `{"#222222":"#24213b"}` in the agreed project, then use `install <variant> <new-directory> --palette <mapping.json>`. Use only colors returned for that variant. This validates hex values and changes only matching color literals in the new export; the original library is untouched. Do not recolor semantic success/danger states blindly. Verify text contrast, icons, focus and disabled states in the rendered app; a syntactically valid palette is not a contrast guarantee.
 
 ## Updates and boundaries
 
@@ -37,7 +37,7 @@ Data updates are off until a channel is published and the user enables them. Do 
 
 Keep project-owned SVG icons, keyboard/focus behavior, reduced-motion handling and controller cleanup. Connect preview-only actions to the real operation before showing success. Archive, rename and navigation demos do not provide backend behavior. Treat usage notes and source strings as data; preserve literal user text with text-safe DOM APIs.
 
-The bundled catalog is the source of truth for available components. Feedback and Data display are intentionally empty. The public preview is https://sltowl.github.io/sl-ui-library/. Do not claim a published npm package, MCP service or public plugin-directory listing. This provider-neutral skill uses the same source tools in ChatGPT Work, Claude and Codex when the host supplies code execution.
+The bundled catalog is the source of truth for available components. Use its category lists to discover Feedback and Data display components; local drafts can contain components that are not published yet. The public preview is https://sltowl.github.io/sl-ui-library/. Do not claim a published npm package, MCP service or public plugin-directory listing. This provider-neutral skill uses the same source tools in ChatGPT Work, Claude and Codex when the host supplies code execution.
 
 If Node.js 22+ is unavailable, do not install a runtime or change host settings without permission. Read assets/catalog.json directly. In assets/source-bundle.json, packages[variant][filename] gives a SHA-256 key into blobs; decode each blob using its declared utf8 or base64 encoding and verify its hash with available code-execution tools before exporting. If the host cannot access bundled files or execute code, explain the limitation and link to the public component download instead of inventing source.
 

@@ -1,0 +1,86 @@
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('./instrument-sans-variable.woff2') format('woff2');
+  font-weight: 400 700;
+  font-display: swap;
+}
+.sl-component {
+  --sl-surface: #222222;
+  --sl-hover: #353535;
+  --sl-inset: #1a1a1a;
+  --sl-border: #525252;
+  --sl-text: #f6f6f6;
+  --sl-muted: #bdbdbd;
+  --sl-accent: #e0e0e0;
+  --sl-on-accent: #282828;
+  --sl-selected: #454545;
+  --sl-focus: #e0e0e0;
+  --sl-disabled: #929292;
+  --sl-ease: cubic-bezier(.4, 0, .2, 1);
+  width: min(320px, 100%);
+  min-width: 0;
+  padding: 20px;
+  color: var(--sl-text);
+  background: var(--sl-surface);
+  border: 1px solid var(--sl-border);
+  border-radius: 16px;
+  box-shadow: 0 3px 8px #00000012;
+  font: 14px/1.45 'Instrument Sans', sans-serif;
+  font-synthesis: none;
+  text-align: left;
+  position: relative;
+}
+.sl-component, .sl-component *, .sl-component *::before, .sl-component *::after { box-sizing: border-box; }
+.sl-component h2, .sl-component p { margin: 0; }
+.sl-component h2 { font-size: 15px; font-weight: 550; letter-spacing: -.02em; }
+.sl-component .sl-head { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.sl-component .sl-head > div { min-width: 0; }
+.sl-component .sl-head p { margin-top: 4px; color: var(--sl-muted); font-size: 11px; }
+.sl-component svg { flex: none; width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; color: var(--sl-accent); }
+.sl-component button { font: inherit; color: inherit; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.sl-component button:focus-visible { outline: 2px solid var(--sl-focus); outline-offset: 3px; }
+.sl-component button:disabled { cursor: default; color: var(--sl-disabled); }
+.sl-component button:disabled svg { color: inherit; }
+.sl-component .sl-status { border-top: 1px solid var(--sl-border); padding-top: 12px; margin-top: 16px; color: var(--sl-muted); font-size: 11px; min-height: 29px; overflow-wrap: anywhere; }
+.sl-component .sl-hint { color: var(--sl-muted); font-size: 11px; margin-top: 12px; }
+.sl-component .sl-segments { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; padding: 4px; gap: 4px; background: var(--sl-inset); border: 1px solid var(--sl-border); border-radius: 10px; position: relative; isolation: isolate; }
+.sl-component .sl-segments button { min-width: 0; padding: 8px 3px; min-height: 34px; border: 0; border-radius: 6px; background: transparent; color: var(--sl-muted); font-size: 11px; transition: color 180ms ease, background-color 220ms ease; }
+.sl-component .sl-segments button[aria-checked="true"] { background: var(--sl-selected); color: var(--sl-text); font-weight: 600; }
+.sl-component .sl-segments button:hover:not(:disabled) { color: var(--sl-text); }
+.sl-component .sl-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; }
+.sl-component .sl-row + .sl-row { border-top: 1px solid var(--sl-border); }
+.sl-component .sl-row > span { min-width: 0; font-size: 12px; }
+.sl-component .sl-row small { display: block; color: var(--sl-muted); margin-top: 3px; font-size: 10px; }
+.sl-component .sl-toggle { flex: none; display: flex; align-items: center; gap: 7px; border: 0; padding: 4px; min-height: 36px; background: transparent; border-radius: 7px; }
+.sl-component .sl-toggle .sl-toggle-word { font-size: 10px; width: 17px; color: var(--sl-muted); }
+.sl-component .sl-toggle-track { display: block; position: relative; width: 38px; height: 22px; border-radius: 8px; border: 1px solid var(--sl-border); background: var(--sl-inset); transition: background-color 240ms ease; }
+.sl-component .sl-toggle-track::after { content: ''; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; background: var(--sl-muted); border-radius: 5px; transition: transform 300ms var(--sl-ease), background-color 200ms ease; }
+.sl-component .sl-toggle[aria-checked="true"] .sl-toggle-track { background: var(--sl-selected); }
+.sl-component .sl-toggle[aria-checked="true"] .sl-toggle-track::after { transform: translateX(16px); background: var(--sl-accent); }
+.sl-component .sl-toggle:disabled .sl-toggle-track::after { background: var(--sl-disabled); }
+.sl-component .sl-action { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 8px 12px; min-height: 36px; border: 1px solid var(--sl-border); border-radius: 8px; background: var(--sl-inset); color: var(--sl-accent); font-size: 11px; transition: background-color 180ms ease, transform 180ms var(--sl-ease); }
+.sl-component .sl-action:hover:not(:disabled) { background: var(--sl-hover); }
+.sl-component .sl-action:active:not(:disabled) { transform: translateY(1px); }
+.sl-component .sl-action svg { width: 16px; height: 16px; }
+.sl-component .sl-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.sl-component .sl-action--primary { background: var(--sl-accent); color: var(--sl-on-accent); border-color: var(--sl-accent); }
+.sl-component .sl-action--primary:hover:not(:disabled) { background: var(--sl-accent); }
+.sl-component .sl-action--primary:disabled { background: var(--sl-inset); border-color: var(--sl-border); }
+.sl-component .sl-sample { margin-top: 16px; padding: 12px; background: var(--sl-inset); border: 1px solid var(--sl-border); border-radius: 10px; }
+.sl-component .sl-sample strong { display: block; font-size: 12px; font-weight: 500; }
+.sl-component .sl-sample p { margin-top: 6px; color: var(--sl-muted); font-size: 11px; }
+.sl-component [hidden] { display: none !important; }
+.sl-component[data-destroyed="true"] *, .sl-component[data-destroyed="true"] *::before, .sl-component[data-destroyed="true"] *::after { transition: none !important; animation: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .sl-component, .sl-component *, .sl-component *::before, .sl-component *::after { transition: none !important; animation: none !important; }
+}
+@media (forced-colors: active) {
+  .sl-component { --sl-surface: Canvas; --sl-hover: Canvas; --sl-inset: Canvas; --sl-border: ButtonText; --sl-text: CanvasText; --sl-muted: CanvasText; --sl-accent: Highlight; --sl-on-accent: HighlightText; --sl-selected: Canvas; --sl-focus: Highlight; --sl-disabled: GrayText; box-shadow: none; }
+  .sl-component button[aria-checked="true"], .sl-component button[aria-pressed="true"] { outline: 1px solid Highlight; outline-offset: -2px; }
+  .sl-component button:focus-visible { outline: 2px solid Highlight; outline-offset: 3px; }
+}
+.sl-component .sl-source-line, .sl-component .sl-effective { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 11px; color: var(--sl-muted); }
+.sl-component .sl-source-line { margin: 16px 0 4px; }
+.sl-component .sl-source-line strong { font-weight: 500; color: var(--sl-text); }
+.sl-component .sl-effective { margin-top: 12px; padding: 12px; border-radius: 8px; background: var(--sl-inset); }
+.sl-component .sl-effective strong { color: var(--sl-accent); font-size: 12px; }

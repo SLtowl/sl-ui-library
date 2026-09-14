@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weekly delivery menu</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; background: #f5f4f2; padding: 24px; box-sizing: border-box; }</style>
+</head>
+<body>
+  <div class="sl-component" data-kind="menus-weekly-window-v11" data-open="false">
+    <p class="sl-eyebrow">Digest preferences</p>
+    <button class="sl-trigger" data-trigger type="button" aria-expanded="false" aria-haspopup="dialog"><svg class="" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><rect x="4" y="5" width="16" height="16" rx="3"/><path d="M8 3v4m8-4v4M4 11h16m-12 4h2m4 0h2m-8 3h2"/></svg><span data-label>Delivery window</span><svg class="sl-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="m7 10 5 5 5-5"/></svg></button>
+    <div class="sl-panel" data-panel tabindex="-1" role="dialog" aria-label="Weekly delivery menu" aria-hidden="true" inert>
+      <section data-group><h3>Start from a preset</h3><div class="sl-tabs"><button type="button" class="sl-action" data-key="weekdays" >Weekdays</button><button type="button" class="sl-action" data-key="weekend" >Weekend</button></div></section><div class="sl-days" role="group" aria-label="Delivery days"><button class="sl-day" type="button" data-key="day:0" aria-label="Monday" aria-pressed="true">M</button><button class="sl-day" type="button" data-key="day:1" aria-label="Tuesday" aria-pressed="true">T</button><button class="sl-day" type="button" data-key="day:2" aria-label="Wednesday" aria-pressed="true">W</button><button class="sl-day" type="button" data-key="day:3" aria-label="Thursday" aria-pressed="true">T</button><button class="sl-day" type="button" data-key="day:4" aria-label="Friday" aria-pressed="true">F</button><button class="sl-day" type="button" data-key="day:5" aria-label="Saturday" aria-pressed="false">S</button><button class="sl-day" type="button" data-key="day:6" aria-label="Sunday" aria-pressed="false">S</button></div><div class="sl-row"><label>Local time<span class="sl-time-control"><input data-time type="text" class="sl-time-field" inputmode="numeric" maxlength="5" pattern="([01][0-9]|2[0-3]):[0-5][0-9]" placeholder="HH:MM" value="09:00" required aria-label="Local delivery time"><button class="sl-time-open" type="button" aria-label="Open time picker"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg></button></span></label></div><p class="sl-note" data-draft>5 days selected.</p><div class="sl-footer"><button type="button" class="sl-action" data-key="dismiss" >Cancel</button><button type="button" class="sl-action" data-key="apply" >Apply window</button></div>
+    </div>
+    <div class="sl-summary" role="region" aria-label="Local result" tabindex="0"><p><strong data-summary>Mon–Fri · 09:00</strong></p><small>A recurring schedule preference.</small></div>
+    <p class="sl-feedback" data-feedback role="status" aria-live="polite">Local preference. No delivery is scheduled.</p>
+  </div>
+</body>
+</html>

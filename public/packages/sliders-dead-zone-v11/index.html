@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Axis dead zone</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{box-sizing:border-box;margin:0;padding:24px;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;background:#f5f4f2}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="sliders-dead-zone-v11" aria-label="Axis dead zone">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h7m5 0h6M3 17h12m5 0h1"/><rect x="10" y="3.5" width="5" height="7" rx="1.5"/><rect x="15" y="13.5" width="5" height="7" rx="1.5"/></svg>Axis dead zone</h2>
+    <p class="sl-context">Controller · signed axis</p>
+    <div class="sl-axis" aria-hidden="true"><i data-zone></i><span data-axis-dot></span></div><div class="sl-scale"><span>−100%</span><span>0</span><span>+100%</span></div><div class="sl-response"><span>Output response</span><strong data-response>+29.5%</strong></div>
+    <label class="sl-field"><span class="sl-label"><span>Inner dead zone</span><span class="sl-value" data-value="0" aria-hidden="true">12 %</span></span><span class="sl-track" data-track="0" style="--fill:30%"><input type="range" name="dead-zone-0" min="0" max="40" step="1" value="12" aria-label="Inner dead zone" aria-valuetext="12 %"></span></label>
+    <label class="sl-field"><span class="sl-label"><span>Outer saturation</span><span class="sl-value" data-value="1" aria-hidden="true">90 %</span></span><span class="sl-track" data-track="1" style="--fill:75%"><input type="range" name="dead-zone-1" min="60" max="100" step="1" value="90" aria-label="Outer saturation" aria-valuetext="90 %"></span></label>
+    <label class="sl-field"><span class="sl-label"><span>Test input</span><span class="sl-value" data-value="2" aria-hidden="true">35 %</span></span><span class="sl-track" data-track="2" style="--fill:67.5%"><input type="range" name="dead-zone-2" min="-100" max="100" step="1" value="35" aria-label="Test input" aria-valuetext="35 %"></span></label>
+    <p class="sl-summary" data-summary>Outside dead zone</p>
+    <p class="sl-hint">Output reaches ±100% at outer saturation.</p>
+
+  </section>
+</body>
+</html>

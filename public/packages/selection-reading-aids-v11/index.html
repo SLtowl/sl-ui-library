@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reading aids</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { box-sizing: border-box; margin: 0; min-height: 100svh; padding: 24px; display: grid; place-items: center; background: #f5f4f2; }</style>
+</head>
+<body>
+<section class="sl-component" data-kind="selection-reading-aids-v11" aria-label="Reading aids">
+  <header class="sl-head"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h7a3 3 0 0 1 3 3v12a4 4 0 0 0-4-2H4V5Zm10 3a3 3 0 0 1 3-3h3v13h-3a4 4 0 0 0-3 2M7 9h3M7 12h3"/></svg><div><h2>Reading aids</h2><p>One switch, remembered details.</p></div></header>
+  <div class="sl-row"><span>Reading aids<small>Enable the helpers below</small></span><button type="button" class="sl-toggle" role="switch" aria-label="Reading aids" aria-checked="true" data-toggle="enabled"><span class="sl-toggle-word" aria-hidden="true">On</span><span class="sl-toggle-track" aria-hidden="true"></span></button></div><div class="sl-dependent"><div class="sl-row"><span>Line guide<small>Keep your place</small></span><button type="button" class="sl-toggle" role="switch" aria-label="Line guide" aria-checked="true" data-toggle="guide"><span class="sl-toggle-word" aria-hidden="true">On</span><span class="sl-toggle-track" aria-hidden="true"></span></button></div><div class="sl-row"><span>Key phrases<small>Mark useful passages</small></span><button type="button" class="sl-toggle" role="switch" aria-label="Key phrases" aria-checked="false" data-toggle="phrases"><span class="sl-toggle-word" aria-hidden="true">Off</span><span class="sl-toggle-track" aria-hidden="true"></span></button></div></div><div class="sl-aid-sample" aria-hidden="true"><span>Keep a little <em>room for ideas.</em></span></div>
+  <p class="sl-status" role="status" data-status>Line guide active</p>
+</section>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recent action menu</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; background: #f5f4f2; padding: 24px; box-sizing: border-box; }</style>
+</head>
+<body>
+  <div class="sl-component" data-kind="menus-recent-actions-v11" data-open="false">
+    <p class="sl-eyebrow">Canvas tools</p>
+    <button class="sl-trigger" data-trigger type="button" aria-expanded="false" aria-haspopup="dialog"><svg class="" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M4 7v5h5M4 12a8 8 0 1 1 2 6m6-12v6l4 2"/></svg><span data-label>Actions & recents</span><svg class="sl-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="m7 10 5 5 5-5"/></svg></button>
+    <div class="sl-panel" data-panel tabindex="-1" role="dialog" aria-label="Recent action menu" aria-hidden="true" inert>
+      <section data-group><h3>Canvas</h3><button class="sl-option" type="button" data-key="zoom-in" ><span><strong>Zoom in</strong><small>Increase by 10%</small></span><span class="sl-mark" aria-hidden="true">✓</span></button><button class="sl-option" type="button" data-key="zoom-out" ><span><strong>Zoom out</strong><small>Decrease by 10%</small></span><span class="sl-mark" aria-hidden="true">✓</span></button><button class="sl-option" type="button" data-key="pin" ><span><strong>Toggle pin</strong><small>Pin or unpin the canvas</small></span><span class="sl-mark" aria-hidden="true">✓</span></button></section><div class="sl-scroll"><section data-group><h3>Recent actions</h3><div data-recent></div><p class="sl-empty" data-empty>No recent actions.</p></section></div><div class="sl-footer"><button type="button" class="sl-action" data-key="clear" disabled>Clear recents</button></div>
+    </div>
+    <div class="sl-summary" role="region" aria-label="Local result" tabindex="0"><p><strong data-summary>Canvas · 100% · Unpinned</strong></p><small>Actions update this sample canvas.</small></div>
+    <p class="sl-feedback" data-feedback role="status" aria-live="polite">Try an action, then repeat it from Recents.</p>
+  </div>
+</body>
+</html>

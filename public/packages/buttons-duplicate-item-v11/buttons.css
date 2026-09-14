@@ -1,0 +1,50 @@
+@font-face { font-family: 'Instrument Sans'; src: url('./instrument-sans-variable.woff2') format('woff2'); font-weight: 400 700; font-style: normal; font-display: swap; }
+.sl-component {
+  --action-ink: #222222; --action-surface: #2f2f2f; --action-hover: #3c3c3c;
+  --action-text: #f6f6f6; --action-muted: #bdbdbd; --action-accent: #e0e0e0;
+  --action-on-accent: #2a2a2a; --action-danger: #efb8a6; --action-border: #505050; --action-focus: #e0e0e0;
+  width: 320px; max-width: 100%; min-width: 0; padding: 20px;
+  color: var(--action-text); background: var(--action-ink); border: 1px solid var(--action-surface);
+  border-radius: 16px; box-shadow: inset 0 1px 0 #ffffff08, 0 3px 7px #00000010;
+  font: 14px/1.45 'Instrument Sans', sans-serif; font-synthesis: none; -webkit-font-smoothing: antialiased;
+}
+.sl-component, .sl-component *, .sl-component *::before, .sl-component *::after { box-sizing: border-box; }
+.sl-component [hidden] { display: none !important; }
+.sl-component h2, .sl-component p { margin: 0; }
+.sl-component h2, .sl-component .ab-item-label { font-size: 14px; line-height: 1.45; font-weight: 550; overflow-wrap: anywhere; max-height: 5.8em; overflow: auto; }
+.sl-component .ab-caption { display: block; color: var(--action-muted); font-size: 11px; margin-bottom: 3px; }
+.sl-component .ab-item { display: flex; align-items: center; gap: 12px; }
+.sl-component .ab-item > div { min-width: 0; flex: 1; }
+.sl-component .ab-copy { border-top: 1px solid var(--action-border); margin-top: 16px; padding-top: 16px; color: var(--action-accent); }
+.sl-component .ab-reveal { display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden; transition: grid-template-rows 260ms cubic-bezier(.2,0,0,1), opacity 200ms ease, visibility 0s 260ms; }
+.sl-component .ab-reveal[data-open="true"] { grid-template-rows: 1fr; opacity: 1; visibility: visible; transition-delay: 0s; }
+.sl-component .ab-reveal > div { min-height: 0; overflow: hidden; }
+.sl-component .ab-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.sl-component button { appearance: none; font: inherit; font-size: 12px; font-weight: 550; line-height: 1.35; border: 1px solid var(--action-border); border-radius: 10px; padding: 11px 13px; min-height: 44px; background: var(--action-surface); color: var(--action-text); display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; transition: background-color 180ms ease, transform 220ms cubic-bezier(.2,0,0,1); }
+.sl-component .ab-primary { flex: 1; background: var(--action-accent); color: var(--action-on-accent); border-color: transparent; }
+.sl-component .ab-quiet { background: transparent; }
+.sl-component button:focus-visible { outline: 2px solid var(--action-focus); outline-offset: 3px; }
+.sl-component button[aria-disabled="true"] { opacity: .65; cursor: default; }
+@media (hover: hover) {
+  .sl-component button:hover:not([aria-disabled="true"]) { transform: translateY(-1px); }
+  .sl-component .ab-quiet:hover { background: var(--action-hover); }
+}
+.sl-component button:active:not([aria-disabled="true"]) { transform: translateY(1px) scale(.98); transition-duration: 90ms; }
+.sl-component svg { width: 20px; height: 20px; flex: 0 0 auto; display: block; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.sl-component .ab-icons { display: grid; width: 20px; height: 20px; }
+.sl-component .ab-icons svg { grid-area: 1 / 1; transition: opacity 180ms ease, transform 240ms cubic-bezier(.2,0,0,1); }
+.sl-component .ab-check-icon { opacity: 0; transform: scale(.75); }
+.sl-component[data-phase="complete"] .ab-copy-icon { opacity: 0; transform: scale(.75); }
+.sl-component[data-phase="complete"] .ab-check-icon { opacity: 1; transform: scale(1); }
+.sl-component .ab-status { color: var(--action-muted); font-size: 12px; min-height: 36px; margin-top: 16px; overflow-wrap: anywhere; }
+.sl-component[data-phase="error"] .ab-status { color: var(--action-danger); }
+.sl-component .ab-note { color: var(--action-muted); border-top: 1px solid var(--action-surface); margin-top: 12px; padding-top: 10px; font-size: 10px; }
+@media (prefers-reduced-motion: reduce) {
+  .sl-component *, .sl-component *::before, .sl-component *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+  .sl-component button:hover, .sl-component button:active { transform: none !important; }
+}
+@media (forced-colors: active) {
+  .sl-component { border-color: CanvasText; }
+  .sl-component button { border: 1px solid ButtonText; }
+  .sl-component button:focus-visible { outline-color: Highlight; }
+}

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading queue navigator</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./buttons.css">
+<script src="./buttons.js" defer></script>
+<script src="./example.js" defer></script>
+<style>body{margin:0;min-height:100svh;display:grid;place-items:center;background:#edf0f1;padding:24px;box-sizing:border-box}</style>
+</head>
+<body>
+<div class="sl-component" data-kind="navigation-reading-queue-v11">
+<header class="nv-heading"><div><span class="nv-kicker">Reading queue</span><h2>A clear next document</h2></div><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="3" width="14" height="18" rx="2"/><path d="M3 6v13M10 7h7m-7 4h7m-7 5 2 2 5-4"/></svg></header><nav class="nv-list nv-queue" aria-label="Queued documents"><button type="button" data-document="0" aria-current="page" class="nv-button "><span>Project brief</span><small data-read-status>Unread</small></button><button type="button" data-document="1" class="nv-button "><span>Keyboard guide</span><small data-read-status>Unread</small></button><button type="button" data-document="2" class="nv-button "><span>Review notes</span><small data-read-status>Unread</small></button></nav><section class="nv-detail" aria-live="polite" aria-atomic="true"><span class="nv-kicker" data-meta>Document 1 of 3</span><h3 data-title>Audience and goals</h3><p data-copy>Build a compact navigator for project material. Keep every route easy to identify.</p></section><div class="nv-row nv-queue-actions"><button type="button" data-back disabled class="nv-button "><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m13 5-7 7 7 7M6 12h14"/></svg>Back</button><button type="button" data-complete class="nv-button nv-primary nv-grow">Read & next</button></div><div class="nv-row nv-between"><button type="button" data-undo disabled class="nv-button ">Undo</button><span class="nv-kicker" data-progress role="status">0 of 3 read</span></div>
+</div>
+</body>
+</html>

@@ -1,12 +1,12 @@
 import assert from 'node:assert/strict';
 import {readFile,readdir,stat} from 'node:fs/promises';
 import {components,categories} from './public/catalog-data.js';
+import {assertCatalogContract,expectedVariants} from './tests/catalog-contract.mjs';
 const root=new URL('./public/',import.meta.url);
-assert.equal(components.length,110);
+assertCatalogContract({complete:process.argv.includes('--complete-batch')});
 assert.equal(new Set(components.map(c=>c.id)).size,components.length);
-for(const category of ['feedback','data-display'])assert.equal(components.filter(c=>c.category===category).length,0);
 const variants=components.flatMap(c=>c.variants);
-assert.equal(new Set(variants).size,112);
+assert.equal(new Set(variants).size,expectedVariants);
 let checked=0;
 for(const entry of await readdir(root,{withFileTypes:true})){
  if(!entry.isFile()||! /\.(html|css|js)$/.test(entry.name))continue;

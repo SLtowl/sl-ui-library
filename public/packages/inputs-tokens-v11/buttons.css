@@ -1,0 +1,47 @@
+@font-face { font-family: 'Instrument Sans'; src: url('./instrument-sans-variable.woff2') format('woff2'); font-weight: 400 700; font-style: normal; font-display: swap; }
+.sl-component {
+  --field-surface: #222222; --field-hover: #2e2e2e; --field-active: #424242;
+  --field-text: #fafafa; --field-muted: #bbbbbb; --field-accent: #e0e0e0;
+  --field-border: #5a5a5a; --field-focus: #e0e0e0; --field-error: #f0bfad;
+  --field-ease: cubic-bezier(.4, 0, .2, 1);
+  box-sizing: border-box; width: min(320px, 100%); min-width: 0; padding: 20px;
+  background: var(--field-surface); color: var(--field-text); border: 1px solid var(--field-border);
+  border-radius: 16px; box-shadow: 0 2px 5px #0000000d; text-align: left;
+  font: 400 14px/1.5 'Instrument Sans', sans-serif; color-scheme: dark;
+}
+.sl-component *, .sl-component *::before, .sl-component *::after { box-sizing: border-box; }
+.sl-component [hidden] { display: none !important; }
+.sl-component .sl-heading { display: flex; align-items: center; gap: 10px; margin: 0 0 20px; font-size: 15px; font-weight: 550; }
+.sl-component svg { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.sl-component .sl-heading svg { color: var(--field-accent); }
+.sl-component label, .sl-component legend { display: block; padding: 0; color: var(--field-muted); font-size: 12px; }
+.sl-component label > span { display: block; margin-bottom: 6px; }
+.sl-component fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+.sl-component legend { margin-bottom: 10px; }
+.sl-component input, .sl-component select, .sl-component button { font: inherit; }
+.sl-component input:not([type="color"]), .sl-component select { display: block; width: 100%; min-width: 0; min-height: 44px; margin: 0; padding: 10px; border: 1px solid var(--field-border); border-radius: 8px; outline: none; background: var(--field-hover); color: var(--field-text); caret-color: var(--field-text); transition: border-color 180ms ease, background-color 180ms ease; }
+.sl-component input::placeholder { color: var(--field-muted); opacity: 1; }
+.sl-component input:focus-visible, .sl-component select:focus-visible { border-color: var(--field-focus); }
+.sl-component input[aria-invalid="true"] { border-color: var(--field-error); }
+.sl-component button { min-height: 36px; padding: 7px 12px; border: 1px solid var(--field-border); border-radius: 8px; color: var(--field-text); background: transparent; cursor: pointer; touch-action: manipulation; transition: background-color 180ms ease, color 180ms ease, transform 180ms var(--field-ease); }
+.sl-component button:hover { background: var(--field-active); }
+.sl-component button:active { transform: translateY(1px); }
+.sl-component button:focus-visible, .sl-component input[type="color"]:focus-visible { outline: 2px solid var(--field-focus); outline-offset: -2px; }
+.sl-component :is(input, select, button):disabled { opacity: .55; cursor: not-allowed; }
+.sl-component .sl-primary { background: var(--field-accent); color: var(--field-surface); border-color: var(--field-accent); }
+.sl-component .sl-primary:hover { background: var(--field-text); }
+.sl-component .sl-row { display: flex; align-items: end; gap: 8px; }
+.sl-component .sl-row > label { flex: 1; min-width: 0; }
+.sl-component .sl-stack { display: grid; gap: 12px; }
+.sl-component .sl-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
+.sl-component .sl-note { margin: 12px 0 0; color: var(--field-muted); font-size: 12px; overflow-wrap: anywhere; }
+.sl-component .sl-status { min-height: 36px; margin: 14px 0 0; font-size: 12px; color: var(--field-muted); overflow-wrap: anywhere; }
+.sl-component[data-invalid="true"] .sl-status { color: var(--field-error); }
+.sl-component output { display: block; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--field-border); color: var(--field-accent); font-size: 14px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+@media (prefers-reduced-motion: reduce) { .sl-component *, .sl-component *::before, .sl-component *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+@media (forced-colors: active) { .sl-component { border-color: CanvasText; } .sl-component button, .sl-component input, .sl-component select { border: 1px solid ButtonText; } .sl-component :focus-visible { outline: 2px solid Highlight; outline-offset: -2px; } }
+.sl-component .sl-count { color: var(--field-muted); font-size: 12px; }
+.sl-component .sl-tags { display: flex; flex-wrap: wrap; align-content: start; gap: 4px; max-height: 112px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--field-muted) var(--field-hover); list-style: none; margin: 14px 0 0; padding: 4px; }
+.sl-component .sl-tags li { display: flex; align-items: center; max-width: 100%; gap: 2px; padding-left: 9px; background: var(--field-active); border-radius: 8px; }
+.sl-component .sl-tags li span { min-width: 0; overflow-wrap: anywhere; color: var(--field-accent); font-size: 12px; }
+.sl-component .sl-tags button { flex: none; min-width: 32px; min-height: 32px; padding: 5px; border: 0; }

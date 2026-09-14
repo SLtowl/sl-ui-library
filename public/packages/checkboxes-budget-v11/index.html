@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Selection budget</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; padding: 24px 16px; display: grid; place-items: center; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <form class="sl-component" data-kind="checkboxes-budget" aria-label="Selection budget">
+    <h2>Selection budget</h2>
+    <p class="choice-intro">Use up to 8 points for this workspace.</p>
+
+    <div class="choice-list"><label class="choice"><input data-choice type="checkbox" name="choices" value="notes" checked data-cost="2"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Shared notes</span><span class="choice-hint">2 points</span></span></label><label class="choice"><input data-choice type="checkbox" name="choices" value="search"  data-cost="3"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Full-text search</span><span class="choice-hint">3 points</span></span></label><label class="choice"><input data-choice type="checkbox" name="choices" value="history"  data-cost="4"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Version history</span><span class="choice-hint">4 points</span></span></label><label class="choice"><input data-choice type="checkbox" name="choices" value="archive"  data-cost="1"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Archive</span><span class="choice-hint">1 point</span></span></label></div>
+    <meter min="0" max="8" value="2" aria-label="Selected points">2 of 8</meter>
+    <div class="choice-footer"><p class="choice-status" data-status role="status" aria-live="polite" aria-atomic="true">2 of 8 points used</p><button type="button" data-clear >Clear</button></div>
+  </form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preview mode</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { box-sizing: border-box; margin: 0; min-height: 100svh; padding: 24px; display: grid; place-items: center; background: #f5f4f2; }</style>
+</head>
+<body>
+<section class="sl-component" data-kind="selection-preview-mode-v11" aria-label="Preview mode">
+  <header class="sl-head"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12s3-6 9-6 9 6 9 6-3 6-9 6-9-6-9-6Z"/><circle cx="12" cy="12" r="2.5"/></svg><div><h2>Preview mode</h2><p>Try a layout before applying it.</p></div></header>
+  <div class="sl-segments " role="radiogroup" aria-label="Preview layout" data-field="draft"><button type="button" role="radio" data-choice="list" aria-checked="true" tabindex="0">List</button><button type="button" role="radio" data-choice="outline" aria-checked="false" tabindex="-1">Outline</button></div><div class="sl-layout-sample" aria-label="Layout sample"><span>Field notes</span><span>Walking routes</span><span>Next weekend</span></div><div class="sl-actions"><button type="button" class="sl-action sl-action--primary" data-action="apply" disabled>Apply layout</button><button type="button" class="sl-action" data-action="cancel" disabled>Cancel</button></div>
+  <p class="sl-status" role="status" data-status>List layout applied</p>
+</section>
+</body>
+</html>

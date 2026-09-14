@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sort recipe menu</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; background: #f5f4f2; padding: 24px; box-sizing: border-box; }</style>
+</head>
+<body>
+  <div class="sl-component" data-kind="menus-sort-recipe-v11" data-open="false">
+    <p class="sl-eyebrow">Sample task queue</p>
+    <button class="sl-trigger" data-trigger type="button" aria-expanded="false" aria-haspopup="dialog"><svg class="" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 4v16m-3-3 3 3 3-3M11 5h9m-9 6h6m-6 6h3"/></svg><span data-label>Build a sort recipe</span><svg class="sl-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="m7 10 5 5 5-5"/></svg></button>
+    <div class="sl-panel" data-panel tabindex="-1" role="dialog" aria-label="Sort recipe menu" aria-hidden="true" inert>
+      <div class="sl-scroll"><section data-group><h3>Primary field</h3><button class="sl-option" type="button" data-key="field:due" aria-pressed="true"><span><strong>Due date</strong><small>Earliest or latest first</small></span><span class="sl-mark" aria-hidden="true">✓</span></button><button class="sl-option" type="button" data-key="field:name" aria-pressed="false"><span><strong>Task name</strong><small>Alphabetical order</small></span><span class="sl-mark" aria-hidden="true">✓</span></button></section><section data-group><h3>Order</h3><button class="sl-option" type="button" data-key="direction" ><span><strong>Ascending</strong><small>Reverse the date or name order</small></span><span class="sl-mark" aria-hidden="true">✓</span></button><button class="sl-option" type="button" data-key="priority" aria-pressed="false"><span><strong>Priority first</strong><small>High → Medium → Low</small></span><span class="sl-mark" aria-hidden="true">✓</span></button></section></div><div class="sl-footer"><button type="button" class="sl-action" data-key="dismiss" >View task order</button></div>
+    </div>
+    <div class="sl-summary" role="region" aria-label="Local result" tabindex="0"><strong data-summary>Due date · Ascending</strong><ol data-order><li>Draft · Sep 14 · Medium</li><li>Review · Sep 14 · High</li><li>Publish · Sep 16 · Low</li></ol></div>
+    <p class="sl-feedback" data-feedback role="status" aria-live="polite">Choose a field, direction and whether priority comes first.</p>
+  </div>
+</body>
+</html>

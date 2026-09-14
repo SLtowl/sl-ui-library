@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reference jump and return</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./buttons.css">
+<script src="./buttons.js" defer></script>
+<script src="./example.js" defer></script>
+<style>body{margin:0;min-height:100svh;display:grid;place-items:center;background:#edf0f1;padding:24px;box-sizing:border-box}</style>
+</head>
+<body>
+<div class="sl-component" data-kind="navigation-reference-return-v11">
+<header class="nv-heading"><div><span class="nv-kicker">Reading references</span><h2>Follow the footnote</h2></div><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 3h14v18H5zM8 8h5m-5 4h8m-5 5h5M15 5v4m-8 7 1-1v4m-1 0h2"/></svg></header><div class="nv-row nv-between"><span class="nv-kicker" data-location>Article</span><button type="button" data-back disabled class="nv-button "><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m13 5-7 7 7 7M6 12h14"/></svg>Return</button></div><div class="nv-scroll nv-article" data-pane tabindex="0" role="region" aria-label="Article and references"><section data-article><h3>Navigation notes</h3><p>A clear destination label reduces the need to guess. <button type="button" data-reference="0" aria-label="Read reference 1 for destination labels" class="nv-button nv-reference">1</button></p><p>Keyboard focus should follow a local jump and return to its source. <button type="button" data-reference="1" aria-label="Read reference 2 for keyboard focus" class="nv-button nv-reference">2</button></p><p>Keep labels consistent across compact layouts. <button type="button" data-reference="0" aria-label="Read reference 1 for consistent labels" class="nv-button nv-reference">1</button></p></section><section data-note="0"><span class="nv-kicker">Reference 1</span><h3 tabindex="-1">Destination labels</h3><p>Use the same short name wherever a route appears. A label should describe the content reached by the control.</p></section><section data-note="1"><span class="nv-kicker">Reference 2</span><h3 tabindex="-1">Focus after a jump</h3><p>Move focus to the target heading without moving the outer page. Return restores the exact source and reading position.</p></section></div><p class="nv-hint">References stay in this pane. Escape returns to the source.</p>
+</div>
+</body>
+</html>

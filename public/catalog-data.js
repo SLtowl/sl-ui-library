@@ -1,5 +1,15 @@
 // Component types are separate from motion treatments and export variants.
 // Add a ready component here only when its preview, source and download exist.
+import batch0 from './catalog-batches/buttons.js';
+import batch1 from './catalog-batches/inputs.js';
+import batch2 from './catalog-batches/selection.js';
+import batch3 from './catalog-batches/checkboxes.js';
+import batch4 from './catalog-batches/sliders.js';
+import batch5 from './catalog-batches/menus.js';
+import batch6 from './catalog-batches/navigation.js';
+import batch7 from './catalog-batches/overlays.js';
+import batch8 from './catalog-batches/feedback.js';
+import batch9 from './catalog-batches/data-display.js';
 export const categories = [
   { id: 'buttons', label: 'Buttons', description: 'Action buttons, icon buttons and button groups.', keywords: ['button', 'save', 'cancel'] },
   { id: 'inputs', label: 'Inputs', description: 'Text fields, search fields, text areas and number inputs.', keywords: ['field', 'text', 'search'] },
@@ -10,7 +20,7 @@ export const categories = [
   { id: 'navigation', label: 'Navigation', description: 'Tabs, breadcrumbs, pagination and navigation bars.', keywords: ['tabs', 'breadcrumbs', 'pagination'] },
   { id: 'overlays', label: 'Overlays', description: 'Dialogs, drawers, popovers and tooltips.', keywords: ['modal', 'dialog', 'drawer', 'tooltip'] },
   { id: 'feedback', label: 'Feedback', description: 'Toasts, alerts, progress indicators and loading states.', keywords: ['toast', 'alert', 'progress', 'loading', 'skeleton'] },
-  { id: 'data-display', label: 'Data display', description: 'Lists, tables, cards, badges and accordions.', keywords: ['list', 'table', 'card', 'badge', 'accordion'] },
+  { id: 'data-display', label: 'Data display', description: 'Metrics, tables, cards, charts and calendars.', keywords: ['list', 'table', 'card', 'badge', 'chart', 'calendar', 'metric'] },
 ];
 
 export const components = [
@@ -540,6 +550,60 @@ for (const [category, entries] of [
     });
   }
 }
+
+for (const [slug, name, motion, description, keywords] of [
+  ['toast', 'Status toast', 'Soft arrival', 'A compact status message with a pausable timeout.', ['notification', 'success', 'error', 'info']],
+  ['undo', 'Undo snackbar', 'Action confirmation', 'A reversible action with asynchronous Undo feedback.', ['undo', 'snackbar', 'restore']],
+  ['stack', 'Notification stack', 'Queued messages', 'Three visible notifications with a bounded waiting queue.', ['notification', 'stack', 'queue']],
+  ['alert', 'Inline alert', 'Gentle collapse', 'An in-place warning that opens and closes without a hard layout jump.', ['alert', 'warning', 'inline']],
+  ['connection', 'Connection banner', 'Reconnect feedback', 'Offline, reconnecting and connected states with a retry action.', ['offline', 'online', 'network', 'reconnect']],
+  ['linear', 'Linear progress', 'Continuous progress', 'Determinate or indeterminate progress with cancelable demo work.', ['progress', 'bar', 'loading']],
+  ['circular', 'Circular progress', 'Smooth ring', 'A progress ring with synchronized percentage and completion.', ['progress', 'ring', 'percentage']],
+  ['skeleton', 'Skeleton card', 'Content reveal', 'A same-size placeholder that fades into loaded content.', ['skeleton', 'placeholder', 'loading']],
+  ['loading', 'Loading indicator', 'Quiet pulse', 'A stoppable indicator for work of unknown duration.', ['loading', 'dots', 'spinner', 'busy']],
+  ['retry', 'Retry notice', 'Error recovery', 'An actionable error state with asynchronous retry and recovery.', ['retry', 'error', 'failure', 'recovery']],
+]) {
+  const variant = `${slug}-feedback`;
+  components.push({
+    id: `matte-${variant}`, category: 'feedback', name, description,
+    motions: [motion], variants: [variant], keywords: [slug, name, ...keywords],
+    page: `./component.html?component=matte-${variant}`, preview: `./packages/${variant}/index.html?embed=1`,
+    packageRoot: './packages/', downloads: { [variant]: `./downloads/matte-${variant}.zip` },
+    usage: [
+      { title: 'Try the example', paragraphs: ['Download and serve the extracted folder on localhost. preview.js supplies explicit, cancelable demo actions. Nothing is saved, removed, uploaded or requested from a server.'] },
+      { title: 'Connect your application', paragraphs: ['MatteFeedback.mount(root, { onAction }) returns a controller. Supply an asynchronous onAction(action, { signal, onProgress }) callback for Undo, Reconnect, Retry and loading operations. Resolve only when your operation succeeds; reject to show an error. Honor signal to cancel work. onProgress accepts values from 0 to 100.', 'For notifications, call show({ title, detail, tone, duration }) or hide(). A zero duration keeps a toast visible; errors remain until dismissed. For a stack, use push({ title, detail }) and clear(). For progress, use update(percent) or setMode("unknown"). reset() and destroy() cancel pending work. Remove the demo controls and preview.js when integrating.'] },
+      { title: 'Appearance and accessibility', paragraphs: ['Change the --fb-* palette variables in buttons.css. Keep the status announcements, progress roles and accessible button labels. Motion respects reduced-motion preferences. Timed toasts pause during hover, focus and when the page is hidden. The included MIT license covers the component; OFL.txt covers Instrument Sans.'] },
+    ],
+  });
+}
+
+for (const [slug, name, motion, description, keywords] of [
+  ['metric', 'Metric card', 'Value transition', 'A summary metric with selectable periods and a matching trend line.', ['stat', 'metric', 'number', 'trend', 'sparkline']],
+  ['table', 'Sortable table', 'Row reordering', 'A compact file table with reversible sorting and row selection.', ['table', 'rows', 'sort', 'files']],
+  ['avatars', 'Avatar group', 'Member reveal', 'An overlapping avatar group with expandable members and local selection.', ['avatar', 'team', 'people', 'profile']],
+  ['status', 'Status badges', 'Filtered rows', 'Labeled status badges with filterable project rows.', ['status', 'badge', 'pill', 'filter', 'active', 'paused']],
+  ['details', 'Details list', 'Detail disclosure', 'A description list with additional metadata that expands in place.', ['metadata', 'description list', 'properties', 'key value']],
+  ['timeline', 'Activity timeline', 'History disclosure', 'A chronological activity list with expandable earlier events.', ['timeline', 'activity', 'history', 'events']],
+  ['file', 'File card', 'File selection', 'A file summary with selectable sample files and expandable properties.', ['file', 'document', 'attachment', 'asset']],
+  ['bar', 'Bar chart', 'Shared-scale update', 'A selectable weekly bar chart with a fixed, labeled comparison scale.', ['bar chart', 'chart', 'analytics', 'tasks', 'weekly']],
+  ['donut', 'Donut chart', 'Segment emphasis', 'A storage breakdown with labeled values and selectable categories.', ['donut', 'pie chart', 'storage', 'breakdown']],
+  ['calendar', 'Calendar', 'Month transition', 'A month view with selectable dates, scheduled events and keyboard navigation.', ['calendar', 'date', 'schedule', 'month']],
+]) {
+  const variant = `${slug}-display`;
+  components.push({
+    id: `matte-${variant}`, category: 'data-display', name, description,
+    motions: [motion], variants: [variant], keywords: [slug, name, ...keywords],
+    page: `./component.html?component=matte-${variant}`, preview: `./packages/${variant}/index.html?embed=1`,
+    packageRoot: './packages/', downloads: { [variant]: `./downloads/matte-${variant}.zip` },
+    usage: [
+      { title: 'Try the example', paragraphs: ['Download and serve the extracted folder on localhost. The controls operate on sample data only. No accounts, uploads, network requests or framework are required.'] },
+      { title: 'Connect your data', paragraphs: ['MatteDataDisplay.mount(root, { onChange }) returns a controller. The optional onChange callback and the displaychange DOM event receive the kind, action and current state. Read example.js for the selected component’s methods and accepted values. reset() restores the example; destroy() cancels animation and removes listeners.', 'Replace the sample records in index.html and the corresponding datasets in buttons.js. Keep values and visible labels synchronized. Use textContent for application text. Calendar select() accepts YYYY-MM-DD dates; showMonth(year, month) uses months 1–12 and supports years 1900–2100.'] },
+      { title: 'Appearance and accessibility', paragraphs: ['Change --dd-* variables in buttons.css to adapt the palette. Charts keep a consistent scale and include exact values in labels. Tables expose sorting through aria-sort. The calendar supports arrow keys, Home, End, Page Up, Page Down and Enter. Expanded content is removed from keyboard navigation when closed. Reduced motion is supported; icons are inline SVG. MIT and Instrument Sans OFL licenses are included.'] },
+    ],
+  });
+}
+
+components.push(...[batch0, batch1, batch2, batch3, batch4, batch5, batch6, batch7, batch8, batch9].flat());
 
 export function categoryFor(id) {
   return categories.find(category => category.id === id) || null;

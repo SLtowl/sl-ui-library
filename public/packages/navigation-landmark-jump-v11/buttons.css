@@ -1,0 +1,47 @@
+@font-face{font-family:'Instrument Sans';src:url('./instrument-sans-variable.woff2') format('woff2');font-weight:400 700;font-display:swap}
+.sl-component{--nav-surface:#232323;--nav-raised:#303030;--nav-text:#f2f2f2;--nav-muted:#bdbdbd;--nav-accent:#e0e0e0;--nav-accent-ink:#333333;--nav-border:#4e4e4e;--nav-focus:#e0e0e0;--nav-ease:cubic-bezier(.22,.61,.36,1);position:relative;width:min(320px,100%);min-width:0;box-sizing:border-box;padding:16px;border:1px solid var(--nav-border);border-radius:17px;background:var(--nav-surface);color:var(--nav-text);font:13px/1.45 'Instrument Sans',sans-serif;color-scheme:var(--nav-color-scheme,dark);box-shadow:0 3px 8px #00000014}
+.sl-component *{box-sizing:border-box}
+.sl-component [hidden]{display:none!important}
+.sl-component :is(button,input,select){font:inherit}
+.sl-component button{color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.sl-component :is(button,input,select,[tabindex]):focus-visible{outline:2px solid var(--nav-focus);outline-offset:2px}
+.sl-component button:disabled{color:var(--nav-muted);opacity:.45;cursor:default}
+.sl-component svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.sl-component h2{margin:4px 0 0;font-size:16px;font-weight:550;line-height:1.25}
+.sl-component h3{margin:6px 0 8px;font-size:15px;font-weight:550}
+.sl-component p{margin:0}
+.sl-component .nv-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+.sl-component .nv-heading>svg{color:var(--nav-accent);width:25px;height:25px}
+.sl-component .nv-kicker{display:block;font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--nav-muted)}
+.sl-component .nv-button{min-height:36px;min-width:32px;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid transparent;border-radius:8px;padding:7px 9px;background:transparent;text-align:left;line-height:1.25;transition:background-color 180ms var(--nav-ease),color 180ms var(--nav-ease),border-color 180ms var(--nav-ease)}
+.sl-component .nv-button:hover:not(:disabled){background:var(--nav-raised)}
+.sl-component .nv-button[aria-current],.sl-component .nv-button[aria-selected=true],.sl-component .nv-button[aria-pressed=true]{background:var(--nav-accent);color:var(--nav-accent-ink)}
+.sl-component .nv-button[aria-current]::after{content:'';width:4px;height:4px;border-radius:50%;background:currentColor;flex:none}
+.sl-component .nv-outline{border-color:var(--nav-border)}
+.sl-component .nv-primary{background:var(--nav-accent);color:var(--nav-accent-ink)}
+.sl-component .nv-primary:hover:not(:disabled){background:var(--nav-accent);border-color:var(--nav-accent)}
+.sl-component .nv-row{display:flex;align-items:center;gap:6px}
+.sl-component .nv-row>.nv-grow{flex:1;min-width:0}
+.sl-component .nv-between{justify-content:space-between}
+.sl-component .nv-list{display:grid;gap:5px;padding:3px}
+.sl-component .nv-list .nv-button{width:100%;justify-content:flex-start}
+.sl-component .nv-list .nv-button>span{flex:1;min-width:0}
+.sl-component .nv-detail{margin-top:14px;padding-top:16px;border-top:1px solid var(--nav-border);min-height:130px}
+.sl-component .nv-detail p{font-size:12px;line-height:1.65;color:var(--nav-muted)}
+.sl-component .nv-hint{font-size:10px;line-height:1.6;color:var(--nav-muted);margin-top:14px}
+.sl-component .nv-disclosure{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows 200ms var(--nav-ease),opacity 150ms var(--nav-ease)}
+.sl-component .nv-disclosure[data-open=true]{grid-template-rows:1fr;opacity:1}
+.sl-component .nv-disclosure>div{min-height:0;overflow:hidden}
+.sl-component .nv-disclosure .nv-list{margin-top:8px}
+.sl-component [aria-expanded] svg:last-child{transition:transform 200ms var(--nav-ease)}
+.sl-component [aria-expanded=true] svg:last-child{transform:rotate(180deg)}
+.sl-component .nv-scroll{overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--nav-border) var(--nav-surface);padding:4px}
+.sl-component .nv-input{display:block;width:100%;min-width:0;min-height:38px;padding:8px 10px;color:var(--nav-text);background:var(--nav-raised);border:1px solid var(--nav-border);border-radius:8px}
+.sl-component .nv-label{display:grid;gap:6px;color:var(--nav-muted);font-size:11px}
+.sl-component .nv-text-button{border:0;background:transparent;text-decoration:underline;text-underline-offset:3px;padding:3px;color:var(--nav-accent);border-radius:3px;font:inherit}
+.sl-component .nv-sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+.sl-component .nv-disclosure{position:absolute;z-index:2;left:16px;right:16px}.sl-component .nv-disclosure>div>.nv-list{background:var(--nav-raised);border:1px solid var(--nav-border);border-radius:10px;padding:7px;box-shadow:0 5px 10px #00000018}
+.sl-component .nv-button:is([aria-current],[aria-selected=true],[aria-pressed=true]):hover:not(:disabled){background:var(--nav-accent);color:var(--nav-accent-ink)}
+.sl-component .nv-input option{background:var(--nav-raised);color:var(--nav-text)}
+.sl-component .nv-reading{height:180px;margin-top:12px;border-top:1px solid var(--nav-border)}.sl-component .nv-reading section{padding:12px 4px 28px;min-height:176px}.sl-component .nv-reading p{font-size:12px;line-height:1.7;color:var(--nav-muted)}.sl-component .nv-reading h3{border-radius:3px}

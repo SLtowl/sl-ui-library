@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nested topic menu</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; background: #f5f4f2; padding: 24px; box-sizing: border-box; }</style>
+</head>
+<body>
+  <div class="sl-component" data-kind="menus-nested-topic-v11" data-open="false">
+    <p class="sl-eyebrow">Knowledge collection</p>
+    <button class="sl-trigger" data-trigger type="button" aria-expanded="false" aria-haspopup="dialog"><svg class="" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 4v12a3 3 0 0 0 3 3h3M5 8h6m5-3 4 3-4 3m0 5 4 3-4 3"/></svg><span data-label>Choose a topic</span><svg class="sl-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="m7 10 5 5 5-5"/></svg></button>
+    <div class="sl-panel" data-panel tabindex="-1" role="dialog" aria-label="Nested topic menu" aria-hidden="true" inert>
+      <p class="sl-path" data-path>Topics</p><button type="button" class="sl-action" data-key="back" hidden>← Back</button><div data-tree></div>
+    </div>
+    <div class="sl-summary" role="region" aria-label="Local result" tabindex="0"><p><strong data-summary>No topic assigned</strong></p><small>Navigate a three-level topic tree.</small></div>
+    <p class="sl-feedback" data-feedback role="status" aria-live="polite">Select a leaf topic for this sample.</p>
+  </div>
+</body>
+</html>

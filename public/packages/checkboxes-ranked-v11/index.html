@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ranked shortlist</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; padding: 24px 16px; display: grid; place-items: center; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <form class="sl-component" data-kind="checkboxes-ranked" aria-label="Ranked shortlist">
+    <h2>Ranked shortlist</h2>
+    <p class="choice-intro">Choose up to 3. Use arrows to change priority.</p>
+
+    <div class="choice-list"><div class="choice-rank-row"><label class="choice"><input data-choice type="checkbox" name="choices" value="speed" checked ><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Speed</span></span></label><span class="choice-rank" data-rank="speed" aria-label="Rank">1</span><button type="button" data-up="speed" aria-label="Move speed earlier" disabled><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 18V6m-5 5 5-5 5 5"/></svg></button></div><div class="choice-rank-row"><label class="choice"><input data-choice type="checkbox" name="choices" value="clarity"  ><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Clarity</span></span></label><span class="choice-rank" data-rank="clarity" aria-label="Rank">—</span><button type="button" data-up="clarity" aria-label="Move clarity earlier" disabled><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 18V6m-5 5 5-5 5 5"/></svg></button></div><div class="choice-rank-row"><label class="choice"><input data-choice type="checkbox" name="choices" value="coverage"  ><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Coverage</span></span></label><span class="choice-rank" data-rank="coverage" aria-label="Rank">—</span><button type="button" data-up="coverage" aria-label="Move coverage earlier" disabled><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 18V6m-5 5 5-5 5 5"/></svg></button></div><div class="choice-rank-row"><label class="choice"><input data-choice type="checkbox" name="choices" value="polish"  ><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Polish</span></span></label><span class="choice-rank" data-rank="polish" aria-label="Rank">—</span><button type="button" data-up="polish" aria-label="Move polish earlier" disabled><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 18V6m-5 5 5-5 5 5"/></svg></button></div></div>
+
+    <div class="choice-footer"><p class="choice-status" data-status role="status" aria-live="polite" aria-atomic="true">1. Speed</p><button type="button" data-clear >Clear</button></div>
+  </form>
+</body>
+</html>

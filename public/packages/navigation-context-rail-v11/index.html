@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contextual navigation rail</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./buttons.css">
+<script src="./buttons.js" defer></script>
+<script src="./example.js" defer></script>
+<style>body{margin:0;min-height:100svh;display:grid;place-items:center;background:#edf0f1;padding:24px;box-sizing:border-box}</style>
+</head>
+<body>
+<div class="sl-component" data-kind="navigation-context-rail-v11">
+<header class="nv-heading"><div><span class="nv-kicker">Object navigation</span><h2>Keep the right context</h2></div><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M5.5 7h1M5.5 11h1M5.5 15h1M12 7h6M12 11h4"/></svg></header><label class="nv-label">Viewing<span class="sl-choice"><select hidden class="nv-input" data-context><option value="0">Document</option><option value="1">Collection</option></select><button class="sl-choice-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Viewing"><span class="sl-choice-value">Document</span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m7 10 5 5 5-5"/></svg></button><span class="sl-choice-list" role="listbox" aria-label="Viewing" aria-hidden="true" inert><button class="sl-choice-option" type="button" role="option" data-choice="0" aria-selected="false" tabindex="-1">Document</button><button class="sl-choice-option" type="button" role="option" data-choice="1" aria-selected="false" tabindex="-1">Collection</button></span></span></label><div class="nv-context-layout"><nav class="nv-list" aria-label="Object sections"><button type="button" data-section="0" aria-current="page" class="nv-button "><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h4"/></svg><span data-section-label>Text</span></button><button type="button" data-section="1" class="nv-button "><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h6l2 2 2-2h6v15h-6l-2 2-2-2H4zM12 6v15"/></svg><span data-section-label>Outline</span></button><button type="button" data-section="2" class="nv-button "><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8 3 8 0-1 6 3 4H6l3-4zM12 13v8"/></svg><span data-section-label>Links</span></button></nav><section class="nv-detail" aria-live="polite" aria-atomic="true"><span class="nv-kicker" data-meta>Document</span><h3 data-title>Project brief</h3><p data-copy>The brief describes the audience, constraints and navigation goals.</p></section></div><p class="nv-hint">Each object keeps its last open section.</p>
+</div>
+</body>
+</html>

@@ -1,16 +1,16 @@
 {
   "name": "sl-ui-library",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "MIT",
   "private": true,
   "type": "module",
-  "description": "110 interactive UI components. Static HTML, CSS and JavaScript.",
+  "description": "Interactive UI components and an agent toolkit. Static HTML, CSS and JavaScript.",
   "engines": { "node": ">=22" },
   "scripts": {
     "prestart": "node build.mjs",
     "start": "node serve.mjs",
     "build": "node build.mjs",
-    "check": "node verify.mjs && node --test tests/agent.test.mjs tests/plugin-package.test.mjs",
+    "check": "node verify.mjs && node scripts/run-tests.mjs",
     "agent": "node plugins/sl-ui-library/scripts/library.mjs"
   }
 }

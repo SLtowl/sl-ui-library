@@ -1,11 +1,11 @@
 @font-face { font-family: 'Instrument Sans'; src: url('./instrument-sans-variable.woff2') format('woff2'); font-weight: 400 700; font-style: normal; font-display: swap; }
 .sl-bookmark {
   --bookmark-unit: 1px;
-  --bookmark-ink: #202222;
-  --bookmark-hover: #2c2e2e;
-  --bookmark-active: #3d4040;
-  --bookmark-text: #fafaf9;
-  --bookmark-focus: #565b5b;
+  --bookmark-ink: #222222;
+  --bookmark-hover: #2e2e2e;
+  --bookmark-active: #3f3f3f;
+  --bookmark-text: #fafafa;
+  --bookmark-focus: #5a5a5a;
   --bookmark-ease: cubic-bezier(.4, 0, .2, 1);
   display: block;
   position: relative;

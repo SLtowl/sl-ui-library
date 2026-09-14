@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Refresh snapshot · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-refresh-snapshot" data-phase="idle" aria-label="Refresh snapshot" aria-busy="false">
+    <p class="ab-eyebrow">Refresh snapshot</p>
+    <h2>Workspace files</h2>
+    <p class="ab-description">Keep the last result while updating.</p>
+    <div class="ab-snapshot"><strong data-count>24</strong><span>files in snapshot</span></div>
+<div class="ab-meta"><span data-revision>Initial snapshot</span><span data-updated>Not refreshed</span></div>
+<div class="ab-actions"><button type="button" class="ab-primary ab-wide" data-run><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M19 8a8 8 0 1 0 1 7M19 3v5h-5"/></svg><span data-run-label>Refresh snapshot</span></button><button type="button" class="ab-quiet ab-wide" data-cancel hidden>Cancel refresh</button></div>
+    <p class="ab-status" data-status role="status" aria-live="polite" aria-atomic="true">The current snapshot stays visible.</p>
+    <p class="ab-note" data-note>Connect onRefresh to read your data.</p>
+  </section>
+</body>
+</html>

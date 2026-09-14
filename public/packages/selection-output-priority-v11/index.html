@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Output priority</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { box-sizing: border-box; margin: 0; min-height: 100svh; padding: 24px; display: grid; place-items: center; background: #f5f4f2; }</style>
+</head>
+<body>
+<section class="sl-component" data-kind="selection-output-priority-v11" aria-label="Output priority">
+  <header class="sl-head"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 15V9a7 7 0 0 1 14 0v6M5 10H3v7h4v-7H5ZM19 10h2v7h-4v-7h2ZM17 19h-4"/></svg><div><h2>Output priority</h2><p>Keep a second choice ready.</p></div></header>
+  <ol class="sl-priority"><li><span>01</span><div><small>Primary</small><strong data-primary>Headphones</strong></div></li><li><span>02</span><div><small data-secondary-label>Fallback</small><strong data-secondary>Speakers</strong></div></li></ol><div class="sl-row"><span>Allow fallback<small>Use the second output if needed</small></span><button type="button" class="sl-toggle" role="switch" aria-label="Allow fallback" aria-checked="true" data-toggle="fallback"><span class="sl-toggle-word" aria-hidden="true">On</span><span class="sl-toggle-track" aria-hidden="true"></span></button></div><div class="sl-actions"><button type="button" class="sl-action" data-action="swap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h15m-4-4 4 4-4 4M20 17H5m4-4-4 4 4 4"/></svg>Swap priority</button></div>
+  <p class="sl-status" role="status" data-status>Headphones first, speakers second</p>
+</section>
+</body>
+</html>

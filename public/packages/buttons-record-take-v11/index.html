@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Record a take · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-record-take" data-phase="idle" aria-label="Record a take" aria-busy="false">
+    <p class="ab-eyebrow">Recording transport</p>
+    <h2>Record a take</h2>
+    <p class="ab-description">Start when you are ready.</p>
+    <div class="ab-record-display"><span class="ab-record-dot" aria-hidden="true"></span><span data-time aria-label="Elapsed recording time">00:00</span><span data-session>Ready</span></div>
+<div class="ab-actions"><button type="button" class="ab-primary ab-wide" data-run><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/></svg><span data-run-label>Start recording</span></button><button type="button" class="ab-quiet ab-wide" data-stop hidden><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>Stop recording</button><button type="button" class="ab-quiet ab-wide" data-cancel hidden>Cancel request</button></div>
+    <p class="ab-status" data-status role="status" aria-live="polite" aria-atomic="true">Your device is not active.</p>
+    <p class="ab-note" data-note>Connect onStart and onStop to your recorder.</p>
+  </section>
+</body>
+</html>

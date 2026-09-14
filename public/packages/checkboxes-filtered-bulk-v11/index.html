@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Filtered bulk selection</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; padding: 24px 16px; display: grid; place-items: center; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <form class="sl-component" data-kind="checkboxes-filtered-bulk" aria-label="Filtered bulk selection">
+    <h2>Filtered bulk selection</h2>
+    <p class="choice-intro">Select visible results. Hidden choices stay selected.</p>
+    <label class="choice-search">Find an asset<input type="search" data-filter placeholder="Filter assets" autocomplete="off"></label><label class="choice choice-master"><input type="checkbox" data-master aria-label="Select visible results"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Select visible</span></span></label>
+    <div class="choice-list"><label class="choice"><input data-choice type="checkbox" name="choices" value="icons" checked ><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Interface icons</span></span></label><label class="choice"><input data-choice type="checkbox" name="choices" value="photos"  ><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Studio photos</span></span></label><label class="choice"><input data-choice type="checkbox" name="choices" value="fonts"  ><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Font files</span></span></label><label class="choice"><input data-choice type="checkbox" name="choices" value="notes"  ><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Project notes</span></span></label><p class="choice-empty" data-empty hidden>No matching assets.</p></div>
+
+    <div class="choice-footer"><p class="choice-status" data-status role="status" aria-live="polite" aria-atomic="true">1 selected · 4 visible</p><button type="button" data-clear >Clear</button></div>
+  </form>
+</body>
+</html>

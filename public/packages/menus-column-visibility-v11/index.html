@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Column visibility menu</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; background: #f5f4f2; padding: 24px; box-sizing: border-box; }</style>
+</head>
+<body>
+  <div class="sl-component" data-kind="menus-column-visibility-v11" data-open="false">
+    <p class="sl-eyebrow">Project table</p>
+    <button class="sl-trigger" data-trigger type="button" aria-expanded="false" aria-haspopup="dialog"><svg class="" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M9 5v14m6-14v14M3 9h18"/></svg><span data-label>Visible columns</span><svg class="sl-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="m7 10 5 5 5-5"/></svg></button>
+    <div class="sl-panel" data-panel tabindex="-1" role="dialog" aria-label="Column visibility menu" aria-hidden="true" inert>
+      <div class="sl-scroll"><section data-group><h3>Table columns</h3><button class="sl-option" type="button" data-key="column:name" aria-pressed="true" disabled><span><strong>Task name</strong><small>Required column</small></span><span class="sl-mark" aria-hidden="true">✓</span></button><button class="sl-option" type="button" data-key="column:status" aria-pressed="true"><span><strong>Status</strong></span><span class="sl-mark" aria-hidden="true">✓</span></button><button class="sl-option" type="button" data-key="column:owner" aria-pressed="false"><span><strong>Owner</strong></span><span class="sl-mark" aria-hidden="true">✓</span></button><button class="sl-option" type="button" data-key="column:due" aria-pressed="false"><span><strong>Due date</strong></span><span class="sl-mark" aria-hidden="true">✓</span></button></section></div><div class="sl-footer"><button type="button" class="sl-action" data-key="compact" >Compact</button><button type="button" class="sl-action" data-key="all" >Show all</button></div>
+    </div>
+    <div class="sl-summary" role="region" aria-label="Local result" tabindex="0"><p><strong data-summary>2 of 4 columns visible</strong></p><div class="sl-table-scroll" role="region" aria-label="Table data" tabindex="0"><table class="sl-mini-table" aria-label="Sample project tasks"><thead><tr><th scope="col" data-col="name">Task</th><th scope="col" data-col="status">Status</th><th scope="col" data-col="owner" hidden>Owner</th><th scope="col" data-col="due" hidden>Due</th></tr></thead><tbody><tr><td data-col="name">Draft</td><td data-col="status">Ready</td><td data-col="owner" hidden>Alex</td><td data-col="due" hidden>Sep 14</td></tr><tr><td data-col="name">Review</td><td data-col="status">Planned</td><td data-col="owner" hidden>Jules</td><td data-col="due" hidden>Sep 16</td></tr></tbody></table></div></div>
+    <p class="sl-feedback" data-feedback role="status" aria-live="polite">Choose the columns shown in this sample.</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Date range input — SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="inputs-date-range-v11" aria-label="Date range input">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 10h18m-14 4h3m4 3h3"/></svg>Date range input</h2>
+    <fieldset class="sl-stack"><legend>Project dates · YYYY-MM-DD</legend>
+      <div><label for="start-date">Start date</label><div class="sl-field-control"><input id="start-date" class="sl-start" type="text" inputmode="numeric" maxlength="10" placeholder="YYYY-MM-DD" value="2026-09-14" aria-describedby="date-help"><button class="sl-icon-button" data-calendar="start" type="button" aria-label="Open start calendar"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 10h18"/></svg></button></div></div>
+      <div><label for="end-date">End date</label><div class="sl-field-control"><input id="end-date" class="sl-end" type="text" inputmode="numeric" maxlength="10" placeholder="YYYY-MM-DD" value="2026-09-18" aria-describedby="date-help"><button class="sl-icon-button" data-calendar="end" type="button" aria-label="Open end calendar"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 10h18"/></svg></button></div></div>
+    </fieldset>
+    <output class="sl-result">5 days · inclusive</output>
+    <p class="sl-status" id="date-help" role="status">Both the first and last day are included.</p>
+  </section>
+</body>
+</html>

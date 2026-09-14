@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Split export action · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-split-action" data-phase="idle" aria-label="Split export action" aria-busy="false">
+    <p class="ab-eyebrow">3 frames selected</p>
+    <h2>Export selection</h2>
+    <p class="ab-description">Choose a format for this export.</p>
+    <div class="ab-actions ab-split"><button type="button" class="ab-primary" data-run><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 15V3m-4 4 4-4 4 4M5 13v7h14v-7"/></svg><span data-run-label>Export SVG</span></button><button type="button" class="ab-primary ab-icon" data-toggle aria-label="Choose export format" aria-expanded="false" aria-haspopup="menu"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m7 10 5 5 5-5"/></svg></button></div>
+<div class="ab-reveal" data-panel data-open="false" aria-hidden="true" inert><div><div class="ab-inset" role="menu" aria-label="Export format"><button type="button" role="menuitemradio" aria-checked="true" data-format="SVG" tabindex="-1">SVG <span>Vector artwork</span></button><button type="button" role="menuitemradio" aria-checked="false" data-format="PNG" tabindex="-1">PNG <span>Raster image</span></button><button type="button" role="menuitemradio" aria-checked="false" data-format="PDF" tabindex="-1">PDF <span>Document</span></button></div></div></div>
+<div class="ab-actions"><button type="button" class="ab-quiet" data-cancel hidden>Cancel export</button></div>
+    <p class="ab-status" data-status role="status" aria-live="polite" aria-atomic="true">SVG keeps paths editable.</p>
+    <p class="ab-note" data-note>Connect onExport to create a file.</p>
+  </section>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Approve or reject · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-review-decision" data-phase="idle" aria-label="Approve or reject" aria-busy="false">
+    <p class="ab-eyebrow">Decision</p>
+    <h2>Review draft</h2>
+    <p class="ab-description">Choose the next step for this draft.</p>
+    <div class="ab-decision-mark" data-mark><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path data-approval d="m5 12 4 4L19 6"/><path data-rejection d="m6 6 12 12M6 18 18 6" style="opacity:0"/></svg><span data-decision>Awaiting review</span></div>
+<div class="ab-actions ab-decisions"><button type="button" class="ab-primary" data-approve aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 4 4L19 6"/></svg>Approve</button><button type="button" class="ab-danger" data-reject aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M6 18 18 6"/></svg>Reject</button></div>
+<div class="ab-actions"><button type="button" class="ab-quiet ab-wide" data-undo disabled><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 10h10a6 6 0 0 1 0 12M4 10l5-5M4 10l5 5"/></svg>Undo decision</button></div>
+    <p class="ab-status" data-status role="status" aria-live="polite" aria-atomic="true">No decision selected.</p>
+    <p class="ab-note" data-note>Local selection · nothing is submitted.</p>
+  </section>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Color input — SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="inputs-color-v11" aria-label="Color input">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 7 8a8 8 0 1 1-14 0Z"/><path d="M7 15a4 4 0 0 0 4 4"/></svg>Color input</h2>
+    <div class="sl-row"><div class="sl-picker-label"><span>Picker</span><button class="sl-picker" type="button" aria-label="Choose color"><span aria-hidden="true"></span></button></div><label><span>Hex color</span><input class="sl-hex" type="text" value="#b6cbbb" maxlength="7" spellcheck="false" autocomplete="off" aria-describedby="color-help"></label></div>
+    <div class="sl-actions"><button type="button" data-color="#b6cbbb" aria-label="Sage #B6CBBB" aria-pressed="true"><span class="sl-dot sl-sage"></span>Sage</button><button type="button" data-color="#c7bba8" aria-label="Sand #C7BBA8" aria-pressed="false"><span class="sl-dot sl-sand"></span>Sand</button><button type="button" data-color="#abbecd" aria-label="Mist #ABBECD" aria-pressed="false"><span class="sl-dot sl-mist"></span>Mist</button></div>
+    <output>#B6CBBB</output><p class="sl-status" id="color-help" role="status">Use # followed by six hexadecimal digits.</p>
+  </section>
+</body>
+</html>

@@ -1,11 +1,11 @@
 @font-face { font-family: 'Instrument Sans'; src: url('./instrument-sans-variable.woff2') format('woff2'); font-weight: 400 700; font-style: normal; font-display: swap; }
 .sl-delete {
   --delete-unit: 1px;
-  --delete-ink: #202222;
-  --delete-hover: #2c2e2e;
-  --delete-active: #3d4040;
-  --delete-text: #fafaf9;
-  --delete-focus: #565b5b;
+  --delete-ink: #222222;
+  --delete-hover: #2e2e2e;
+  --delete-active: #3f3f3f;
+  --delete-text: #fafafa;
+  --delete-focus: #5a5a5a;
   --delete-ease: cubic-bezier(.4, 0, .2, 1);
   box-sizing: border-box;
   display: block;

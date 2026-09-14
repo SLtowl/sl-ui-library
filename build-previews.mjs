@@ -9,6 +9,7 @@ const controllers = new Map();
 const styles = new Map();
 const modules = [];
 const frameControllers = new Map();
+let feedbackDemoCompiled = false;
 for (const variant of components.flatMap(component => component.variants)) {
   // Keep the native-dialog viewport, but compile its content and code once.
   // No iframe navigation, script loading or per-package font request at runtime.
@@ -60,7 +61,7 @@ for (const variant of components.flatMap(component => component.variants)) {
   let markup = html.match(/<body[^>]*>([\s\S]*?)<\/body>/)?.[1];
   if (!markup) throw new Error(`Missing component markup: ${variant}`);
   markup = markup.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<p class="example-note"[\s\S]*?<\/p>/g, '');
-  let demo = '';
+  let demo = variant.endsWith('-v11') ? `, rootSelector: ".sl-component", demoMount: ${api}.mountPreview` : '';
   if (variant === 'download') {
     // Compile the safe preview adapter against the transferable controller.
     const adapter = await readFile(new URL('experiments/download/demo.js', root), 'utf8');
@@ -77,7 +78,17 @@ for (const variant of components.flatMap(component => component.variants)) {
     modules.push(`const uploadDemo = (() => {\nconst mountUploadButton = ${api}.mount;\n${adapter.replace(importLine, '').replace('export function mountUploadDemo', 'function mountUploadDemo')}\nreturn mountUploadDemo;\n})();`);
     demo = ', demoMount: uploadDemo';
   }
+  if (variant.endsWith('-feedback')) {
+    if (!feedbackDemoCompiled) {
+      const adapter = await readFile(new URL('preview.js', folder), 'utf8');
+      const expression = adapter.match(/\(\(\) => \{[\s\S]*\}\)\(\);\s*$/)?.[0];
+      if (!expression || !expression.includes('window.MatteFeedbackPreview')) throw new Error('Missing Feedback preview adapter.');
+      modules.push(`const feedbackDemo = ${expression.replace(/window\.\w+\s*=\s*(\{[^;]+\});/, 'return $1;')}`);
+      feedbackDemoCompiled = true;
+    }
+    demo = ', demoMount: feedbackDemo.mount';
+  }
   definitions.push(`${JSON.stringify(variant)}: { markup: ${JSON.stringify(markup.trim())}, css: ${styles.get(css)}, mount: ${api}.mount${demo} }`);
 }
-await writeFile(new URL('preview-data.js', root), `// Generated from the standalone packages by build-previews.mjs.\n${modules.join('\n')}\nexport const previews = {\n${definitions.join(',\n')}\n};\n`);
+await writeFile(new URL('preview-data.js', root), `// Generated from the standalone packages by build-previews.mjs.\n${modules.join('\n')}\nexport const previews = {\n${definitions.join(',\n')}\n};\n`.replace(/^[\t ]+$/gm, ''));
 console.log('Built shared previews from the catalog variants.');

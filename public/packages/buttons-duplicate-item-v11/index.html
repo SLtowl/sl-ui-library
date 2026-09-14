@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Duplicate item · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-duplicate-item" data-phase="idle" aria-label="Duplicate item" aria-busy="false">
+    <div class="ab-item">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg>
+      <div><span class="ab-caption">Original</span><h2 data-source>Project brief</h2></div>
+    </div>
+    <div class="ab-reveal" data-result data-open="false" aria-hidden="true" inert><div><div class="ab-item ab-copy">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 4 4L19 6"/></svg>
+      <div><span class="ab-caption">Latest copy</span><p class="ab-item-label" data-created></p></div>
+    </div></div></div>
+    <div class="ab-actions">
+      <button type="button" class="ab-primary" data-run><span class="ab-icons" aria-hidden="true"><svg class="ab-copy-icon" viewBox="0 0 24 24" focusable="false"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><svg class="ab-check-icon" viewBox="0 0 24 24" focusable="false"><path d="m5 12 4 4L19 6"/></svg></span><span data-run-label>Duplicate</span></button>
+      <button type="button" class="ab-quiet" data-cancel hidden>Cancel</button>
+    </div>
+    <p class="ab-status" data-status role="status" aria-live="polite" aria-atomic="true">Create a copy. Keep the original.</p>
+    <p class="ab-note" data-note>Local demo · no files are created.</p>
+  </section>
+</body>
+</html>

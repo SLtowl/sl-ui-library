@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tag input — SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="inputs-tokens-v11" aria-label="Tag input">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h8l8 8-8 8-8-8Z"/><circle cx="8" cy="8" r="1.5"/></svg>Tag input</h2>
+    <label><span>Add a tag</span><input class="sl-tag-input" type="text" maxlength="40" autocomplete="off" placeholder="e.g. Research" aria-describedby="tags-help"></label>
+    <div class="sl-actions"><button class="sl-primary sl-add" type="button">Add tag</button><span class="sl-count">2 / 6</span></div>
+    <ul class="sl-tags" aria-label="Current tags"><li><span>Design</span><button type="button" data-index="0" aria-label="Remove Design">×</button></li><li><span>Prototype</span><button type="button" data-index="1" aria-label="Remove Prototype">×</button></li></ul>
+    <p class="sl-status" id="tags-help" role="status">Enter adds one tag. Each tag can be removed.</p>
+  </section>
+</body>
+</html>

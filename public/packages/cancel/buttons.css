@@ -1,12 +1,12 @@
 @font-face { font-family: 'Instrument Sans'; src: url('./instrument-sans-variable.woff2') format('woff2'); font-weight: 400 700; font-style: normal; font-display: swap; }
 .button-kit {
   --unit: 1px;
-  --ink: #202222;
+  --ink: #222222;
   --secondary: #e4e3e0;
-  --secondary-hover: #dcdcd8;
-  --secondary-feedback: #ccceca;
+  --secondary-hover: #dcdcdc;
+  --secondary-feedback: #cdcdcd;
   --secondary-foreground: var(--ink);
-  --focus-ring: #565b5b;
+  --focus-ring: #5a5a5a;
   --motion-duration-short-2: 100ms;
   --motion-duration-short-3: 150ms;
   --motion-duration-short-4: 200ms;

@@ -9,6 +9,13 @@ const layout = `
   .stage > .sl-slider { width: min(320px, calc(100cqw - 40px)); }
   .stage > .menu-demo { width: min(288px, calc(100cqw - 40px)); }
   .stage > .nav-demo { width: min(320px, calc(100cqw - 32px)); }
+  .stage > .fb-demo { width: min(320px, calc(100cqw - 32px)); }
+  .stage > .dd-demo { width: min(320px, calc(100cqw - 32px)); }
+  .stage > .sl-component { width: min(320px, calc(100cqw - 32px)); min-width: 0; }
+  :host([variant$="-v11"]) .stage { top: 44px; }
+  :host(#component-preview[variant$="-v11"]) .stage { top: 52px; }
+  :host(#component-preview[variant$="-feedback"]) .stage { top: 52px; }
+  :host(#component-preview[variant$="-display"]) .stage { top: 52px; }
   .overlay-idle { position:absolute; inset:0; }
   .overlay-idle > .overlay-demo { min-height:100%; height:100%; width:100%; }
   .stage > .mixer-group { width: min(320px, calc(100cqw - 40px)); }
@@ -58,7 +65,7 @@ class Preview extends HTMLElement {
   connectedCallback() { this.render(); }
   disconnectedCallback() { this.controller?.destroy(); this.controller = null; }
   attributeChangedCallback() { if (this.isConnected) this.render(); }
-  reset() { if (/-(overlay|navigation)$/.test(this.currentVariant) && this.controller?.reset) this.controller.reset(); else this.render(true); }
+  reset() { if (/-(overlay|navigation|feedback|display)$/.test(this.currentVariant) && this.controller?.reset) this.controller.reset(); else this.render(true); }
   render(force = false) {
     const variant = this.getAttribute('variant') || 'pair';
     if (!force && this.controller && this.currentVariant === variant) return;
@@ -125,7 +132,10 @@ class Preview extends HTMLElement {
     root.innerHTML = `<div class="stage stage--${variant}">${definition.markup}</div>`;
     if ('adoptedStyleSheets' in root && 'replaceSync' in CSSStyleSheet.prototype) root.adoptedStyleSheets = [stylesheet(definition.css)];
     else { const style = document.createElement('style'); style.textContent = definition.css + layout; root.prepend(style); }
-    if (['pair', 'save', 'cancel'].includes(variant)) {
+    if (definition.rootSelector) {
+      const element = root.querySelector(definition.rootSelector);
+      this.controller = (definition.demoMount || definition.mount)(element);
+    } else if (['pair', 'save', 'cancel'].includes(variant)) {
       this.controller = definition.mount(root.querySelector('.button-kit'), { onSave: simulatedSave, onCancel: () => {}, previewDuration: 1900 });
     } else if (variant === 'copy') {
       this.controller = definition.mount(root.querySelector('.sl-copy'), { getText: () => 'SL UI Library', feedback: root.querySelector('.copy-feedback') });
@@ -154,6 +164,10 @@ class Preview extends HTMLElement {
         feedback: message, getUrl: () => 'https://example.com/article',
         onShare: async ({ signal }) => { await demoWait(signal, 800); return { label: 'Shared' }; },
       });
+    } else if (variant.endsWith('-display')) {
+      this.controller = definition.mount(root.querySelector('.dd-demo'));
+    } else if (variant.endsWith('-feedback')) {
+      this.controller = definition.demoMount(root.querySelector('.fb-demo'), definition.mount);
     } else if (variant.endsWith('-navigation')) {
       this.controller = definition.mount(root.querySelector('.nav-demo'));
     } else if (variant.endsWith('-menu')) {

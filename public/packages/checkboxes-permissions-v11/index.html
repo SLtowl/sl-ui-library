@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Permission matrix</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; padding: 24px 16px; display: grid; place-items: center; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <form class="sl-component" data-kind="checkboxes-permissions" aria-label="Permission matrix">
+    <h2>Permission matrix</h2>
+    <p class="choice-intro">Edit includes View. Clearing View clears both.</p>
+
+    <div class="choice-list"><table><caption class="choice-sr">Resource permissions</caption><thead><tr><th scope="col">Resource</th><th scope="col">View</th><th scope="col">Edit</th></tr></thead><tbody><tr><th scope="row">Files</th><td><label class="choice"><input data-choice type="checkbox" name="choices" value="files-view" checked data-resource="files" data-permission="view"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Files view</span></span></label></td><td><label class="choice"><input data-choice type="checkbox" name="choices" value="files-edit" checked data-resource="files" data-permission="edit"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Files edit</span></span></label></td></tr><tr><th scope="row">Notes</th><td><label class="choice"><input data-choice type="checkbox" name="choices" value="notes-view"  data-resource="notes" data-permission="view"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Notes view</span></span></label></td><td><label class="choice"><input data-choice type="checkbox" name="choices" value="notes-edit"  data-resource="notes" data-permission="edit"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Notes edit</span></span></label></td></tr><tr><th scope="row">Boards</th><td><label class="choice"><input data-choice type="checkbox" name="choices" value="boards-view"  data-resource="boards" data-permission="view"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Boards view</span></span></label></td><td><label class="choice"><input data-choice type="checkbox" name="choices" value="boards-edit"  data-resource="boards" data-permission="edit"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Boards edit</span></span></label></td></tr></tbody></table></div>
+
+    <div class="choice-footer"><p class="choice-status" data-status role="status" aria-live="polite" aria-atomic="true">2 permissions selected</p><button type="button" data-clear >Clear</button></div>
+  </form>
+</body>
+</html>

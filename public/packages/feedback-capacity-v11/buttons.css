@@ -1,0 +1,86 @@
+@font-face{font-family:'Instrument Sans';src:url('./instrument-sans-variable.woff2') format('woff2');font-weight:400 700;font-display:swap}
+.sl-component{--fb-surface:#222222;--fb-raised:#2d2d2d;--fb-border:#4e4e4e;--fb-text:#f6f6f6;--fb-muted:#bdbdbd;--fb-accent:#e0e0e0;--fb-on-accent:#282828;--fb-danger:#efb8a6;--fb-warning:#e8d4a5;--fb-focus:#e0e0e0;--fb-outside:#5e5e5e;width:min(320px,100%);max-width:100%;min-width:0;font:13px/1.45 'Instrument Sans',sans-serif;color:var(--fb-text);position:relative;isolation:isolate;font-synthesis:none}
+.sl-component,.sl-component *{box-sizing:border-box}
+.sl-component [hidden]{display:none!important}
+.sl-component .fb-panel{padding:16px;background:var(--fb-surface);border:1px solid var(--fb-border);border-radius:17px;box-shadow:0 3px 8px #0000000d}
+.sl-component .fb-head{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.sl-component .fb-icon{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--fb-raised);color:var(--fb-accent);flex:none}
+.sl-component svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.sl-component h2,.sl-component h3,.sl-component p{margin:0}
+.sl-component h2{font-size:15px;font-weight:550;letter-spacing:-.02em}
+.sl-component h3{font-size:12px;font-weight:550}
+.sl-component .fb-eyebrow{color:var(--fb-muted);font-size:10px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px}
+.sl-component .fb-copy{color:var(--fb-muted);font-size:12px;overflow-wrap:anywhere}
+.sl-component .fb-state{color:var(--fb-accent);font-size:12px;font-weight:550}
+.sl-component .fb-status{margin-top:12px;padding-top:10px;border-top:1px solid var(--fb-border);font-size:11px;min-height:39px;max-height:61px;overflow:auto;scrollbar-width:thin;color:var(--fb-muted);overflow-wrap:anywhere}
+.sl-component[data-state="error"] .fb-status,.sl-component [data-tone="error"]{color:var(--fb-danger)}
+.sl-component [data-tone="warning"]{color:var(--fb-warning)}
+.sl-component button,.sl-component input,.sl-component textarea,.sl-component select{font:inherit}
+.sl-component button{cursor:pointer;touch-action:manipulation;border:1px solid var(--fb-border);border-radius:9px;min-height:34px;padding:7px 10px;color:var(--fb-text);background:var(--fb-raised);font-size:11px;transition:background-color 180ms ease,transform 220ms cubic-bezier(.2,0,0,1);white-space:normal}
+.sl-component button:hover:not(:disabled):not([aria-disabled="true"]){background:var(--fb-border)}
+.sl-component button:active:not(:disabled):not([aria-disabled="true"]){transform:translateY(1px) scale(.98)}
+.sl-component .fb-primary{background:var(--fb-accent);border-color:var(--fb-accent);color:var(--fb-on-accent);font-weight:550}
+.sl-component .fb-primary:hover:not(:disabled):not([aria-disabled="true"]){background:var(--fb-accent);filter:brightness(1.05)}
+.sl-component button:disabled,.sl-component button[aria-disabled="true"]{opacity:.55;cursor:default}
+.sl-component :is(button,input,textarea,select):focus-visible{outline:2px solid var(--fb-focus);outline-offset:2px}
+.sl-component .fb-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:12px}
+.sl-component .fb-actions>:only-child,.sl-component .fb-actions:has(>:nth-child(3))>:first-child{grid-column:1/-1}
+.sl-component label{display:grid;gap:5px;color:var(--fb-muted);font-size:11px;margin-top:10px}
+.sl-component input:not([type="checkbox"]),.sl-component textarea,.sl-component select{width:100%;min-width:0;border:1px solid var(--fb-border);border-radius:8px;background:var(--fb-raised);color:var(--fb-text);padding:8px 10px;font-size:12px}
+.sl-component textarea{resize:vertical;min-height:62px;max-height:90px}
+.sl-component input[aria-invalid="true"]{border-color:var(--fb-danger)}
+.sl-component input[type="checkbox"]{accent-color:var(--fb-accent);width:15px;height:15px;margin:0;flex:none}
+.sl-component .fb-option{display:flex;align-items:center;gap:7px}
+.sl-component .fb-errors{display:grid;gap:4px;margin:10px 0;padding:0;list-style:none}
+.sl-component .fb-link{border:0;background:transparent;color:var(--fb-danger);text-align:left;padding:2px 0;min-height:25px;text-decoration:underline;text-underline-offset:3px}
+.sl-component .fb-list{list-style:none;padding:0;margin:0;display:grid;gap:0;max-height:142px;overflow:auto;scrollbar-width:thin;scrollbar-color:var(--fb-border) transparent}
+.sl-component .fb-row{display:flex;align-items:center;justify-content:space-between;gap:9px;padding:8px 0;border-bottom:1px solid var(--fb-border)}
+.sl-component .fb-row:last-child{border-bottom:0}
+.sl-component .fb-row>span:first-child{min-width:0;overflow-wrap:anywhere}
+.sl-component .fb-row small{display:block;color:var(--fb-muted);font-size:10px;margin-top:2px}
+.sl-component .fb-badge{font-size:10px;color:var(--fb-accent);white-space:nowrap}
+.sl-component .fb-number{font-size:34px;letter-spacing:-.05em;font-variant-numeric:tabular-nums;margin:12px 0 3px;color:var(--fb-accent)}
+.sl-component .fb-number small{font-size:12px;letter-spacing:0;color:var(--fb-muted)}
+.sl-component .fb-meter{height:7px;border-radius:8px;background:var(--fb-border);margin:13px 0;overflow:hidden}
+.sl-component .fb-fill{height:100%;background:var(--fb-accent);transform-origin:left;transform:scaleX(.86);transition:transform 280ms cubic-bezier(.2,0,0,1)}
+.sl-component .fb-comparison{display:grid;gap:8px;margin-top:12px}
+.sl-component .fb-version{padding:10px 12px;background:var(--fb-raised);border-left:2px solid var(--fb-border);border-radius:0 7px 7px 0}
+.sl-component .fb-version p{font-size:12px;overflow-wrap:anywhere;margin-top:4px}
+.sl-component .fb-version[data-selected="true"]{border-left-color:var(--fb-accent)}
+.sl-component .fb-summary{display:flex;justify-content:space-between;gap:8px;margin:10px 0;color:var(--fb-muted);font-size:11px}
+.sl-component .fb-disclosure{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows 250ms ease,opacity 200ms ease}
+.sl-component .fb-disclosure[data-open="true"]{grid-template-rows:1fr;opacity:1}
+.sl-component .fb-disclosure>div{min-height:0;overflow:hidden}
+.sl-component .fb-disclosure .fb-copy{padding-top:10px}
+.sl-component .fb-empty{padding:14px 0;text-align:center}
+.sl-component .fb-empty .fb-icon{margin:0 auto 10px}
+.sl-component .fb-timeline{list-style:none;margin:12px 0 0;padding:0 0 0 11px;border-left:1px solid var(--fb-border);max-height:132px;overflow:auto}
+.sl-component .fb-timeline li{position:relative;margin-bottom:12px}
+.sl-component .fb-timeline small{display:block;color:var(--fb-muted);font-size:10px}
+.sl-component .fb-demo{margin:10px 4px 0;color:var(--fb-outside);font-size:10px;text-align:center}
+.sl-component .fb-demo button{margin:8px 0 0;background:transparent;color:var(--fb-outside);border-color:currentColor}
+.sl-component .fb-demo .fb-option{justify-content:center;color:var(--fb-outside)}
+.sl-component .fb-demo input{accent-color:var(--fb-outside)}
+.sl-component .fb-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:360px){.sl-component .fb-panel{padding:16px}.sl-component .fb-head{margin-bottom:12px}.sl-component .fb-actions{gap:6px;margin-top:12px}}
+@media(prefers-reduced-motion:reduce){.sl-component *{transition:none!important;animation:none!important}.sl-component button:active{transform:none!important}}
+@media(forced-colors:active){.sl-component .fb-panel,.sl-component button,.sl-component .fb-version{border:1px solid CanvasText}.sl-component .fb-fill{background:Highlight}.sl-component :focus-visible{outline-color:Highlight}}
+.sl-component { --choice-surface: var(--fb-surface); --choice-raised: var(--fb-raised); --choice-text: var(--fb-text); --choice-border: var(--fb-border); --choice-accent: var(--fb-accent); --choice-on-accent: var(--fb-on-accent); --choice-focus: var(--fb-focus); }
+
+.sl-component .sl-choice { display: block; position: relative; min-width: 0; margin-top: 6px; }
+.sl-component .sl-choice > select { display: none !important; }
+.sl-component .sl-choice-trigger { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; min-height: 38px; padding: 9px 10px; text-align: left; font: inherit; font-size: 12px; line-height: 1.4; border: 1px solid var(--choice-border); border-radius: 8px; color: var(--choice-text); background: var(--choice-raised); cursor: pointer; }
+.sl-component .sl-choice-trigger svg { width: 16px; height: 16px; flex: none; }
+.sl-component .sl-choice-value { min-width: 0; overflow-wrap: anywhere; }
+.sl-component .sl-choice-list { display: block; position: absolute; z-index: 8; top: calc(100% + 5px); left: 0; right: 0; padding: 5px; max-height: 164px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--choice-border) transparent; border: 1px solid var(--choice-border); border-radius: 9px; background: var(--choice-surface); box-shadow: 0 6px 16px #0003; visibility: hidden; opacity: 0; transform: translateY(-3px); pointer-events: none; transition: opacity 160ms ease, transform 180ms ease, visibility 0s 180ms; }
+.sl-component .sl-choice-list { transition: opacity 160ms ease, transform 180ms ease, max-height 180ms ease, padding 180ms ease, border-width 180ms ease, visibility 0s 180ms; }
+.sl-component .sl-choice:not([data-expanded="true"]) .sl-choice-list { max-height: 0 !important; padding-block: 0; border-block-width: 0; }
+.sl-component .sl-choice[data-up="true"] .sl-choice-list { top: auto; bottom: calc(100% + 5px); }
+.sl-component .sl-choice[data-expanded="true"] .sl-choice-list { visibility: visible; opacity: 1; transform: none; pointer-events: auto; transition-delay: 0s; }
+.sl-component .sl-choice-option { display: flex; align-items: center; justify-content: space-between; gap: 6px; width: 100%; min-height: 34px; margin: 0; padding: 8px; border: 1px solid transparent; border-radius: 6px; font: inherit; font-size: 12px; line-height: 1.4; text-align: left; color: var(--choice-text); background: transparent; cursor: pointer; }
+.sl-component .sl-choice-option:hover { background: var(--choice-raised); }
+.sl-component .sl-choice-option[aria-selected="true"] { color: var(--choice-on-accent); background: var(--choice-accent); }
+.sl-component .sl-choice-option[aria-selected="true"]::after { content: '✓'; flex: none; }
+.sl-component .sl-choice :is(button):focus-visible { outline: 2px solid var(--choice-focus); outline-offset: -2px; }
+.sl-component .sl-choice-trigger:disabled { opacity: .5; cursor: not-allowed; }
+@media (prefers-reduced-motion: reduce) { .sl-component .sl-choice-list { transition: none; transform: none; } }

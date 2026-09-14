@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gradient stops</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{box-sizing:border-box;margin:0;padding:24px;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;background:#f5f4f2}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="sliders-gradient-stops-v11" aria-label="Gradient stops">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h7m5 0h6M3 17h12m5 0h1"/><rect x="10" y="3.5" width="5" height="7" rx="1.5"/><rect x="15" y="13.5" width="5" height="7" rx="1.5"/></svg>Gradient stops</h2>
+    <p class="sl-context">Gradient · three stops</p>
+    <div class="sl-gradient" data-gradient aria-hidden="true"><i data-stop="0"></i><i data-stop="1"></i><i data-stop="2"></i></div>
+    <label class="sl-field"><span class="sl-label"><span>Shade stop</span><span class="sl-value" data-value="0" aria-hidden="true">10 %</span></span><span class="sl-track" data-track="0" style="--fill:10%"><input type="range" name="gradient-stops-0" min="0" max="100" step="1" value="10" aria-label="Shade stop" aria-valuetext="10 %"></span></label>
+    <label class="sl-field"><span class="sl-label"><span>Sage stop</span><span class="sl-value" data-value="1" aria-hidden="true">50 %</span></span><span class="sl-track" data-track="1" style="--fill:50%"><input type="range" name="gradient-stops-1" min="0" max="100" step="1" value="50" aria-label="Sage stop" aria-valuetext="50 %"></span></label>
+    <label class="sl-field"><span class="sl-label"><span>Light stop</span><span class="sl-value" data-value="2" aria-hidden="true">90 %</span></span><span class="sl-track" data-track="2" style="--fill:90%"><input type="range" name="gradient-stops-2" min="0" max="100" step="1" value="90" aria-label="Light stop" aria-valuetext="90 %"></span></label>
+    <p class="sl-summary" data-summary>10% · 50% · 90%</p>
+    <p class="sl-hint">Ordered stops · minimum 5% gap.</p>
+    <div class="sl-actions"><button type="button" data-action="spread">Even spacing</button></div>
+  </section>
+</body>
+</html>

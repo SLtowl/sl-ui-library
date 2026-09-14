@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ADSR envelope</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{box-sizing:border-box;margin:0;padding:24px;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;background:#f5f4f2}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="sliders-envelope-v11" aria-label="ADSR envelope">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h7m5 0h6M3 17h12m5 0h1"/><rect x="10" y="3.5" width="5" height="7" rx="1.5"/><rect x="15" y="13.5" width="5" height="7" rx="1.5"/></svg>ADSR envelope</h2>
+    <p class="sl-context">Envelope · amplitude over time</p>
+    <svg class="sl-envelope" viewBox="0 0 240 65" aria-hidden="true"><path class="sl-envelope-guide" d="M0 5H240M0 60H240"/><path data-envelope d="M0 60L18 5L62 27L151 27L240 60"/></svg>
+    <label class="sl-field"><span class="sl-label"><span>Attack</span><span class="sl-value" data-value="0" aria-hidden="true">100 ms</span></span><span class="sl-track" data-track="0" style="--fill:9.090909090909092%"><input type="range" name="envelope-0" min="10" max="1000" step="10" value="100" aria-label="Attack" aria-valuetext="100 ms"></span></label>
+    <label class="sl-field"><span class="sl-label"><span>Decay</span><span class="sl-value" data-value="1" aria-hidden="true">250 ms</span></span><span class="sl-track" data-track="1" style="--fill:24.242424242424242%"><input type="range" name="envelope-1" min="10" max="1000" step="10" value="250" aria-label="Decay" aria-valuetext="250 ms"></span></label>
+    <label class="sl-field"><span class="sl-label"><span>Sustain</span><span class="sl-value" data-value="2" aria-hidden="true">60 %</span></span><span class="sl-track" data-track="2" style="--fill:60%"><input type="range" name="envelope-2" min="0" max="100" step="1" value="60" aria-label="Sustain" aria-valuetext="60 %"></span></label>
+    <label class="sl-field"><span class="sl-label"><span>Release</span><span class="sl-value" data-value="3" aria-hidden="true">500 ms</span></span><span class="sl-track" data-track="3" style="--fill:24.623115577889447%"><input type="range" name="envelope-3" min="10" max="2000" step="10" value="500" aria-label="Release" aria-valuetext="500 ms"></span></label>
+    <p class="sl-summary" data-summary>1,350 ms · includes 500 ms hold</p>
+    <p class="sl-hint">Sustain sets amplitude.</p>
+    <div class="sl-actions"><button type="button" data-action="pluck">Pluck</button><button type="button" data-action="pad">Pad</button></div>
+  </section>
+</body>
+</html>

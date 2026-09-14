@@ -62,7 +62,7 @@ function mountCodeField(root, { expectedCode = '482731' } = {}) {
         : { color: '#fff0f0', borderColor: '#a85e63', backgroundColor: '#543134', boxShadow: 'inset 0 1px rgba(255,255,255,.07), 0 0 0 2px rgba(168,94,99,.08)', transform: 'translateY(1px)' };
       cells.forEach((cell, index) => {
         const animation = cell.animate([
-          { color: '#f8f9f8', borderColor: 'rgba(0,0,0,0)', backgroundColor: '#202222', boxShadow: 'inset 0 1px rgba(255,255,255,.07), 0 1px 2px rgba(0,0,0,.05)', transform: 'translateY(0)' },
+          { color: '#f9f9f9', borderColor: 'rgba(0,0,0,0)', backgroundColor: '#222222', boxShadow: 'inset 0 1px rgba(255,255,255,.07), 0 1px 2px rgba(0,0,0,.05)', transform: 'translateY(0)' },
           target,
         ], { duration: 360, delay: index * 95, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both' });
         resultAnimations.add(animation);

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Press and repeat · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-repeat-stepper" data-phase="idle" aria-label="Press and repeat" aria-busy="false">
+    <p class="ab-eyebrow">Repeat action</p>
+    <h2>Copies</h2>
+    <p class="ab-description">Press once, or hold to change faster.</p>
+    <div class="ab-stepper" role="group" aria-label="Number of copies"><button type="button" class="ab-icon" data-minus aria-label="Decrease copies"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/></svg></button><output class="ab-quantity" data-value aria-live="off">3</output><button type="button" class="ab-icon" data-plus aria-label="Increase copies"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg></button></div>
+<div class="ab-meta"><span>Minimum <span data-min>1</span></span><span>Maximum <span data-max>12</span></span></div>
+<div class="ab-track" aria-hidden="true"><span class="ab-fill" data-fill></span></div>
+<p class="ab-description ab-shortcuts">Arrow keys adjust · Home / End reach limits</p>
+    <p class="ab-status" data-status role="status" aria-live="polite" aria-atomic="true">3 copies selected.</p>
+    <p class="ab-note" data-note>Local quantity · no print job is started.</p>
+  </section>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drill-down navigator</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./buttons.css">
+<script src="./buttons.js" defer></script>
+<script src="./example.js" defer></script>
+<style>body{margin:0;min-height:100svh;display:grid;place-items:center;background:#edf0f1;padding:24px;box-sizing:border-box}</style>
+</head>
+<body>
+<div class="sl-component" data-kind="navigation-drill-down-v11">
+<header class="nv-heading"><div><span class="nv-kicker">Workspace explorer</span><h2>One level at a time</h2></div><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="5" rx="1"/><rect x="14" y="10" width="7" height="5" rx="1"/><rect x="14" y="18" width="7" height="3" rx="1"/><path d="M6 8v11h8M6 12h8"/></svg></header><div class="nv-row nv-between"><button type="button" data-back disabled class="nv-button "><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m13 5-7 7 7 7M6 12h14"/></svg>Back</button><span class="nv-kicker" data-depth>Level 1</span></div><section data-screen="0"><h3 tabindex="-1" data-screen-title>Workspace</h3><p class="nv-screen-copy">Choose an area to explore.</p><nav class="nv-list" aria-label="Workspace destinations"><button type="button" data-go="1" class="nv-button "><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m11 5 7 7-7 7M18 12H4"/></svg><span>Product</span></button><button type="button" data-go="2" class="nv-button "><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m11 5 7 7-7 7M18 12H4"/></svg><span>Studio</span></button></nav></section><section data-screen="1" hidden><h3 tabindex="-1" data-screen-title>Product</h3><p class="nv-screen-copy">Design resources and release planning.</p><nav class="nv-list" aria-label="Product destinations"><button type="button" data-go="3" class="nv-button "><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m11 5 7 7-7 7M18 12H4"/></svg><span>Interface</span></button><button type="button" data-go="4" class="nv-button "><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m11 5 7 7-7 7M18 12H4"/></svg><span>Releases</span></button></nav></section><section data-screen="2" hidden><h3 tabindex="-1" data-screen-title>Studio</h3><p class="nv-screen-copy">Shared studio references.</p><nav class="nv-list" aria-label="Studio destinations"><button type="button" data-go="5" class="nv-button "><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m11 5 7 7-7 7M18 12H4"/></svg><span>Brand guide</span></button></nav></section><section data-screen="3" hidden><h3 tabindex="-1" data-screen-title>Interface</h3><p class="nv-screen-copy">The navigation study includes focus states, compact layouts and return paths.</p><nav class="nv-list" aria-label="Interface destinations"></nav></section><section data-screen="4" hidden><h3 tabindex="-1" data-screen-title>Releases</h3><p class="nv-screen-copy">Version 1.1 is in local review. No release has been published.</p><nav class="nv-list" aria-label="Releases destinations"></nav></section><section data-screen="5" hidden><h3 tabindex="-1" data-screen-title>Brand guide</h3><p class="nv-screen-copy">Charcoal surfaces, sage accents and Instrument Sans define the library.</p><nav class="nv-list" aria-label="Brand guide destinations"></nav></section><p class="nv-hint">Back or Alt + Left returns to the parent screen.</p>
+</div>
+</body>
+</html>

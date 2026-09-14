@@ -18,13 +18,24 @@ function icon(id) {
 
 export function mountCatalog(root, url) {
 const lifecycle = new AbortController();
+const localReview = url.searchParams.get('review') === '1';
 root.querySelector('#close-usage').addEventListener('click', () => root.querySelector('#usage-dialog').close());
 if (root.dataset.page === 'home') {
     const tiles = root.querySelector('#category-tiles');
+    if (localReview) {
+      const note = document.createElement('p');
+      note.textContent = components.filter(item => item.variants.some(variant => variant.endsWith('-v11'))).length + ' new components for local review. Choose a category to try its additions.';
+      tiles.before(note);
+      const all = document.createElement('a');
+      all.href = './';
+      all.className = 'surface-button';
+      all.textContent = 'View the full library';
+      tiles.after(all);
+    }
     for (const category of categories) {
       const link = document.createElement('a');
       link.className = 'category-tile';
-      link.href = './category.html?type=' + category.id;
+      link.href = './category.html?type=' + category.id + (localReview ? '&review=1' : '');
       link.dataset.category = category.id;
       const mark = document.createElement('span');
       mark.className = 'tile-icon';
@@ -68,12 +79,13 @@ function initCategory() {
     search.value = (params.get('q') || '').slice(0, 160);
     root.dataset.title = (type ? type.label : 'Category not found') + ' · SL UI Library';
     root.querySelector('#category-heading').textContent = type ? type.label : 'Category not found';
-    root.querySelector('#category-description').textContent = type ? type.description : 'Choose a component type from the library.';
+    root.querySelector('#category-description').textContent = type ? type.description + (localReview ? ' New local additions only.' : '') : 'Choose a component type from the library.';
     searchForm.hidden = !type || !components.some(component => component.category === category);
     setSearchOpen(Boolean(search.value) && !searchForm.hidden);
   }
   function updateLocation() {
     const params = new URLSearchParams({ type: category });
+    if (localReview) params.set('review', '1');
     if (search.value.trim()) params.set('q', search.value.trim());
     history.replaceState(history.state, '', location.pathname + '?' + params);
   }
@@ -124,7 +136,7 @@ function initCategory() {
 
   function render() {
     const query = search.value.trim();
-    const results = type ? filterComponents(category, query) : [];
+    const results = type ? filterComponents(category, query).filter(item => !localReview || item.variants.some(variant => variant.endsWith('-v11'))) : [];
     const resultIds = new Set(results.map(component => component.id));
     clearSearch.hidden = !search.value;
     count.textContent = results.length + (results.length === 1 ? ' component' : ' components');

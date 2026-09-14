@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Branch and tag menu</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; background: #f5f4f2; padding: 24px; box-sizing: border-box; }</style>
+</head>
+<body>
+  <div class="sl-component" data-kind="menus-branch-picker-v11" data-open="false">
+    <p class="sl-eyebrow">Repository sample</p>
+    <button class="sl-trigger" data-trigger type="button" aria-expanded="false" aria-haspopup="dialog"><svg class="" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M6 7v10m12-10v2a5 5 0 0 1-5 5H6"/></svg><span data-label>Choose a revision</span><svg class="sl-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="m7 10 5 5 5-5"/></svg></button>
+    <div class="sl-panel" data-panel tabindex="-1" role="dialog" aria-label="Branch and tag menu" aria-hidden="true" inert>
+      <div class="sl-tabs" role="group" aria-label="Revision type"><button type="button" class="sl-action" data-key="tab:branches" aria-pressed="true">Branches</button><button type="button" class="sl-action" data-key="tab:tags" aria-pressed="false">Tags</button></div><label class="sl-search"><svg class="" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input data-search type="search" aria-label="Filter revisions" placeholder="Filter revisions" autocomplete="off" spellcheck="false"></label><div class="sl-scroll"><div data-revisions></div><p data-empty class="sl-empty" hidden>No matching revisions.</p></div><p class="sl-note" data-compare>Comparison is off.</p><div class="sl-footer"><button type="button" class="sl-action" data-key="compare" aria-pressed="false">Compare with main</button></div>
+    </div>
+    <div class="sl-summary" role="region" aria-label="Local result" tabindex="0"><p><strong data-summary>main</strong></p><small>Local revision selection only.</small></div>
+    <p class="sl-feedback" data-feedback role="status" aria-live="polite">Browse branches or release tags.</p>
+  </div>
+</body>
+</html>

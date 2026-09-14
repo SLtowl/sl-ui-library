@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Focus override</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { box-sizing: border-box; margin: 0; min-height: 100svh; padding: 24px; display: grid; place-items: center; background: #f5f4f2; }</style>
+</head>
+<body>
+<section class="sl-component" data-kind="selection-focus-override-v11" aria-label="Focus override">
+  <header class="sl-head"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4H4v4M16 4h4v4M20 16v4h-4M8 20H4v-4"/><circle cx="12" cy="12" r="3"/></svg><div><h2>Focus override</h2><p>A quieter view, for now.</p></div></header>
+  <div class="sl-row"><span>Focus override<small>Temporarily simplify the view</small></span><button type="button" class="sl-toggle" role="switch" aria-label="Focus override" aria-checked="false" data-toggle="focus"><span class="sl-toggle-word" aria-hidden="true">Off</span><span class="sl-toggle-track" aria-hidden="true"></span></button></div><div class="sl-override-note" data-override>Using your personal settings</div><div class="sl-row"><span>Activity feed<small>Your saved preference</small></span><button type="button" class="sl-toggle" role="switch" aria-label="Activity feed" aria-checked="true" data-toggle="activity"><span class="sl-toggle-word" aria-hidden="true">On</span><span class="sl-toggle-track" aria-hidden="true"></span></button></div><div class="sl-row"><span>Inline hints<small>Your saved preference</small></span><button type="button" class="sl-toggle" role="switch" aria-label="Inline hints" aria-checked="true" data-toggle="hints"><span class="sl-toggle-word" aria-hidden="true">On</span><span class="sl-toggle-track" aria-hidden="true"></span></button></div>
+  <p class="sl-status" role="status" data-status>Activity feed and inline hints on</p>
+</section>
+</body>
+</html>

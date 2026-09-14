@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Editable title — SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="inputs-editable-title-v11" aria-label="Editable title">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16M6 15l1-5L16 1l4 4-9 9Zm8-12 4 4"/></svg>Editable title</h2>
+    <div class="sl-title-view"><p class="sl-title-text">Autumn research notes</p><button class="sl-edit" type="button">Edit title</button></div>
+    <div class="sl-title-editor" hidden><label><span>Title</span><input type="text" value="Autumn research notes" maxlength="80" aria-describedby="title-help"></label><div class="sl-actions"><button class="sl-primary sl-apply" type="button">Apply</button><button class="sl-cancel" type="button">Cancel</button></div></div>
+    <p class="sl-status" id="title-help" role="status">Edits apply to this local example.</p>
+  </section>
+</body>
+</html>

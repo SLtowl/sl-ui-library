@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Loop selection</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{box-sizing:border-box;margin:0;padding:24px;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;background:#f5f4f2}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="sliders-loop-v11" aria-label="Loop selection">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h7m5 0h6M3 17h12m5 0h1"/><rect x="10" y="3.5" width="5" height="7" rx="1.5"/><rect x="15" y="13.5" width="5" height="7" rx="1.5"/></svg>Loop selection</h2>
+    <p class="sl-context">Clip · 120 seconds</p>
+    <div class="sl-loop" aria-hidden="true"><span data-loop></span><svg viewBox="0 0 240 36"><path d="M0 18h8l4-7 4 14 4-24 4 31 4-21 4 7h12l4-12 4 24 4-16 4 9 4-5h12l4-8 4 16 4-24 4 31 4-15h12l4-7 4 14 4-28 4 35 4-14h12l4-8 4 13 4-21 4 23 4-12h12l4-6 4 12 4-20 4 24 4-10h16"/></svg></div><div class="sl-scale"><span>0 s</span><span>120 s</span></div>
+    <label class="sl-field"><span class="sl-label"><span>Loop start</span><span class="sl-value" data-value="0" aria-hidden="true">24.0 s</span></span><span class="sl-track" data-track="0" style="--fill:20%"><input type="range" name="loop-0" min="0" max="120" step="0.5" value="24" aria-label="Loop start" aria-valuetext="24.0 s"></span></label>
+    <label class="sl-field"><span class="sl-label"><span>Loop end</span><span class="sl-value" data-value="1" aria-hidden="true">48.0 s</span></span><span class="sl-track" data-track="1" style="--fill:40%"><input type="range" name="loop-1" min="0" max="120" step="0.5" value="48" aria-label="Loop end" aria-valuetext="48.0 s"></span></label>
+    <p class="sl-summary" data-summary>24.0-second loop</p>
+    <p class="sl-hint">Half-second steps · minimum 1 second.</p>
+    <div class="sl-actions"><button type="button" data-action="lock" aria-pressed="false">Lock length</button><button type="button" data-action="earlier">−1 s</button><button type="button" data-action="later">+1 s</button></div>
+  </section>
+</body>
+</html>

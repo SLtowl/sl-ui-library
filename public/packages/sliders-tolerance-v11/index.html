@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Symmetric tolerance</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{box-sizing:border-box;margin:0;padding:24px;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;background:#f5f4f2}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="sliders-tolerance-v11" aria-label="Symmetric tolerance">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h7m5 0h6M3 17h12m5 0h1"/><rect x="10" y="3.5" width="5" height="7" rx="1.5"/><rect x="15" y="13.5" width="5" height="7" rx="1.5"/></svg>Symmetric tolerance</h2>
+    <p class="sl-context">Inspection · 0 to 100 mm</p>
+    <div class="sl-tolerance" aria-hidden="true"><i data-tolerance-band></i><b data-nominal></b><span data-sample></span></div><div class="sl-scale"><span>0 mm</span><span>100 mm</span></div><div class="sl-tolerance-status"><svg viewBox="0 0 20 20" aria-hidden="true"><path data-verdict d="m4 10 4 4 8-8"/></svg><span data-verdict-text>Within tolerance</span></div>
+    <label class="sl-field"><span class="sl-label"><span>Nominal</span><span class="sl-value" data-value="0" aria-hidden="true">50.0 mm</span></span><span class="sl-track" data-track="0" style="--fill:50%"><input type="range" name="tolerance-0" min="0" max="100" step="0.1" value="50" aria-label="Nominal" aria-valuetext="50.0 mm"></span></label>
+    <label class="sl-field"><span class="sl-label"><span>Tolerance ±</span><span class="sl-value" data-value="1" aria-hidden="true">2.0 mm</span></span><span class="sl-track" data-track="1" style="--fill:10%"><input type="range" name="tolerance-1" min="0" max="20" step="0.1" value="2" aria-label="Tolerance ±" aria-valuetext="2.0 mm"></span></label>
+    <label class="sl-field"><span class="sl-label"><span>Sample</span><span class="sl-value" data-value="2" aria-hidden="true">51.4 mm</span></span><span class="sl-track" data-track="2" style="--fill:51.4%"><input type="range" name="tolerance-2" min="0" max="100" step="0.1" value="51.4" aria-label="Sample" aria-valuetext="51.4 mm"></span></label>
+    <p class="sl-summary" data-summary>48.0–52.0 mm · Δ +1.4 mm</p>
+    <p class="sl-hint">Both tolerance edges stay within the scale.</p>
+
+  </section>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Action queue · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-action-queue" data-phase="idle" aria-label="Action queue" aria-busy="false">
+
+    <h2>Render queue</h2>
+
+    <div class="ab-actions"><button type="button" class="ab-quiet" data-add><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 5v14M5 12h14"/></svg>Add take</button><span class="ab-value" data-count>0 / 3</span></div>
+<ol class="ab-jobs" aria-label="Queued takes" data-rows><li data-row="0" hidden><span><strong data-job-label></strong><small data-job-state></small></span><button type="button" class="ab-icon ab-quiet" data-remove="0" aria-label="Remove queued take"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M6 18 18 6"/></svg></button></li><li data-row="1" hidden><span><strong data-job-label></strong><small data-job-state></small></span><button type="button" class="ab-icon ab-quiet" data-remove="1" aria-label="Remove queued take"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M6 18 18 6"/></svg></button></li><li data-row="2" hidden><span><strong data-job-label></strong><small data-job-state></small></span><button type="button" class="ab-icon ab-quiet" data-remove="2" aria-label="Remove queued take"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M6 18 18 6"/></svg></button></li></ol>
+<p class="ab-description" data-empty>No takes queued.</p>
+<div class="ab-actions"><button type="button" class="ab-primary" data-run disabled><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 6h14M5 12h10M5 18h6m6-3 3 3-3 3"/></svg><span data-run-label>Run queue</span></button><button type="button" class="ab-quiet" data-cancel hidden>Stop</button></div>
+    <p class="ab-status" data-status role="status" aria-live="polite" aria-atomic="true">Completed takes stay out of the queue.</p>
+    <p class="ab-note" data-note>Connect onRun to render each take.</p>
+  </section>
+</body>
+</html>

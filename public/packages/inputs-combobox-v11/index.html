@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assignee combobox — SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="inputs-combobox-v11" aria-label="Assignee combobox">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="7" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 6a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5"/></svg>Assignee combobox</h2>
+    <label><span>Assign to</span><input class="sl-combo" type="text" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="people-list" aria-describedby="people-help" autocomplete="off" placeholder="Choose a person"></label>
+    <div class="sl-popup" aria-hidden="true" inert><div class="sl-popup-inner"><ul class="sl-options" id="people-list" role="listbox" aria-label="People"></ul><p class="sl-empty" hidden>No matching people.</p></div></div>
+    <div class="sl-actions"><button class="sl-browse" type="button" aria-expanded="false" aria-controls="people-list">Show people</button><button class="sl-clear" type="button">Clear</button></div>
+    <p class="sl-status" id="people-help" role="status">Choose a person. Unavailable people are disabled.</p>
+  </section>
+</body>
+</html>

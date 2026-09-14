@@ -10,11 +10,16 @@ import {run} from '../plugins/sl-ui-library/scripts/library.mjs';
 import {selectData,updateSettings} from '../plugins/sl-ui-library/scripts/updates.mjs';
 import {installPlugin} from '../install.mjs';
 import {downloadCounts} from '../scripts/download-counts.mjs';
+import {components,categories} from '../public/catalog-data.js';
+import {assertCatalogContract,expectedCount,expectedVariants} from './catalog-contract.mjs';
 const root=new URL('../',import.meta.url);
 test('discovery, reserved categories and invalid input',async()=>{
- const list=await run(['list']);assert.equal(list.components.length,110);
- assert.equal((await run(['list','navigation'])).components.length,10);
- assert.equal((await run(['list','feedback'])).components.length,0);
+ assertCatalogContract();
+ const list=await run(['list']);assert.equal(list.components.length,expectedCount);
+ assert.deepEqual(list.components.map(c=>c.id).sort(),components.map(c=>c.id).sort());
+ for(const category of categories)assert.equal((await run(['list',category.id])).components.length,components.filter(c=>c.category===category.id).length);
+ assert.ok((await run(['search','calendar'])).components.some(c=>c.id==='matte-calendar-display'));
+ assert.ok((await run(['search','reconnect'])).components.some(c=>c.id==='matte-connection-feedback'));
  assert.ok((await run(['search','dialog'])).components.some(c=>c.id==='matte-modal-overlay'));
  assert.ok((await run(['search','navigation'])).count>0);
  assert.ok((await run(['inspect','matte-modal-overlay'])).files['modal-overlay'].includes('genie.js'));
@@ -25,7 +30,7 @@ test('discovery, reserved categories and invalid input',async()=>{
 });
 test('every bundled file matches its actual package source',async()=>{
  const bundle=JSON.parse(await readFile(new URL('plugins/sl-ui-library/assets/source-bundle.json',root)));
- assert.equal(Object.keys(bundle.packages).length,112);
+ assert.equal(Object.keys(bundle.packages).length,expectedVariants);
  for(const [variant,files] of Object.entries(bundle.packages))for(const [name,hash] of Object.entries(files)){
   const bytes=await readFile(new URL(`public/packages/${variant}/${name}`,root));
   assert.equal(createHash('sha256').update(bytes).digest('hex'),hash);
@@ -46,6 +51,39 @@ test('install preserves bytes and never overwrites',async()=>{
  await assert.rejects(()=>run(['install','no-such-variant',join(temp,'bad')]));
  assert.deepEqual((await readdir(temp)).sort(),['dialog']);
 });
+test('Feedback exports contain independent controllers, examples and licenses',async()=>{
+ const list=(await run(['list','feedback'])).components.filter(c=>c.variants[0].endsWith('-feedback'));
+ assert.equal(list.length,10);
+ const temp=await mkdtemp(join(tmpdir(),'sl-ui-feedback-'));
+ for(const component of list){
+  const info=await run(['inspect',component.id]);
+  const variant=component.variants[0];
+  for(const name of ['index.html','buttons.css','buttons.js','preview.js','example.js','LICENSE','OFL.txt'])assert.ok(info.files[variant].includes(name),variant+' missing '+name);
+  const result=await run(['install',variant,join(temp,variant)]);assert.equal(result.installed,true);
+  assert.match(await readFile(join(temp,variant,'buttons.js'),'utf8'),/window\.MatteFeedback/);
+  assert.match(await readFile(join(temp,variant,'preview.js'),'utf8'),/Preview-only adapter/);
+  assert.match(await readFile(join(temp,variant,'LICENSE'),'utf8'),/MIT License/);
+ }
+ const map=join(temp,'palette.json');await writeFile(map,JSON.stringify({'#222222':'#24213b','#e0e0e0':'#ded4fa'}));
+ const themed=await run(['install','linear-feedback',join(temp,'violet-progress'),'--palette',map]);assert.equal(themed.paletteApplied,true);
+ const css=await readFile(join(temp,'violet-progress','buttons.css'),'utf8');
+ assert.match(css,/--fb-ink:#24213b/);assert.match(css,/--fb-accent:#ded4fa/);
+});
+test('Data display exports are complete and support palette adaptation',async()=>{
+ const list=(await run(['list','data-display'])).components.filter(c=>c.variants[0].endsWith('-display'));
+ assert.equal(list.length,10);
+ const temp=await mkdtemp(join(tmpdir(),'sl-ui-data-display-'));
+ for(const component of list){
+  const info=await run(['inspect',component.id]),variant=component.variants[0];
+  for(const name of ['index.html','buttons.css','buttons.js','example.js','LICENSE','OFL.txt'])assert.ok(info.files[variant].includes(name),variant+' missing '+name);
+  assert.equal((await run(['install',variant,join(temp,variant)])).installed,true);
+  assert.match(await readFile(join(temp,variant,'buttons.js'),'utf8'),/window\.MatteDataDisplay/);
+  assert.match(await readFile(join(temp,variant,'example.js'),'utf8'),/MatteDataDisplay\.mount/);
+ }
+ const map=join(temp,'palette.json');await writeFile(map,JSON.stringify({'#222222':'#24213b','#e0e0e0':'#ded4fa'}));
+ assert.equal((await run(['install','bar-display',join(temp,'violet-bar'),'--palette',map])).paletteApplied,true);
+ const css=await readFile(join(temp,'violet-bar','buttons.css'),'utf8');assert.match(css,/--dd-ink:#24213b/);assert.match(css,/--dd-accent:#ded4fa/);
+});
 test('symlink destination parent is rejected',async()=>{
  const temp=await mkdtemp(join(tmpdir(),'sl-ui-symlink-')),target=join(temp,'real'),link=join(temp,'linked');
  await mkdir(target);await symlink(target,link,process.platform==='win32'?'junction':'dir');
@@ -57,18 +95,18 @@ test('copied plugin works without its source repository',async()=>{
  const temp=await mkdtemp(join(tmpdir(),'sl-ui-portable-')),plugin=join(temp,'sl-ui-library');
  await cp(new URL('plugins/sl-ui-library/',root),plugin,{recursive:true});
  const {stdout}=await promisify(execFile)(process.execPath,[join(plugin,'scripts','library.mjs'),'list'],{cwd:temp});
- assert.equal(JSON.parse(stdout).components.length,110);
+ assert.equal(JSON.parse(stdout).components.length,expectedCount);
  const {stdout:installed}=await promisify(execFile)(process.execPath,[join(plugin,'scripts','library.mjs'),'install','like',join(temp,'like')],{cwd:temp});
  assert.equal(JSON.parse(installed).installed,true);
 });
 test('palette exports validated colors without changing the library',async()=>{
  const temp=await mkdtemp(join(tmpdir(),'sl-ui-palette-'));
- const palette=await run(['palette','like']);assert.ok(palette.colors.some(v=>v.color==='#202222'));
- const map=join(temp,'palette.json');await writeFile(map,JSON.stringify({'#202222':'#24213b'}));
+ const palette=await run(['palette','like']);assert.ok(palette.colors.some(v=>v.color==='#222222'));
+ const map=join(temp,'palette.json');await writeFile(map,JSON.stringify({'#222222':'#24213b'}));
  const result=await run(['install','like',join(temp,'violet'),'--palette',map]);assert.equal(result.paletteApplied,true);
  assert.match(await readFile(join(temp,'violet','buttons.css'),'utf8'),/--like-ink: #24213b/);
- assert.match(await readFile(new URL('public/packages/like/buttons.css',root),'utf8'),/--like-ink: #202222/);
- await writeFile(map,JSON.stringify({'#202222':'red; background:url(https://invalid)'}));
+ assert.match(await readFile(new URL('public/packages/like/buttons.css',root),'utf8'),/--like-ink: #222222/);
+ await writeFile(map,JSON.stringify({'#222222':'red; background:url(https://invalid)'}));
  await assert.rejects(()=>run(['install','like',join(temp,'invalid'),'--palette',map]),/hex colors/);
  await assert.rejects(()=>lstat(join(temp,'invalid')),{code:'ENOENT'});
  await writeFile(map,JSON.stringify({'#123abc':'#fff'}));
@@ -98,18 +136,19 @@ test('opt-in updates verify hashes, refresh once daily and fall back offline',as
  const originalCatalog=JSON.parse(await readFile(new URL('plugins/sl-ui-library/assets/catalog.json',root)));
  const bundle=JSON.parse(await readFile(new URL('plugins/sl-ui-library/assets/source-bundle.json',root)));
  const bundled={catalog:originalCatalog,bundle};
- const catalog={...originalCatalog,version:'1.1.0'};
+ const nextVersion=originalCatalog.version.replace(/\d+$/,patch=>String(Number(patch)+1));
+ const catalog={...originalCatalog,version:nextVersion};
  const base='https://raw.githubusercontent.com/SLtowl/sl-ui-library/';
  const policy={published:true,feed:base+'main/plugin-channel.json',intervalHours:24};
  await updateSettings('enable',{cache,policy});
  const catalogBytes=Buffer.from(JSON.stringify(catalog)),bundleBytes=Buffer.from(JSON.stringify(bundle));
- const manifest={schemaVersion:1,version:'1.1.0',catalog:{url:base+'a'.repeat(40)+'/catalog.json',sha256:createHash('sha256').update(catalogBytes).digest('hex')},bundle:{url:base+'a'.repeat(40)+'/bundle.json',sha256:createHash('sha256').update(bundleBytes).digest('hex')}};
+ const manifest={schemaVersion:1,version:nextVersion,catalog:{url:base+'a'.repeat(40)+'/catalog.json',sha256:createHash('sha256').update(catalogBytes).digest('hex')},bundle:{url:base+'a'.repeat(40)+'/bundle.json',sha256:createHash('sha256').update(bundleBytes).digest('hex')}};
  let requests=0;
  const fetcher=async url=>{requests++;return new Response(url===policy.feed?JSON.stringify(manifest):url.endsWith('/catalog.json')?catalogBytes:bundleBytes);};
- const updated=await selectData({cache,policy,bundled,fetcher,now:1e9});assert.equal(updated.catalog.version,'1.1.0');assert.equal(requests,3);
+ const updated=await selectData({cache,policy,bundled,fetcher,now:1e9});assert.equal(updated.catalog.version,nextVersion);assert.equal(requests,3);
  await selectData({cache,policy,bundled,fetcher,now:1e9+1000});assert.equal(requests,3);
- const offline=await selectData({cache,policy,bundled,fetcher:async()=>{throw new Error('Offline');},now:1e9+86400001});assert.equal(offline.catalog.version,'1.1.0');
- await updateSettings('disable',{cache,policy});assert.equal((await selectData({cache,policy,bundled,fetcher})).catalog.version,'1.0.0');
+ const offline=await selectData({cache,policy,bundled,fetcher:async()=>{throw new Error('Offline');},now:1e9+86400001});assert.equal(offline.catalog.version,nextVersion);
+ await updateSettings('disable',{cache,policy});assert.equal((await selectData({cache,policy,bundled,fetcher})).catalog.version,originalCatalog.version);
 });
 test('invalid remote hashes and untrusted update URLs cannot replace bundled data',async()=>{
  const cache=await mkdtemp(join(tmpdir(),'sl-ui-update-bad-'));

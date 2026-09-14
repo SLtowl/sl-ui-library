@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Optional delivery choice</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; padding: 24px 16px; display: grid; place-items: center; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <form class="sl-component" data-kind="checkboxes-optional-radio" aria-label="Optional delivery choice">
+    <h2>Optional delivery choice</h2>
+    <p class="choice-intro">Choose one delivery mode, or leave it undecided.</p>
+
+    <div class="choice-list"><label class="choice"><input data-choice type="radio" name="delivery" value="standard"  data-credits="0"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Standard</span><span class="choice-hint">Ready in 3–5 days · 0 credits</span></span></label><label class="choice"><input data-choice type="radio" name="delivery" value="priority"  data-credits="4"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Priority</span><span class="choice-hint">Ready in 1–2 days · 4 credits</span></span></label><label class="choice"><input data-choice type="radio" name="delivery" value="instant"  data-credits="7"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Instant</span><span class="choice-hint">Ready today · 7 credits</span></span></label></div>
+
+    <div class="choice-footer"><p class="choice-status" data-status role="status" aria-live="polite" aria-atomic="true">No delivery mode selected</p><button type="button" data-clear disabled>Clear</button></div>
+  </form>
+</body>
+</html>

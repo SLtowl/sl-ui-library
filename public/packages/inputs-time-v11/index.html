@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Time input — SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="inputs-time-v11" aria-label="Time input">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>Time input</h2>
+    <label for="reminder-time">Daily reminder</label><div class="sl-field-control"><input id="reminder-time" class="sl-time" type="text" inputmode="numeric" maxlength="5" value="09:00" placeholder="HH:MM" aria-describedby="time-help"><button class="sl-icon-button sl-open-time" type="button" aria-label="Open time picker"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg></button></div>
+    <div class="sl-actions"><button type="button" data-time="09:00" aria-pressed="true">09:00</button><button type="button" data-time="12:00" aria-pressed="false">12:00</button><button type="button" data-time="18:00" aria-pressed="false">18:00</button></div>
+    <output>09:00 · local time</output>
+    <p class="sl-status" id="time-help" role="status">Five-minute steps. No date or time zone is attached.</p>
+  </section>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inline variable menu</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; background: #f5f4f2; padding: 24px; box-sizing: border-box; }</style>
+</head>
+<body>
+  <div class="sl-component" data-kind="menus-variable-insert-v11" data-open="false">
+    <p class="sl-eyebrow">Message template</p>
+    <button class="sl-trigger" data-trigger type="button" aria-expanded="false" aria-haspopup="dialog"><svg class="" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M9 4H7a2 2 0 0 0-2 2v3l-2 3 2 3v3a2 2 0 0 0 2 2h2m6-16h2a2 2 0 0 1 2 2v3l2 3-2 3v3a2 2 0 0 1-2 2h-2"/></svg><span data-label>Insert a variable</span><svg class="sl-chevron" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="m7 10 5 5 5-5"/></svg></button>
+    <div class="sl-panel" data-panel tabindex="-1" role="dialog" aria-label="Inline variable menu" aria-hidden="true" inert>
+      <label class="sl-search"><svg class="" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input data-search type="search" aria-label="Find a variable" placeholder="Find a variable" autocomplete="off" spellcheck="false"></label><div class="sl-scroll"><section data-group><h3>Person</h3><button class="sl-option" type="button" data-key="token:first_name" data-token data-value="{{first_name}}"><span><strong>First name</strong><small>{{first_name}}</small></span><span class="sl-mark" aria-hidden="true">✓</span></button><button class="sl-option" type="button" data-key="token:email" data-token data-value="{{email}}"><span><strong>Email address</strong><small>{{email}}</small></span><span class="sl-mark" aria-hidden="true">✓</span></button></section><section data-group><h3>Project</h3><button class="sl-option" type="button" data-key="token:project" data-token data-value="{{project}}"><span><strong>Project name</strong><small>{{project}}</small></span><span class="sl-mark" aria-hidden="true">✓</span></button><button class="sl-option" type="button" data-key="token:account" data-token disabled><span><strong>Account ID</strong><small>Unavailable in this sample</small></span><span class="sl-mark" aria-hidden="true">✓</span></button></section><p data-empty class="sl-empty" hidden>No matching variables.</p></div>
+    </div>
+    <div class="sl-summary" role="region" aria-label="Local result" tabindex="0"><label><span class="sl-editor-label">Message template</span><textarea data-editor aria-label="Message template" spellcheck="false">Hello ,
+Your review is ready.</textarea></label><div class="sl-footer"><button type="button" class="sl-action" data-key="undo" disabled>Undo insertion</button></div></div>
+    <p class="sl-feedback" data-feedback role="status" aria-live="polite">Place the caret in the message, then insert.</p>
+  </div>
+</body>
+</html>

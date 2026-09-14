@@ -2,9 +2,11 @@
 
 An AI plugin for finding and integrating UI components, with a browsable HTML, CSS and JavaScript library.
 
+**Version 1.1** adds 124 components since the initial 110-component release, opens Feedback and Data display, and refines the neutral palette, pickers, chart typography and keyboard interactions. [Release notes](docs/releases/v1.1.0.md).
+
 ![Graphite SL UI Library controls in a warm studio composition](docs/media/cover.png)
 
-**110 interactive components** in HTML, CSS and JavaScript. No runtime dependencies, remote fonts or stock icon libraries. Preview components and download their source files. The plugin helps a coding agent find and integrate components.
+**234 interactive components** in HTML, CSS and JavaScript. No runtime dependencies, remote fonts or stock icon libraries. Preview components and download their source files. The plugin helps a coding agent find and integrate components.
 
 [Open the library](https://sltowl.github.io/sl-ui-library/) · [Install the plugin](#plugin-installation) · [Components](#components) · [Integration guide](docs/integration.md) · [Quality notes](QA.md) · [MIT License](LICENSE)
 
@@ -20,11 +22,20 @@ Studio photography is generated artwork; the film uses library components with C
 
 ## Components
 
-<p align="center"><img src="docs/media/collection.png" width="240" alt="Buttons 10, Inputs 10, Toggles 10, Checkboxes 25, Sliders 20, Menus 15, Navigation 10, Overlays 10"></p>
+| Category | Components |
+| --- | ---: |
+| Buttons | 20 |
+| Inputs | 20 |
+| Toggles | 20 |
+| Checkboxes | 35 |
+| Sliders | 34 |
+| Menus | 25 |
+| Navigation | 20 |
+| Overlays | 20 |
+| Feedback | 20 |
+| Data display | 20 |
 
-
-
-110 components, 112 export variants. Save & Cancel is available together or separately. Feedback and Data display are reserved for later versions: **Nothing added yet**.
+234 components, 236 export variants. Save & Cancel is available together or separately. All ten categories contain working previews and complete source packages.
 
 ## Plugin installation
 
@@ -139,7 +150,7 @@ See [QA evidence and limitations](QA.md). Chrome is the current automated browse
 
 ![Graphite rating, topic chips, pin and volume studio composition](docs/media/studio.png)
 
-Cover, collection table and closing image: generated studio artwork. Film: actual controls with a 3D presentation layer. [Media provenance](docs/media.md).
+Cover and closing image: generated studio artwork from the first release. Film: actual controls with a 3D presentation layer. [Media provenance](docs/media.md).
 
 ## Release status
 

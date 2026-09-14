@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Grouped quotas</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; padding: 24px 16px; display: grid; place-items: center; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <form class="sl-component" data-kind="checkboxes-group-quotas" aria-label="Grouped quotas">
+    <h2>Grouped quotas</h2>
+    <p class="choice-intro">Choose up to 2 in each group independently.</p>
+
+    <div class="choice-list"><fieldset class="choice-group"><legend>Tools<span data-count="tools">1/2</span></legend><label class="choice"><input data-choice type="checkbox" name="choices" value="pen" checked data-group="tools"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Pen</span></span></label><label class="choice"><input data-choice type="checkbox" name="choices" value="ruler"  data-group="tools"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Ruler</span></span></label><label class="choice"><input data-choice type="checkbox" name="choices" value="brush"  data-group="tools"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">Brush</span></span></label></fieldset><fieldset class="choice-group"><legend>Formats<span data-count="formats">0/2</span></legend><label class="choice"><input data-choice type="checkbox" name="choices" value="svg"  data-group="formats"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">SVG</span></span></label><label class="choice"><input data-choice type="checkbox" name="choices" value="pdf"  data-group="formats"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">PDF</span></span></label><label class="choice"><input data-choice type="checkbox" name="choices" value="png"  data-group="formats"><span class="choice-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path class="choice-tick" d="m5 12 4.5 4.5L19 7"/><path class="choice-dash" d="M6 12h12"/><circle class="choice-dot" cx="12" cy="12" r="4"/></svg></span><span class="choice-copy"><span class="choice-title">PNG</span></span></label></fieldset></div>
+
+    <div class="choice-footer"><p class="choice-status" data-status role="status" aria-live="polite" aria-atomic="true">Tools 1/2 · Formats 0/2</p><button type="button" data-clear >Clear</button></div>
+  </form>
+</body>
+</html>

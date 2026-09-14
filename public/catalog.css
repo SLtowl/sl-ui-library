@@ -52,6 +52,9 @@
 .card-preview sl-preview { display: block; width: 100%; height: 100%; border: 0; }
 .component-card:has(sl-preview[variant$="-menu"]) .card-preview { height: 440px; }
 .component-card:has(sl-preview[variant$="-overlay"]) .card-preview { height: 430px; }
+.component-card:has(sl-preview[variant$="-feedback"]) .card-preview { height: 430px; }
+.component-card:has(sl-preview[variant$="-display"]) .card-preview { height: 510px; }
+.component-card:has(sl-preview[variant$="-v11"]) .card-preview { height: 510px; }
 .component-card:has(sl-preview[variant$="-navigation"]) .card-preview { height: 360px; }
 .component-card:has(sl-preview:is([variant="zoom-slider"], [variant="meter-slider"])) .card-preview { min-height: 320px; }
 .card-reset { position: absolute; right: 10px; top: 10px; display: grid; place-items: center; width: 34px; height: 34px; padding: 0; border: 1px solid transparent; background: transparent; color: #525e67; border-radius: 9px; }

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Attachment input — SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="inputs-attachment-v11" aria-label="Attachment input">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h7l4 4v12H5V4Zm6 0v5h5M8 13h8m-8 4h5"/></svg>Attachment input</h2>
+    <label class="sl-real-file"><span>Project document</span><span class="sl-file-control"><span aria-hidden="true">Choose file</span><input class="sl-file" type="file" accept=".pdf,.txt,.md" aria-label="Project document" aria-describedby="file-help"></span></label>
+    <div class="sl-demo-file" hidden><span>Sample document</span><button class="sl-demo-choose" type="button">Choose demo file</button></div>
+    <div class="sl-file-detail"><p class="sl-file-name">No file selected</p><p class="sl-file-size">PDF, TXT or MD · up to 5 MiB</p></div>
+    <div class="sl-actions"><button class="sl-remove-file" type="button" disabled>Remove file</button></div><p class="sl-status" id="file-help" role="status">Local selection only. Nothing is uploaded or read.</p>
+  </section>
+</body>
+</html>

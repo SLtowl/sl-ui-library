@@ -1,0 +1,87 @@
+@font-face { font-family: 'Instrument Sans'; src: url('./instrument-sans-variable.woff2') format('woff2'); font-weight: 400 700; font-display: swap; }
+.sl-component {
+  --choice-bg: #222222; --choice-surface: #2c2c2c; --choice-text: #f8f8f8;
+  --choice-muted: #c1c1c1; --choice-border: #5a5a5a; --choice-control: #999999;
+  --choice-accent: #e0e0e0; --choice-accent-ink: #262626; --choice-focus: #e0e0e0;
+  --choice-selected: #3c3c3c; --choice-ease: cubic-bezier(.22,.61,.36,1);
+  box-sizing: border-box; width: min(320px,100%); min-width: 0; margin: 0; padding: 16px;
+  border: 1px solid var(--choice-border); border-radius: 14px; background: var(--choice-bg);
+  color: var(--choice-text); font: 14px/1.4 'Instrument Sans',sans-serif; text-align: left;
+  box-shadow: 0 2px 5px #00000010; color-scheme: dark;
+}
+.sl-component *, .sl-component *::before, .sl-component *::after { box-sizing: border-box; }
+.sl-component h2 { margin: 0; font-size: 16px; line-height: 1.3; font-weight: 600; letter-spacing: -.02em; }
+.sl-component .choice-intro { margin: 6px 0 12px; color: var(--choice-muted); font-size: 12px; }
+.sl-component .choice-list { max-height: 280px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--choice-border) transparent; padding: 3px; margin: -3px; }
+.sl-component .choice { position: relative; display: flex; align-items: center; gap: 10px; min-height: 42px; padding: 8px; border-radius: 8px; cursor: pointer; transition: background-color 180ms ease; }
+.sl-component .choice:hover { background: var(--choice-surface); }
+.sl-component .choice input { position: absolute; left: 8px; width: 22px; height: 22px; margin: 0; opacity: 0; }
+.sl-component .choice-mark { pointer-events: none; display: grid; place-items: center; width: 22px; height: 22px; flex: none; background: var(--choice-bg); border: 1px solid var(--choice-control); border-radius: 6px; transition: background-color 200ms ease, border-color 200ms ease, transform 180ms var(--choice-ease); }
+.sl-component .choice-mark svg { width: 20px; height: 20px; stroke: var(--choice-accent-ink); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.sl-component .choice-tick, .sl-component .choice-dash, .sl-component .choice-dot { opacity: 0; transform-origin: center; transform: scale(.8); transition: opacity 160ms ease, transform 200ms var(--choice-ease); }
+.sl-component input:checked + .choice-mark, .sl-component input[type=checkbox]:indeterminate + .choice-mark { background: var(--choice-accent); border-color: var(--choice-accent); }
+.sl-component input:checked + .choice-mark .choice-tick, .sl-component input[type=checkbox]:indeterminate + .choice-mark .choice-dash { opacity: 1; transform: scale(1); }
+.sl-component input[type=checkbox]:indeterminate + .choice-mark .choice-tick { opacity: 0; }
+.sl-component input[type=radio] + .choice-mark { border-radius: 50%; }
+.sl-component input[type=radio] + .choice-mark .choice-tick { display: none; }
+.sl-component input[type=radio]:checked + .choice-mark .choice-dot { opacity: 1; transform: scale(1); fill: var(--choice-accent-ink); stroke: none; }
+.sl-component input:focus-visible + .choice-mark { outline: 2px solid var(--choice-focus); outline-offset: 2px; }
+.sl-component .choice:active .choice-mark { transform: scale(.94); }
+.sl-component .choice:has(input:disabled) { cursor: default; color: var(--choice-muted); }
+.sl-component .choice:has(input:disabled) .choice-mark { border-style: dashed; }
+.sl-component .choice-copy { display: grid; gap: 2px; min-width: 0; }
+.sl-component .choice-title { font-size: 13px; overflow-wrap: anywhere; }
+.sl-component .choice-hint { color: var(--choice-muted); font-size: 11px; }
+.sl-component .choice-footer { display: flex; align-items: flex-start; gap: 8px; border-top: 1px solid var(--choice-border); padding-top: 10px; margin-top: 12px; }
+.sl-component .choice-status { flex: 1; min-width: 0; margin: 0; color: var(--choice-accent); font-size: 12px; overflow-wrap: anywhere; }
+.sl-component button { flex: none; border: 1px solid var(--choice-border); border-radius: 6px; background: var(--choice-surface); color: var(--choice-text); font: inherit; font-size: 11px; padding: 5px 8px; cursor: pointer; transition: background-color 180ms ease, transform 180ms var(--choice-ease); }
+.sl-component button:hover { background: var(--choice-selected); }
+.sl-component button:active { transform: scale(.96); }
+.sl-component button:focus-visible, .sl-component input[type=search]:focus-visible { outline: 2px solid var(--choice-focus); outline-offset: 2px; }
+.sl-component button:disabled { color: var(--choice-muted); cursor: default; border-style: dashed; }
+.sl-component button:disabled:active { transform: none; }
+.sl-component .choice-group, .sl-component .choice-polarity { margin: 0; padding: 0; min-width: 0; border: 0; }
+.sl-component .choice-group + .choice-group, .sl-component .choice-polarity + .choice-polarity { margin-top: 8px; }
+.sl-component .choice-group legend, .sl-component .choice-polarity legend { width: 100%; padding: 0 8px 3px; font-size: 12px; color: var(--choice-muted); }
+.sl-component [data-count] { float: right; color: var(--choice-accent); font-variant-numeric: tabular-nums; }
+.sl-component .choice-group .choice { min-height: 34px; padding-block: 6px; }
+.sl-component meter { width: 100%; height: 7px; display: block; margin: 10px 0 0; border: 0; accent-color: var(--choice-accent); }
+.sl-component meter::-webkit-meter-bar { background: var(--choice-surface); border: 0; }
+.sl-component meter::-webkit-meter-optimum-value { background: var(--choice-accent); transition: width 200ms ease; }
+.sl-component meter::-moz-meter-bar { background: var(--choice-accent); }
+.sl-component table { border-collapse: collapse; table-layout: fixed; width: 100%; font-size: 12px; }
+.sl-component th { font-weight: 500; text-align: left; }
+.sl-component thead th { color: var(--choice-muted); padding: 4px; }
+.sl-component th:first-child { width: 44%; }
+.sl-component thead th:not(:first-child) { text-align: center; }
+.sl-component td { padding: 0; }
+.sl-component tbody th { padding: 6px 4px; border-top: 1px solid var(--choice-border); }
+.sl-component tbody td { border-top: 1px solid var(--choice-border); }
+.sl-component td .choice { justify-content: center; min-height: 50px; padding: 6px; }
+.sl-component td .choice input { left: calc(50% - 11px); }
+.sl-component td .choice-copy, .sl-component .choice-sr { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.sl-component .choice-search { display: grid; gap: 5px; font-size: 12px; color: var(--choice-muted); margin-bottom: 5px; }
+.sl-component input[type=search] { width: 100%; min-width: 0; border: 1px solid var(--choice-border); border-radius: 7px; padding: 8px; font: inherit; color: var(--choice-text); background: var(--choice-surface); }
+.sl-component input[type=search]::placeholder { color: var(--choice-muted); }
+.sl-component .choice-master { border-bottom: 1px solid var(--choice-border); border-radius: 0; margin-bottom: 4px; }
+.sl-component .choice-empty { margin: 20px 8px; font-size: 12px; color: var(--choice-muted); }
+.sl-component .choice-rank-row { display: flex; align-items: center; gap: 6px; }
+.sl-component .choice-rank-row .choice { flex: 1; min-width: 0; }
+.sl-component .choice-rank { min-width: 18px; color: var(--choice-accent); text-align: center; font-size: 12px; font-variant-numeric: tabular-nums; }
+.sl-component .choice-rank-row button { display: grid; place-items: center; width: 28px; height: 28px; padding: 4px; }
+.sl-component button svg { width: 17px; height: 17px; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.sl-component .choice-dependent { border-left: 1px solid var(--choice-border); margin-left: 18px; padding-left: 8px; }
+.sl-component .choice-segments { display: flex; gap: 4px; padding: 2px; }
+.sl-component .choice-segments .choice { display: flex; flex: 1; min-width: 0; flex-direction: column; justify-content: center; gap: 5px; padding: 7px 2px; border: 1px solid var(--choice-border); border-radius: 7px; }
+.sl-component .choice-segments .choice:has(:checked) { background: var(--choice-selected); }
+.sl-component .choice-segments input { left: calc(50% - 11px); top: 7px; }
+.sl-component .choice-segments .choice-title { font-size: 10px; }
+.sl-component [hidden] { display: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .sl-component *, .sl-component *::before, .sl-component *::after { transition: none !important; animation: none !important; }
+  .sl-component .choice:active .choice-mark, .sl-component button:active { transform: none; }
+}
+@media (forced-colors: active) {
+  .sl-component { --choice-bg: Canvas; --choice-surface: Canvas; --choice-text: CanvasText; --choice-muted: CanvasText; --choice-border: ButtonBorder; --choice-control: ButtonText; --choice-accent: Highlight; --choice-accent-ink: HighlightText; --choice-focus: Highlight; --choice-selected: Canvas; }
+  .sl-component .choice-mark { forced-color-adjust: none; }
+}

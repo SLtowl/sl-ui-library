@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Card spacing</title><link rel="icon" href="data:,">
+<link rel="stylesheet" href="./buttons.css"><script src="./buttons.js" defer></script><script src="./example.js" defer></script>
+<style>body{box-sizing:border-box;margin:0;padding:24px;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;background:#f5f4f2}</style>
+</head>
+<body>
+<section class="sl-component" data-kind="sliders-card-gap-v11" aria-label="Card spacing">
+<h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h7m5 0h6M3 17h12m5 0h1"/><rect x="10" y="3.5" width="5" height="7" rx="1.5"/><rect x="15" y="13.5" width="5" height="7" rx="1.5"/></svg>Card spacing</h2>
+<div class="sl-card-list" data-list><div><span>Design review</span><small>Today</small></div><div><span>Project notes</span><small>Yesterday</small></div><div><span>Saved ideas</span><small>Monday</small></div></div>
+<label class="sl-field"><span class="sl-label"><span>Space between cards</span><span class="sl-value" data-value="0" aria-hidden="true">12 px</span></span><span class="sl-track" data-track="0" style="--fill:40%"><input type="range" name="card-gap" min="4" max="24" step="2" value="12" aria-label="Space between cards" aria-valuetext="12 px"></span></label>
+<p class="sl-summary" data-summary>12 px between cards</p><p class="sl-hint">Only the gap changes, not the cards themselves.</p>
+<div class="sl-actions"><button type="button" data-action="compact">Compact</button><button type="button" data-action="spacious">Spacious</button></div>
+</section>
+</body>
+</html>
