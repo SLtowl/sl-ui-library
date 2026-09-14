@@ -12,10 +12,6 @@ const layout = `
   .stage > .fb-demo { width: min(320px, calc(100cqw - 32px)); }
   .stage > .dd-demo { width: min(320px, calc(100cqw - 32px)); }
   .stage > .sl-component { width: min(320px, calc(100cqw - 32px)); min-width: 0; }
-  :host([variant$="-v11"]) .stage { top: 44px; }
-  :host(#component-preview[variant$="-v11"]) .stage { top: 52px; }
-  :host(#component-preview[variant$="-feedback"]) .stage { top: 52px; }
-  :host(#component-preview[variant$="-display"]) .stage { top: 52px; }
   .overlay-idle { position:absolute; inset:0; }
   .overlay-idle > .overlay-demo { min-height:100%; height:100%; width:100%; }
   .stage > .mixer-group { width: min(320px, calc(100cqw - 40px)); }

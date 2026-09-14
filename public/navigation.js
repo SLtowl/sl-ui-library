@@ -2,7 +2,7 @@ import { views } from './view-data.js';
 import { categoryFor } from './catalog-data.js';
 import { mountCatalog } from './catalog.js';
 import { mountComponent } from './library.js';
-import './preview-runtime.js?v=instant-4';
+import './preview-runtime.js?v=preview-fit-1';
 
 const base = new URL('.', import.meta.url);
 const routes = new Map([['', 'home'], ['index.html', 'home'], ['category.html', 'category'], ['component.html', 'component']]);

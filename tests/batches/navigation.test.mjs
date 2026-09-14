@@ -372,7 +372,9 @@ test('compiled navigation previews mount in independent Shadow DOM cards', { ski
         const result = { variant, root: !!root, controller: !!preview.controller, ready: preview.dataset.ready, fits: [] };
         const checkFit = () => {
           const box = root.getBoundingClientRect(), host = preview.getBoundingClientRect();
-          result.fits.push(box.width <= 226 && box.top >= host.top + 52 - 1 && box.bottom <= host.bottom + 1 && root.scrollWidth <= 226);
+          // Heading space belongs to the workbench row, not this bare host.
+          // gallery.test.mjs checks that row and the actual page's bounds.
+          result.fits.push(box.width <= 226 && box.top >= host.top - 1 && box.bottom <= host.bottom + 1 && root.scrollWidth <= 226);
         };
         checkFit();
         const action = preview.controller?.navigate || preview.controller?.jump;

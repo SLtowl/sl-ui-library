@@ -67,17 +67,16 @@ h1 { margin: 0; font-size: clamp(44px, 4.17vw, 64px); line-height: 1.1; font-wei
 .surface-button:hover { border-color: #f7fbff70; box-shadow: 0 1px 0 #ffffff12 inset, 0 3px 10px #0005; }
 .surface-button:active { background: #242627; }
 .download-button { width: 198px; min-height: 58px; font-size: 20px; font-weight: 650; }
-.workbench-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); height: clamp(360px, calc(100svh - 518px), 506px); }
-.preview-panel { position: relative; min-width: 0; overflow: hidden; color-scheme: light; color: #141719; background: radial-gradient(ellipse at 35% 10%, #f7f7f8, transparent 90%), linear-gradient(130deg, #f0f0f2, #e7e8eb); border-top-left-radius: 15px; }
-.preview-panel h2 { position: absolute; z-index: 1; top: 21px; left: 23px; margin: 0; font-size: 22px; line-height: 1.35; font-weight: 650; letter-spacing: -.035em; pointer-events: none; }
-#component-preview { display: block; width: 100%; height: 100%; border: 0; }
-.workbench-body:has(sl-preview[variant$="-menu"]) { min-height: 440px; }
-.preview-panel:has(sl-preview[variant$="-menu"]) { min-height: 440px; }
-.preview-panel:has(sl-preview[variant$="-overlay"]) { min-height: 430px; }
-.preview-panel:has(sl-preview[variant$="-navigation"]) { min-height: 360px; }
-.preview-panel:has(sl-preview[variant$="-feedback"]) { min-height: 430px; }
-.preview-panel:has(sl-preview[variant$="-display"]) { min-height: 510px; }
-.preview-panel:has(sl-preview[variant$="-v11"]) { min-height: 510px; }
+/* The heading has its own row. Reserve the complete canvas in the parent
+   grid too, so a tall preview cannot extend behind the workbench clipping. */
+.workbench-body { --preview-height: 320px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); height: max(clamp(360px, calc(100svh - 518px), 506px), calc(var(--preview-height) + 64px)); }
+.preview-panel { position: relative; display: grid; grid-template-rows: 64px minmax(0, 1fr); min-width: 0; min-height: calc(var(--preview-height) + 64px); overflow: hidden; color-scheme: light; color: #141719; background: radial-gradient(ellipse at 35% 10%, #f7f7f8, transparent 90%), linear-gradient(130deg, #f0f0f2, #e7e8eb); border-top-left-radius: 15px; }
+.preview-panel h2 { align-self: start; margin: 21px 23px 0; font-size: 22px; line-height: 1.35; font-weight: 650; letter-spacing: -.035em; pointer-events: none; }
+#component-preview { display: block; width: 100%; height: 100%; min-height: 0; border: 0; }
+.workbench-body:has(sl-preview[variant$="-menu"]) { --preview-height: 440px; }
+.workbench-body:has(sl-preview:is([variant$="-overlay"], [variant$="-feedback"])) { --preview-height: 430px; }
+.workbench-body:has(sl-preview:is([variant$="-display"], [variant$="-v11"])) { --preview-height: 510px; }
+.workbench-body:has(sl-preview[variant$="-navigation"]) { --preview-height: 360px; }
 .code-panel { position: relative; display: flex; flex-direction: column; min-width: 0; min-height: 0; background: radial-gradient(ellipse at 100% 100%, #1c1e1f40, transparent 80%), var(--recess); border-left: 1px solid var(--edge); }
 .code-toolbar { height: 65px; flex: none; display: flex; align-items: center; padding: 0 13px 0 10px; border-bottom: 1px solid var(--edge-soft); background: var(--panel-fill); gap: 14px; }
 .file-tabs { display: flex; height: 100%; align-items: stretch; }
