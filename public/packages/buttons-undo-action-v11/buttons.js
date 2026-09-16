@@ -26,7 +26,7 @@
         if (destroyed || token !== revision || request.signal.aborted) return false;
         request = null; phase = 'complete'; render(); status.textContent = options.preview ? "Demo finished locally. No application action was changed." : "Action undone.";
         root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail: { kind: root.dataset.kind, phase, result } }));
-        resetTimer = view.setTimeout(() => { if (!destroyed && phase === 'complete') { phase = 'idle'; render(); status.textContent = "Ready to undo."; } }, 1800);
+        resetTimer = view.setTimeout(() => { if (!destroyed && phase === 'complete') { phase = 'idle'; render(); status.textContent = "Ready to undo."; } }, 900);
         return true;
       } catch (error) {
         if (destroyed || token !== revision) return false;
@@ -40,7 +40,7 @@
     return { start, cancel, reset, destroy, get state() { return { phase }; } };
   }
   function mountPreview(root) {
-    return mount(root, { preview: true, onUndo: ({ signal }) => new Promise((resolve, reject) => { const timer = setTimeout(resolve, 700); signal.addEventListener('abort', () => { clearTimeout(timer); reject(new DOMException('Canceled','AbortError')); }, { once: true }); }) });
+    return mount(root, { preview: true, onUndo: ({ signal }) => new Promise((resolve, reject) => { const timer = setTimeout(resolve, 250); signal.addEventListener('abort', () => { clearTimeout(timer); reject(new DOMException('Canceled','AbortError')); }, { once: true }); }) });
   }
   window.SLComponent = { mount, mountPreview };
 })();

@@ -4,15 +4,15 @@ Status: local owner review required. This batch is intentionally excluded from `
 
 ## Components
 
-11. `buttons-search-toggle-v11` — reversible search/close state.
+11. `buttons-search-toggle-v11` — a reveal button with a working local search field and selectable results.
 12. `buttons-visibility-toggle-v11` — reversible show/hide state.
-13. `buttons-sound-toggle-v11` — reversible sound/mute state.
+13. `buttons-zoom-view-v11` — a three-step local zoom control with a visible scaled sample.
 14. `buttons-expand-toggle-v11` — reversible expand/collapse state.
 15. `buttons-view-switch-v11` — reversible grid/list state.
 16. `buttons-sidebar-toggle-v11` — reversible sidebar state.
 17. `buttons-notifications-toggle-v11` — reversible notification state.
 18. `buttons-attachment-toggle-v11` — reversible local draft attachment state.
-19. `buttons-undo-action-v11` — callback-backed undo action; the preview is a local no-op.
+19. `buttons-undo-action-v11` — callback-backed undo action with shortened preview timing; the preview is a local no-op.
 20. `buttons-move-item-v11` — callback-backed move action; the preview is a local no-op.
 
 ## Interaction contract
@@ -27,5 +27,5 @@ Status: local owner review required. This batch is intentionally excluded from `
 ## Verification
 
 - Static package contract and manifest checks: passed.
-- Browser interaction suite covering keyboard reversibility, stable label centering, callback requirements, cancellation, remount cleanup and 226 px fit: passed (7/7).
+- Browser interaction suite covering working search, exact zoom levels, keyboard reversibility, stable label centering, callback requirements, cancellation, remount cleanup and 226 px fit: passed (9/9).
 - Manual local review at `http://127.0.0.1:4338/`: all ten previews load and respond; final owner decision pending.

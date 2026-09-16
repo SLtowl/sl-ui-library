@@ -3,11 +3,11 @@ export default [
   {
     "id": "matte-buttons-search-toggle-v11",
     "category": "buttons",
-    "name": "Search toggle",
-    "description": "Open or close a local search mode while the magnifier resolves into a close mark.",
+    "name": "Search reveal",
+    "description": "Reveal a working local search field, filter literal project names and choose a result.",
     "motions": [
-      "Magnifier to close",
-      "Soft press"
+      "Field reveal",
+      "Chevron turn"
     ],
     "variants": [
       "buttons-search-toggle-v11"
@@ -15,7 +15,8 @@ export default [
     "keywords": [
       "search",
       "find",
-      "close",
+      "filter",
+      "results",
       "magnifier",
       "basic",
       "animated icon"
@@ -36,7 +37,7 @@ export default [
       {
         "title": "Controller",
         "paragraphs": [
-          "toggle() and setOpen(value) update local state. state is { open }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
+          "Pass literal items, then use open(), close(), toggle(), setQuery(value) or choose(value). state is { open, query, matches }. Search changes dispatch sl:action; selection dispatches sl:search-select. reset() and destroy() are repeat-safe."
         ]
       },
       {
@@ -95,30 +96,30 @@ export default [
     ]
   },
   {
-    "id": "matte-buttons-sound-toggle-v11",
+    "id": "matte-buttons-zoom-view-v11",
     "category": "buttons",
-    "name": "Sound toggle",
-    "description": "Mute or restore local sound state while waves retract and a slash is drawn.",
+    "name": "Zoom view",
+    "description": "Step a local view through 100%, 125% and 150%, then return to its original scale.",
     "motions": [
-      "Wave retract",
-      "Mute slash draw"
+      "Sample scale",
+      "Magnifier to reset"
     ],
     "variants": [
-      "buttons-sound-toggle-v11"
+      "buttons-zoom-view-v11"
     ],
     "keywords": [
-      "sound",
-      "mute",
-      "audio",
-      "speaker",
+      "zoom",
+      "scale",
+      "magnifier",
+      "reset",
       "basic",
       "animated icon"
     ],
-    "page": "./component.html?component=matte-buttons-sound-toggle-v11",
-    "preview": "./packages/buttons-sound-toggle-v11/index.html?embed=1",
+    "page": "./component.html?component=matte-buttons-zoom-view-v11",
+    "preview": "./packages/buttons-zoom-view-v11/index.html?embed=1",
     "packageRoot": "./packages/",
     "downloads": {
-      "buttons-sound-toggle-v11": "./downloads/matte-buttons-sound-toggle-v11.zip"
+      "buttons-zoom-view-v11": "./downloads/matte-buttons-zoom-view-v11.zip"
     },
     "usage": [
       {
@@ -130,7 +131,7 @@ export default [
       {
         "title": "Controller",
         "paragraphs": [
-          "toggle() and setMuted(value) update local state. state is { muted }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
+          "step() advances through 100, 125 and 150 percent; setZoom(value) accepts those exact levels. state is { zoom, index }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
         ]
       },
       {
@@ -333,10 +334,10 @@ export default [
     "id": "matte-buttons-attachment-toggle-v11",
     "category": "buttons",
     "name": "Attachment toggle",
-    "description": "Attach or remove one local draft file with a paperclip that settles and gains a check.",
+    "description": "Attach or remove one local draft file with a clean paperclip that settles without an extra badge.",
     "motions": [
       "Paperclip settle",
-      "Check draw"
+      "Soft press"
     ],
     "variants": [
       "buttons-attachment-toggle-v11"
@@ -380,7 +381,7 @@ export default [
     "id": "matte-buttons-undo-action-v11",
     "category": "buttons",
     "name": "Undo action",
-    "description": "Run a real undo callback while a curved arrow travels backward and resolves to a check.",
+    "description": "Run a real undo callback with a short backward arrow motion and immediate confirmation.",
     "motions": [
       "Arrow rewind",
       "Check draw"

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zoom view · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:24px 16px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-zoom-view" data-zoom="100" aria-label="Zoom view">
+    <div class="zoom-preview" data-preview aria-hidden="true"><span>Aa</span></div>
+    <button class="motion-button" type="button" data-action aria-label="Zoom in">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><circle class="zoom-ring" cx="10" cy="10" r="5.5"/><path class="zoom-handle" d="m14.2 14.2 5.3 5.3"/><path class="zoom-plus-h" d="M7 10h6"/><path class="zoom-plus-v" d="M10 7v6"/><path class="zoom-reset" pathLength="1" d="M6.5 7.5A5 5 0 1 1 6 13m.5-5.5V4m0 3.5H10"/></svg></span><span class="button-label" data-label>Zoom in</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">View zoom: 100%.</p>
+  </section>
+</body>
+</html>
