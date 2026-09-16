@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Print document · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:24px 16px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-print-document" data-phase="idle" aria-busy="false" aria-label="Print document">
+    <button class="motion-button" type="button" data-action aria-label="Print" >
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><path class="print-body icon-primary" d="M6 9V4h12v5M6 17H4V9h16v8h-2M7 14h10v6H7Z"/><path class="print-page icon-detail" d="M8 4h8M9 17h6"/><path class="icon-result" pathLength="1" d="m5 12 4.5 4.5L19 7"/></svg></span><span class="button-label" data-label>Print</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Ready to print.</p>
+  </section>
+</body>
+</html>

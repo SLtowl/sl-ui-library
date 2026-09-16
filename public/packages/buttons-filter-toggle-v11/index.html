@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Filter toggle · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:24px 16px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-filter-toggle" data-active="false" aria-label="Filter toggle">
+    <button class="motion-button" type="button" data-action aria-label="Apply filter" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><path class="filter-funnel" d="M3.5 5h17l-6.5 7v5.5l-4 2V12Z"/><circle class="filter-dot" cx="18.5" cy="17.5" r="2.5"/></svg></span><span class="button-label" data-label>Apply filter</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Filter is off.</p>
+  </section>
+</body>
+</html>
