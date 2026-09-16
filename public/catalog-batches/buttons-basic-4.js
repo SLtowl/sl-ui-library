@@ -4,10 +4,10 @@ export default [
     "id": "matte-buttons-cart-toggle-v11",
     "category": "buttons",
     "name": "Cart item",
-    "description": "Add or remove one local product with a compact standalone shopping-bag button.",
+    "description": "Add or remove one local product with a compact cart whose plus turns into a check.",
     "motions": [
-      "Item settle",
-      "Bag counter"
+      "Cart settle",
+      "Plus-to-check draw"
     ],
     "variants": [
       "buttons-cart-toggle-v11"
@@ -43,7 +43,7 @@ export default [
       {
         "title": "Appearance and accessibility",
         "paragraphs": [
-          "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
+          "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon motion respects prefers-reduced-motion; forced colors remain legible."
         ]
       }
     ]
@@ -52,10 +52,10 @@ export default [
     "id": "matte-buttons-archive-toggle-v11",
     "category": "buttons",
     "name": "Archive item",
-    "description": "Archive or restore a local document as a detailed sheet settles behind a closing archive lid.",
+    "description": "Archive or restore a local document with direction-aware sheet and lid motion.",
     "motions": [
-      "Document descent",
-      "Archive close"
+      "Document descent and return",
+      "Archive lid settle"
     ],
     "variants": [
       "buttons-archive-toggle-v11"
@@ -148,9 +148,9 @@ export default [
     "id": "matte-buttons-assign-toggle-v11",
     "category": "buttons",
     "name": "Assign person",
-    "description": "Assign or remove one local teammate as an avatar travels precisely into a visible task slot.",
+    "description": "Assign or remove one local teammate as a clean single-contour avatar docks into a task slot.",
     "motions": [
-      "Avatar dock",
+      "Single-contour avatar dock",
       "Connector retract"
     ],
     "variants": [
