@@ -1,338 +1,52 @@
 // Fourth local Buttons batch for owner review. Not imported into the released catalog until approved.
 export default [
   {
-    "id": "matte-buttons-text-bold-v11",
+    "id": "matte-buttons-text-editor-toolbar-v11",
     "category": "buttons",
-    "name": "Bold text",
-    "description": "Toggle a local text sample between regular and bold while the icon gains weight.",
+    "name": "Text editor toolbar",
+    "description": "Format an editable local text sample with seven compact controls in one coordinated toolbar.",
     "motions": [
-      "Stroke weight",
-      "Text emphasis"
+      "Toolbar press",
+      "Format transition"
     ],
     "variants": [
-      "buttons-text-bold-v11"
+      "buttons-text-editor-toolbar-v11"
     ],
     "keywords": [
+      "text",
+      "editor",
+      "toolbar",
       "bold",
-      "text",
-      "format",
-      "weight",
-      "basic",
-      "animated icon",
-      "editor"
-    ],
-    "page": "./component.html?component=matte-buttons-text-bold-v11",
-    "preview": "./packages/buttons-text-bold-v11/index.html?embed=1",
-    "packageRoot": "./packages/",
-    "downloads": {
-      "buttons-text-bold-v11": "./downloads/matte-buttons-text-bold-v11.zip"
-    },
-    "usage": [
-      {
-        "title": "Use the component",
-        "paragraphs": [
-          "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting your editor or media surface."
-        ]
-      },
-      {
-        "title": "Controller",
-        "paragraphs": [
-          "toggle() advances the control and setWeight(value) silently accepts 'regular' | 'bold'. state reports { weight, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
-        ]
-      },
-      {
-        "title": "Appearance and accessibility",
-        "paragraphs": [
-          "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
-        ]
-      }
-    ]
-  },
-  {
-    "id": "matte-buttons-text-italic-v11",
-    "category": "buttons",
-    "name": "Italic text",
-    "description": "Toggle a local text sample between upright and italic with one continuous icon lean.",
-    "motions": [
-      "Glyph lean",
-      "Text slant"
-    ],
-    "variants": [
-      "buttons-text-italic-v11"
-    ],
-    "keywords": [
       "italic",
-      "text",
-      "format",
-      "slant",
-      "basic",
-      "animated icon",
-      "editor"
-    ],
-    "page": "./component.html?component=matte-buttons-text-italic-v11",
-    "preview": "./packages/buttons-text-italic-v11/index.html?embed=1",
-    "packageRoot": "./packages/",
-    "downloads": {
-      "buttons-text-italic-v11": "./downloads/matte-buttons-text-italic-v11.zip"
-    },
-    "usage": [
-      {
-        "title": "Use the component",
-        "paragraphs": [
-          "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting your editor or media surface."
-        ]
-      },
-      {
-        "title": "Controller",
-        "paragraphs": [
-          "toggle() advances the control and setStyle(value) silently accepts 'regular' | 'italic'. state reports { style, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
-        ]
-      },
-      {
-        "title": "Appearance and accessibility",
-        "paragraphs": [
-          "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
-        ]
-      }
-    ]
-  },
-  {
-    "id": "matte-buttons-text-case-v11",
-    "category": "buttons",
-    "name": "Text case",
-    "description": "Cycle one local label through sentence, uppercase and lowercase forms.",
-    "motions": [
-      "Case step",
-      "Baseline shift"
-    ],
-    "variants": [
-      "buttons-text-case-v11"
-    ],
-    "keywords": [
       "case",
-      "uppercase",
-      "lowercase",
-      "text",
-      "basic",
-      "animated icon",
-      "editor"
-    ],
-    "page": "./component.html?component=matte-buttons-text-case-v11",
-    "preview": "./packages/buttons-text-case-v11/index.html?embed=1",
-    "packageRoot": "./packages/",
-    "downloads": {
-      "buttons-text-case-v11": "./downloads/matte-buttons-text-case-v11.zip"
-    },
-    "usage": [
-      {
-        "title": "Use the component",
-        "paragraphs": [
-          "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting your editor or media surface."
-        ]
-      },
-      {
-        "title": "Controller",
-        "paragraphs": [
-          "cycle() advances the control and setCase(value) silently accepts 'sentence' | 'upper' | 'lower'. state reports { case, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
-        ]
-      },
-      {
-        "title": "Appearance and accessibility",
-        "paragraphs": [
-          "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
-        ]
-      }
-    ]
-  },
-  {
-    "id": "matte-buttons-text-strike-v11",
-    "category": "buttons",
-    "name": "Strikethrough",
-    "description": "Add or remove a clean strike from a local task without moving its text.",
-    "motions": [
-      "Line draw",
-      "Text settle"
-    ],
-    "variants": [
-      "buttons-text-strike-v11"
-    ],
-    "keywords": [
       "strikethrough",
-      "text",
-      "task",
-      "format",
-      "basic",
-      "animated icon",
-      "editor"
-    ],
-    "page": "./component.html?component=matte-buttons-text-strike-v11",
-    "preview": "./packages/buttons-text-strike-v11/index.html?embed=1",
-    "packageRoot": "./packages/",
-    "downloads": {
-      "buttons-text-strike-v11": "./downloads/matte-buttons-text-strike-v11.zip"
-    },
-    "usage": [
-      {
-        "title": "Use the component",
-        "paragraphs": [
-          "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting your editor or media surface."
-        ]
-      },
-      {
-        "title": "Controller",
-        "paragraphs": [
-          "toggle() advances the control and setStruck(value) silently accepts 'clear' | 'struck'. state reports { struck, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
-        ]
-      },
-      {
-        "title": "Appearance and accessibility",
-        "paragraphs": [
-          "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
-        ]
-      }
-    ]
-  },
-  {
-    "id": "matte-buttons-text-align-v11",
-    "category": "buttons",
-    "name": "Text alignment",
-    "description": "Cycle a local paragraph through left, center and right alignment.",
-    "motions": [
-      "Line glide",
-      "Alignment shift"
-    ],
-    "variants": [
-      "buttons-text-align-v11"
-    ],
-    "keywords": [
-      "align",
-      "left",
-      "center",
-      "right",
-      "text",
-      "basic",
-      "animated icon",
-      "editor"
-    ],
-    "page": "./component.html?component=matte-buttons-text-align-v11",
-    "preview": "./packages/buttons-text-align-v11/index.html?embed=1",
-    "packageRoot": "./packages/",
-    "downloads": {
-      "buttons-text-align-v11": "./downloads/matte-buttons-text-align-v11.zip"
-    },
-    "usage": [
-      {
-        "title": "Use the component",
-        "paragraphs": [
-          "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting your editor or media surface."
-        ]
-      },
-      {
-        "title": "Controller",
-        "paragraphs": [
-          "cycle() advances the control and setAlignment(value) silently accepts 'left' | 'center' | 'right'. state reports { alignment, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
-        ]
-      },
-      {
-        "title": "Appearance and accessibility",
-        "paragraphs": [
-          "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
-        ]
-      }
-    ]
-  },
-  {
-    "id": "matte-buttons-list-style-v11",
-    "category": "buttons",
-    "name": "List style",
-    "description": "Cycle a local list through bullets, numbers and checks with stable row geometry.",
-    "motions": [
-      "Marker morph",
-      "Row settle"
-    ],
-    "variants": [
-      "buttons-list-style-v11"
-    ],
-    "keywords": [
+      "alignment",
       "list",
-      "bullets",
-      "numbers",
-      "checklist",
-      "basic",
-      "animated icon",
-      "editor"
+      "indent"
     ],
-    "page": "./component.html?component=matte-buttons-list-style-v11",
-    "preview": "./packages/buttons-list-style-v11/index.html?embed=1",
+    "page": "./component.html?component=matte-buttons-text-editor-toolbar-v11",
+    "preview": "./packages/buttons-text-editor-toolbar-v11/index.html?embed=1",
     "packageRoot": "./packages/",
     "downloads": {
-      "buttons-list-style-v11": "./downloads/matte-buttons-list-style-v11.zip"
+      "buttons-text-editor-toolbar-v11": "./downloads/matte-buttons-text-editor-toolbar-v11.zip"
     },
     "usage": [
       {
         "title": "Use the component",
         "paragraphs": [
-          "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting your editor or media surface."
+          "Serve the extracted package over HTTP. The bundled demonstration formats only its editable local sample. Use mount(root, options) to connect the seven commands and text input to a real editor."
         ]
       },
       {
         "title": "Controller",
         "paragraphs": [
-          "cycle() advances the control and setListStyle(value) silently accepts 'bullets' | 'numbers' | 'checks'. state reports { listStyle, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          "toggleBold(), toggleItalic(), cycleCase(), toggleStrike(), cycleAlignment(), cycleList() and cycleIndent() update local state. Matching setters are silent. User commands call onChange and dispatch one sl:action event; edits call onInput and dispatch sl:text-input. reset() and destroy() are repeat-safe."
         ]
       },
       {
         "title": "Appearance and accessibility",
         "paragraphs": [
-          "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
-        ]
-      }
-    ]
-  },
-  {
-    "id": "matte-buttons-indent-level-v11",
-    "category": "buttons",
-    "name": "Indent level",
-    "description": "Advance a local paragraph through four exact indentation levels and return to zero.",
-    "motions": [
-      "Line indent",
-      "Arrow nudge"
-    ],
-    "variants": [
-      "buttons-indent-level-v11"
-    ],
-    "keywords": [
-      "indent",
-      "text",
-      "paragraph",
-      "level",
-      "basic",
-      "animated icon",
-      "editor"
-    ],
-    "page": "./component.html?component=matte-buttons-indent-level-v11",
-    "preview": "./packages/buttons-indent-level-v11/index.html?embed=1",
-    "packageRoot": "./packages/",
-    "downloads": {
-      "buttons-indent-level-v11": "./downloads/matte-buttons-indent-level-v11.zip"
-    },
-    "usage": [
-      {
-        "title": "Use the component",
-        "paragraphs": [
-          "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting your editor or media surface."
-        ]
-      },
-      {
-        "title": "Controller",
-        "paragraphs": [
-          "cycle() advances the control and setLevel(value) silently accepts '0' | '1' | '2' | '3'. state reports { level, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
-        ]
-      },
-      {
-        "title": "Appearance and accessibility",
-        "paragraphs": [
-          "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
+          "Override the --action-* variables on .sl-component to adapt the neutral palette. The toolbar uses native buttons, roving arrow-key focus and visible focus states. Formatting motion respects prefers-reduced-motion and forced colors."
         ]
       }
     ]

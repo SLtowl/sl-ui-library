@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Text editor toolbar · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:8px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-text-editor-toolbar" data-bold="false" data-italic="false" data-case="sentence" data-strike="false" data-align="left" data-list="bullets" data-indent="0" aria-label="Text editor toolbar">
+    <div class="editor-shell">
+      <div class="tool-row" role="toolbar" aria-label="Text formatting tools">
+        <button class="tool-button" type="button" data-command="bold" aria-label="Apply bold" title="Bold" aria-pressed="false" tabindex="0">
+          <span class="tool-surface" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15M7 5h6a4 4 0 0 1 0 8H7m0-.5h6.7a3.5 3.5 0 0 1 0 7H7"/></svg></span>
+        </button>
+        <button class="tool-button" type="button" data-command="italic" aria-label="Apply italic" title="Italic" aria-pressed="false" tabindex="-1">
+          <span class="tool-surface" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 5h7M7 19h7M14.5 5 9.5 19"/></svg></span>
+        </button>
+        <button class="tool-button" type="button" data-command="case" aria-label="Change text case to uppercase" title="Text case" tabindex="-1">
+          <span class="tool-surface" aria-hidden="true"><span class="case-glyph" data-case-glyph>Aa</span></span>
+        </button>
+        <button class="tool-button" type="button" data-command="strike" aria-label="Apply strikethrough" title="Strikethrough" aria-pressed="false" tabindex="-1">
+          <span class="tool-surface" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 7.5c.8-1.4 2.2-2.1 4.2-2.1 2.2 0 3.7.8 4.5 2.3M6 12h12M15.8 15.3c-.6 2.1-2.1 3.2-4.4 3.2-2 0-3.5-.7-4.4-2"/></svg></span>
+        </button>
+        <button class="tool-button" type="button" data-command="align" aria-label="Align text to center" title="Text alignment" tabindex="-1">
+          <span class="tool-surface" aria-hidden="true"><svg class="align-icon" viewBox="0 0 24 24"><path class="align-long" d="M4 6h16M4 18h16"/><path class="align-short" d="M4 10h11M4 14h13"/></svg></span>
+        </button>
+        <button class="tool-button" type="button" data-command="list" aria-label="Change list to numbers" title="List style" tabindex="-1">
+          <span class="tool-surface" aria-hidden="true"><svg class="list-icon" viewBox="0 0 24 24"><g class="list-bullets"><circle cx="5" cy="7" r="1"/><circle cx="5" cy="12" r="1"/><circle cx="5" cy="17" r="1"/></g><g class="list-numbers"><path d="M4.5 6.2h1v2M4 12c.3-.8 2-.8 2 0 0 .8-2 1.1-2 2h2M4 17c.4-.5 1.8-.5 1.8.2 0 .5-.5.7-.9.7.5 0 1.1.2 1.1.8 0 .8-1.5.9-2 .3"/></g><g class="list-checks"><path d="m3.8 7 1 1 1.8-2M3.8 12l1 1 1.8-2M3.8 17l1 1 1.8-2"/></g><path d="M9 7h11M9 12h11M9 17h11"/></svg></span>
+        </button>
+        <button class="tool-button" type="button" data-command="indent" aria-label="Increase indentation" title="Indentation" tabindex="-1">
+          <span class="tool-surface" aria-hidden="true"><svg class="indent-icon" viewBox="0 0 24 24"><path d="M10 6h10M10 11h10M10 16h10M10 20h10M3.5 9l3 3-3 3"/></svg></span>
+        </button>
+      </div>
+      <div class="editor-copy" data-editor contenteditable="true" role="textbox" aria-multiline="true" aria-label="Editable text sample" spellcheck="true">
+        <div data-line>Review the title</div>
+        <div data-line>Refine the opening</div>
+        <div data-line>Share the draft</div>
+      </div>
+    </div>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Formatting ready.</p>
+  </section>
+</body>
+</html>
