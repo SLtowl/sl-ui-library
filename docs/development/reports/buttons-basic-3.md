@@ -24,8 +24,16 @@ Status: local owner review required. These ten packages are intentionally exclud
 - Controllers support repeat-safe `reset()` and `destroy()` and cleanly replace an earlier mount.
 - Motion stays between 180 and 360 ms and has reduced-motion and forced-colors fallbacks.
 
+## Owner feedback refinement
+
+- Bold, Italic, Text case, Strikethrough, Text alignment, List style, Indent level, Rotate item and Mirror item now use 36 px icon-only controls inside a small editor toolbar instead of full-width CTA buttons.
+- Strikethrough no longer shows a checkbox-like square before its text sample.
+- List style uses matching bullet, number and check states in both the preview and button icon.
+- Rotate and Mirror use a recognizable image sample; Rotate has a clear clockwise arrow and Mirror has two shapes split by a vertical axis.
+- Crop mode keeps the accepted full-width action treatment.
+
 ## Verification
 
 - Static package, source, offline and isolated-manifest contract: passed.
-- Real browser coverage for all state cycles, visible sample changes, keyboard reversal, event counts, remount cleanup, reduced motion and 226 px fit: passed (6/6).
+- Real browser coverage for all state cycles, visible sample changes, keyboard reversal, event counts, remount cleanup, icon-only geometry, reduced motion and 226 px fit: passed (6/6).
 - Main catalog remains at 254 components and 256 export variants; this unapproved batch is not included.

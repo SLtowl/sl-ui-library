@@ -18,6 +18,7 @@
       root.dataset.state = state.value;
       label.textContent = state.label;
       button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
       button.setAttribute('aria-pressed', String(index === 1));
       status.textContent = state.status;
     }
