@@ -63,12 +63,16 @@ test('refined visuals keep their intended structure and explicit use cases', asy
     expected.map(([variant]) => read(variant, 'index.html'))
   );
   assert.doesNotMatch(cart, /data-preview|cart-scene/);
-  assert.match(cart, /class="bag-item"/);
+  assert.match(cart, /class="cart-shell"/);
+  assert.match(cart, /class="cart-plus"/);
+  assert.match(cart, /class="cart-check"/);
+  assert.doesNotMatch(cart, /bag-item|bag-count/);
   assert.match(archive, /class="archive-document"/);
   assert.match(task, /class="preview-check"/);
   assert.match(task, /class="task-check"/);
   assert.match(assign, /aria-label="Assign person"/);
   assert.match(assign, /class="assign-avatar"/);
+  assert.match(assign, /class="assign-person"/);
   assert.match(compare, /class="compare-card card-a"/);
   assert.match(compare, /class="compare-card card-b"/);
   assert.match(compare, /d="M45 28H75"/);
@@ -141,6 +145,25 @@ test('real browser: everyday actions reverse, remount cleanly and fit narrow pre
     }
     await page.goto(`${origin}/packages/buttons-cart-toggle-v11/index.html`);
     assert.equal(await page.locator('[data-preview]').count(), 0);
+    const cartInitial = await page.evaluate(() => ({
+      plus: getComputedStyle(document.querySelector('.cart-plus')).opacity,
+      check: getComputedStyle(document.querySelector('.cart-check')).opacity
+    }));
+    assert.deepEqual(cartInitial, { plus: '1', check: '0' });
+    await page.locator('[data-action]').click();
+    await page.waitForTimeout(380);
+    const cartAdded = await page.evaluate(() => ({
+      plus: getComputedStyle(document.querySelector('.cart-plus')).opacity,
+      check: getComputedStyle(document.querySelector('.cart-check')).opacity
+    }));
+    assert.deepEqual(cartAdded, { plus: '0', check: '1' });
+    await page.locator('[data-action]').click();
+    await page.waitForTimeout(260);
+    const cartRemoved = await page.evaluate(() => ({
+      plus: getComputedStyle(document.querySelector('.cart-plus')).opacity,
+      check: getComputedStyle(document.querySelector('.cart-check')).opacity
+    }));
+    assert.deepEqual(cartRemoved, { plus: '1', check: '0' });
 
     await page.goto(`${origin}/packages/buttons-archive-toggle-v11/index.html`);
     await page.locator('[data-action]').click();
@@ -156,6 +179,16 @@ test('real browser: everyday actions reverse, remount cleanly and fit narrow pre
     });
     assert.equal(archivedGeometry.documentOpacity, '0');
     assert.ok(archivedGeometry.documentBottom <= archivedGeometry.archiveBottom + 0.5);
+    await page.locator('[data-action]').click();
+    await page.waitForTimeout(80);
+    const restoringMotion = await page.evaluate(() => ({
+      documentOpacity: Number(getComputedStyle(document.querySelector('.archive-document')).opacity),
+      sheetOpacity: Number(getComputedStyle(document.querySelector('.archive-sheet')).opacity),
+      documentTransform: getComputedStyle(document.querySelector('.archive-document')).transform
+    }));
+    assert.ok(restoringMotion.documentOpacity > 0.1);
+    assert.ok(restoringMotion.sheetOpacity > 0.1);
+    assert.notEqual(restoringMotion.documentTransform, 'none');
 
     await page.goto(`${origin}/packages/buttons-assign-toggle-v11/index.html`);
     await page.locator('[data-action]').click();
@@ -164,17 +197,27 @@ test('real browser: everyday actions reverse, remount cleanly and fit narrow pre
       const slot = document.querySelector('.assign-card em').getBoundingClientRect();
       const avatar = document.querySelector('.assign-avatar').getBoundingClientRect();
       const link = document.querySelector('.assign-link');
+      const slotStyle = getComputedStyle(document.querySelector('.assign-card em'));
+      const glyph = document.querySelector('.assign-person').getBBox();
       return {
         slotX: slot.left + slot.width / 2,
         slotY: slot.top + slot.height / 2,
         avatarX: avatar.left + avatar.width / 2,
         avatarY: avatar.top + avatar.height / 2,
-        linkOpacity: getComputedStyle(link).opacity
+        avatarWidth: avatar.width,
+        slotOpacity: slotStyle.opacity,
+        linkOpacity: getComputedStyle(link).opacity,
+        glyphCenterX: glyph.x + glyph.width / 2,
+        glyphCenterY: glyph.y + glyph.height / 2
       };
     });
     assert.ok(Math.abs(assignedGeometry.slotX - assignedGeometry.avatarX) <= 1);
     assert.ok(Math.abs(assignedGeometry.slotY - assignedGeometry.avatarY) <= 1);
+    assert.ok(Math.abs(assignedGeometry.avatarWidth - 23) <= 0.25);
+    assert.equal(assignedGeometry.slotOpacity, '0');
     assert.equal(assignedGeometry.linkOpacity, '0');
+    assert.ok(Math.abs(assignedGeometry.glyphCenterX - 12) <= 0.25);
+    assert.ok(Math.abs(assignedGeometry.glyphCenterY - 12) <= 0.5);
 
     await page.goto(`${origin}/packages/buttons-compare-toggle-v11/index.html`);
     const stacked = await page.locator('.compare-card').evaluateAll(nodes => nodes.map(node => {
