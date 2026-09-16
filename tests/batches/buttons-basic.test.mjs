@@ -51,6 +51,12 @@ test('basic buttons review batch has ten distinct, complete and offline packages
     assert.match(js, /destroy\(\)/);
     assert.match(example, /SLComponent\.mountPreview/);
     assert.doesNotMatch(html + css + js + example, /https?:\/\//);
+    if (variant === 'buttons-pin-toggle-v11') {
+      assert.match(html, /class="pin-glyph"/);
+      assert.match(html, /class="pin-head"/);
+      assert.match(html, /class="pin-needle"/);
+      assert.doesNotMatch(html, /pin-shape/);
+    }
     new Script(js, { filename: `${variant}/buttons.js` });
     new Script(example, { filename: `${variant}/example.js` });
     assert.deepEqual(await readFile(new URL(`public/packages/${variant}/instrument-sans-variable.woff2`, project)), font);
@@ -132,18 +138,25 @@ test('real browser: interactions, lifecycle, narrow fit, palette and reduced mot
         const before = await page.evaluate(() => {
           const icon = document.querySelector('.button-icon').getBoundingClientRect();
           const label = document.querySelector('.button-label').getBoundingClientRect();
-          return { iconX: icon.x, labelX: label.x, labelWidth: label.width };
+          const button = document.querySelector('[data-action]').getBoundingClientRect();
+          return { iconX: icon.x, labelX: label.x, labelWidth: label.width, buttonCenter: button.x + button.width / 2, labelCenter: label.x + label.width / 2 };
         });
         await page.locator('[data-action]').click();
         await page.waitForTimeout(80);
         const during = await page.evaluate(() => {
           const icon = document.querySelector('.button-icon').getBoundingClientRect();
           const label = document.querySelector('.button-label').getBoundingClientRect();
-          return { iconX: icon.x, labelX: label.x, labelWidth: label.width };
+          const button = document.querySelector('[data-action]').getBoundingClientRect();
+          return { iconX: icon.x, labelX: label.x, labelWidth: label.width, buttonCenter: button.x + button.width / 2, labelCenter: label.x + label.width / 2 };
         });
         assert.ok(Math.abs(before.iconX - during.iconX) < 0.25, `${slug}: icon layout shifted`);
-        assert.ok(Math.abs(before.labelX - during.labelX) < 0.25, `${slug}: label layout shifted`);
-        assert.ok(Math.abs(before.labelWidth - during.labelWidth) < 0.25, `${slug}: label width shifted`);
+        if (slug === 'send-message') {
+          assert.ok(Math.abs(before.buttonCenter - before.labelCenter) < 0.25, 'send-message: idle label is not centered');
+          assert.ok(Math.abs(during.buttonCenter - during.labelCenter) < 0.25, 'send-message: pending label is not centered');
+        } else {
+          assert.ok(Math.abs(before.labelX - during.labelX) < 0.25, `${slug}: label layout shifted`);
+          assert.ok(Math.abs(before.labelWidth - during.labelWidth) < 0.25, `${slug}: label width shifted`);
+        }
       }
     });
 
@@ -256,7 +269,7 @@ test('real browser: interactions, lifecycle, narrow fit, palette and reduced mot
         const root = document.querySelector('.sl-component');
         return {
           surface: getComputedStyle(root.querySelector('.button-surface')).transitionDuration,
-          icon: getComputedStyle(root.querySelector('.pin-shape')).transitionDuration,
+          icon: getComputedStyle(root.querySelector('.pin-glyph')).transitionDuration,
         };
       });
       assert.equal(motion.surface, '0s');

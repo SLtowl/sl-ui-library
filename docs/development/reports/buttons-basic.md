@@ -32,5 +32,6 @@ Status: **local owner review required**. These ten packages are intentionally ab
 - `npm run check`: **161 passed, 0 failed, 93 skipped**. Skips are optional browser suites without their environment variables; the new batch's dedicated browser suite was run separately and passed.
 - Manual visual review covered the desktop grid, completed button states, the expanded disclosure and the lower cards. One stale disclosure accessible name and one review-iframe scrollbar were found and fixed during this pass.
 - Owner feedback refinement: Send message, Link or unlink, Lock or unlock and Pin item now reserve label geometry so text changes cannot move the icon group. Their icon paths use longer continuous easing curves; Send keeps the plane on one trajectory through pending/complete, Link draws the connector after both chain halves meet, and Lock/Pin use smaller reversible rotations.
+- Second owner feedback refinement: Send message now centers every label independently of its length while its icon remains anchored. Pin item uses a newly drawn classic two-part thumbtack outline instead of the original irregular pin contour.
 
 Local review URL while the review server is running: `http://127.0.0.1:4337/`.
