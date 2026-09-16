@@ -1,6 +1,6 @@
 # Basic animated buttons — batch 4 review
 
-Status: local owner review required. These ten packages are intentionally excluded from `public/catalog-data.js` and generated plugin data until approval and a future release transition.
+Status: owner approved on 2026-09-17. These ten packages remain intentionally excluded from `public/catalog-data.js` and generated plugin data until a future release transition.
 
 ## Components
 
