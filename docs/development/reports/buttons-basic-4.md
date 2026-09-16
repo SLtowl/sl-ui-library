@@ -4,10 +4,10 @@ Status: local owner review required. These ten packages are intentionally exclud
 
 ## Components
 
-1. Cart item — a product card follows a curved route into a shopping bag with stable count geometry.
-2. Archive item — a document enters a detailed archive case while its lid closes.
+1. Cart item — a standalone bag button without an additional preview scene.
+2. Archive item — a document enters a detailed archive case and remains fully concealed in the archived state.
 3. Complete task — centered preview and button checks draw without changing icon alignment.
-4. Assign person — an avatar docks into a task card and reverses back to the unassigned state.
+4. Assign person — an avatar docks exactly into a task-card slot while its connector retracts.
 5. Compare items — two visible stacked cards separate symmetrically and gain a straight connector.
 6. New folder — a layered folder opens and reveals two documents with a plus-to-check button icon.
 7. Comment on selection — a comment attaches to visibly selected document text so the use case is explicit.
@@ -26,6 +26,6 @@ Status: local owner review required. These ten packages are intentionally exclud
 ## Verification
 
 - Static package, source, offline and isolated-manifest contract: passed.
-- Targeted real-browser interaction, lifecycle, 226 px fit, literal Unicode, reduced motion and symmetric Compare split: passed (3/3 with bundled Chromium).
+- Targeted real-browser interaction, lifecycle, 226 px fit, literal Unicode and reduced motion: passed (3/3 with bundled Chromium). The browser test also proves Cart has no preview scene, the archived document is fully concealed, the assigned avatar is centered within 1 px, its connector disappears, and Compare separates symmetrically.
 - Full `npm run check`: passed (165 tests passed, 96 optional browser checks skipped because their environment variables are not set by the aggregate runner).
 - Main catalog remains at 254 components and 256 export variants; this review batch is not included.

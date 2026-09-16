@@ -4,9 +4,9 @@ export default [
     "id": "matte-buttons-cart-toggle-v11",
     "category": "buttons",
     "name": "Cart item",
-    "description": "Add or remove one local product with a product tile that drops into a structured shopping bag.",
+    "description": "Add or remove one local product with a compact standalone shopping-bag button.",
     "motions": [
-      "Product drop",
+      "Item settle",
       "Bag counter"
     ],
     "variants": [
@@ -148,10 +148,10 @@ export default [
     "id": "matte-buttons-assign-toggle-v11",
     "category": "buttons",
     "name": "Assign person",
-    "description": "Assign or remove one local teammate as an avatar travels into a visible task slot.",
+    "description": "Assign or remove one local teammate as an avatar travels precisely into a visible task slot.",
     "motions": [
       "Avatar dock",
-      "Assignee link"
+      "Connector retract"
     ],
     "variants": [
       "buttons-assign-toggle-v11"

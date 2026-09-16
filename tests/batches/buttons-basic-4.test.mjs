@@ -62,7 +62,7 @@ test('refined visuals keep their intended structure and explicit use cases', asy
   const [cart, archive, task, assign, compare, folder, comment, translate, tag, photo] = await Promise.all(
     expected.map(([variant]) => read(variant, 'index.html'))
   );
-  assert.match(cart, /class="cart-scene"/);
+  assert.doesNotMatch(cart, /data-preview|cart-scene/);
   assert.match(cart, /class="bag-item"/);
   assert.match(archive, /class="archive-document"/);
   assert.match(task, /class="preview-check"/);
@@ -139,6 +139,43 @@ test('real browser: everyday actions reverse, remount cleanly and fit narrow pre
       const rect = await page.locator('.sl-component').evaluate(node => { const box = node.getBoundingClientRect(); return { left: box.left, right: box.right, top: box.top, bottom: box.bottom }; });
       assert.ok(rect.left >= -0.5 && rect.right <= 226.5 && rect.top >= -0.5 && rect.bottom <= 250.5, variant);
     }
+    await page.goto(`${origin}/packages/buttons-cart-toggle-v11/index.html`);
+    assert.equal(await page.locator('[data-preview]').count(), 0);
+
+    await page.goto(`${origin}/packages/buttons-archive-toggle-v11/index.html`);
+    await page.locator('[data-action]').click();
+    await page.waitForTimeout(560);
+    const archivedGeometry = await page.evaluate(() => {
+      const documentBox = document.querySelector('.archive-document').getBoundingClientRect();
+      const archiveBox = document.querySelector('.archive-back').getBoundingClientRect();
+      return {
+        documentBottom: documentBox.bottom,
+        archiveBottom: archiveBox.bottom,
+        documentOpacity: getComputedStyle(document.querySelector('.archive-document')).opacity
+      };
+    });
+    assert.equal(archivedGeometry.documentOpacity, '0');
+    assert.ok(archivedGeometry.documentBottom <= archivedGeometry.archiveBottom + 0.5);
+
+    await page.goto(`${origin}/packages/buttons-assign-toggle-v11/index.html`);
+    await page.locator('[data-action]').click();
+    await page.waitForTimeout(560);
+    const assignedGeometry = await page.evaluate(() => {
+      const slot = document.querySelector('.assign-card em').getBoundingClientRect();
+      const avatar = document.querySelector('.assign-avatar').getBoundingClientRect();
+      const link = document.querySelector('.assign-link');
+      return {
+        slotX: slot.left + slot.width / 2,
+        slotY: slot.top + slot.height / 2,
+        avatarX: avatar.left + avatar.width / 2,
+        avatarY: avatar.top + avatar.height / 2,
+        linkOpacity: getComputedStyle(link).opacity
+      };
+    });
+    assert.ok(Math.abs(assignedGeometry.slotX - assignedGeometry.avatarX) <= 1);
+    assert.ok(Math.abs(assignedGeometry.slotY - assignedGeometry.avatarY) <= 1);
+    assert.equal(assignedGeometry.linkOpacity, '0');
+
     await page.goto(`${origin}/packages/buttons-compare-toggle-v11/index.html`);
     const stacked = await page.locator('.compare-card').evaluateAll(nodes => nodes.map(node => {
       const box = node.getBoundingClientRect();
