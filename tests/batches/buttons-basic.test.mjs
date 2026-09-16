@@ -126,6 +126,27 @@ test('real browser: interactions, lifecycle, narrow fit, palette and reduced mot
       assert.equal((await state()).direction, 'ascending');
     });
 
+    await t.test('reworked icons keep a stable layout while their state and labels change', async () => {
+      for (const slug of ['send-message', 'link-toggle', 'lock-toggle', 'pin-toggle']) {
+        await load(slug);
+        const before = await page.evaluate(() => {
+          const icon = document.querySelector('.button-icon').getBoundingClientRect();
+          const label = document.querySelector('.button-label').getBoundingClientRect();
+          return { iconX: icon.x, labelX: label.x, labelWidth: label.width };
+        });
+        await page.locator('[data-action]').click();
+        await page.waitForTimeout(80);
+        const during = await page.evaluate(() => {
+          const icon = document.querySelector('.button-icon').getBoundingClientRect();
+          const label = document.querySelector('.button-label').getBoundingClientRect();
+          return { iconX: icon.x, labelX: label.x, labelWidth: label.width };
+        });
+        assert.ok(Math.abs(before.iconX - during.iconX) < 0.25, `${slug}: icon layout shifted`);
+        assert.ok(Math.abs(before.labelX - during.labelX) < 0.25, `${slug}: label layout shifted`);
+        assert.ok(Math.abs(before.labelWidth - during.labelWidth) < 0.25, `${slug}: label width shifted`);
+      }
+    });
+
     await t.test('details disclosure opens, closes with Escape and restores focus', async () => {
       await load('details-disclosure');
       const button = page.locator('[data-action]');
