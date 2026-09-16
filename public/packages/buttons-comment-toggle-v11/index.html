@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Add comment · SL UI Library</title>
+  <title>Comment on selection · SL UI Library</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="./buttons.css">
   <script src="./buttons.js" defer></script>
@@ -11,12 +11,12 @@
   <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:8px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
 </head>
 <body>
-  <section class="sl-component" data-kind="buttons-comment-toggle" data-state="none" data-active="false" aria-label="Add comment">
-    <div class="sample-window" data-preview aria-hidden="true"><div class="comment-sample"><span><i></i><b></b></span><em>1</em></div></div>
-    <button class="motion-button" type="button" data-action aria-label="Add a local comment" title="Add a local comment" aria-pressed="false">
-      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><path class="comment-bubble" d="M4 5.5h16v11H9l-4 3v-3H4z"/><path class="comment-plus" d="M12 8.5v5m-2.5-2.5h5"/><path class="comment-check" pathLength="1" d="m9.5 11 2 2 4-4"/></svg></span><span class="button-label" data-label>Add comment</span></span>
+  <section class="sl-component" data-kind="buttons-comment-toggle" data-state="clear" data-active="false" aria-label="Comment on selection">
+    <div class="sample-window" data-preview aria-hidden="true"><div class="comment-scene"><span class="comment-source"><i></i><b></b><u></u></span><span class="comment-bubble"><i></i><b></b></span><em>1</em></div></div>
+    <button class="motion-button" type="button" data-action aria-label="Comment on the selected text" title="Comment on the selected text" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><path class="comment-page" d="M4 3.5h11v17H4zM7 7h5M7 10h4"/><path class="comment-bubble" d="M10 11h10v7h-5l-3 2v-2h-2z"/><path class="comment-plus" d="M15 13v3m-1.5-1.5h3"/><path class="comment-check" pathLength="1" d="m13.5 14.5 1.5 1.5 3-3"/></svg></span><span class="button-label" data-label>Add comment</span></span>
     </button>
-    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">No comment is attached.</p>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Selected text has no comment.</p>
   </section>
 </body>
 </html>

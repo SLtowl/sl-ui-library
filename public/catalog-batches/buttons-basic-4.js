@@ -4,10 +4,10 @@ export default [
     "id": "matte-buttons-cart-toggle-v11",
     "category": "buttons",
     "name": "Cart item",
-    "description": "Add or remove one local product while the item settles into a compact cart.",
+    "description": "Add or remove one local product with a product tile that drops into a structured shopping bag.",
     "motions": [
-      "Item drop",
-      "Badge settle"
+      "Product drop",
+      "Bag counter"
     ],
     "variants": [
       "buttons-cart-toggle-v11"
@@ -16,7 +16,7 @@ export default [
       "cart",
       "shop",
       "product",
-      "add",
+      "bag",
       "basic",
       "animated icon",
       "everyday action"
@@ -52,10 +52,10 @@ export default [
     "id": "matte-buttons-archive-toggle-v11",
     "category": "buttons",
     "name": "Archive item",
-    "description": "Archive or restore a local item with a file that moves cleanly into its box.",
+    "description": "Archive or restore a local document as a detailed sheet settles behind a closing archive lid.",
     "motions": [
-      "File settle",
-      "Lid close"
+      "Document descent",
+      "Archive close"
     ],
     "variants": [
       "buttons-archive-toggle-v11"
@@ -64,7 +64,7 @@ export default [
       "archive",
       "restore",
       "box",
-      "file",
+      "document",
       "basic",
       "animated icon",
       "everyday action"
@@ -100,9 +100,9 @@ export default [
     "id": "matte-buttons-task-complete-v11",
     "category": "buttons",
     "name": "Complete task",
-    "description": "Complete or reopen one local task with a drawn check and a restrained text strike.",
+    "description": "Complete or reopen one local task with two optically centered checks and a controlled line draw.",
     "motions": [
-      "Check draw",
+      "Centered check draw",
       "Text strike"
     ],
     "variants": [
@@ -145,31 +145,31 @@ export default [
     ]
   },
   {
-    "id": "matte-buttons-schedule-toggle-v11",
+    "id": "matte-buttons-assign-toggle-v11",
     "category": "buttons",
-    "name": "Schedule item",
-    "description": "Schedule or clear one local item while the calendar marker lands on its day.",
+    "name": "Assign person",
+    "description": "Assign or remove one local teammate as an avatar travels into a visible task slot.",
     "motions": [
-      "Marker drop",
-      "Calendar settle"
+      "Avatar dock",
+      "Assignee link"
     ],
     "variants": [
-      "buttons-schedule-toggle-v11"
+      "buttons-assign-toggle-v11"
     ],
     "keywords": [
-      "schedule",
-      "calendar",
-      "date",
-      "plan",
+      "assign",
+      "person",
+      "task",
+      "teammate",
       "basic",
       "animated icon",
       "everyday action"
     ],
-    "page": "./component.html?component=matte-buttons-schedule-toggle-v11",
-    "preview": "./packages/buttons-schedule-toggle-v11/index.html?embed=1",
+    "page": "./component.html?component=matte-buttons-assign-toggle-v11",
+    "preview": "./packages/buttons-assign-toggle-v11/index.html?embed=1",
     "packageRoot": "./packages/",
     "downloads": {
-      "buttons-schedule-toggle-v11": "./downloads/matte-buttons-schedule-toggle-v11.zip"
+      "buttons-assign-toggle-v11": "./downloads/matte-buttons-assign-toggle-v11.zip"
     },
     "usage": [
       {
@@ -181,7 +181,7 @@ export default [
       {
         "title": "Controller",
         "paragraphs": [
-          "toggle() reverses the local state and setScheduleState(value) silently accepts 'clear' | 'scheduled'. state reports { scheduleState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          "toggle() reverses the local state and setAssignState(value) silently accepts 'unassigned' | 'assigned'. state reports { assignState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
         ]
       },
       {
@@ -196,10 +196,10 @@ export default [
     "id": "matte-buttons-compare-toggle-v11",
     "category": "buttons",
     "name": "Compare items",
-    "description": "Add or remove a second local card with a smooth overlap and connector reveal.",
+    "description": "Split two already-visible local cards from one stack and connect their aligned edges.",
     "motions": [
-      "Card fan",
-      "Connector reveal"
+      "Symmetric split",
+      "Straight connector"
     ],
     "variants": [
       "buttons-compare-toggle-v11"
@@ -229,7 +229,7 @@ export default [
       {
         "title": "Controller",
         "paragraphs": [
-          "toggle() reverses the local state and setCompareState(value) silently accepts 'single' | 'compared'. state reports { compareState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          "toggle() reverses the local state and setCompareState(value) silently accepts 'stacked' | 'compared'. state reports { compareState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
         ]
       },
       {
@@ -244,10 +244,10 @@ export default [
     "id": "matte-buttons-new-folder-v11",
     "category": "buttons",
     "name": "New folder",
-    "description": "Create or remove a local folder preview while the tab opens and the plus becomes a check.",
+    "description": "Create or remove a local folder preview with layered documents and a hinged front panel.",
     "motions": [
-      "Folder open",
-      "Plus-to-check"
+      "Folder hinge",
+      "Document rise"
     ],
     "variants": [
       "buttons-new-folder-v11"
@@ -291,20 +291,20 @@ export default [
   {
     "id": "matte-buttons-comment-toggle-v11",
     "category": "buttons",
-    "name": "Add comment",
-    "description": "Add or remove a local comment preview as its bubble unfolds without changing layout.",
+    "name": "Comment on selection",
+    "description": "Attach or remove one local review note from a visibly selected line of copy.",
     "motions": [
-      "Bubble unfold",
-      "Line reveal"
+      "Anchored bubble",
+      "Comment reveal"
     ],
     "variants": [
       "buttons-comment-toggle-v11"
     ],
     "keywords": [
       "comment",
-      "message",
-      "note",
-      "discussion",
+      "selection",
+      "review",
+      "document",
       "basic",
       "animated icon",
       "everyday action"
@@ -325,7 +325,7 @@ export default [
       {
         "title": "Controller",
         "paragraphs": [
-          "toggle() reverses the local state and setCommentState(value) silently accepts 'none' | 'added'. state reports { commentState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          "toggle() reverses the local state and setCommentState(value) silently accepts 'clear' | 'commented'. state reports { commentState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
         ]
       },
       {
@@ -388,7 +388,7 @@ export default [
     "id": "matte-buttons-tag-toggle-v11",
     "category": "buttons",
     "name": "Tag item",
-    "description": "Attach or remove one local tag while the label slides neatly into its outline.",
+    "description": "Attach or remove one local category tag with compact uppercase typography and a balanced icon.",
     "motions": [
       "Tag settle",
       "Label reveal"
@@ -436,10 +436,10 @@ export default [
     "id": "matte-buttons-photo-toggle-v11",
     "category": "buttons",
     "name": "Add photo",
-    "description": "Add or clear a synthetic local photo preview with a soft frame-and-image reveal.",
+    "description": "Add or clear a synthetic local photo as a complete image card settles over a small print stack.",
     "motions": [
-      "Image reveal",
-      "Frame settle"
+      "Photo settle",
+      "Print fan"
     ],
     "variants": [
       "buttons-photo-toggle-v11"

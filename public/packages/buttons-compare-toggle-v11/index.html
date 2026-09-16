@@ -11,12 +11,12 @@
   <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:8px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
 </head>
 <body>
-  <section class="sl-component" data-kind="buttons-compare-toggle" data-state="single" data-active="false" aria-label="Compare items">
-    <div class="sample-window" data-preview aria-hidden="true"><div class="compare-sample"><span class="compare-card card-a"><i></i></span><span class="compare-card card-b"><i></i></span><b></b></div></div>
-    <button class="motion-button" type="button" data-action aria-label="Add item to comparison" title="Add item to comparison" aria-pressed="false">
-      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><rect class="compare-a" x="3.5" y="6" width="8" height="12" rx="2"/><rect class="compare-b" x="12.5" y="6" width="8" height="12" rx="2"/><path class="compare-link" pathLength="1" d="M9.5 12h5"/></svg></span><span class="button-label" data-label>Add to compare</span></span>
+  <section class="sl-component" data-kind="buttons-compare-toggle" data-state="stacked" data-active="false" aria-label="Compare items">
+    <div class="sample-window" data-preview aria-hidden="true"><div class="compare-scene"><svg class="compare-connector" viewBox="0 0 120 56" focusable="false"><path pathLength="1" d="M45 28H75"/><circle cx="45" cy="28" r="1.8"/><circle cx="75" cy="28" r="1.8"/></svg><span class="compare-card card-a"><i></i><b></b></span><span class="compare-card card-b"><i></i><b></b></span></div></div>
+    <button class="motion-button" type="button" data-action aria-label="Separate items for comparison" title="Separate items for comparison" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><rect class="compare-a" x="5" y="5" width="9" height="14" rx="2"/><rect class="compare-b" x="10" y="5" width="9" height="14" rx="2"/><path class="compare-link" pathLength="1" d="M9 12h6"/></svg></span><span class="button-label" data-label>Compare</span></span>
     </button>
-    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">One item is selected.</p>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Two items are stacked.</p>
   </section>
 </body>
 </html>

@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const states = Object.freeze([{"value":"clear","label":"Schedule","aria":"Schedule item","status":"No date is selected."},{"value":"scheduled","label":"Clear date","aria":"Clear scheduled date","status":"Scheduled for the 18th."}].map(Object.freeze));
+  const states = Object.freeze([{"value":"unassigned","label":"Assign person","aria":"Assign a person to the item","status":"No person is assigned."},{"value":"assigned","label":"Unassign","aria":"Remove the assigned person","status":"Alex is assigned."}].map(Object.freeze));
   function mount(root, options = {}) {
     if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
     const view = root.ownerDocument.defaultView;
@@ -29,8 +29,8 @@
       index = next;
       render();
       if (emit) {
-        const detail = { kind: root.dataset.kind, scheduleState: states[index].value };
-        options.onChange?.({ scheduleState: states[index].value });
+        const detail = { kind: root.dataset.kind, assignState: states[index].value };
+        options.onChange?.({ assignState: states[index].value });
         root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
       }
       return true;
@@ -44,7 +44,7 @@
     listen(button, 'click', toggle);
     listen(root, 'sl:buttons-remount', destroy);
     reset();
-    return { toggle, setScheduleState: value => setValue(value), reset, destroy, get state() { return { scheduleState: states[index].value, index }; } };
+    return { toggle, setAssignState: value => setValue(value), reset, destroy, get state() { return { assignState: states[index].value, index }; } };
   }
   function mountPreview(root) { return mount(root); }
   window.SLComponent = { mount, mountPreview };

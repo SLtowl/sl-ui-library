@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const states = Object.freeze([{"value":"none","label":"Add comment","aria":"Add a local comment","status":"No comment is attached."},{"value":"added","label":"Remove comment","aria":"Remove the local comment","status":"One comment is attached."}].map(Object.freeze));
+  const states = Object.freeze([{"value":"clear","label":"Add comment","aria":"Comment on the selected text","status":"Selected text has no comment."},{"value":"commented","label":"Remove comment","aria":"Remove the comment from selected text","status":"Selected text has one comment."}].map(Object.freeze));
   function mount(root, options = {}) {
     if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
     const view = root.ownerDocument.defaultView;
