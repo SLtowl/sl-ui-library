@@ -13606,6 +13606,1167 @@
           "OFL.txt"
         ]
       }
+    },
+    {
+      "id": "matte-buttons-add-item-v11",
+      "category": "buttons",
+      "name": "Add item",
+      "description": "Add or remove one local item with a plus that resolves into a drawn check.",
+      "motions": [
+        "Plus to check",
+        "Soft press"
+      ],
+      "variants": [
+        "buttons-add-item-v11"
+      ],
+      "keywords": [
+        "add",
+        "create",
+        "plus",
+        "check",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-add-item-v11",
+      "preview": "./packages/buttons-add-item-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-add-item-v11": "./downloads/matte-buttons-add-item-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() and setAdded(value) update local state. state is { added }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-add-item-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-send-message-v11",
+      "category": "buttons",
+      "name": "Send message",
+      "description": "Run a message action with a paper plane departure and confirmed check state.",
+      "motions": [
+        "Plane departure",
+        "Check draw"
+      ],
+      "variants": [
+        "buttons-send-message-v11"
+      ],
+      "keywords": [
+        "send",
+        "message",
+        "paper plane",
+        "action",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-send-message-v11",
+      "preview": "./packages/buttons-send-message-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-send-message-v11": "./downloads/matte-buttons-send-message-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "Pass onSend({ signal }) and resolve only after the real send action succeeds. start() returns Promise<boolean>; cancel(), reset() and destroy() are repeat-safe. state is { phase }. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-send-message-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-edit-mode-v11",
+      "category": "buttons",
+      "name": "Edit mode",
+      "description": "Enter or leave a local editing mode while the pencil resolves into a check.",
+      "motions": [
+        "Pencil settle",
+        "Check draw"
+      ],
+      "variants": [
+        "buttons-edit-mode-v11"
+      ],
+      "keywords": [
+        "edit",
+        "done",
+        "pencil",
+        "mode",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-edit-mode-v11",
+      "preview": "./packages/buttons-edit-mode-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-edit-mode-v11": "./downloads/matte-buttons-edit-mode-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() and setEditing(value) update local state. state is { editing }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-edit-mode-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-link-toggle-v11",
+      "category": "buttons",
+      "name": "Link or unlink",
+      "description": "Connect or separate two items with animated chain halves and explicit pressed state.",
+      "motions": [
+        "Chain connect",
+        "Soft press"
+      ],
+      "variants": [
+        "buttons-link-toggle-v11"
+      ],
+      "keywords": [
+        "link",
+        "unlink",
+        "chain",
+        "connect",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-link-toggle-v11",
+      "preview": "./packages/buttons-link-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-link-toggle-v11": "./downloads/matte-buttons-link-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() and setLinked(value) update local state. state is { linked }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-link-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-lock-toggle-v11",
+      "category": "buttons",
+      "name": "Lock or unlock",
+      "description": "Toggle a local lock state while the shackle opens and settles into place.",
+      "motions": [
+        "Shackle close",
+        "Soft press"
+      ],
+      "variants": [
+        "buttons-lock-toggle-v11"
+      ],
+      "keywords": [
+        "lock",
+        "unlock",
+        "secure",
+        "privacy",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-lock-toggle-v11",
+      "preview": "./packages/buttons-lock-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-lock-toggle-v11": "./downloads/matte-buttons-lock-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() and setLocked(value) update local state. state is { locked }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-lock-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-details-disclosure-v11",
+      "category": "buttons",
+      "name": "Details disclosure",
+      "description": "Reveal compact supporting content with a rotating chevron and reversible height motion.",
+      "motions": [
+        "Chevron rotate",
+        "Reversible reveal"
+      ],
+      "variants": [
+        "buttons-details-disclosure-v11"
+      ],
+      "keywords": [
+        "details",
+        "expand",
+        "collapse",
+        "disclosure",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-details-disclosure-v11",
+      "preview": "./packages/buttons-details-disclosure-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-details-disclosure-v11": "./downloads/matte-buttons-details-disclosure-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() and setExpanded(value) update the local disclosure. state is { expanded }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-details-disclosure-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-filter-toggle-v11",
+      "category": "buttons",
+      "name": "Filter toggle",
+      "description": "Apply or clear a local filter with a funnel that tightens into an active marker.",
+      "motions": [
+        "Funnel tighten",
+        "Marker pop"
+      ],
+      "variants": [
+        "buttons-filter-toggle-v11"
+      ],
+      "keywords": [
+        "filter",
+        "funnel",
+        "clear",
+        "toggle",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-filter-toggle-v11",
+      "preview": "./packages/buttons-filter-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-filter-toggle-v11": "./downloads/matte-buttons-filter-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() and setActive(value) update local state. state is { active }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-filter-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-sort-direction-v11",
+      "category": "buttons",
+      "name": "Sort direction",
+      "description": "Switch between ascending and descending order while the arrow and rows exchange direction.",
+      "motions": [
+        "Arrow flip",
+        "Row reorder"
+      ],
+      "variants": [
+        "buttons-sort-direction-v11"
+      ],
+      "keywords": [
+        "sort",
+        "ascending",
+        "descending",
+        "order",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-sort-direction-v11",
+      "preview": "./packages/buttons-sort-direction-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-sort-direction-v11": "./downloads/matte-buttons-sort-direction-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() and setDirection('ascending' | 'descending') update local order. state is { direction }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-sort-direction-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-pin-toggle-v11",
+      "category": "buttons",
+      "name": "Pin item",
+      "description": "Pin or unpin one local item with a thumbtack that rotates into its resting position.",
+      "motions": [
+        "Pin settle",
+        "Soft press"
+      ],
+      "variants": [
+        "buttons-pin-toggle-v11"
+      ],
+      "keywords": [
+        "pin",
+        "unpin",
+        "item",
+        "keep",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-pin-toggle-v11",
+      "preview": "./packages/buttons-pin-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-pin-toggle-v11": "./downloads/matte-buttons-pin-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() and setPinned(value) update local state. state is { pinned }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-pin-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-print-document-v11",
+      "category": "buttons",
+      "name": "Print document",
+      "description": "Run a print callback while a page feeds through the printer and resolves to a check.",
+      "motions": [
+        "Paper feed",
+        "Check draw"
+      ],
+      "variants": [
+        "buttons-print-document-v11"
+      ],
+      "keywords": [
+        "print",
+        "document",
+        "printer",
+        "action",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-print-document-v11",
+      "preview": "./packages/buttons-print-document-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-print-document-v11": "./downloads/matte-buttons-print-document-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "Pass onPrint({ signal }) and resolve only after the real print action succeeds. start() returns Promise<boolean>; cancel(), reset() and destroy() are repeat-safe. state is { phase }. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-print-document-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-search-toggle-v11",
+      "category": "buttons",
+      "name": "Search reveal",
+      "description": "Reveal a working local search field, filter literal project names and choose a result.",
+      "motions": [
+        "Field reveal",
+        "Chevron turn"
+      ],
+      "variants": [
+        "buttons-search-toggle-v11"
+      ],
+      "keywords": [
+        "search",
+        "find",
+        "filter",
+        "results",
+        "magnifier",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-search-toggle-v11",
+      "preview": "./packages/buttons-search-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-search-toggle-v11": "./downloads/matte-buttons-search-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "Pass literal items, then use open(), close(), toggle(), setQuery(value) or choose(value). state is { open, query, matches }. Search changes dispatch sl:action; selection dispatches sl:search-select. reset() and destroy() are repeat-safe."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-search-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-visibility-toggle-v11",
+      "category": "buttons",
+      "name": "Visibility toggle",
+      "description": "Show or hide local content with an eye that opens and removes its diagonal stroke.",
+      "motions": [
+        "Eye reveal",
+        "Slash dissolve"
+      ],
+      "variants": [
+        "buttons-visibility-toggle-v11"
+      ],
+      "keywords": [
+        "show",
+        "hide",
+        "visibility",
+        "eye",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-visibility-toggle-v11",
+      "preview": "./packages/buttons-visibility-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-visibility-toggle-v11": "./downloads/matte-buttons-visibility-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() and setVisible(value) update local state. state is { visible }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-visibility-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-zoom-view-v11",
+      "category": "buttons",
+      "name": "Zoom view",
+      "description": "Step a local view through 100%, 125% and 150%, then return to its original scale.",
+      "motions": [
+        "Sample scale",
+        "Magnifier to reset"
+      ],
+      "variants": [
+        "buttons-zoom-view-v11"
+      ],
+      "keywords": [
+        "zoom",
+        "scale",
+        "magnifier",
+        "reset",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-zoom-view-v11",
+      "preview": "./packages/buttons-zoom-view-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-zoom-view-v11": "./downloads/matte-buttons-zoom-view-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "step() advances through 100, 125 and 150 percent; setZoom(value) accepts those exact levels. state is { zoom, index }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-zoom-view-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-expand-toggle-v11",
+      "category": "buttons",
+      "name": "Expand or collapse",
+      "description": "Switch a local display mode with four corner strokes that move continuously outward and inward.",
+      "motions": [
+        "Corner travel",
+        "Soft press"
+      ],
+      "variants": [
+        "buttons-expand-toggle-v11"
+      ],
+      "keywords": [
+        "expand",
+        "collapse",
+        "fullscreen",
+        "corners",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-expand-toggle-v11",
+      "preview": "./packages/buttons-expand-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-expand-toggle-v11": "./downloads/matte-buttons-expand-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() and setExpanded(value) update local state. state is { expanded }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-expand-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-view-switch-v11",
+      "category": "buttons",
+      "name": "Grid or list view",
+      "description": "Switch between grid and list presentation with cells that flow into aligned rows.",
+      "motions": [
+        "Grid to list",
+        "Cell flow"
+      ],
+      "variants": [
+        "buttons-view-switch-v11"
+      ],
+      "keywords": [
+        "grid",
+        "list",
+        "view",
+        "layout",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-view-switch-v11",
+      "preview": "./packages/buttons-view-switch-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-view-switch-v11": "./downloads/matte-buttons-view-switch-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() and setView('grid' | 'list') update local state. state is { view }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-view-switch-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-sidebar-toggle-v11",
+      "category": "buttons",
+      "name": "Sidebar toggle",
+      "description": "Open or close a local sidebar state while a panel slides inside a stable frame.",
+      "motions": [
+        "Panel slide",
+        "Divider reveal"
+      ],
+      "variants": [
+        "buttons-sidebar-toggle-v11"
+      ],
+      "keywords": [
+        "sidebar",
+        "panel",
+        "open",
+        "close",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-sidebar-toggle-v11",
+      "preview": "./packages/buttons-sidebar-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-sidebar-toggle-v11": "./downloads/matte-buttons-sidebar-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() and setOpen(value) update local state. state is { open }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-sidebar-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-notifications-toggle-v11",
+      "category": "buttons",
+      "name": "Notifications toggle",
+      "description": "Enable or silence local alerts with a bell that settles as its diagonal stroke disappears.",
+      "motions": [
+        "Bell settle",
+        "Slash dissolve"
+      ],
+      "variants": [
+        "buttons-notifications-toggle-v11"
+      ],
+      "keywords": [
+        "notification",
+        "bell",
+        "alert",
+        "mute",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-notifications-toggle-v11",
+      "preview": "./packages/buttons-notifications-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-notifications-toggle-v11": "./downloads/matte-buttons-notifications-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() and setEnabled(value) update local state. state is { enabled }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-notifications-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-attachment-toggle-v11",
+      "category": "buttons",
+      "name": "Attachment toggle",
+      "description": "Attach or remove one local draft file with a clean paperclip that settles without an extra badge.",
+      "motions": [
+        "Paperclip settle",
+        "Soft press"
+      ],
+      "variants": [
+        "buttons-attachment-toggle-v11"
+      ],
+      "keywords": [
+        "attach",
+        "file",
+        "paperclip",
+        "remove",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-attachment-toggle-v11",
+      "preview": "./packages/buttons-attachment-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-attachment-toggle-v11": "./downloads/matte-buttons-attachment-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() and setAttached(value) update local state. state is { attached }. reset() and destroy() are repeat-safe. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-attachment-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-undo-action-v11",
+      "category": "buttons",
+      "name": "Undo action",
+      "description": "Run a real undo callback with a short backward arrow motion and immediate confirmation.",
+      "motions": [
+        "Arrow rewind",
+        "Check draw"
+      ],
+      "variants": [
+        "buttons-undo-action-v11"
+      ],
+      "keywords": [
+        "undo",
+        "reverse",
+        "history",
+        "action",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-undo-action-v11",
+      "preview": "./packages/buttons-undo-action-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-undo-action-v11": "./downloads/matte-buttons-undo-action-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "Pass onUndo({ signal }) and resolve only after the real undo action succeeds. start() returns Promise<boolean>; cancel(), reset() and destroy() are repeat-safe. state is { phase }. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-undo-action-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-move-item-v11",
+      "category": "buttons",
+      "name": "Move item",
+      "description": "Run a real move callback while an item follows its arrow and resolves to a check.",
+      "motions": [
+        "Item travel",
+        "Check draw"
+      ],
+      "variants": [
+        "buttons-move-item-v11"
+      ],
+      "keywords": [
+        "move",
+        "item",
+        "arrow",
+        "action",
+        "basic",
+        "animated icon"
+      ],
+      "page": "./component.html?component=matte-buttons-move-item-v11",
+      "preview": "./packages/buttons-move-item-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-move-item-v11": "./downloads/matte-buttons-move-item-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The preview is local and offline. Replace mountPreview with mount when wiring application behavior."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "Pass onMove({ signal }) and resolve only after the real move action succeeds. start() returns Promise<boolean>; cancel(), reset() and destroy() are repeat-safe. state is { phase }. User-triggered changes dispatch a bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override --action-ink, --action-surface, --action-hover, --action-text, --action-muted, --action-stage, --action-edge, --action-focus and --action-feedback on .sl-component. Keep contrast after recoloring. The native button supports keyboard activation and visible focus; motion respects prefers-reduced-motion."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-move-item-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
     }
   ]
 }

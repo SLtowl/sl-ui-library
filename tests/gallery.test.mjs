@@ -117,7 +117,7 @@ test('every catalog card fits at 320, 768, 1024 and 1440px', options, async () =
   } finally { await page.close(); }
 });
 
-test('all 236 variants: complete workbench, source tabs, controller, ZIP and reset', options, async t => {
+test('all catalog variants: complete workbench, source tabs, controller, ZIP and reset', options, async t => {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   const errors = [], issues = [];
   page.on('pageerror', error => errors.push(error.message));

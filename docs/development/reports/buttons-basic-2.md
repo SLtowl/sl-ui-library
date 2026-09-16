@@ -1,6 +1,6 @@
 # Basic animated buttons — batch 2 review
 
-Status: local owner review required. This batch is intentionally excluded from `public/catalog-data.js` and the released 1.1 catalog until approval.
+Status: owner approved and integrated. This batch is included in `public/catalog-data.js` and the generated plugin data.
 
 ## Components
 
@@ -28,4 +28,4 @@ Status: local owner review required. This batch is intentionally excluded from `
 
 - Static package contract and manifest checks: passed.
 - Browser interaction suite covering working search, exact zoom levels, keyboard reversibility, stable label centering, callback requirements, cancellation, remount cleanup and 226 px fit: passed (9/9).
-- Manual local review at `http://127.0.0.1:4338/`: all ten previews load and respond; final owner decision pending.
+- Manual local review at `http://127.0.0.1:4338/`: all ten previews load and respond; the owner approved the final refinements.

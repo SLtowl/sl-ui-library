@@ -6,7 +6,7 @@ An AI plugin for finding and integrating UI components, with a browsable HTML, C
 
 ![Graphite SL UI Library controls in a warm studio composition](docs/media/cover.png)
 
-**234 interactive components** in HTML, CSS and JavaScript. No runtime dependencies, remote fonts or stock icon libraries. Preview components and download their source files. The plugin helps a coding agent find and integrate components.
+**254 interactive components** in HTML, CSS and JavaScript. No runtime dependencies, remote fonts or stock icon libraries. Preview components and download their source files. The plugin helps a coding agent find and integrate components.
 
 [Open the library](https://sltowl.github.io/sl-ui-library/) · [Install the plugin](#plugin-installation) · [Components](#components) · [Integration guide](docs/integration.md) · [Quality notes](QA.md) · [MIT License](LICENSE)
 
@@ -24,7 +24,7 @@ Studio photography is generated artwork; the film uses library components with C
 
 | Category | Components |
 | --- | ---: |
-| Buttons | 20 |
+| Buttons | 40 |
 | Inputs | 20 |
 | Toggles | 20 |
 | Checkboxes | 35 |
@@ -35,7 +35,7 @@ Studio photography is generated artwork; the film uses library components with C
 | Feedback | 20 |
 | Data display | 20 |
 
-234 components, 236 export variants. Save & Cancel is available together or separately. All ten categories contain working previews and complete source packages.
+254 components, 256 export variants. Save & Cancel is available together or separately. All ten categories contain working previews and complete source packages.
 
 ## Plugin installation
 
