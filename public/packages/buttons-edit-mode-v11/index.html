@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Edit mode · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:24px 16px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-edit-mode" data-active="false" aria-label="Edit mode">
+    <button class="motion-button" type="button" data-action aria-label="Edit" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><path class="icon-primary icon-pencil" d="m5 16.5-.8 3.3 3.3-.8L18.7 7.8l-2.5-2.5Z"/><path class="icon-detail" d="m14.7 6.8 2.5 2.5"/><path class="icon-result" pathLength="1" d="m5 12 4.5 4.5L19 7"/></svg></span><span class="button-label" data-label>Edit</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Editing is off.</p>
+  </section>
+</body>
+</html>

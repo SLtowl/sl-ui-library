@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Link or unlink · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:24px 16px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-link-toggle" data-active="false" aria-label="Link or unlink">
+    <button class="motion-button" type="button" data-action aria-label="Link items" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><path class="link-left" d="m9.5 14.5-1 1a3.5 3.5 0 0 1-5-5l3-3a3.5 3.5 0 0 1 5 0"/><path class="link-right" d="m14.5 9.5 1-1a3.5 3.5 0 1 1 5 5l-3 3a3.5 3.5 0 0 1-5 0"/><path class="icon-detail" d="m8.5 15.5 7-7"/></svg></span><span class="button-label" data-label>Link items</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Items are separate.</p>
+  </section>
+</body>
+</html>
