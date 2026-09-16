@@ -12,9 +12,9 @@ const files = ['index.html', 'buttons.css', 'buttons.js', 'example.js', 'instrum
 const variants = batch.map(item => item.variants[0]);
 const read = (variant, file) => readFile(new URL(`public/packages/${variant}/${file}`, project), 'utf8');
 
-test('combined editor review batch has four distinct, complete and offline packages', async () => {
-  assert.deepEqual(variants, ['buttons-text-editor-toolbar-v11', 'buttons-rotate-item-v11', 'buttons-mirror-item-v11', 'buttons-crop-mode-v11']);
-  assert.equal(new Set(batch.map(item => item.id)).size, 4);
+test('combined editor review batch has three distinct, complete and offline packages', async () => {
+  assert.deepEqual(variants, ['buttons-text-editor-toolbar-v11', 'buttons-image-transform-toolbar-v11', 'buttons-crop-mode-v11']);
+  assert.equal(new Set(batch.map(item => item.id)).size, 3);
   const released = await readFile(new URL('public/catalog-data.js', project), 'utf8');
   assert.doesNotMatch(released, /buttons-text-editor-toolbar-v11/);
   for (const item of batch) {
@@ -86,10 +86,11 @@ test('real browser: combined toolbar behavior, lifecycle and narrow fit', { skip
       assert.deepEqual(await page.evaluate(() => window.control.state), { bold: true, italic: true, textCase: 'upper', strike: true, alignment: 'center', listStyle: 'numbers', indent: 1 });
       const appearance = await page.locator('[data-editor]').evaluate(node => {
         const style = getComputedStyle(node);
-        return { weight: Number(style.fontWeight), fontStyle: style.fontStyle, transform: style.textTransform, decoration: style.textDecorationLine, align: style.textAlign };
+        return { weight: Number(style.fontWeight), fontStyle: style.fontStyle, synthesis: style.fontSynthesis, transform: style.textTransform, decoration: style.textDecorationLine, align: style.textAlign };
       });
       assert.ok(appearance.weight >= 600);
       assert.equal(appearance.fontStyle, 'italic');
+      assert.notEqual(appearance.synthesis, 'none');
       assert.equal(appearance.transform, 'uppercase');
       assert.equal(appearance.decoration, 'line-through');
       assert.equal(appearance.align, 'center');
@@ -104,6 +105,14 @@ test('real browser: combined toolbar behavior, lifecycle and narrow fit', { skip
       });
       assert.equal(input.html, 'Привет &lt;b&gt; literal');
       assert.equal(input.text, 'Привет <b> literal');
+      await page.evaluate(() => window.control.reset());
+      await page.locator('[data-command="list"]').click();
+      await page.locator('[data-command="list"]').click();
+      await page.locator('[data-command="list"]').click();
+      assert.equal((await page.evaluate(() => window.control.state)).listStyle, 'none');
+      const listOff = await page.locator('[data-line]').first().evaluate(node => ({ marker: getComputedStyle(node, '::before').content, padding: getComputedStyle(node).paddingLeft }));
+      assert.ok(listOff.marker === 'none' || listOff.marker === 'normal');
+      assert.equal(listOff.padding, '0px');
     });
 
     await t.test('toolbar arrows, Home and End move one roving focus target', async () => {
@@ -139,13 +148,23 @@ test('real browser: combined toolbar behavior, lifecycle and narrow fit', { skip
       assert.deepEqual(result.final, { bold: false, italic: false, textCase: 'sentence', strike: false, alignment: 'left', listStyle: 'bullets', indent: 0 });
     });
 
-    await t.test('rotate, mirror and crop remain reversible local media actions', async () => {
-      for (const [variant, property] of [['buttons-rotate-item-v11', 'rotation'], ['buttons-mirror-item-v11', 'mirrored'], ['buttons-crop-mode-v11', 'cropping']]) {
-        await load(variant);
-        const initial = (await page.evaluate(() => window.control.state))[property];
-        await page.locator('[data-action]').click();
-        assert.notEqual((await page.evaluate(() => window.control.state))[property], initial, variant);
+    await t.test('combined image toolbar rotates forward through 360 degrees and mirrors independently', async () => {
+      await load('buttons-image-transform-toolbar-v11');
+      const seen = [];
+      for (let index = 0; index < 4; index++) {
+        await page.locator('[data-command="rotate"]').click();
+        seen.push(await page.evaluate(() => ({ ...window.control.state, cssAngle: document.querySelector('.sl-component').style.getPropertyValue('--turn-angle') })));
       }
+      assert.deepEqual(seen.map(item => item.rotation), ['90', '180', '270', '0']);
+      assert.deepEqual(seen.map(item => item.angle), [90, 180, 270, 360]);
+      assert.equal(seen.at(-1).cssAngle, '360deg');
+      await page.locator('[data-command="mirror"]').click();
+      assert.equal((await page.evaluate(() => window.control.state)).mirrored, true);
+      await page.locator('[data-command="rotate"]').click();
+      assert.deepEqual(await page.evaluate(() => window.control.state), { rotation: '90', angle: 450, mirrored: true });
+      await load('buttons-crop-mode-v11');
+      await page.locator('[data-action]').click();
+      assert.equal((await page.evaluate(() => window.control.state)).cropping, 'cropping');
     });
 
     await t.test('every component fits a 226px preview and reduced motion keeps state changes', async () => {

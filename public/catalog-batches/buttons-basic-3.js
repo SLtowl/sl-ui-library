@@ -52,97 +52,49 @@ export default [
     ]
   },
   {
-    "id": "matte-buttons-rotate-item-v11",
+    "id": "matte-buttons-image-transform-toolbar-v11",
     "category": "buttons",
-    "name": "Rotate item",
-    "description": "Rotate one local item in quarter turns with a matching continuous arrow motion.",
+    "name": "Image transform toolbar",
+    "description": "Rotate and mirror one local image sample from a coordinated two-action toolbar.",
     "motions": [
-      "Quarter turn",
-      "Arrow orbit"
+      "Forward rotation",
+      "Mirror transition"
     ],
     "variants": [
-      "buttons-rotate-item-v11"
+      "buttons-image-transform-toolbar-v11"
     ],
     "keywords": [
+      "image",
+      "media",
+      "toolbar",
       "rotate",
-      "turn",
-      "image",
-      "orientation",
-      "basic",
-      "animated icon",
-      "editor"
-    ],
-    "page": "./component.html?component=matte-buttons-rotate-item-v11",
-    "preview": "./packages/buttons-rotate-item-v11/index.html?embed=1",
-    "packageRoot": "./packages/",
-    "downloads": {
-      "buttons-rotate-item-v11": "./downloads/matte-buttons-rotate-item-v11.zip"
-    },
-    "usage": [
-      {
-        "title": "Use the component",
-        "paragraphs": [
-          "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting your editor or media surface."
-        ]
-      },
-      {
-        "title": "Controller",
-        "paragraphs": [
-          "cycle() advances the control and setRotation(value) silently accepts '0' | '90' | '180' | '270'. state reports { rotation, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
-        ]
-      },
-      {
-        "title": "Appearance and accessibility",
-        "paragraphs": [
-          "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
-        ]
-      }
-    ]
-  },
-  {
-    "id": "matte-buttons-mirror-item-v11",
-    "category": "buttons",
-    "name": "Mirror item",
-    "description": "Mirror one asymmetric local item horizontally and return it along the same path.",
-    "motions": [
-      "Horizontal flip",
-      "Axis settle"
-    ],
-    "variants": [
-      "buttons-mirror-item-v11"
-    ],
-    "keywords": [
       "mirror",
-      "flip",
-      "image",
-      "horizontal",
-      "basic",
-      "animated icon",
-      "editor"
+      "reverse",
+      "transform"
     ],
-    "page": "./component.html?component=matte-buttons-mirror-item-v11",
-    "preview": "./packages/buttons-mirror-item-v11/index.html?embed=1",
+    "page": "./component.html?component=matte-buttons-image-transform-toolbar-v11",
+    "preview": "./packages/buttons-image-transform-toolbar-v11/index.html?embed=1",
     "packageRoot": "./packages/",
     "downloads": {
-      "buttons-mirror-item-v11": "./downloads/matte-buttons-mirror-item-v11.zip"
+      "buttons-image-transform-toolbar-v11": "./downloads/matte-buttons-image-transform-toolbar-v11.zip"
     },
     "usage": [
       {
         "title": "Use the component",
         "paragraphs": [
-          "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting your editor or media surface."
+          "Serve the extracted package over HTTP. The bundled demonstration transforms only its local image sample. Use mount(root, options) to connect the two commands to a real editor."
         ]
       },
       {
         "title": "Controller",
         "paragraphs": [
-          "toggle() advances the control and setMirrored(value) silently accepts 'normal' | 'mirrored'. state reports { mirrored, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          "rotate() advances clockwise by 90 degrees without reversing at the 360-degree boundary. toggleMirror(), setRotation(value) and setMirrored(value) update the shared transform state. User commands call onChange and dispatch one sl:action event. reset() and destroy() are repeat-safe."
         ]
       },
       {
         "title": "Appearance and accessibility",
         "paragraphs": [
-          "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
+          "Override the --action-* variables on .sl-component to adapt the neutral palette. The toolbar uses native buttons, arrow-key focus and visible focus states. Transform motion respects prefers-reduced-motion and forced colors."
         ]
       }
     ]
