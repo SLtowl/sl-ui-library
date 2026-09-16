@@ -14,10 +14,10 @@ const expected = [
   ['buttons-cart-toggle-v11', 'cartState', 'empty', 'added', 'setCartState'],
   ['buttons-archive-toggle-v11', 'archiveState', 'active', 'archived', 'setArchiveState'],
   ['buttons-task-complete-v11', 'taskState', 'open', 'done', 'setTaskState'],
-  ['buttons-schedule-toggle-v11', 'scheduleState', 'clear', 'scheduled', 'setScheduleState'],
-  ['buttons-compare-toggle-v11', 'compareState', 'single', 'compared', 'setCompareState'],
+  ['buttons-assign-toggle-v11', 'assignState', 'unassigned', 'assigned', 'setAssignState'],
+  ['buttons-compare-toggle-v11', 'compareState', 'stacked', 'compared', 'setCompareState'],
   ['buttons-new-folder-v11', 'folderState', 'empty', 'created', 'setFolderState'],
-  ['buttons-comment-toggle-v11', 'commentState', 'none', 'added', 'setCommentState'],
+  ['buttons-comment-toggle-v11', 'commentState', 'clear', 'commented', 'setCommentState'],
   ['buttons-translate-toggle-v11', 'language', 'english', 'russian', 'setLanguage'],
   ['buttons-tag-toggle-v11', 'tagState', 'untagged', 'tagged', 'setTagState'],
   ['buttons-photo-toggle-v11', 'photoState', 'empty', 'added', 'setPhotoState']
@@ -56,6 +56,29 @@ test('fourth basic buttons review batch has ten distinct, complete and offline p
     new Script(js, { filename: `${variant}/buttons.js` });
     new Script(example, { filename: `${variant}/example.js` });
   }
+});
+
+test('refined visuals keep their intended structure and explicit use cases', async () => {
+  const [cart, archive, task, assign, compare, folder, comment, translate, tag, photo] = await Promise.all(
+    expected.map(([variant]) => read(variant, 'index.html'))
+  );
+  assert.match(cart, /class="cart-scene"/);
+  assert.match(cart, /class="bag-item"/);
+  assert.match(archive, /class="archive-document"/);
+  assert.match(task, /class="preview-check"/);
+  assert.match(task, /class="task-check"/);
+  assert.match(assign, /aria-label="Assign person"/);
+  assert.match(assign, /class="assign-avatar"/);
+  assert.match(compare, /class="compare-card card-a"/);
+  assert.match(compare, /class="compare-card card-b"/);
+  assert.match(compare, /d="M45 28H75"/);
+  assert.match(folder, /class="folder-doc doc-one"/);
+  assert.match(comment, /aria-label="Comment on selection"/);
+  assert.match(comment, /class="comment-source"/);
+  assert.match(translate, />Привет</);
+  assert.match(tag, />DESIGN</);
+  assert.match(photo, /class="photo-back back-a"/);
+  assert.match(photo, /class="photo-card"/);
 });
 
 let chromium;
@@ -116,6 +139,22 @@ test('real browser: everyday actions reverse, remount cleanly and fit narrow pre
       const rect = await page.locator('.sl-component').evaluate(node => { const box = node.getBoundingClientRect(); return { left: box.left, right: box.right, top: box.top, bottom: box.bottom }; });
       assert.ok(rect.left >= -0.5 && rect.right <= 226.5 && rect.top >= -0.5 && rect.bottom <= 250.5, variant);
     }
+    await page.goto(`${origin}/packages/buttons-compare-toggle-v11/index.html`);
+    const stacked = await page.locator('.compare-card').evaluateAll(nodes => nodes.map(node => {
+      const box = node.getBoundingClientRect();
+      return { left: box.left, right: box.right, opacity: getComputedStyle(node).opacity };
+    }));
+    assert.deepEqual(stacked.map(card => card.opacity), ['1', '1']);
+    await page.locator('[data-action]').click();
+    await page.waitForTimeout(560);
+    const separated = await page.locator('.compare-card').evaluateAll(nodes => nodes.map(node => {
+      const box = node.getBoundingClientRect();
+      return { left: box.left, right: box.right, opacity: getComputedStyle(node).opacity };
+    }));
+    assert.ok(separated[0].left < stacked[0].left - 25);
+    assert.ok(separated[1].right > stacked[1].right + 25);
+    assert.deepEqual(separated.map(card => card.opacity), ['1', '1']);
+    assert.equal(await page.locator('.compare-connector path').getAttribute('d'), 'M45 28H75');
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto(`${origin}/packages/buttons-translate-toggle-v11/index.html`);
     await page.locator('[data-action]').click();

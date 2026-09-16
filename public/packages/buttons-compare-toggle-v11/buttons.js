@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const states = Object.freeze([{"value":"single","label":"Add to compare","aria":"Add item to comparison","status":"One item is selected."},{"value":"compared","label":"Remove compare","aria":"Remove item from comparison","status":"Two items are being compared."}].map(Object.freeze));
+  const states = Object.freeze([{"value":"stacked","label":"Compare","aria":"Separate items for comparison","status":"Two items are stacked."},{"value":"compared","label":"Stack items","aria":"Return compared items to the stack","status":"Two items are separated for comparison."}].map(Object.freeze));
   function mount(root, options = {}) {
     if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
     const view = root.ownerDocument.defaultView;
