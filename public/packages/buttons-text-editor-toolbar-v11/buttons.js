@@ -2,7 +2,7 @@
   'use strict';
   const caseValues = Object.freeze(['sentence', 'upper', 'lower']);
   const alignValues = Object.freeze(['left', 'center', 'right']);
-  const listValues = Object.freeze(['bullets', 'numbers', 'checks']);
+  const listValues = Object.freeze(['bullets', 'numbers', 'checks', 'none']);
   const defaultLines = Object.freeze(['Review the title', 'Refine the opening', 'Share the draft']);
   function mount(root, options = {}) {
     if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
