@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Undo action · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:24px 16px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-undo-action" data-phase="idle" aria-busy="false" aria-label="Undo action">
+    <button class="motion-button" type="button" data-action aria-label="Undo" >
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><path class="undo-arrow icon-primary" d="m9 7-5 4 5 4M5 11h7a6 6 0 0 1 6 6"/><path class="icon-result" pathLength="1" d="m5 12 4.5 4.5L19 7"/></svg></span><span class="button-label" data-label>Undo</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Ready to undo.</p>
+  </section>
+</body>
+</html>

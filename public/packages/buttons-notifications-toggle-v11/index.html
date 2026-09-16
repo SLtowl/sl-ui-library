@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notifications toggle · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:24px 16px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-notifications-toggle" data-active="false" aria-label="Notifications toggle">
+    <button class="motion-button" type="button" data-action aria-label="Enable alerts" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><path class="bell-body" d="M6 16h12l-1.5-2.2V10a4.5 4.5 0 0 0-9 0v3.8Z"/><path class="bell-clapper" d="M10 19h4"/><path class="bell-slash" d="M4 4 20 20"/></svg></span><span class="button-label" data-label>Enable alerts</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Notifications are off.</p>
+  </section>
+</body>
+</html>
