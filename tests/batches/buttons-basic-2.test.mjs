@@ -98,10 +98,9 @@ test('real browser: second batch interactions, lifecycle, centered labels, narro
   });
 
   try {
-    await t.test('seven toggles reverse by keyboard and keep labels centered', async () => {
+    await t.test('five toggles reverse by keyboard and keep labels centered', async () => {
       const toggles = [
-        ['search-toggle', 'open'], ['visibility-toggle', 'visible'], ['sound-toggle', 'muted'],
-        ['expand-toggle', 'expanded'], ['sidebar-toggle', 'open'], ['notifications-toggle', 'enabled'],
+        ['visibility-toggle', 'visible'], ['expand-toggle', 'expanded'], ['sidebar-toggle', 'open'], ['notifications-toggle', 'enabled'],
         ['attachment-toggle', 'attached'],
       ];
       for (const [slug, key] of toggles) {
@@ -117,6 +116,34 @@ test('real browser: second batch interactions, lifecycle, centered labels, narro
         await page.keyboard.press('Space');
         assert.equal((await state())[key], false, slug);
       }
+    });
+
+    await t.test('search reveal filters literal local results, selects and closes with Escape', async () => {
+      await load('search-toggle');
+      await page.locator('[data-action]').click();
+      assert.equal((await state()).open, true);
+      assert.equal(await page.locator('[data-action]').getAttribute('aria-expanded'), 'true');
+      assert.equal(await page.evaluate(() => document.activeElement === document.querySelector('[data-search]')), true);
+      await page.locator('[data-search]').fill('review');
+      assert.deepEqual(await state(), { open: true, query: 'review', matches: ['Review notes'] });
+      await page.locator('[data-result]').click();
+      assert.match(await page.locator('[data-status]').textContent(), /Selected Review notes\./);
+      await page.keyboard.press('Escape');
+      assert.equal((await state()).open, false);
+      assert.equal(await page.evaluate(() => document.activeElement === document.querySelector('[data-action]')), true);
+    });
+
+    await t.test('zoom view advances through exact levels and visibly resets', async () => {
+      await load('zoom-view');
+      assert.deepEqual(await state(), { zoom: 100, index: 0 });
+      await page.locator('[data-action]').click();
+      assert.deepEqual(await state(), { zoom: 125, index: 1 });
+      await page.keyboard.press('Enter');
+      assert.deepEqual(await state(), { zoom: 150, index: 2 });
+      assert.equal(await page.locator('[data-label]').textContent(), 'Reset zoom');
+      assert.notEqual(await page.locator('[data-preview] span').evaluate(node => getComputedStyle(node).transform), 'none');
+      await page.keyboard.press('Space');
+      assert.deepEqual(await state(), { zoom: 100, index: 0 });
     });
 
     await t.test('grid and list switch is reversible and exposes exact state', async () => {
@@ -161,20 +188,20 @@ test('real browser: second batch interactions, lifecycle, centered labels, narro
     });
 
     await t.test('remount destroys stale controllers and setters remain silent', async () => {
-      await load('sound-toggle');
+      await load('visibility-toggle');
       const result = await page.evaluate(() => {
         const root = document.querySelector('.sl-component'); let changes = 0;
         const old = SLComponent.mount(root, { onChange: () => { changes++; } });
         const current = SLComponent.mount(root, { onChange: () => { changes++; } });
-        const oldResult = old.toggle(); const silent = current.setMuted(true);
+        const oldResult = old.toggle(); const silent = current.setVisible(true);
         const after = { changes, state: current.state };
         current.reset(); current.reset(); current.destroy(); current.destroy();
         return { oldResult, silent, after, final: current.state };
       });
       assert.equal(result.oldResult, false);
       assert.equal(result.silent, true);
-      assert.deepEqual(result.after, { changes: 0, state: { muted: true } });
-      assert.deepEqual(result.final, { muted: false });
+      assert.deepEqual(result.after, { changes: 0, state: { visible: true } });
+      assert.deepEqual(result.final, { visible: false });
     });
 
     await t.test('all packages fit 226px, adapt palette and keep centered labels with reduced motion', async () => {
