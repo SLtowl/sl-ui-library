@@ -10,6 +10,8 @@ import batch6 from './catalog-batches/navigation.js';
 import batch7 from './catalog-batches/overlays.js';
 import batch8 from './catalog-batches/feedback.js';
 import batch9 from './catalog-batches/data-display.js';
+import batch10 from './catalog-batches/buttons-basic.js';
+import batch11 from './catalog-batches/buttons-basic-2.js';
 export const categories = [
   { id: 'buttons', label: 'Buttons', description: 'Action buttons, icon buttons and button groups.', keywords: ['button', 'save', 'cancel'] },
   { id: 'inputs', label: 'Inputs', description: 'Text fields, search fields, text areas and number inputs.', keywords: ['field', 'text', 'search'] },
@@ -603,7 +605,7 @@ for (const [slug, name, motion, description, keywords] of [
   });
 }
 
-components.push(...[batch0, batch1, batch2, batch3, batch4, batch5, batch6, batch7, batch8, batch9].flat());
+components.push(...[batch0, batch1, batch2, batch3, batch4, batch5, batch6, batch7, batch8, batch9, batch10, batch11].flat());
 
 export function categoryFor(id) {
   return categories.find(category => category.id === id) || null;

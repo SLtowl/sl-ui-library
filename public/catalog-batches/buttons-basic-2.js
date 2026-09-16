@@ -1,4 +1,4 @@
-// Third local Buttons batch for owner review. Not imported into the released catalog until approved.
+// Owner-approved basic Buttons batch integrated into the catalog.
 export default [
   {
     "id": "matte-buttons-search-toggle-v11",
