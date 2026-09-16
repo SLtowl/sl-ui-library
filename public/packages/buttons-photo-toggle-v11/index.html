@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add photo · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:8px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-photo-toggle" data-state="empty" data-active="false" aria-label="Add photo">
+    <div class="sample-window" data-preview aria-hidden="true"><div class="photo-sample"><span><i></i><b></b></span></div></div>
+    <button class="motion-button" type="button" data-action aria-label="Add a local demo photo" title="Add a local demo photo" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><rect class="photo-frame" x="3.5" y="5" width="17" height="14" rx="2.5"/><circle class="photo-sun" cx="8.5" cy="9.5" r="1.5"/><path class="photo-land" d="m5.5 17 4.5-4.5 3 3 2-2 3.5 3.5"/><path class="photo-plus" d="M17.5 3v5m-2.5-2.5h5"/><path class="photo-check" pathLength="1" d="m15 5.5 1.8 1.8 3.5-4"/></svg></span><span class="button-label" data-label>Add photo</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">No photo is selected.</p>
+  </section>
+</body>
+</html>

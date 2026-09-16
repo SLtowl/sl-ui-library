@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Archive item · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:8px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-archive-toggle" data-state="active" data-active="false" aria-label="Archive item">
+    <div class="sample-window" data-preview aria-hidden="true"><div class="archive-sample"><span class="sample-file"><i></i></span><span class="sample-box"></span></div></div>
+    <button class="motion-button" type="button" data-action aria-label="Archive item" title="Archive item" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><path class="archive-lid" d="M4 6.5h16v4H4z"/><path class="archive-box" d="M5.5 10.5v8.5h13v-8.5M9.5 14h5"/><path class="archive-arrow" d="M12 2.5v5m-2-2 2 2 2-2"/></svg></span><span class="button-label" data-label>Archive</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Item is active.</p>
+  </section>
+</body>
+</html>

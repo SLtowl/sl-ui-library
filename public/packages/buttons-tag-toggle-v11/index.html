@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tag item · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:8px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-tag-toggle" data-state="untagged" data-active="false" aria-label="Tag item">
+    <div class="sample-window" data-preview aria-hidden="true"><div class="tag-sample"><span><i></i><b>Design</b></span></div></div>
+    <button class="motion-button" type="button" data-action aria-label="Add a local tag" title="Add a local tag" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><path class="tag-shape" d="M4 5h7l9 9-6 6-9-9z"/><circle cx="8.5" cy="8.5" r="1.2"/><path class="tag-plus" d="M14 10v5m-2.5-2.5h5"/><path class="tag-check" pathLength="1" d="m11.5 12.5 2 2 4-4"/></svg></span><span class="button-label" data-label>Add tag</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Item has no tag.</p>
+  </section>
+</body>
+</html>

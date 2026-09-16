@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cart item · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:8px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-cart-toggle" data-state="empty" data-active="false" aria-label="Cart item">
+    <div class="sample-window" data-preview aria-hidden="true"><div class="cart-sample"><span class="sample-product"></span><span class="sample-cart"><i></i><b></b></span></div></div>
+    <button class="motion-button" type="button" data-action aria-label="Add item to cart" title="Add item to cart" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><path class="cart-basket" d="M3.5 5.5h2l2.1 9.2h9.2l2-6.2H6.2"/><circle class="cart-wheel" cx="9" cy="18.5" r="1"/><circle class="cart-wheel" cx="16" cy="18.5" r="1"/><path class="icon-plus" d="M15.5 3.5v5m-2.5-2.5h5"/><path class="icon-check" pathLength="1" d="m13.2 6 1.8 1.8 3.7-4"/></svg></span><span class="button-label" data-label>Add to cart</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Item is not in the cart.</p>
+  </section>
+</body>
+</html>
