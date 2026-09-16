@@ -30,6 +30,12 @@ test('third basic buttons review batch has ten distinct, complete and offline pa
     assert.equal((html.match(/class="sl-component"/g)||[]).length,1);
     assert.match(html,/class="sample-window" data-preview/);
     assert.match(html,/data-action aria-label="[^"]+"/);
+    assert.match(html,/data-action aria-label="[^"]+" title="[^"]+"/);
+    if(variant==='buttons-crop-mode-v11')assert.match(html,/data-layout="expanded"/);
+    else{
+      assert.match(html,/data-layout="compact"/);
+      assert.match(html,/class="tool-row" role="toolbar"/);
+    }
     assert.doesNotMatch(html.split('<body>')[1],/<script/);
     assert.match(css,/@font-face/);
     assert.match(css,/prefers-reduced-motion/);
@@ -89,8 +95,8 @@ test('real browser: editor actions, reversible motion, lifecycle and 226px fit',
         ['text-align',3,()=>getComputedStyle(document.querySelector('.sample-lines')).alignItems],
         ['list-style',3,()=>getComputedStyle(document.querySelector('.sample-list b'),'::before').content],
         ['indent-level',4,()=>getComputedStyle(document.querySelector('.sample-indent i')).transform],
-        ['rotate-item',4,()=>getComputedStyle(document.querySelector('.sample-tile')).transform],
-        ['mirror-item',2,()=>getComputedStyle(document.querySelector('.sample-flag')).transform],
+        ['rotate-item',4,()=>getComputedStyle(document.querySelector('.sample-picture')).transform],
+        ['mirror-item',2,()=>getComputedStyle(document.querySelector('.sample-picture')).transform],
         ['crop-mode',2,()=>getComputedStyle(document.querySelector('.sample-crop i')).opacity],
       ];
       for(const [slug,count,readSample] of cases){
@@ -133,7 +139,7 @@ test('real browser: editor actions, reversible motion, lifecycle and 226px fit',
       assert.deepEqual(result.final,{alignment:'left',index:0});
     });
 
-    await t.test('all ten packages fit 226px and expose centered labels',async()=>{
+    await t.test('nine editor actions stay compact while Crop keeps its centered action label at 226px',async()=>{
       await page.setViewportSize({width:226,height:226});
       for(const variant of variants){
         const slug=variant.replace(/^buttons-/,'').replace(/-v11$/,'');
@@ -143,10 +149,19 @@ test('real browser: editor actions, reversible motion, lifecycle and 226px fit',
           const root=document.querySelector('.sl-component').getBoundingClientRect();
           const button=document.querySelector('[data-action]').getBoundingClientRect();
           const label=document.querySelector('[data-label]').getBoundingClientRect();
-          return{left:root.left,right:root.right,top:root.top,bottom:root.bottom,delta:Math.abs(button.x+button.width/2-(label.x+label.width/2))};
+          const icon=document.querySelector('.button-icon').getBoundingClientRect();
+          return{layout:document.querySelector('.sl-component').dataset.layout,left:root.left,right:root.right,top:root.top,bottom:root.bottom,buttonWidth:button.width,labelWidth:label.width,labelDelta:Math.abs(button.x+button.width/2-(label.x+label.width/2)),iconDelta:Math.abs(button.x+button.width/2-(icon.x+icon.width/2))};
         });
         assert.ok(fit.left>=-0.5&&fit.right<=226.5&&fit.top>=-0.5&&fit.bottom<=226.5,variant);
-        assert.ok(fit.delta<0.25,`${variant}: centered label`);
+        if(variant==='buttons-crop-mode-v11'){
+          assert.equal(fit.layout,'expanded');
+          assert.ok(fit.labelDelta<0.25,`${variant}: centered label`);
+        }else{
+          assert.equal(fit.layout,'compact');
+          assert.ok(fit.buttonWidth<=36.5,`${variant}: compact width`);
+          assert.ok(fit.labelWidth<=1.5,`${variant}: hidden visual label`);
+          assert.ok(fit.iconDelta<0.25,`${variant}: centered icon`);
+        }
       }
     });
 
@@ -154,7 +169,7 @@ test('real browser: editor actions, reversible motion, lifecycle and 226px fit',
       await page.emulateMedia({reducedMotion:'reduce'});await load('rotate-item');
       await page.locator('[data-action]').click();
       assert.equal((await state()).rotation,'90');
-      assert.equal(await page.locator('.sample-tile').evaluate(node=>getComputedStyle(node).transitionDuration),'0s');
+      assert.equal(await page.locator('.sample-picture').evaluate(node=>getComputedStyle(node).transitionDuration),'0s');
     });
     assert.deepEqual(errors,[]);assert.deepEqual(external,[]);
   }finally{await context.close();await browser.close();server.close();await once(server,'close');}

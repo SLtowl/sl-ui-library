@@ -11,11 +11,10 @@
   <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:8px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
 </head>
 <body>
-  <section class="sl-component" data-kind="buttons-text-strike" data-state="clear" aria-label="Strikethrough">
-    <div class="sample-window" data-preview aria-hidden="true"><div class="sample-task"><span class="sample-dot"></span><span>Draft approved</span></div></div>
-    <button class="motion-button" type="button" data-action aria-label="Apply strikethrough" aria-pressed="false">
+  <section class="sl-component" data-kind="buttons-text-strike" data-state="clear" data-layout="compact" aria-label="Strikethrough">
+    <div class="editor-shell"><div class="tool-row" role="toolbar" aria-label="Strikethrough tools"><button class="motion-button" type="button" data-action aria-label="Apply strikethrough" title="Apply strikethrough" aria-pressed="false">
       <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><path class="strike-glyph" d="M16.5 7.5C15.7 6.4 14.2 6 12.2 6 9.8 6 8.5 7 8.5 8.5c0 1.6 1.4 2.3 3.8 3 2.4.7 3.7 1.4 3.7 3.2 0 1.8-1.6 3.3-4.4 3.3-2 0-3.7-.6-4.7-1.9"/><path class="strike-line" pathLength="1" d="M4 12h16"/></svg></span><span class="button-label" data-label>Strike text</span></span>
-    </button>
+    </button></div><div class="sample-window" data-preview aria-hidden="true"><div class="sample-task"><span>Draft approved</span></div></div></div>
     <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Task is active.</p>
   </section>
 </body>
