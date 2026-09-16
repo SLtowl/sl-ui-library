@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Read status · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:8px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-read-toggle" data-state="unread" data-active="false" aria-label="Read status">
+    <button class="motion-button" type="button" data-action aria-label="Mark the local message as read" title="Mark the local message as read" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><rect x="3.5" y="6" width="17" height="13" rx="3"/><path class="read-flap" data-probe d="m4.5 7.5 7.5 5.7 7.5-5.7"/><circle class="read-dot" cx="18.5" cy="5.5" r="2.3"/><path class="read-check" pathLength="1" d="m16.8 5.5 1.1 1.1 2.2-2.3"/></svg></span><span class="button-label" data-label>Mark read</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Message is unread.</p>
+  </section>
+</body>
+</html>

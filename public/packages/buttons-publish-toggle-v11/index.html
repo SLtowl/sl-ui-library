@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Publish item · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:8px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-publish-toggle" data-state="draft" data-active="false" aria-label="Publish item">
+    <button class="motion-button" type="button" data-action aria-label="Publish the local draft state" title="Publish the local draft state" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><path class="publish-page" d="M5 3.5h10l4 4v13H5zM15 3.5v4h4"/><g class="publish-arrow" data-probe><path d="M12 17V9m-3 3 3-3 3 3"/></g><path class="publish-check" pathLength="1" d="m8.5 14 2.5 2.5 5-5"/></svg></span><span class="button-label" data-label>Publish item</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Item is a local draft.</p>
+  </section>
+</body>
+</html>

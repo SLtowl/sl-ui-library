@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Report issue · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:8px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-report-toggle" data-state="clear" data-active="false" aria-label="Report issue">
+    <button class="motion-button" type="button" data-action aria-label="Open the local report state" title="Open the local report state" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><path class="report-frame" d="M8 3.5h8l4.5 4.5v8L16 20.5H8L3.5 16V8z"/><g class="report-alert" data-probe><path d="M12 7.5v6"/><circle cx="12" cy="16.5" r=".8"/></g><path class="report-check" pathLength="1" d="m8.5 12 2.3 2.3 4.8-4.8"/></svg></span><span class="button-label" data-label>Report issue</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">No report is selected.</p>
+  </section>
+</body>
+</html>

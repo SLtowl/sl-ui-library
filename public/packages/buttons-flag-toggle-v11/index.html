@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flag item · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:8px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-flag-toggle" data-state="clear" data-active="false" aria-label="Flag item">
+    <button class="motion-button" type="button" data-action aria-label="Flag the local item" title="Flag the local item" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><g class="flag-mark" data-probe><path d="M5 21V4m.2 1h11.6l-2.5 3 2.5 3H5.2"/><path class="flag-fill" d="M5.2 5h11.6l-2.5 3 2.5 3H5.2z"/></g><path class="flag-check" pathLength="1" d="m8.2 8 1.5 1.5 3-3"/></svg></span><span class="button-label" data-label>Flag item</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Item is not flagged.</p>
+  </section>
+</body>
+</html>
