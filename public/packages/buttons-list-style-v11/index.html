@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>List style · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:8px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-list-style" data-state="bullets" aria-label="List style">
+    <div class="sample-window" data-preview aria-hidden="true"><div class="sample-list"><div><b></b><i></i></div><div><b></b><i></i></div><div><b></b><i></i></div></div></div>
+    <button class="motion-button" type="button" data-action aria-label="Change list to numbers">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><g class="list-marks"><circle cx="5" cy="7" r="1"/><circle cx="5" cy="12" r="1"/><circle cx="5" cy="17" r="1"/></g><path class="list-checks" pathLength="1" d="m3.5 7 1 1 2-2m-3 6 1 1 2-2m-3 6 1 1 2-2"/><path class="list-rows" d="M9 7h11M9 12h11M9 17h11"/></svg></span><span class="button-label" data-label>Use numbers</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Bulleted list.</p>
+  </section>
+</body>
+</html>

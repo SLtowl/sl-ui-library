@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crop mode · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:8px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-crop-mode" data-state="idle" aria-label="Crop mode">
+    <div class="sample-window" data-preview aria-hidden="true"><div class="sample-crop"><span></span><i class="crop-tl"></i><i class="crop-tr"></i><i class="crop-br"></i><i class="crop-bl"></i></div></div>
+    <button class="motion-button" type="button" data-action aria-label="Enter crop mode" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><path class="crop-a" d="M7 3v14a2 2 0 0 0 2 2h12"/><path class="crop-b" d="M3 7h12a2 2 0 0 1 2 2v12"/></svg></span><span class="button-label" data-label>Start crop</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Crop mode is off.</p>
+  </section>
+</body>
+</html>
