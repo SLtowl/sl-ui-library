@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Translate text · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:8px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-translate-toggle" data-state="english" data-active="false" aria-label="Translate text">
+    <div class="sample-window" data-preview aria-hidden="true"><div class="translate-sample"><span class="word-en">Hello</span><span class="word-ru">Привет</span></div></div>
+    <button class="motion-button" type="button" data-action aria-label="Translate sample to Russian" title="Translate sample to Russian" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><path class="translate-letter" d="M3.5 17 7.5 7l4 10M5 13h5"/><path class="translate-top" d="M14 8h6m-2-2 2 2-2 2"/><path class="translate-bottom" d="M20 16h-6m2 2-2-2 2-2"/></svg></span><span class="button-label" data-label>Translate</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Sample language is English.</p>
+  </section>
+</body>
+</html>
