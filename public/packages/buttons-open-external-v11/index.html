@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open externally · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:8px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-open-external" data-state="inline" data-active="false" aria-label="Open externally">
+    <button class="motion-button" type="button" data-action aria-label="Open the local preview externally" title="Open the local preview externally" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><path class="external-window" d="M18.5 13v6.5h-14v-14H11"/><g class="external-arrow" data-probe><path d="M13 4.5h6.5V11M19 5l-8.5 8.5"/></g></svg></span><span class="button-label" data-label>Open externally</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Preview is inline.</p>
+  </section>
+</body>
+</html>
