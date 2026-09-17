@@ -1,6 +1,6 @@
 # Toggles — second batch
 
-Status: implemented for local owner review only. Not imported into the shared catalog and not published.
+Status: owner-approved on 2026-09-18 and integrated into the shared catalog for the static release.
 
 | Component | Package | Interaction |
 | --- | --- | --- |
