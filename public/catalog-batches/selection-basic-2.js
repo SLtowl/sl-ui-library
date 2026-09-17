@@ -1,4 +1,4 @@
-// Local owner-review batch. Do not import before approval.
+// Owner-approved second Toggles batch.
 export default [
   {
     "id": "matte-selection-line-wrap-v11",
