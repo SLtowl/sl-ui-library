@@ -235,7 +235,7 @@ export default [
     "id": "matte-inputs-ipv4-v11",
     "category": "inputs",
     "name": "IPv4 input",
-    "description": "Enter four bounded address octets with optional forward focus and backspace navigation.",
+    "description": "Enter, paste and validate a complete dotted IPv4 address in one familiar field.",
     "motions": [
       "Reversible field focus",
       "Smooth validation"
@@ -247,7 +247,7 @@ export default [
       "ipv4",
       "ip address",
       "network",
-      "segments"
+      "paste"
     ],
     "page": "./component.html?component=matte-inputs-ipv4-v11",
     "preview": "./packages/inputs-ipv4-v11/index.html?embed=1",
@@ -259,7 +259,7 @@ export default [
       {
         "title": "Use the field",
         "paragraphs": [
-          "Enter four bounded address octets with optional forward focus and backspace navigation.",
+          "Enter, paste and validate a complete dotted IPv4 address in one familiar field.",
           "Copy the complete package and mount its .sl-component root. All demonstration changes are local."
         ]
       },
