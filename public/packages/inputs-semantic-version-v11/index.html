@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Semantic version input — SL UI Library</title><link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css"><script src="./buttons.js" defer></script><script src="./example.js" defer></script>
+  <style>body { margin:0; min-height:100svh; display:grid; place-items:center; padding:24px; box-sizing:border-box; background:#f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="inputs-semantic-version-v11" aria-label="Semantic version input">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h9"/><path d="m17 15 2 2-2 2"/></svg>Semantic version input</h2>
+    <fieldset><legend>Release version</legend><div class="sl-segments"><label><span>Major</span><input class="sl-major" type="text" inputmode="numeric" value="2" maxlength="3"></label><b aria-hidden="true">.</b><label><span>Minor</span><input class="sl-minor" type="text" inputmode="numeric" value="4" maxlength="3"></label><b aria-hidden="true">.</b><label><span>Patch</span><input class="sl-patch" type="text" inputmode="numeric" value="7" maxlength="3"></label></div></fieldset><div class="sl-actions"><button class="sl-next" type="button">Next patch</button><output class="sl-version">v2.4.7</output></div>
+  </section>
+</body>
+</html>
