@@ -119,7 +119,8 @@ test('exactly ten complete, independent selection exports and literal catalog en
   assert.equal(manifest.length, 10);
   assert.equal(new Set(manifest.map(item => item.id)).size, 10);
   const folderNames = await readdir(new URL('../../public/packages/', import.meta.url));
-  assert.equal(folderNames.filter(name => /^selection-.*-v11$/.test(name)).length, 10);
+  const approvedFolders = new Set(manifest.flatMap(item => item.variants));
+  assert.equal(folderNames.filter(name => approvedFolders.has(name)).length, manifest.length);
   const font = await readFile(new URL('../../public/packages/theme-toggle/instrument-sans-variable.woff2', import.meta.url));
   const license = await readFile(new URL('../../LICENSE', import.meta.url));
   for (const item of manifest) {

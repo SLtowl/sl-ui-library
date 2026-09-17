@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Autoplay previews — SL UI Library</title><link rel="icon" href="data:,"><link rel="stylesheet" href="./buttons.css"><script src="./buttons.js" defer></script><script src="./example.js" defer></script><style>body{box-sizing:border-box;margin:0;min-height:100svh;padding:24px;display:grid;place-items:center;background:#f5f4f2}</style></head>
+<body><section class="sl-component" data-kind="selection-autoplay-previews-v11" aria-label="Autoplay previews">
+  <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3V9Z"/></svg>Autoplay previews</h2>
+  
+  <div class="sl-control-row">
+    <div><strong>Autoplay previews</strong><span>Start muted previews automatically</span></div>
+    <button type="button" class="sl-toggle" role="switch" aria-label="Autoplay previews" aria-checked="false" data-field="autoplay" data-status-on="Muted previews start automatically." data-status-off="Previews wait for a play action.">
+      <span class="sl-toggle-word" aria-hidden="true">Off</span><span class="sl-toggle-track" aria-hidden="true"></span>
+    </button>
+  </div>
+  <div class="sl-preview"><div class="sl-media" aria-hidden="true"><div class="sl-media-mark"><i class="sl-play"></i><i class="sl-pause"></i></div><span class="sl-muted-badge">Muted</span><div class="sl-progress"><i></i></div></div></div>
+  <p class="sl-status" role="status" aria-live="polite" data-live-status></p>
+</section></body></html>
