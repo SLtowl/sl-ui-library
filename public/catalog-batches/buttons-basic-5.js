@@ -4,10 +4,10 @@ export default [
     "id": "matte-buttons-redo-action-v11",
     "category": "buttons",
     "name": "Redo action",
-    "description": "Repeat one local preview action with a familiar forward redo arrow and a short continuous turn.",
+    "description": "Repeat one local preview action with one familiar right-facing redo arc that never changes direction.",
     "motions": [
-      "Forward arc",
-      "Arrow turn"
+      "Arc complete",
+      "Head nudge"
     ],
     "variants": [
       "buttons-redo-action-v11"
@@ -436,10 +436,10 @@ export default [
     "id": "matte-buttons-power-toggle-v11",
     "category": "buttons",
     "name": "Power control",
-    "description": "Turn one local control on or off with a compact switch whose knob moves continuously between states.",
+    "description": "Turn one local control on or off with a stable power-button glyph and a restrained press pulse.",
     "motions": [
-      "Switch slide",
-      "Track fill"
+      "Power pulse",
+      "Ring settle"
     ],
     "variants": [
       "buttons-power-toggle-v11"

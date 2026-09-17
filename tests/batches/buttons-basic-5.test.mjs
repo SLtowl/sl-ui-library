@@ -43,6 +43,21 @@ test('fifth basic buttons review batch has ten distinct complete packages', asyn
   }
 });
 
+test('reviewed Redo and Power keep button-native, unambiguous glyphs', async () => {
+  const [redoHtml, redoCss, powerHtml] = await Promise.all([
+    read('buttons-redo-action-v11', 'index.html'),
+    read('buttons-redo-action-v11', 'buttons.css'),
+    read('buttons-power-toggle-v11', 'index.html')
+  ]);
+  assert.match(redoHtml, /class="redo-arc"/);
+  assert.match(redoHtml, /class="redo-head"/);
+  assert.doesNotMatch(redoHtml, /redo-return/);
+  assert.doesNotMatch(redoCss, /\.redo-mark[^}]*rotate\(/);
+  assert.match(powerHtml, /class="power-ring"/);
+  assert.match(powerHtml, /class="power-stem"/);
+  assert.doesNotMatch(powerHtml, /power-track|power-knob/);
+});
+
 let chromium;
 try {
   ({ chromium } = process.env.SL_UI_PLAYWRIGHT_MODULE ? await import(pathToFileURL(process.env.SL_UI_PLAYWRIGHT_MODULE).href) : await import('playwright'));
