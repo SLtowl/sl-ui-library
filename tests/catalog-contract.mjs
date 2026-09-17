@@ -20,7 +20,7 @@ export function assertCatalogContract({complete=false}={}) {
   for(const category of categories){
     const batch=additions.filter(component=>component.category===category.id);
     // Owner revision: remove one threshold editor and add five everyday sliders.
-    const batchSize=category.id==='sliders'?14:category.id==='buttons'?53:10;
+    const batchSize=category.id==='sliders'?14:category.id==='buttons'?53:category.id==='inputs'?20:10;
     assert.ok(batch.length===0||batch.length===batchSize,'Partial batch: '+category.id);
     for(const item of batch){
       assert.equal(item.variants.length,1);
@@ -33,5 +33,5 @@ export function assertCatalogContract({complete=false}={}) {
   assert.ok(additions.every(item=>categories.some(category=>category.id===item.category)));
   assert.equal(components.length,expectedCount);
   assert.equal(new Set(components.flatMap(item=>item.variants)).size,expectedVariants);
-  if(complete)assert.equal(additions.length,147,'All approved batches are required for signoff.');
+  if(complete)assert.equal(additions.length,157,'All approved batches are required for signoff.');
 }
