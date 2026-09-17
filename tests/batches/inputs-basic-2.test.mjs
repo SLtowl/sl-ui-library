@@ -84,7 +84,7 @@ test('input controllers pass browser interaction and lifecycle checks', { timeou
     await open('percentage'); await page.getByLabel('Completion percentage').fill('115'); assert.equal((await state()).valid, false); await page.getByLabel('Completion percentage').fill('75'); assert.equal((await state()).value, 75);
     await open('coordinates'); await page.getByLabel('Latitude').fill('-91'); assert.equal((await state()).valid, false); await page.getByLabel('Latitude').fill('-33.8688'); assert.equal((await state()).value.lat, -33.8688);
     await open('semantic-version'); await page.getByRole('button', { name: 'Next patch' }).click(); assert.deepEqual((await state()).value, [2, 4, 8]);
-    await open('ipv4'); await page.getByLabel('Octet 4').fill('999'); assert.equal((await state()).valid, false); await page.getByLabel('Octet 4').fill('8'); assert.equal((await state()).address, '192.168.1.8');
+    await open('ipv4'); await page.getByRole('textbox', { name: 'IPv4 address', exact: true }).fill('192.168.1.999'); assert.equal((await state()).valid, false); await page.getByRole('textbox', { name: 'IPv4 address', exact: true }).fill('8.8.4.4'); assert.deepEqual((await state()).value, [8, 8, 4, 4]);
     await open('card-number'); await page.getByRole('textbox', { name: 'Card number', exact: true }).fill('4242424242424242'); assert.equal((await state()).valid, true);
     await open('shortcut'); await page.getByRole('button', { name: 'Record shortcut' }).click(); await page.getByRole('button', { name: 'Listening…' }).press('Control+Shift+P'); assert.equal((await state()).value, 'Ctrl + Shift + P');
     await open('search-replace'); await page.getByRole('button', { name: 'Replace locally' }).click(); assert.match((await state()).text, /Good movement/);

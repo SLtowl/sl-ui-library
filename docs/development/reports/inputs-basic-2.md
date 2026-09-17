@@ -9,7 +9,7 @@ This batch adds ten distinct input patterns for local review only. It is intenti
 | `inputs-percentage-v11` | 0–100 numeric validation, keyboard stepping and a smoothly updating meter. |
 | `inputs-coordinates-v11` | Paired latitude/longitude validation and cardinal-direction preview. |
 | `inputs-semantic-version-v11` | Major/minor/patch segments with bounded values and a local next-patch action. |
-| `inputs-ipv4-v11` | Four 0–255 octets with forward focus and backspace navigation. |
+| `inputs-ipv4-v11` | One familiar dotted-address field that supports typing or pasting a complete IPv4 value and validates every 0–255 octet. |
 | `inputs-card-number-v11` | Grouped digits and a local Luhn check; it makes no payment or network request. |
 | `inputs-shortcut-v11` | Keyboard-chord recording, Escape cancellation and explicit clearing. |
 | `inputs-search-replace-v11` | Literal match count and replacement inside a local sample line only. |
