@@ -6,6 +6,7 @@ import { once } from 'node:events';
 import { pathToFileURL } from 'node:url';
 import { Script } from 'node:vm';
 import batch from '../../public/catalog-batches/buttons-basic-5.js';
+import { components as releasedComponents } from '../../public/catalog-data.js';
 
 const project = new URL('../../', import.meta.url);
 const files = ['index.html','buttons.css','buttons.js','example.js','instrument-sans-variable.woff2','OFL.txt','LICENSE'];
@@ -16,8 +17,7 @@ test('fifth basic buttons review batch has ten distinct complete packages', asyn
   assert.equal(batch.length, 10);
   assert.deepEqual(batch.map(item => item.variants[0]), expected.map(item => item[0]));
   assert.equal(new Set(batch.map(item => item.id)).size, 10);
-  const released = await readFile(new URL('public/catalog-data.js', project), 'utf8');
-  for (const [variant] of expected) assert.doesNotMatch(released, new RegExp(variant));
+  for (const item of batch) assert.ok(releasedComponents.some(component => component.id === item.id));
   for (const item of batch) {
     const variant = item.variants[0];
     assert.equal(item.category, 'buttons');

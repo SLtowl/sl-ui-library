@@ -1,4 +1,4 @@
-// Fifth local Buttons batch for owner review. Not imported into the released catalog.
+// Owner-approved everyday Buttons batch integrated into the catalog.
 export default [
   {
     "id": "matte-buttons-cart-toggle-v11",

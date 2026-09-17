@@ -16145,6 +16145,1389 @@ const api155 = (() => {
   return { mount, mountPreview };
 })();
 
+const style126 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#414141;--action-selected:#e2e2e2;--action-selected-ink:#202020;--action-muted:#686868;--action-stage:#f2f2f2;--action-card:#fff;--action-edge:#d2d2d2;--action-focus:#464646;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:208px;padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .editor-shell{width:min(280px,100%);overflow:hidden;border:1px solid var(--action-edge);border-radius:14px;background:var(--action-card);box-shadow:inset 0 1px #fff,0 3px 8px #0000000d}.sl-component .tool-row{min-height:46px;display:flex;flex-wrap:wrap;align-content:center;align-items:center;gap:5px;padding:6px 7px;border-bottom:1px solid var(--action-edge);background:#e9e9e9}.sl-component .tool-button{appearance:none;position:relative;width:32px;height:32px;flex:0 0 32px;padding:0;border:0;border-radius:9px;background:transparent;color:#f7f7f7;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .tool-surface{position:absolute;inset:0;display:grid;place-items:center;border:1px solid transparent;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000015;transition:transform 220ms var(--action-ease),background-color 180ms ease,color 180ms ease,box-shadow 220ms ease,border-color 180ms ease}.sl-component .tool-button[aria-pressed=\"true\"] .tool-surface{border-color:#b9b9b9;background:var(--action-selected);color:var(--action-selected-ink);box-shadow:inset 0 1px #fff,0 1px 2px #00000012}.sl-component .tool-surface svg{width:19px;height:19px;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.sl-component .tool-surface path,.sl-component .tool-surface circle,.sl-component .tool-surface g{transform-box:view-box;transform-origin:center;transition:transform 280ms var(--action-ease),opacity 180ms ease,stroke-width 180ms ease}.sl-component[data-bold=\"true\"] [data-command=\"bold\"] svg{stroke-width:2.15}.sl-component[data-italic=\"true\"] [data-command=\"italic\"] svg{transform:skewX(-5deg)}.sl-component .case-glyph{font-size:14px;font-weight:650;letter-spacing:-.05em;transition:transform 240ms var(--action-ease)}.sl-component[data-case=\"upper\"] .case-glyph{transform:translateY(-.5px) scale(1.03)}.sl-component[data-case=\"lower\"] .case-glyph{transform:translateY(.5px) scale(.96)}.sl-component[data-align=\"center\"] .align-short{transform:translateX(2.5px)}.sl-component[data-align=\"right\"] .align-short{transform:translateX(5px)}.sl-component .list-numbers,.sl-component .list-checks{opacity:0;transform:scale(.78)}.sl-component[data-list=\"numbers\"] .list-bullets,.sl-component[data-list=\"checks\"] .list-bullets{opacity:0;transform:scale(.78)}.sl-component[data-list=\"numbers\"] .list-numbers,.sl-component[data-list=\"checks\"] .list-checks{opacity:1;transform:scale(1)}.sl-component[data-indent=\"1\"] .indent-icon{transform:translateX(1px)}.sl-component[data-indent=\"2\"] .indent-icon{transform:translateX(2px)}.sl-component[data-indent=\"3\"] .indent-icon{transform:translateX(3px)}.sl-component .editor-copy{min-height:78px;padding:10px 12px 9px;outline:none;background:var(--action-card);font-size:13px;font-weight:430;font-style:normal;line-height:1.55;text-align:left;text-decoration:none;text-transform:none;transition:font-weight 220ms ease,font-style 220ms ease,text-decoration-color 220ms ease,text-align 260ms var(--action-ease),padding-left 280ms var(--action-ease)}.sl-component .editor-copy:focus-visible{box-shadow:inset 0 0 0 2px var(--action-focus)}.sl-component .editor-copy [data-line]{position:relative;min-height:20px;padding-left:17px;transition:transform 260ms var(--action-ease)}.sl-component .editor-copy [data-line]::before{position:absolute;left:0;width:12px;text-align:center;color:var(--action-muted);font-size:11px;font-weight:560;text-decoration:none;text-transform:none}.sl-component[data-list=\"bullets\"] .editor-copy [data-line]::before{content:'•';font-size:15px;line-height:18px}.sl-component[data-list=\"numbers\"] .editor-copy [data-line]:nth-child(1)::before{content:'1.'}.sl-component[data-list=\"numbers\"] .editor-copy [data-line]:nth-child(2)::before{content:'2.'}.sl-component[data-list=\"numbers\"] .editor-copy [data-line]:nth-child(3)::before{content:'3.'}.sl-component[data-list=\"checks\"] .editor-copy [data-line]::before{content:'✓'}.sl-component[data-bold=\"true\"] .editor-copy{font-weight:690}.sl-component[data-italic=\"true\"] .editor-copy{font-style:italic}.sl-component[data-strike=\"true\"] .editor-copy{text-decoration:line-through;text-decoration-thickness:1.5px}.sl-component[data-case=\"upper\"] .editor-copy{text-transform:uppercase}.sl-component[data-case=\"lower\"] .editor-copy{text-transform:lowercase}.sl-component[data-align=\"center\"] .editor-copy{text-align:center}.sl-component[data-align=\"right\"] .editor-copy{text-align:right}.sl-component[data-indent=\"1\"] .editor-copy [data-line]{transform:translateX(7px)}.sl-component[data-indent=\"2\"] .editor-copy [data-line]{transform:translateX(14px)}.sl-component[data-indent=\"3\"] .editor-copy [data-line]{transform:translateX(21px)}.sl-component .component-status{max-width:30ch;min-height:17px;margin:0;color:var(--action-muted);font-size:11px;line-height:1.4;text-align:center;overflow-wrap:anywhere}.sl-component .tool-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:2px}\n@media(hover:hover){.sl-component .tool-button:hover .tool-surface{background:var(--action-hover);transform:translateY(-1px);box-shadow:inset 0 1px #ffffff18,0 7px 13px -11px #0009}.sl-component .tool-button[aria-pressed=\"true\"]:hover .tool-surface{background:#d8d8d8}}.sl-component .tool-button:active .tool-surface{transform:scale(.95);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:8px}.sl-component .tool-row{gap:4px}.sl-component .editor-copy{font-size:12px}.sl-component .component-status{font-size:10px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .tool-surface,.sl-component .tool-button:hover .tool-surface,.sl-component .tool-button:active .tool-surface{transform:none!important}.sl-component .tool-button:active .tool-surface{opacity:.86}}@media(forced-colors:active){.sl-component,.sl-component .editor-shell{border-color:CanvasText}.sl-component .tool-row{border-color:CanvasText;background:Canvas}.sl-component .tool-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .tool-button[aria-pressed=\"true\"] .tool-surface{border-color:Highlight;background:Highlight;color:HighlightText}.sl-component .tool-button:focus-visible{outline-color:Highlight}.sl-component .editor-copy:focus-visible{box-shadow:inset 0 0 0 2px Highlight}}\n.sl-component .editor-copy{font-synthesis:style}.sl-component .list-off{opacity:0;transform:scale(.78)}.sl-component[data-list=\"none\"] .list-bullets{opacity:0;transform:scale(.78)}.sl-component[data-list=\"none\"] .list-off{opacity:1;transform:scale(1)}.sl-component[data-list=\"none\"] .list-lines{opacity:.45}.sl-component[data-list=\"none\"] .editor-copy [data-line]{padding-left:0}.sl-component[data-list=\"none\"] .editor-copy [data-line]::before{content:none}\n";
+const api156 = (() => {
+  'use strict';
+  const caseValues = Object.freeze(['sentence', 'upper', 'lower']);
+  const alignValues = Object.freeze(['left', 'center', 'right']);
+  const listValues = Object.freeze(['bullets', 'numbers', 'checks', 'none']);
+  const defaultLines = Object.freeze(['Review the title', 'Refine the opening', 'Share the draft']);
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const buttons = [...root.querySelectorAll('[data-command]')];
+    const byCommand = Object.fromEntries(buttons.map(button => [button.dataset.command, button]));
+    const editor = root.querySelector('[data-editor]');
+    const status = root.querySelector('[data-status]');
+    const caseGlyph = root.querySelector('[data-case-glyph]');
+    const lines = Array.isArray(options.lines) && options.lines.length ? options.lines.slice(0, 5).map(String) : [...defaultLines];
+    let state = { bold: false, italic: false, textCase: 'sentence', strike: false, alignment: 'left', listStyle: 'bullets', indent: 0 };
+    let destroyed = false;
+    let rovingIndex = 0;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    const snapshot = () => ({ ...state });
+    function setRoving(index, focus = false) {
+      rovingIndex = Math.max(0, Math.min(buttons.length - 1, index));
+      buttons.forEach((button, buttonIndex) => { button.tabIndex = buttonIndex === rovingIndex ? 0 : -1; });
+      if (focus) buttons[rovingIndex].focus();
+    }
+    function rebuildLines() {
+      const fragment = root.ownerDocument.createDocumentFragment();
+      lines.forEach(value => {
+        const line = root.ownerDocument.createElement('div');
+        line.dataset.line = '';
+        line.textContent = value;
+        fragment.append(line);
+      });
+      editor.replaceChildren(fragment);
+    }
+    function render(message = '') {
+      root.dataset.bold = String(state.bold);
+      root.dataset.italic = String(state.italic);
+      root.dataset.case = state.textCase;
+      root.dataset.strike = String(state.strike);
+      root.dataset.align = state.alignment;
+      root.dataset.list = state.listStyle;
+      root.dataset.indent = String(state.indent);
+      byCommand.bold.setAttribute('aria-pressed', String(state.bold));
+      byCommand.bold.setAttribute('aria-label', state.bold ? 'Remove bold' : 'Apply bold');
+      byCommand.italic.setAttribute('aria-pressed', String(state.italic));
+      byCommand.italic.setAttribute('aria-label', state.italic ? 'Remove italic' : 'Apply italic');
+      byCommand.strike.setAttribute('aria-pressed', String(state.strike));
+      byCommand.strike.setAttribute('aria-label', state.strike ? 'Remove strikethrough' : 'Apply strikethrough');
+      const nextCase = caseValues[(caseValues.indexOf(state.textCase) + 1) % caseValues.length];
+      const nextAlign = alignValues[(alignValues.indexOf(state.alignment) + 1) % alignValues.length];
+      const nextList = listValues[(listValues.indexOf(state.listStyle) + 1) % listValues.length];
+      byCommand.case.setAttribute('aria-label', `Change text case to ${nextCase}`);
+      byCommand.align.setAttribute('aria-label', `Align text to ${nextAlign}`);
+      byCommand.list.setAttribute('aria-label', `Change list to ${nextList}`);
+      byCommand.indent.setAttribute('aria-label', state.indent === 3 ? 'Reset indentation' : 'Increase indentation');
+      caseGlyph.textContent = state.textCase === 'upper' ? 'AA' : state.textCase === 'lower' ? 'aa' : 'Aa';
+      status.textContent = message || 'Formatting ready.';
+    }
+    function emit(action) {
+      const nextState = snapshot();
+      options.onChange?.({ action, state: nextState });
+      root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail: { kind: root.dataset.kind, action, state: nextState } }));
+    }
+    function update(action, next, message, shouldEmit = false) {
+      if (destroyed || Object.is(state[action], next)) return false;
+      state = { ...state, [action]: next };
+      render(message);
+      if (shouldEmit) emit(action);
+      return true;
+    }
+    function toggle(command, shouldEmit = false) {
+      const key = command === 'case' ? 'textCase' : command === 'align' ? 'alignment' : command === 'list' ? 'listStyle' : command;
+      if (['bold', 'italic', 'strike'].includes(command)) return update(key, !state[key], `${command[0].toUpperCase()}${command.slice(1)} ${state[key] ? 'off' : 'on'}.`, shouldEmit);
+      if (command === 'case') {
+        const next = caseValues[(caseValues.indexOf(state.textCase) + 1) % caseValues.length];
+        return update(key, next, `Text case: ${next}.`, shouldEmit);
+      }
+      if (command === 'align') {
+        const next = alignValues[(alignValues.indexOf(state.alignment) + 1) % alignValues.length];
+        return update(key, next, `Alignment: ${next}.`, shouldEmit);
+      }
+      if (command === 'list') {
+        const next = listValues[(listValues.indexOf(state.listStyle) + 1) % listValues.length];
+        return update(key, next, `List style: ${next}.`, shouldEmit);
+      }
+      if (command === 'indent') {
+        const next = (state.indent + 1) % 4;
+        return update('indent', next, `Indent level: ${next}.`, shouldEmit);
+      }
+      return false;
+    }
+    function activate(event) {
+      const button = event.currentTarget;
+      setRoving(buttons.indexOf(button));
+      if (activeElement() !== button) button.focus();
+      toggle(button.dataset.command, true);
+    }
+    function onToolbarKey(event) {
+      const index = buttons.indexOf(event.target);
+      if (index < 0) return;
+      let next = index;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (index + 1) % buttons.length;
+      else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (index - 1 + buttons.length) % buttons.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = buttons.length - 1;
+      else return;
+      event.preventDefault();
+      setRoving(next, true);
+    }
+    function onEditorInput() {
+      const blocks = [...editor.childNodes].map(node => node.textContent);
+      const text = blocks.length > 1 ? blocks.join('\n') : editor.textContent;
+      options.onInput?.({ text });
+      root.dispatchEvent(new view.CustomEvent('sl:text-input', { bubbles: true, composed: true, detail: { kind: root.dataset.kind, text } }));
+    }
+    function reset() {
+      if (destroyed) return;
+      state = { bold: false, italic: false, textCase: 'sentence', strike: false, alignment: 'left', listStyle: 'bullets', indent: 0 };
+      rebuildLines();
+      setRoving(0);
+      render();
+    }
+    function destroy() {
+      if (destroyed) return;
+      reset();
+      destroyed = true;
+      life.abort();
+    }
+    buttons.forEach(button => listen(button, 'click', activate));
+    listen(root.querySelector('[role="toolbar"]'), 'keydown', onToolbarKey);
+    listen(editor, 'input', onEditorInput);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return {
+      toggleBold: () => toggle('bold', true), setBold: value => update('bold', Boolean(value), 'Bold updated.'),
+      toggleItalic: () => toggle('italic', true), setItalic: value => update('italic', Boolean(value), 'Italic updated.'),
+      cycleCase: () => toggle('case', true), setCase: value => caseValues.includes(String(value)) && update('textCase', String(value), 'Text case updated.'),
+      toggleStrike: () => toggle('strike', true), setStrike: value => update('strike', Boolean(value), 'Strikethrough updated.'),
+      cycleAlignment: () => toggle('align', true), setAlignment: value => alignValues.includes(String(value)) && update('alignment', String(value), 'Alignment updated.'),
+      cycleList: () => toggle('list', true), setListStyle: value => listValues.includes(String(value)) && update('listStyle', String(value), 'List style updated.'),
+      cycleIndent: () => toggle('indent', true), setIndent: value => Number.isInteger(Number(value)) && Number(value) >= 0 && Number(value) <= 3 && update('indent', Number(value), 'Indent updated.'),
+      reset, destroy, get state() { return snapshot(); }
+    };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style127 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#414141;--action-selected:#e2e2e2;--action-selected-ink:#202020;--action-muted:#686868;--action-stage:#f2f2f2;--action-card:#fff;--action-edge:#d2d2d2;--action-focus:#464646;--action-ease:cubic-bezier(.22,1,.36,1);--turn-angle:0deg;--turn-scale:1;--mirror-scale:1;width:320px;max-width:100%;min-width:0;min-height:208px;padding:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .editor-shell{width:min(236px,100%);overflow:hidden;border:1px solid var(--action-edge);border-radius:14px;background:var(--action-card);box-shadow:inset 0 1px #fff,0 3px 8px #0000000d}.sl-component .tool-row{height:48px;display:flex;align-items:center;gap:6px;padding:6px 8px;border-bottom:1px solid var(--action-edge);background:#e9e9e9}.sl-component .tool-button{appearance:none;position:relative;width:34px;height:34px;flex:0 0 34px;padding:0;border:0;border-radius:9px;background:transparent;color:#f7f7f7;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .tool-surface{position:absolute;inset:0;display:grid;place-items:center;border:1px solid transparent;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000015;transition:transform 220ms var(--action-ease),background-color 180ms ease,color 180ms ease,box-shadow 220ms ease,border-color 180ms ease}.sl-component .tool-button[aria-pressed=\"true\"] .tool-surface{border-color:#b9b9b9;background:var(--action-selected);color:var(--action-selected-ink);box-shadow:inset 0 1px #fff,0 1px 2px #00000012}.sl-component .tool-surface svg{width:20px;height:20px;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.sl-component .tool-surface path{transform-box:view-box;transform-origin:center;transition:transform 320ms var(--action-ease),opacity 180ms ease}.sl-component .rotate-arrow,.sl-component .rotate-corner{transform:rotate(var(--turn-angle))}.sl-component[data-mirrored=\"true\"] .mirror-left{transform:translateX(7px)}.sl-component[data-mirrored=\"true\"] .mirror-right{transform:translateX(-7px)}.sl-component .sample-window{height:90px;display:grid;place-items:center;overflow:hidden;background:var(--action-card)}.sl-component .sample-picture{width:76px;height:54px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;transform:rotate(var(--turn-angle)) scale(var(--turn-scale)) scaleX(var(--mirror-scale));transition:transform 360ms var(--action-ease)}.sl-component .sample-picture circle{fill:currentColor;stroke:none}.sl-component.is-resetting .sample-picture,.sl-component.is-resetting .rotate-arrow,.sl-component.is-resetting .rotate-corner{transition:none!important}.sl-component .component-status{max-width:32ch;min-height:17px;margin:0;color:var(--action-muted);font-size:11px;line-height:1.4;text-align:center}.sl-component .tool-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:2px}\n@media(hover:hover){.sl-component .tool-button:hover .tool-surface{background:var(--action-hover);transform:translateY(-1px);box-shadow:inset 0 1px #ffffff18,0 7px 13px -11px #0009}.sl-component .tool-button[aria-pressed=\"true\"]:hover .tool-surface{background:#d8d8d8}}.sl-component .tool-button:active .tool-surface{transform:scale(.95);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:8px}.sl-component .component-status{font-size:10px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .tool-surface,.sl-component .tool-button:hover .tool-surface,.sl-component .tool-button:active .tool-surface{transform:none!important}.sl-component .tool-button:active .tool-surface{opacity:.86}}@media(forced-colors:active){.sl-component,.sl-component .editor-shell{border-color:CanvasText}.sl-component .tool-row{border-color:CanvasText;background:Canvas}.sl-component .tool-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .tool-button[aria-pressed=\"true\"] .tool-surface{border-color:Highlight;background:Highlight;color:HighlightText}.sl-component .tool-button:focus-visible{outline-color:Highlight}}\n";
+const api157 = (() => {
+  'use strict';
+  const rotations = Object.freeze([0, 90, 180, 270]);
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const buttons = [...root.querySelectorAll('[data-command]')];
+    const rotateButton = root.querySelector('[data-command="rotate"]');
+    const mirrorButton = root.querySelector('[data-command="mirror"]');
+    const status = root.querySelector('[data-status]');
+    let angle = 0;
+    let mirrored = false;
+    let destroyed = false;
+    let rovingIndex = 0;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    const normalizedRotation = () => ((angle % 360) + 360) % 360;
+    const snapshot = () => ({ rotation: String(normalizedRotation()), angle, mirrored });
+    function setRoving(index, focus = false) {
+      rovingIndex = Math.max(0, Math.min(buttons.length - 1, index));
+      buttons.forEach((button, buttonIndex) => { button.tabIndex = buttonIndex === rovingIndex ? 0 : -1; });
+      if (focus) buttons[rovingIndex].focus();
+    }
+    function render(message = '') {
+      const rotation = normalizedRotation();
+      root.dataset.rotation = String(rotation);
+      root.dataset.mirrored = String(mirrored);
+      root.style.setProperty('--turn-angle', `${angle}deg`);
+      root.style.setProperty('--turn-scale', rotation === 90 || rotation === 270 ? '.72' : '1');
+      root.style.setProperty('--mirror-scale', mirrored ? '-1' : '1');
+      rotateButton.setAttribute('aria-label', `Rotate image to ${(rotation + 90) % 360} degrees`);
+      mirrorButton.setAttribute('aria-pressed', String(mirrored));
+      mirrorButton.setAttribute('aria-label', mirrored ? 'Restore image orientation' : 'Mirror image horizontally');
+      status.textContent = message || `Rotation: ${rotation}°. ${mirrored ? 'Mirrored.' : 'Original orientation.'}`;
+    }
+    function emit(action) {
+      const state = snapshot();
+      options.onChange?.({ action, state });
+      root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail: { kind: root.dataset.kind, action, state } }));
+    }
+    function rotate(shouldEmit = true) {
+      if (destroyed) return false;
+      angle += 90;
+      render(`Rotation: ${normalizedRotation()}°.`);
+      if (shouldEmit) emit('rotate');
+      return true;
+    }
+    function toggleMirror(shouldEmit = true) {
+      if (destroyed) return false;
+      mirrored = !mirrored;
+      render(mirrored ? 'Image mirrored.' : 'Original orientation restored.');
+      if (shouldEmit) emit('mirror');
+      return true;
+    }
+    function setRotation(value) {
+      const target = Number(value);
+      if (destroyed || !rotations.includes(target) || target === normalizedRotation()) return false;
+      angle += (target - normalizedRotation() + 360) % 360;
+      render();
+      return true;
+    }
+    function setMirrored(value) {
+      const next = Boolean(value);
+      if (destroyed || next === mirrored) return false;
+      mirrored = next;
+      render();
+      return true;
+    }
+    function activate(event) {
+      const button = event.currentTarget;
+      setRoving(buttons.indexOf(button));
+      if (activeElement() !== button) button.focus();
+      return button.dataset.command === 'rotate' ? rotate(true) : toggleMirror(true);
+    }
+    function onToolbarKey(event) {
+      const index = buttons.indexOf(event.target);
+      if (index < 0) return;
+      let next = index;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (index + 1) % buttons.length;
+      else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (index - 1 + buttons.length) % buttons.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = buttons.length - 1;
+      else return;
+      event.preventDefault();
+      setRoving(next, true);
+    }
+    function reset() {
+      if (destroyed) return;
+      root.classList.add('is-resetting');
+      angle = 0;
+      mirrored = false;
+      setRoving(0);
+      render();
+      root.getBoundingClientRect();
+      root.classList.remove('is-resetting');
+    }
+    function destroy() {
+      if (destroyed) return;
+      reset();
+      destroyed = true;
+      life.abort();
+    }
+    buttons.forEach(button => listen(button, 'click', activate));
+    listen(root.querySelector('[role="toolbar"]'), 'keydown', onToolbarKey);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { rotate, toggleMirror, setRotation, setMirrored, reset, destroy, get state() { return snapshot(); } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style128 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3b3b3b;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-card:#fff;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#4d4d4d;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:208px;padding:18px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .editor-shell{width:min(216px,100%);overflow:hidden;border:1px solid var(--action-edge);border-radius:14px;background:var(--action-card);box-shadow:inset 0 1px #fff,0 2px 5px #0000000b}.sl-component .tool-row{height:46px;display:flex;align-items:center;padding:0 8px;border-bottom:1px solid var(--action-edge);background:#e8e8e8}.sl-component .sample-window{width:100%;height:76px;display:grid;place-items:center;overflow:hidden;background:var(--action-card)}.sl-component[data-layout=\"expanded\"] .sample-window{width:min(216px,100%);height:52px;border:1px solid var(--action-edge);border-radius:12px;box-shadow:inset 0 1px #fff,0 1px 2px #00000008}.sl-component .motion-button{appearance:none;position:relative;width:36px;height:36px;flex:0 0 36px;padding:0;border:0;border-radius:9px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component[data-layout=\"expanded\"] .motion-button{width:min(216px,100%);height:50px;flex-basis:50px;border-radius:14px;letter-spacing:-.01em}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 240ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:scale(.72);transition:transform 260ms var(--action-ease),opacity 160ms ease}.sl-component:not([data-state=\"regular\"]):not([data-state=\"sentence\"]):not([data-state=\"clear\"]):not([data-state=\"left\"]):not([data-state=\"bullets\"]):not([data-state=\"0\"]):not([data-state=\"normal\"]):not([data-state=\"idle\"]) .button-surface::before{opacity:1;transform:scale(1)}\n.sl-component .button-icon{position:absolute;left:50%;top:50%;width:21px;height:21px;margin:-10.5px 0 0 -10.5px;display:grid;place-items:center}.sl-component[data-layout=\"expanded\"] .button-icon{left:20px;margin-left:0}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transition:transform 320ms var(--action-ease),opacity 180ms ease,stroke-dashoffset 300ms var(--action-ease)}.sl-component .button-label{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.sl-component[data-layout=\"expanded\"] .button-label{inset:0;width:auto;height:auto;margin:0;display:flex;align-items:center;justify-content:center;padding:0 42px;clip-path:none;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}\n@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-1px);box-shadow:inset 0 1px #ffffff18,0 7px 13px -11px #0009}.sl-component[data-layout=\"expanded\"] .motion-button:hover .button-surface{transform:translateY(-2px)}}.sl-component .motion-button:active .button-surface{transform:scale(.96);transition-duration:90ms}.sl-component[data-layout=\"expanded\"] .motion-button:active .button-surface{transform:translateY(1px) scale(.985)}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component[data-layout=\"expanded\"] .button-icon{left:15px}.sl-component[data-layout=\"expanded\"] .button-label{padding-inline:37px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component,.sl-component .editor-shell,.sl-component .sample-window{border-color:CanvasText}.sl-component .tool-row{border-color:CanvasText;background:Canvas}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n\n.sl-component[data-kind=\"buttons-crop-mode\"] .sample-crop{position:relative;width:62px;height:43px;overflow:hidden;border-radius:7px;background:#dadada}.sl-component[data-kind=\"buttons-crop-mode\"] .sample-crop span{position:absolute;inset:6px;background:linear-gradient(135deg,#707070 0 48%,#a7a7a7 49% 100%);border-radius:4px;transition:inset 320ms var(--action-ease),transform 320ms var(--action-ease)}.sl-component[data-kind=\"buttons-crop-mode\"] .sample-crop i{position:absolute;width:12px;height:12px;opacity:0;transition:opacity 180ms ease,transform 320ms var(--action-ease)}.sl-component[data-kind=\"buttons-crop-mode\"] .crop-tl{left:4px;top:4px;border-left:1.5px solid currentColor;border-top:1.5px solid currentColor;transform:translate(-4px,-4px)}.sl-component[data-kind=\"buttons-crop-mode\"] .crop-tr{right:4px;top:4px;border-right:1.5px solid currentColor;border-top:1.5px solid currentColor;transform:translate(4px,-4px)}.sl-component[data-kind=\"buttons-crop-mode\"] .crop-br{right:4px;bottom:4px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translate(4px,4px)}.sl-component[data-kind=\"buttons-crop-mode\"] .crop-bl{left:4px;bottom:4px;border-left:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translate(-4px,4px)}.sl-component[data-kind=\"buttons-crop-mode\"][data-state=\"cropping\"] .sample-crop span{inset:10px;transform:scale(1.08)}.sl-component[data-kind=\"buttons-crop-mode\"][data-state=\"cropping\"] .sample-crop i{opacity:1;transform:translate(0,0)}.sl-component[data-kind=\"buttons-crop-mode\"] .crop-a,.sl-component[data-kind=\"buttons-crop-mode\"] .crop-b{transform-origin:12px 12px}.sl-component[data-kind=\"buttons-crop-mode\"][data-state=\"cropping\"] .crop-a{transform:translate(1px,-1px)}.sl-component[data-kind=\"buttons-crop-mode\"][data-state=\"cropping\"] .crop-b{transform:translate(-1px,1px)}\n";
+const api158 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"idle","label":"Start crop","aria":"Enter crop mode","status":"Crop mode is off."},{"value":"cropping","label":"Finish crop","aria":"Leave crop mode","status":"Crop mode is on."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index === 1));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, cropping: states[index].value };
+        options.onChange?.({ cropping: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function activate() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', activate);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle: activate, setCropping: value => setValue(value), reset, destroy, get state() { return { cropping: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style129 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-card:#fff;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:220px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .sample-window{width:min(216px,100%);height:76px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--action-edge);border-radius:13px;background:var(--action-card);box-shadow:inset 0 1px #fff,0 2px 5px #0000000a}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:50px;flex:0 0 50px;padding:0;border:0;border-radius:14px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-25%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:22px;height:22px;margin-top:-11px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 180ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 43px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:38px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component,.sl-component .sample-window{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-cart-toggle\"] .cart-shell{transform-box:view-box;transform-origin:center;transition:transform 360ms var(--action-ease)}.sl-component[data-kind=\"buttons-cart-toggle\"] .cart-plus{transform-box:fill-box;transform-origin:center;opacity:1;transition:transform 220ms var(--action-ease),opacity 120ms ease}.sl-component[data-kind=\"buttons-cart-toggle\"] .cart-check{transform-box:fill-box;transform-origin:center;stroke-dasharray:1;stroke-dashoffset:1;opacity:0;transition:stroke-dashoffset 190ms var(--action-ease),opacity 100ms ease}.sl-component[data-kind=\"buttons-cart-toggle\"][data-active=\"true\"] .cart-shell{transform:translateX(1px)}.sl-component[data-kind=\"buttons-cart-toggle\"][data-active=\"true\"] .cart-plus{transform:rotate(90deg) scale(.7);opacity:0}.sl-component[data-kind=\"buttons-cart-toggle\"][data-active=\"true\"] .cart-check{stroke-dashoffset:0;opacity:1;transition:stroke-dashoffset 320ms var(--action-ease) 30ms,opacity 100ms ease 30ms}\n";
+const api159 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"empty","label":"Add to cart","aria":"Add item to cart","status":"Item is not in the cart."},{"value":"added","label":"Remove item","aria":"Remove item from cart","status":"Item is in the cart."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, cartState: states[index].value };
+        options.onChange?.({ cartState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setCartState: value => setValue(value), reset, destroy, get state() { return { cartState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style130 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-card:#fff;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:220px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .sample-window{width:min(216px,100%);height:76px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--action-edge);border-radius:13px;background:var(--action-card);box-shadow:inset 0 1px #fff,0 2px 5px #0000000a}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:50px;flex:0 0 50px;padding:0;border:0;border-radius:14px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-25%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:22px;height:22px;margin-top:-11px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 180ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 43px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:38px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component,.sl-component .sample-window{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-archive-toggle\"] .archive-scene{position:relative;width:104px;height:58px;overflow:hidden}.sl-component[data-kind=\"buttons-archive-toggle\"] .archive-document{position:absolute;z-index:1;left:35px;top:0;width:34px;height:39px;border:1.7px solid currentColor;border-radius:5px;background:var(--action-card);transition:transform 460ms var(--action-ease),opacity 140ms ease}.sl-component[data-kind=\"buttons-archive-toggle\"] .archive-document i,.sl-component[data-kind=\"buttons-archive-toggle\"] .archive-document b{position:absolute;left:8px;right:8px;height:2px;border-radius:2px;background:currentColor}.sl-component[data-kind=\"buttons-archive-toggle\"] .archive-document i{top:11px}.sl-component[data-kind=\"buttons-archive-toggle\"] .archive-document b{top:18px;right:13px}.sl-component[data-kind=\"buttons-archive-toggle\"] .archive-back{position:absolute;z-index:2;left:17px;right:17px;bottom:3px;height:29px;border:1.8px solid currentColor;border-radius:5px 5px 9px 9px;background:var(--action-card)}.sl-component[data-kind=\"buttons-archive-toggle\"] .archive-front{position:absolute;z-index:3;left:13px;right:13px;bottom:28px;height:8px;border:1.8px solid currentColor;border-radius:4px;background:var(--action-card);transition:transform 380ms var(--action-ease)}.sl-component[data-kind=\"buttons-archive-toggle\"] .archive-front i{position:absolute;left:50%;top:2px;width:14px;margin-left:-7px;border-top:1.4px solid currentColor}.sl-component[data-kind=\"buttons-archive-toggle\"][data-active=\"true\"] .archive-document{transform:translateY(20px) scale(.72);opacity:0;transition:transform 460ms var(--action-ease),opacity 120ms ease 220ms}.sl-component[data-kind=\"buttons-archive-toggle\"][data-active=\"true\"] .archive-front{transform:translateY(4px)}.sl-component[data-kind=\"buttons-archive-toggle\"] .archive-sheet,.sl-component[data-kind=\"buttons-archive-toggle\"] .archive-chevron{transform-box:fill-box;transform-origin:center;transition:transform 420ms var(--action-ease),opacity 130ms ease}.sl-component[data-kind=\"buttons-archive-toggle\"][data-active=\"true\"] .archive-sheet,.sl-component[data-kind=\"buttons-archive-toggle\"][data-active=\"true\"] .archive-chevron{transform:translateY(7px) scale(.72);opacity:0;transition:transform 420ms var(--action-ease),opacity 110ms ease 180ms}.sl-component[data-kind=\"buttons-archive-toggle\"][data-active=\"true\"] .archive-lid{transform:translateY(2px)}\n";
+const api160 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"active","label":"Archive","aria":"Archive item","status":"Item is active."},{"value":"archived","label":"Restore","aria":"Restore archived item","status":"Item is archived."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, archiveState: states[index].value };
+        options.onChange?.({ archiveState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setArchiveState: value => setValue(value), reset, destroy, get state() { return { archiveState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style131 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-card:#fff;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:220px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .sample-window{width:min(216px,100%);height:76px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--action-edge);border-radius:13px;background:var(--action-card);box-shadow:inset 0 1px #fff,0 2px 5px #0000000a}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:50px;flex:0 0 50px;padding:0;border:0;border-radius:14px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-25%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:22px;height:22px;margin-top:-11px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 180ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 43px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:38px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component,.sl-component .sample-window{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-task-complete\"] .task-sample{display:flex;align-items:center;gap:10px;padding:0 15px;width:174px;height:44px;border:1px solid var(--action-edge);border-radius:11px;background:var(--action-card)}.sl-component[data-kind=\"buttons-task-complete\"] .task-state{width:20px;height:20px;flex:0 0 20px;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round}.sl-component[data-kind=\"buttons-task-complete\"] .preview-check,.sl-component[data-kind=\"buttons-task-complete\"] .task-check{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 360ms var(--action-ease)}.sl-component[data-kind=\"buttons-task-complete\"] .task-sample span{position:relative;font-size:13px}.sl-component[data-kind=\"buttons-task-complete\"] .task-sample span::after{content:\"\";position:absolute;left:0;right:0;top:52%;height:1.4px;border-radius:2px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform 380ms var(--action-ease)}.sl-component[data-kind=\"buttons-task-complete\"][data-active=\"true\"] .preview-check,.sl-component[data-kind=\"buttons-task-complete\"][data-active=\"true\"] .task-check{stroke-dashoffset:0}.sl-component[data-kind=\"buttons-task-complete\"][data-active=\"true\"] .task-sample span{opacity:.62}.sl-component[data-kind=\"buttons-task-complete\"][data-active=\"true\"] .task-sample span::after{transform:scaleX(1)}.sl-component[data-kind=\"buttons-task-complete\"] .task-ring{transition:stroke-width 220ms ease,transform 360ms var(--action-ease)}.sl-component[data-kind=\"buttons-task-complete\"][data-active=\"true\"] .task-ring{stroke-width:2;transform:scale(1.03)}\n";
+const api161 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"open","label":"Mark done","aria":"Mark task as done","status":"Task is open."},{"value":"done","label":"Reopen task","aria":"Reopen completed task","status":"Task is complete."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, taskState: states[index].value };
+        options.onChange?.({ taskState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setTaskState: value => setValue(value), reset, destroy, get state() { return { taskState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style132 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-card:#fff;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:220px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .sample-window{width:min(216px,100%);height:76px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--action-edge);border-radius:13px;background:var(--action-card);box-shadow:inset 0 1px #fff,0 2px 5px #0000000a}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:50px;flex:0 0 50px;padding:0;border:0;border-radius:14px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-25%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:22px;height:22px;margin-top:-11px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 180ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 43px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:38px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component,.sl-component .sample-window{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-assign-toggle\"] .assign-scene{position:relative;width:158px;height:58px}.sl-component[data-kind=\"buttons-assign-toggle\"] .assign-card{position:absolute;left:2px;top:8px;width:112px;height:42px;border:1.6px solid currentColor;border-radius:10px;background:var(--action-card)}.sl-component[data-kind=\"buttons-assign-toggle\"] .assign-card i,.sl-component[data-kind=\"buttons-assign-toggle\"] .assign-card b{position:absolute;left:13px;height:2px;border-radius:2px;background:currentColor}.sl-component[data-kind=\"buttons-assign-toggle\"] .assign-card i{top:13px;width:46px}.sl-component[data-kind=\"buttons-assign-toggle\"] .assign-card b{top:22px;width:34px}.sl-component[data-kind=\"buttons-assign-toggle\"] .assign-card em{position:absolute;right:9px;top:9px;width:23px;height:23px;border:1.4px dashed currentColor;border-radius:50%;opacity:.35;transform:scale(1);transition:opacity 120ms ease,transform 300ms var(--action-ease)}.sl-component[data-kind=\"buttons-assign-toggle\"] .assign-avatar{position:absolute;z-index:2;right:1px;top:13px;width:32px;height:32px;display:grid;place-items:center;border:1.6px solid currentColor;border-radius:50%;background:var(--action-card);transition:transform 440ms var(--action-ease),box-shadow 220ms ease}.sl-component[data-kind=\"buttons-assign-toggle\"] .assign-avatar svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round}.sl-component[data-kind=\"buttons-assign-toggle\"] .assign-person{transform:translateY(-.2px)}.sl-component[data-kind=\"buttons-assign-toggle\"] .assign-link{position:absolute;left:104px;top:28px;width:21px;border-top:1.5px solid currentColor;transform:scaleX(1);transform-origin:left;opacity:.35;transition:transform 400ms var(--action-ease),opacity 120ms ease}.sl-component[data-kind=\"buttons-assign-toggle\"][data-active=\"true\"] .assign-card em{opacity:0;transform:scale(.84)}.sl-component[data-kind=\"buttons-assign-toggle\"][data-active=\"true\"] .assign-avatar{transform:translate(-48.5px,.5px) scale(.71875);box-shadow:0 5px 10px -8px #0009}.sl-component[data-kind=\"buttons-assign-toggle\"][data-active=\"true\"] .assign-link{transform:scaleX(0);opacity:0}.sl-component[data-kind=\"buttons-assign-toggle\"] .assign-check{stroke-dasharray:1;stroke-dashoffset:1;opacity:0}.sl-component[data-kind=\"buttons-assign-toggle\"][data-active=\"true\"] .assign-plus{transform:rotate(90deg) scale(.25);opacity:0}.sl-component[data-kind=\"buttons-assign-toggle\"][data-active=\"true\"] .assign-check{stroke-dashoffset:0;opacity:1}\n";
+const api162 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"unassigned","label":"Assign person","aria":"Assign a person to the item","status":"No person is assigned."},{"value":"assigned","label":"Unassign","aria":"Remove the assigned person","status":"Alex is assigned."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, assignState: states[index].value };
+        options.onChange?.({ assignState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setAssignState: value => setValue(value), reset, destroy, get state() { return { assignState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style133 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-card:#fff;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:220px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .sample-window{width:min(216px,100%);height:76px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--action-edge);border-radius:13px;background:var(--action-card);box-shadow:inset 0 1px #fff,0 2px 5px #0000000a}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:50px;flex:0 0 50px;padding:0;border:0;border-radius:14px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-25%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:22px;height:22px;margin-top:-11px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 180ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 43px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:38px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component,.sl-component .sample-window{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-compare-toggle\"] .compare-scene{position:relative;width:120px;height:56px}.sl-component[data-kind=\"buttons-compare-toggle\"] .compare-card{position:absolute;z-index:2;left:39px;top:6px;width:42px;height:44px;border:1.7px solid currentColor;border-radius:8px;background:var(--action-card);transition:transform 500ms var(--action-ease),box-shadow 240ms ease}.sl-component[data-kind=\"buttons-compare-toggle\"] .compare-card i,.sl-component[data-kind=\"buttons-compare-toggle\"] .compare-card b{position:absolute;left:9px;height:2.5px;border-radius:3px;background:currentColor}.sl-component[data-kind=\"buttons-compare-toggle\"] .compare-card i{right:9px;top:12px}.sl-component[data-kind=\"buttons-compare-toggle\"] .compare-card b{right:16px;top:21px}.sl-component[data-kind=\"buttons-compare-toggle\"] .card-a{transform:translateX(-4px);box-shadow:-3px 3px 0 var(--action-card),-4px 4px 0 var(--action-edge)}.sl-component[data-kind=\"buttons-compare-toggle\"] .card-b{transform:translateX(4px)}.sl-component[data-kind=\"buttons-compare-toggle\"] .compare-connector{position:absolute;z-index:1;inset:0;width:100%;height:100%;overflow:visible;fill:var(--action-ink);stroke:currentColor;stroke-width:1.5;stroke-linecap:round}.sl-component[data-kind=\"buttons-compare-toggle\"] .compare-connector path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 380ms var(--action-ease) 120ms}.sl-component[data-kind=\"buttons-compare-toggle\"] .compare-connector circle{transform-box:fill-box;transform-origin:center;transform:scale(0);transition:transform 260ms var(--action-ease) 180ms}.sl-component[data-kind=\"buttons-compare-toggle\"][data-active=\"true\"] .card-a{transform:translateX(-36px);box-shadow:0 5px 10px -9px #0009}.sl-component[data-kind=\"buttons-compare-toggle\"][data-active=\"true\"] .card-b{transform:translateX(36px);box-shadow:0 5px 10px -9px #0009}.sl-component[data-kind=\"buttons-compare-toggle\"][data-active=\"true\"] .compare-connector path{stroke-dashoffset:0}.sl-component[data-kind=\"buttons-compare-toggle\"][data-active=\"true\"] .compare-connector circle{transform:scale(1)}.sl-component[data-kind=\"buttons-compare-toggle\"] .compare-a,.sl-component[data-kind=\"buttons-compare-toggle\"] .compare-b{transition:transform 480ms var(--action-ease)}.sl-component[data-kind=\"buttons-compare-toggle\"] .compare-link{stroke-dasharray:1;stroke-dashoffset:1}.sl-component[data-kind=\"buttons-compare-toggle\"][data-active=\"true\"] .compare-a{transform:translateX(-3px)}.sl-component[data-kind=\"buttons-compare-toggle\"][data-active=\"true\"] .compare-b{transform:translateX(3px)}.sl-component[data-kind=\"buttons-compare-toggle\"][data-active=\"true\"] .compare-link{stroke-dashoffset:0}\n";
+const api163 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"stacked","label":"Compare","aria":"Separate items for comparison","status":"Two items are stacked."},{"value":"compared","label":"Stack items","aria":"Return compared items to the stack","status":"Two items are separated for comparison."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, compareState: states[index].value };
+        options.onChange?.({ compareState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setCompareState: value => setValue(value), reset, destroy, get state() { return { compareState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style134 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-card:#fff;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:220px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .sample-window{width:min(216px,100%);height:76px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--action-edge);border-radius:13px;background:var(--action-card);box-shadow:inset 0 1px #fff,0 2px 5px #0000000a}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:50px;flex:0 0 50px;padding:0;border:0;border-radius:14px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-25%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:22px;height:22px;margin-top:-11px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 180ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 43px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:38px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component,.sl-component .sample-window{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-new-folder\"] .folder-scene{position:relative;width:110px;height:58px;perspective:180px}.sl-component[data-kind=\"buttons-new-folder\"] .folder-back{position:absolute;left:17px;right:17px;bottom:5px;height:40px;border:1.8px solid currentColor;border-radius:5px 7px 9px 9px;background:var(--action-card)}.sl-component[data-kind=\"buttons-new-folder\"] .folder-back::before{content:\"\";position:absolute;left:-2px;top:-9px;width:32px;height:10px;border:1.8px solid currentColor;border-bottom:0;border-radius:5px 6px 0 0;background:var(--action-card)}.sl-component[data-kind=\"buttons-new-folder\"] .folder-doc{position:absolute;z-index:2;bottom:14px;width:36px;height:32px;border:1.4px solid currentColor;border-radius:4px;background:var(--action-card);transition:transform 440ms var(--action-ease),opacity 180ms ease}.sl-component[data-kind=\"buttons-new-folder\"] .folder-doc::before{content:\"\";position:absolute;left:7px;right:7px;top:8px;height:2px;background:currentColor;box-shadow:0 6px currentColor}.sl-component[data-kind=\"buttons-new-folder\"] .doc-one{left:28px;transform:translateY(12px) rotate(-3deg);opacity:.45}.sl-component[data-kind=\"buttons-new-folder\"] .doc-two{right:26px;transform:translateY(12px) rotate(3deg);opacity:.35}.sl-component[data-kind=\"buttons-new-folder\"] .folder-front{position:absolute;z-index:3;left:14px;right:14px;bottom:4px;height:32px;border:1.8px solid currentColor;border-radius:5px 5px 10px 10px;background:var(--action-card);transform-origin:bottom;transition:transform 460ms var(--action-ease),box-shadow 220ms ease}.sl-component[data-kind=\"buttons-new-folder\"][data-active=\"true\"] .doc-one{transform:translateY(-7px) rotate(-4deg);opacity:1}.sl-component[data-kind=\"buttons-new-folder\"][data-active=\"true\"] .doc-two{transform:translateY(-3px) rotate(4deg);opacity:.75}.sl-component[data-kind=\"buttons-new-folder\"][data-active=\"true\"] .folder-front{transform:rotateX(-16deg) translateY(3px);box-shadow:0 8px 13px -11px #0009}.sl-component[data-kind=\"buttons-new-folder\"] .folder-sheet-icon{transform-box:fill-box;transform-origin:center;transform:translateY(5px) scale(.75);opacity:0}.sl-component[data-kind=\"buttons-new-folder\"][data-active=\"true\"] .folder-sheet-icon{transform:translateY(-1px) scale(1);opacity:1}.sl-component[data-kind=\"buttons-new-folder\"][data-active=\"true\"] .folder-front-icon{transform:translateY(2px)}.sl-component[data-kind=\"buttons-new-folder\"] .folder-check{stroke-dasharray:1;stroke-dashoffset:1;opacity:0}.sl-component[data-kind=\"buttons-new-folder\"][data-active=\"true\"] .folder-plus{transform:rotate(90deg) scale(.25);opacity:0}.sl-component[data-kind=\"buttons-new-folder\"][data-active=\"true\"] .folder-check{stroke-dashoffset:0;opacity:1}\n";
+const api164 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"empty","label":"New folder","aria":"Create a local folder","status":"No demo folder exists."},{"value":"created","label":"Remove folder","aria":"Remove the local demo folder","status":"Demo folder is visible."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, folderState: states[index].value };
+        options.onChange?.({ folderState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setFolderState: value => setValue(value), reset, destroy, get state() { return { folderState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style135 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-card:#fff;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:220px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .sample-window{width:min(216px,100%);height:76px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--action-edge);border-radius:13px;background:var(--action-card);box-shadow:inset 0 1px #fff,0 2px 5px #0000000a}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:50px;flex:0 0 50px;padding:0;border:0;border-radius:14px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-25%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:22px;height:22px;margin-top:-11px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 180ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 43px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:38px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component,.sl-component .sample-window{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-comment-toggle\"] .comment-scene{position:relative;width:158px;height:58px}.sl-component[data-kind=\"buttons-comment-toggle\"] .comment-source{position:absolute;left:1px;top:5px;width:100px;height:48px;border:1.5px solid currentColor;border-radius:8px;background:var(--action-card)}.sl-component[data-kind=\"buttons-comment-toggle\"] .comment-source i,.sl-component[data-kind=\"buttons-comment-toggle\"] .comment-source b,.sl-component[data-kind=\"buttons-comment-toggle\"] .comment-source u{position:absolute;left:12px;height:2px;border-radius:2px;background:currentColor;text-decoration:none}.sl-component[data-kind=\"buttons-comment-toggle\"] .comment-source i{right:13px;top:12px}.sl-component[data-kind=\"buttons-comment-toggle\"] .comment-source b{right:29px;top:21px}.sl-component[data-kind=\"buttons-comment-toggle\"] .comment-source u{right:19px;top:30px;height:7px;background:#dddddd}.sl-component[data-kind=\"buttons-comment-toggle\"] .comment-bubble{position:absolute;z-index:2;right:1px;top:12px;width:55px;height:34px;border:1.6px solid currentColor;border-radius:10px;background:var(--action-card);transform:translate(-21px,8px) scale(.32);transform-origin:left center;opacity:0;transition:transform 440ms var(--action-ease),opacity 160ms ease}.sl-component[data-kind=\"buttons-comment-toggle\"] .comment-bubble::after{content:\"\";position:absolute;left:-5px;top:13px;width:9px;height:9px;border-left:1.6px solid currentColor;border-bottom:1.6px solid currentColor;background:var(--action-card);transform:rotate(45deg)}.sl-component[data-kind=\"buttons-comment-toggle\"] .comment-bubble i,.sl-component[data-kind=\"buttons-comment-toggle\"] .comment-bubble b{position:absolute;left:12px;height:2px;border-radius:2px;background:currentColor}.sl-component[data-kind=\"buttons-comment-toggle\"] .comment-bubble i{right:11px;top:11px}.sl-component[data-kind=\"buttons-comment-toggle\"] .comment-bubble b{right:22px;top:19px}.sl-component[data-kind=\"buttons-comment-toggle\"] .comment-scene em{position:absolute;z-index:3;right:-4px;top:4px;width:20px;height:20px;display:grid;place-items:center;border-radius:50%;background:var(--action-ink);color:var(--action-card);font:650 10px/1 'Instrument Sans',sans-serif;font-style:normal;transform:scale(0);transition:transform 300ms var(--action-ease) 160ms}.sl-component[data-kind=\"buttons-comment-toggle\"][data-active=\"true\"] .comment-bubble{transform:translate(0,0) scale(1);opacity:1}.sl-component[data-kind=\"buttons-comment-toggle\"][data-active=\"true\"] .comment-scene em{transform:scale(1)}.sl-component[data-kind=\"buttons-comment-toggle\"] .comment-check{stroke-dasharray:1;stroke-dashoffset:1;opacity:0}.sl-component[data-kind=\"buttons-comment-toggle\"][data-active=\"true\"] .comment-plus{transform:rotate(90deg) scale(.25);opacity:0}.sl-component[data-kind=\"buttons-comment-toggle\"][data-active=\"true\"] .comment-check{stroke-dashoffset:0;opacity:1}\n";
+const api165 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"clear","label":"Add comment","aria":"Comment on the selected text","status":"Selected text has no comment."},{"value":"commented","label":"Remove comment","aria":"Remove the comment from selected text","status":"Selected text has one comment."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, commentState: states[index].value };
+        options.onChange?.({ commentState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setCommentState: value => setValue(value), reset, destroy, get state() { return { commentState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style136 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-card:#fff;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:220px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .sample-window{width:min(216px,100%);height:76px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--action-edge);border-radius:13px;background:var(--action-card);box-shadow:inset 0 1px #fff,0 2px 5px #0000000a}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:50px;flex:0 0 50px;padding:0;border:0;border-radius:14px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-25%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:22px;height:22px;margin-top:-11px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 180ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 43px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:38px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component,.sl-component .sample-window{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-translate-toggle\"] .translate-sample{position:relative;width:150px;height:46px;overflow:hidden;border:1px solid var(--action-edge);border-radius:12px;background:var(--action-card)}.sl-component[data-kind=\"buttons-translate-toggle\"] .translate-sample span{position:absolute;inset:0;display:grid;place-items:center;font-size:17px;font-weight:570;transition:transform 420ms var(--action-ease),opacity 180ms ease}.sl-component[data-kind=\"buttons-translate-toggle\"] .word-ru{transform:translateY(24px);opacity:0}.sl-component[data-kind=\"buttons-translate-toggle\"][data-active=\"true\"] .word-en{transform:translateY(-24px);opacity:0}.sl-component[data-kind=\"buttons-translate-toggle\"][data-active=\"true\"] .word-ru{transform:translateY(0);opacity:1}.sl-component[data-kind=\"buttons-translate-toggle\"] .translate-top,.sl-component[data-kind=\"buttons-translate-toggle\"] .translate-bottom{transition:transform 420ms var(--action-ease)}.sl-component[data-kind=\"buttons-translate-toggle\"][data-active=\"true\"] .translate-top{transform:translateX(-5px)}.sl-component[data-kind=\"buttons-translate-toggle\"][data-active=\"true\"] .translate-bottom{transform:translateX(5px)}.sl-component[data-kind=\"buttons-translate-toggle\"][data-active=\"true\"] .translate-letter{transform:scale(.92)}\n";
+const api166 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"english","label":"Translate","aria":"Translate sample to Russian","status":"Sample language is English."},{"value":"russian","label":"Show English","aria":"Show the English sample","status":"Sample language is Russian."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, language: states[index].value };
+        options.onChange?.({ language: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setLanguage: value => setValue(value), reset, destroy, get state() { return { language: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style137 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-card:#fff;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:220px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .sample-window{width:min(216px,100%);height:76px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--action-edge);border-radius:13px;background:var(--action-card);box-shadow:inset 0 1px #fff,0 2px 5px #0000000a}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:50px;flex:0 0 50px;padding:0;border:0;border-radius:14px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-25%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:22px;height:22px;margin-top:-11px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 180ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 43px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:38px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component,.sl-component .sample-window{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-tag-toggle\"] .tag-scene{width:154px;height:50px;display:grid;place-items:center}.sl-component[data-kind=\"buttons-tag-toggle\"] .tag-scene span{position:relative;min-width:108px;height:34px;display:flex;align-items:center;justify-content:center;padding:0 17px 0 31px;border:1.6px solid currentColor;border-radius:7px 18px 18px 7px;background:var(--action-card);transform:translateX(-10px) rotate(-2deg);opacity:.42;transition:transform 440ms var(--action-ease),opacity 160ms ease,box-shadow 220ms ease}.sl-component[data-kind=\"buttons-tag-toggle\"] .tag-scene i{position:absolute;left:11px;width:7px;height:7px;border:1.4px solid currentColor;border-radius:50%}.sl-component[data-kind=\"buttons-tag-toggle\"] .tag-scene b{font:650 10px/1 'Instrument Sans',sans-serif;font-variation-settings:'wght' 650;font-style:normal;letter-spacing:.13em;text-transform:uppercase;transform:translateX(-7px);opacity:0;transition:transform 360ms var(--action-ease),opacity 150ms ease}.sl-component[data-kind=\"buttons-tag-toggle\"][data-active=\"true\"] .tag-scene span{transform:translateX(0) rotate(0);opacity:1;box-shadow:0 6px 11px -10px #0009}.sl-component[data-kind=\"buttons-tag-toggle\"][data-active=\"true\"] .tag-scene b{transform:translateX(0);opacity:1}.sl-component[data-kind=\"buttons-tag-toggle\"] .tag-check{stroke-dasharray:1;stroke-dashoffset:1;opacity:0}.sl-component[data-kind=\"buttons-tag-toggle\"][data-active=\"true\"] .tag-plus{transform:translateX(3px) rotate(90deg) scale(.25);opacity:0}.sl-component[data-kind=\"buttons-tag-toggle\"][data-active=\"true\"] .tag-check{stroke-dashoffset:0;opacity:1}.sl-component[data-kind=\"buttons-tag-toggle\"][data-active=\"true\"] .tag-label{transform:translateX(1px)}\n";
+const api167 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"untagged","label":"Add tag","aria":"Add a local tag","status":"Item has no tag."},{"value":"tagged","label":"Remove tag","aria":"Remove the local tag","status":"Item is tagged Design."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, tagState: states[index].value };
+        options.onChange?.({ tagState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setTagState: value => setValue(value), reset, destroy, get state() { return { tagState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style138 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-card:#fff;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:220px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .sample-window{width:min(216px,100%);height:76px;display:grid;place-items:center;overflow:hidden;border:1px solid var(--action-edge);border-radius:13px;background:var(--action-card);box-shadow:inset 0 1px #fff,0 2px 5px #0000000a}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:50px;flex:0 0 50px;padding:0;border:0;border-radius:14px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-25%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:22px;height:22px;margin-top:-11px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 180ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 43px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:38px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component,.sl-component .sample-window{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-photo-toggle\"] .photo-scene{position:relative;width:122px;height:62px;display:grid;place-items:center;perspective:180px}.sl-component[data-kind=\"buttons-photo-toggle\"] .photo-back{position:absolute;left:18px;top:7px;width:88px;height:50px;border:1.4px solid currentColor;border-radius:9px;background:var(--action-card);opacity:.35;transition:transform 460ms var(--action-ease),opacity 180ms ease}.sl-component[data-kind=\"buttons-photo-toggle\"] .photo-card{position:relative;z-index:2;width:92px;height:56px;overflow:visible;fill:var(--action-card);stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transform:translateY(8px) scale(.84);opacity:.45;transition:transform 500ms var(--action-ease),opacity 180ms ease,filter 240ms ease}.sl-component[data-kind=\"buttons-photo-toggle\"] .photo-fill{fill:#dddddd;stroke:none}.sl-component[data-kind=\"buttons-photo-toggle\"] .photo-sun{fill:none}.sl-component[data-kind=\"buttons-photo-toggle\"] .photo-hills{fill:none;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 420ms var(--action-ease) 120ms}.sl-component[data-kind=\"buttons-photo-toggle\"][data-active=\"true\"] .back-a{transform:translate(-7px,3px) rotate(-5deg);opacity:.7}.sl-component[data-kind=\"buttons-photo-toggle\"][data-active=\"true\"] .back-b{transform:translate(7px,2px) rotate(5deg);opacity:.55}.sl-component[data-kind=\"buttons-photo-toggle\"][data-active=\"true\"] .photo-card{transform:translateY(0) scale(1);opacity:1;filter:drop-shadow(0 6px 6px #00000014)}.sl-component[data-kind=\"buttons-photo-toggle\"][data-active=\"true\"] .photo-hills{stroke-dashoffset:0}.sl-component[data-kind=\"buttons-photo-toggle\"] .photo-check{stroke-dasharray:1;stroke-dashoffset:1;opacity:0}.sl-component[data-kind=\"buttons-photo-toggle\"][data-active=\"true\"] .photo-plus{transform:rotate(90deg) scale(.25);opacity:0}.sl-component[data-kind=\"buttons-photo-toggle\"][data-active=\"true\"] .photo-check{stroke-dashoffset:0;opacity:1}.sl-component[data-kind=\"buttons-photo-toggle\"][data-active=\"true\"] .photo-frame{transform:scale(1.02)}\n";
+const api168 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"empty","label":"Add photo","aria":"Add a local demo photo","status":"No photo is selected."},{"value":"added","label":"Clear photo","aria":"Clear the local demo photo","status":"Demo photo is selected."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, photoState: states[index].value };
+        options.onChange?.({ photoState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setPhotoState: value => setValue(value), reset, destroy, get state() { return { photoState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style139 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:180px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:52px;flex:0 0 52px;padding:0;border:0;border-radius:15px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-24%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:23px;height:23px;margin-top:-11.5px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 160ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 44px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:39px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-close-item\"] .close-x{transition:transform 260ms var(--action-ease),opacity 120ms ease}.sl-component[data-kind=\"buttons-close-item\"] .close-return{stroke-dasharray:1;stroke-dashoffset:1;opacity:0;transition:stroke-dashoffset 200ms var(--action-ease),opacity 100ms ease}.sl-component[data-kind=\"buttons-close-item\"][data-active=\"true\"] .close-x{transform:rotate(90deg) scale(.55);opacity:0}.sl-component[data-kind=\"buttons-close-item\"][data-active=\"true\"] .close-return{stroke-dashoffset:0;opacity:1;transition:stroke-dashoffset 330ms var(--action-ease) 30ms,opacity 100ms ease 30ms}.sl-component[data-kind=\"buttons-close-item\"][data-active=\"true\"] .close-frame{transform:scale(.97)}\n";
+const api169 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"open","label":"Close item","aria":"Close the local item","status":"Item is open."},{"value":"closed","label":"Reopen item","aria":"Reopen the local item","status":"Item is closed locally."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, closeState: states[index].value };
+        options.onChange?.({ closeState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setCloseState: value => setValue(value), reset, destroy, get state() { return { closeState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style140 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:180px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:52px;flex:0 0 52px;padding:0;border:0;border-radius:15px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-24%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:23px;height:23px;margin-top:-11.5px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 160ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 44px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:39px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-open-external\"] .external-window,.sl-component[data-kind=\"buttons-open-external\"] .external-arrow{transition:transform 360ms var(--action-ease)}.sl-component[data-kind=\"buttons-open-external\"][data-active=\"true\"] .external-window{transform:translate(-.8px,.8px) scale(.97)}.sl-component[data-kind=\"buttons-open-external\"][data-active=\"true\"] .external-arrow{transform:translate(1.5px,-1.5px)}\n";
+const api170 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"inline","label":"Open externally","aria":"Open the local preview externally","status":"Preview is inline."},{"value":"external","label":"Return inline","aria":"Return the preview inline","status":"Preview is shown externally in this demo."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, openState: states[index].value };
+        options.onChange?.({ openState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setOpenState: value => setValue(value), reset, destroy, get state() { return { openState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style141 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:180px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:52px;flex:0 0 52px;padding:0;border:0;border-radius:15px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-24%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:23px;height:23px;margin-top:-11.5px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 160ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 44px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:39px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-read-toggle\"] .read-flap{transform-origin:12px 7px;transition:transform 400ms var(--action-ease),opacity 180ms ease}.sl-component[data-kind=\"buttons-read-toggle\"] .read-check{stroke-width:1.8;stroke-dasharray:1;stroke-dashoffset:1;opacity:0;transition:stroke-dashoffset 400ms var(--action-ease),opacity 150ms ease}.sl-component[data-kind=\"buttons-read-toggle\"][data-active=\"true\"] .read-flap{transform:translateY(-1px) scaleY(.72);opacity:.48}.sl-component[data-kind=\"buttons-read-toggle\"][data-active=\"true\"] .read-check{stroke-dashoffset:0;opacity:1}\n";
+const api171 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"unread","label":"Mark read","aria":"Mark the local message as read","status":"Message is unread."},{"value":"read","label":"Mark unread","aria":"Mark the local message as unread","status":"Message is read."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, readState: states[index].value };
+        options.onChange?.({ readState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setReadState: value => setValue(value), reset, destroy, get state() { return { readState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style142 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:180px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:52px;flex:0 0 52px;padding:0;border:0;border-radius:15px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-24%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:23px;height:23px;margin-top:-11.5px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 160ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 44px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:39px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-flag-toggle\"] .flag-pole{transition:transform 400ms var(--action-ease)}.sl-component[data-kind=\"buttons-flag-toggle\"] .flag-cloth{transform-origin:5.7px 8px;transition:transform 400ms var(--action-ease)}.sl-component[data-kind=\"buttons-flag-toggle\"] .flag-fill{fill:currentColor;stroke:none;opacity:0;transform:scaleX(.12);transform-origin:5.7px 8px;transition:transform 400ms var(--action-ease),opacity 180ms ease}.sl-component[data-kind=\"buttons-flag-toggle\"][data-active=\"true\"] .flag-pole{transform:translateX(.5px)}.sl-component[data-kind=\"buttons-flag-toggle\"][data-active=\"true\"] .flag-cloth{transform:translateX(.5px)}.sl-component[data-kind=\"buttons-flag-toggle\"][data-active=\"true\"] .flag-fill{opacity:.22;transform:translateX(.5px) scaleX(1)}\n";
+const api172 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"clear","label":"Flag item","aria":"Flag the local item","status":"Item is not flagged."},{"value":"flagged","label":"Remove flag","aria":"Remove the local flag","status":"Item is flagged."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, flagState: states[index].value };
+        options.onChange?.({ flagState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setFlagState: value => setValue(value), reset, destroy, get state() { return { flagState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style143 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:180px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:52px;flex:0 0 52px;padding:0;border:0;border-radius:15px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-24%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:23px;height:23px;margin-top:-11.5px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 160ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 44px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:39px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-snooze-toggle\"] .alarm-frame{transform-origin:12px 12px;transition:transform 420ms var(--action-ease)}.sl-component[data-kind=\"buttons-snooze-toggle\"] .snooze-hands{transform-origin:12px 12px;transition:transform 380ms var(--action-ease),opacity 160ms ease}.sl-component[data-kind=\"buttons-snooze-toggle\"] .snooze-pause{stroke-dasharray:1;stroke-dashoffset:1;opacity:0;transition:stroke-dashoffset 400ms var(--action-ease),opacity 160ms ease}.sl-component[data-kind=\"buttons-snooze-toggle\"][data-active=\"true\"] .alarm-frame{transform:scale(.96)}.sl-component[data-kind=\"buttons-snooze-toggle\"][data-active=\"true\"] .snooze-hands{transform:rotate(-28deg) scale(.72);opacity:0}.sl-component[data-kind=\"buttons-snooze-toggle\"][data-active=\"true\"] .snooze-pause{stroke-dashoffset:0;opacity:1}\n";
+const api173 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"active","label":"Snooze item","aria":"Snooze the local item","status":"Item is active."},{"value":"snoozed","label":"Resume item","aria":"Resume the local item","status":"Item is snoozed locally."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, snoozeState: states[index].value };
+        options.onChange?.({ snoozeState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setSnoozeState: value => setValue(value), reset, destroy, get state() { return { snoozeState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style144 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:180px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:52px;flex:0 0 52px;padding:0;border:0;border-radius:15px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-24%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:23px;height:23px;margin-top:-11.5px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 160ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 44px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:39px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-publish-toggle\"] .publish-arrow{transition:transform 300ms var(--action-ease),opacity 120ms ease}.sl-component[data-kind=\"buttons-publish-toggle\"] .publish-check{stroke-dasharray:1;stroke-dashoffset:1;opacity:0}.sl-component[data-kind=\"buttons-publish-toggle\"][data-active=\"true\"] .publish-arrow{transform:translateY(-3px) scale(.8);opacity:0}.sl-component[data-kind=\"buttons-publish-toggle\"][data-active=\"true\"] .publish-check{stroke-dashoffset:0;opacity:1}.sl-component[data-kind=\"buttons-publish-toggle\"][data-active=\"true\"] .publish-page{transform:scale(.97)}\n";
+const api174 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"draft","label":"Publish item","aria":"Publish the local draft state","status":"Item is a local draft."},{"value":"published","label":"Return to draft","aria":"Return the local item to draft","status":"Item is marked published locally."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, publishState: states[index].value };
+        options.onChange?.({ publishState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setPublishState: value => setValue(value), reset, destroy, get state() { return { publishState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style145 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:180px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:52px;flex:0 0 52px;padding:0;border:0;border-radius:15px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-24%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:23px;height:23px;margin-top:-11.5px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 160ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 44px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:39px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-sync-toggle\"] .sync-arrows{transform-origin:center;transition:transform 460ms var(--action-ease),opacity 160ms ease}.sl-component[data-kind=\"buttons-sync-toggle\"] .sync-check{stroke-dasharray:1;stroke-dashoffset:1;opacity:0}.sl-component[data-kind=\"buttons-sync-toggle\"][data-active=\"true\"] .sync-arrows{transform:rotate(180deg);opacity:.45}.sl-component[data-kind=\"buttons-sync-toggle\"][data-active=\"true\"] .sync-check{stroke-dashoffset:0;opacity:1}\n";
+const api175 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"local","label":"Sync item","aria":"Include the local item in sync","status":"Item is local only."},{"value":"synced","label":"Unsync item","aria":"Remove the local item from sync","status":"Item is marked for sync."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, syncState: states[index].value };
+        options.onChange?.({ syncState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setSyncState: value => setValue(value), reset, destroy, get state() { return { syncState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style146 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:180px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:52px;flex:0 0 52px;padding:0;border:0;border-radius:15px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-24%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:23px;height:23px;margin-top:-11.5px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 160ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 44px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:39px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-report-toggle\"] .report-alert{transition:transform 260ms var(--action-ease),opacity 110ms ease}.sl-component[data-kind=\"buttons-report-toggle\"] .report-check{stroke-dasharray:1;stroke-dashoffset:1;opacity:0}.sl-component[data-kind=\"buttons-report-toggle\"][data-active=\"true\"] .report-alert{transform:rotate(90deg) scale(.45);opacity:0}.sl-component[data-kind=\"buttons-report-toggle\"][data-active=\"true\"] .report-check{stroke-dashoffset:0;opacity:1}.sl-component[data-kind=\"buttons-report-toggle\"][data-active=\"true\"] .report-frame{transform:scale(.97)}\n";
+const api176 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"clear","label":"Report issue","aria":"Open the local report state","status":"No report is selected."},{"value":"reporting","label":"Cancel report","aria":"Cancel the local report state","status":"A local report draft is selected."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, reportState: states[index].value };
+        options.onChange?.({ reportState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setReportState: value => setValue(value), reset, destroy, get state() { return { reportState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style147 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:180px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:52px;flex:0 0 52px;padding:0;border:0;border-radius:15px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-24%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:23px;height:23px;margin-top:-11.5px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 160ms ease,stroke-dashoffset 360ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 44px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:39px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-power-toggle\"] .power-symbol{opacity:.82;transform:scale(.94);transform-origin:12px 12px;transition:transform 360ms var(--action-ease),opacity 180ms ease}.sl-component[data-kind=\"buttons-power-toggle\"] .power-ring,.sl-component[data-kind=\"buttons-power-toggle\"] .power-stem{stroke-width:1.85}.sl-component[data-kind=\"buttons-power-toggle\"][data-active=\"true\"] .power-symbol{opacity:1;transform:scale(1)}\n";
+const api177 = (() => {
+  'use strict';
+  const states = Object.freeze([{"value":"off","label":"Turn on","aria":"Turn the local control on","status":"Control is off."},{"value":"on","label":"Turn off","aria":"Turn the local control off","status":"Control is on."}].map(Object.freeze));
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, powerState: states[index].value };
+        options.onChange?.({ powerState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setPowerState: value => setValue(value), reset, destroy, get state() { return { powerState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
+const style148 = "\n.sl-component{--action-ink:#242424;--action-surface:#303030;--action-hover:#3a3a3a;--action-text:#f7f7f7;--action-muted:#686868;--action-stage:#f2f2f2;--action-edge:#d2d2d2;--action-focus:#464646;--action-feedback:#505050;--action-ease:cubic-bezier(.22,1,.36,1);width:320px;max-width:100%;min-width:0;min-height:180px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--action-ink);background:var(--action-stage);border:1px solid var(--action-edge);border-radius:18px;box-shadow:inset 0 1px #fff,0 4px 12px #0000000b;font:14px/1.4 'Instrument Sans',sans-serif;font-synthesis:none;-webkit-font-smoothing:antialiased}\n.sl-component,.sl-component *,.sl-component *::before,.sl-component *::after{box-sizing:border-box}.sl-component .motion-button{appearance:none;position:relative;width:min(216px,100%);height:52px;flex:0 0 52px;padding:0;border:0;border-radius:15px;background:transparent;color:var(--action-text);font:560 14px/1.1 'Instrument Sans',sans-serif;letter-spacing:-.01em;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.sl-component .button-surface{position:absolute;inset:0;display:block;overflow:hidden;isolation:isolate;border-radius:inherit;background:var(--action-surface);box-shadow:inset 0 1px #ffffff12,0 2px 3px #00000017;transition:transform 260ms var(--action-ease),background-color 180ms ease,box-shadow 220ms ease}.sl-component .button-surface::before{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--action-feedback);opacity:0;transform:translateX(-24%);transition:transform 380ms var(--action-ease),opacity 170ms ease}.sl-component[data-active=\"true\"] .button-surface::before{opacity:1;transform:translateX(0)}.sl-component .button-icon{position:absolute;left:19px;top:50%;width:23px;height:23px;margin-top:-11.5px;display:grid;place-items:center}.sl-component .button-icon svg{width:100%;height:100%;display:block;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.sl-component .button-icon path,.sl-component .button-icon rect,.sl-component .button-icon circle,.sl-component .button-icon g{transform-box:view-box;transform-origin:center;transition:transform 380ms var(--action-ease),opacity 180ms ease,stroke-dashoffset 380ms var(--action-ease)}.sl-component .button-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:0 44px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}.sl-component .component-status{max-width:30ch;min-height:18px;margin:0;color:var(--action-muted);font-size:12px;line-height:1.45;text-align:center;overflow-wrap:anywhere}.sl-component .motion-button:focus-visible{outline:2px solid var(--action-focus);outline-offset:3px}@media(hover:hover){.sl-component .motion-button:hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 14px -12px #0009}}.sl-component .motion-button:active .button-surface{transform:translateY(1px) scale(.985);transition-duration:90ms}@media(max-width:240px){.sl-component{padding-inline:10px}.sl-component .button-icon{left:15px}.sl-component .button-label{padding-inline:39px;font-size:13px}.sl-component .component-status{font-size:11px}}@media(prefers-reduced-motion:reduce){.sl-component *,.sl-component *::before,.sl-component *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}.sl-component .button-surface,.sl-component .motion-button:hover .button-surface,.sl-component .motion-button:active .button-surface{transform:none!important}.sl-component .motion-button:active .button-surface{opacity:.88}}@media(forced-colors:active){.sl-component{border-color:CanvasText}.sl-component .button-surface{border:1px solid ButtonText;background:ButtonFace;color:ButtonText}.sl-component .button-surface::before{display:none}.sl-component .motion-button:focus-visible{outline-color:Highlight}}\n.sl-component[data-kind=\"buttons-group-toggle\"] .group-card{fill:currentColor;fill-opacity:.05}.sl-component[data-kind=\"buttons-group-toggle\"] .group-left{transform:translate(0,0)}.sl-component[data-kind=\"buttons-group-toggle\"] .group-right{transform:translate(0,0)}.sl-component[data-kind=\"buttons-group-toggle\"] .group-boundary{opacity:0;stroke-dasharray:1;stroke-dashoffset:1;transform:scale(.82)}.sl-component[data-kind=\"buttons-group-toggle\"][data-active=\"true\"] .group-left{transform:translate(3px,2.25px)}.sl-component[data-kind=\"buttons-group-toggle\"][data-active=\"true\"] .group-right{transform:translate(-3px,-2.25px)}.sl-component[data-kind=\"buttons-group-toggle\"][data-active=\"true\"] .group-card{fill-opacity:.12}.sl-component[data-kind=\"buttons-group-toggle\"][data-active=\"true\"] .group-boundary{opacity:.72;stroke-dashoffset:0;transform:scale(1)}\n";
+const api178 = (() => {
+  'use strict';
+  const states = Object.freeze([
+    Object.freeze({ value: 'separate', label: 'Group items', aria: 'Group the local items', status: 'Items are separate.' }),
+    Object.freeze({ value: 'grouped', label: 'Ungroup items', aria: 'Ungroup the local items', status: 'Items are grouped.' })
+  ]);
+  function mount(root, options = {}) {
+    if (!root?.matches('.sl-component')) throw new TypeError('Expected a .sl-component root.');
+    const view = root.ownerDocument.defaultView;
+    root.dispatchEvent(new view.Event('sl:buttons-remount'));
+    const life = new view.AbortController();
+    const button = root.querySelector('[data-action]');
+    const label = root.querySelector('[data-label]');
+    const status = root.querySelector('[data-status]');
+    let index = 0;
+    let destroyed = false;
+    const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
+    const activeElement = () => root.getRootNode().activeElement;
+    function render() {
+      const state = states[index];
+      root.dataset.state = state.value;
+      root.dataset.active = String(index > 0);
+      label.textContent = state.label;
+      button.setAttribute('aria-label', state.aria);
+      button.title = state.aria;
+      button.setAttribute('aria-pressed', String(index > 0));
+      status.textContent = state.status;
+    }
+    function setValue(value, emit = false) {
+      const next = states.findIndex(state => state.value === String(value));
+      if (destroyed || next < 0 || next === index) return false;
+      index = next;
+      render();
+      if (emit) {
+        const detail = { kind: root.dataset.kind, groupState: states[index].value };
+        options.onChange?.({ groupState: states[index].value });
+        root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail }));
+      }
+      return true;
+    }
+    function toggle() {
+      if (activeElement() !== button) button.focus();
+      return setValue(states[(index + 1) % states.length].value, true);
+    }
+    function reset() { if (!destroyed) { index = 0; render(); } }
+    function destroy() { if (destroyed) return; reset(); destroyed = true; life.abort(); }
+    listen(button, 'click', toggle);
+    listen(root, 'sl:buttons-remount', destroy);
+    reset();
+    return { toggle, setGroupState: value => setValue(value), reset, destroy, get state() { return { groupState: states[index].value, index }; } };
+  }
+  function mountPreview(root) { return mount(root); }
+  return { mount, mountPreview };
+})();
+
 export const previews = {
 "pair": { markup: "<div class=\"button-kit\">\n<button class=\"bk-button bk-button--save\" data-action=\"save\" type=\"button\" data-state=\"idle\" disabled>\n        <span class=\"bk-surface\" aria-hidden=\"true\">\n          <span class=\"bk-progress\"></span>\n          <span class=\"bk-label bk-label-idle\">Save changes</span>\n          <span class=\"bk-label bk-label-saving\">Saving<span class=\"bk-ellipsis\">…</span></span>\n          <span class=\"bk-label bk-label-saved\">\n            <svg class=\"bk-check\" viewBox=\"0 0 24 24\" fill=\"none\" focusable=\"false\"><path d=\"M4 12.5 9.2 17.5 20 6.5\" pathLength=\"1\"/></svg>\n            <span class=\"bk-saved-text\">Saved</span>\n          </span>\n        </span>\n        <span class=\"bk-sr-only\">Save changes</span>\n      </button>\n<button class=\"bk-button bk-button--cancel\" data-action=\"cancel\" type=\"button\" data-state=\"idle\" disabled>\n        <span class=\"bk-surface\" aria-hidden=\"true\">\n          <span class=\"bk-wash\"></span>\n          <span class=\"bk-label bk-label-idle\">Cancel</span>\n          <span class=\"bk-label bk-label-cancelled\">Cancelled</span>\n        </span>\n        <span class=\"bk-sr-only\">Cancel</span>\n      </button>\n    <span class=\"bk-sr-only\" data-feedback role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></span>\n  </div>", css: style0, mount: api0.mount },
 "save": { markup: "<div class=\"button-kit\">\n<button class=\"bk-button bk-button--save\" data-action=\"save\" type=\"button\" data-state=\"idle\" disabled>\n        <span class=\"bk-surface\" aria-hidden=\"true\">\n          <span class=\"bk-progress\"></span>\n          <span class=\"bk-label bk-label-idle\">Save changes</span>\n          <span class=\"bk-label bk-label-saving\">Saving<span class=\"bk-ellipsis\">…</span></span>\n          <span class=\"bk-label bk-label-saved\">\n            <svg class=\"bk-check\" viewBox=\"0 0 24 24\" fill=\"none\" focusable=\"false\"><path d=\"M4 12.5 9.2 17.5 20 6.5\" pathLength=\"1\"/></svg>\n            <span class=\"bk-saved-text\">Saved</span>\n          </span>\n        </span>\n        <span class=\"bk-sr-only\">Save changes</span>\n      </button>\n\n    <span class=\"bk-sr-only\" data-feedback role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></span>\n  </div>", css: style1, mount: api0.mount },
@@ -16401,5 +17784,28 @@ export const previews = {
 "buttons-notifications-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-notifications-toggle\" data-active=\"false\" aria-label=\"Notifications toggle\">\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Enable alerts\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><path class=\"bell-body\" d=\"M6 16h12l-1.5-2.2V10a4.5 4.5 0 0 0-9 0v3.8Z\"/><path class=\"bell-clapper\" d=\"M10 19h4\"/><path class=\"bell-slash\" d=\"M4 4 20 20\"/></svg></span><span class=\"button-label\" data-label>Enable alerts</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Notifications are off.</p>\n  </section>", css: style122, mount: api152.mount, rootSelector: ".sl-component", demoMount: api152.mountPreview },
 "buttons-attachment-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-attachment-toggle\" data-active=\"false\" aria-label=\"Attachment toggle\">\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Attach file\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><path class=\"attach-clip\" d=\"m9 12.5 5.8-5.8a3 3 0 0 1 4.2 4.2l-7.4 7.4a5 5 0 0 1-7.1-7.1l7.1-7.1\"/></svg></span><span class=\"button-label\" data-label>Attach file</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">No file is attached.</p>\n  </section>", css: style123, mount: api153.mount, rootSelector: ".sl-component", demoMount: api153.mountPreview },
 "buttons-undo-action-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-undo-action\" data-phase=\"idle\" aria-busy=\"false\" aria-label=\"Undo action\">\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Undo\" >\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><path class=\"undo-arrow icon-primary\" d=\"m9 7-5 4 5 4M5 11h7a6 6 0 0 1 6 6\"/><path class=\"icon-result\" pathLength=\"1\" d=\"m5 12 4.5 4.5L19 7\"/></svg></span><span class=\"button-label\" data-label>Undo</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Ready to undo.</p>\n  </section>", css: style124, mount: api154.mount, rootSelector: ".sl-component", demoMount: api154.mountPreview },
-"buttons-move-item-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-move-item\" data-phase=\"idle\" aria-busy=\"false\" aria-label=\"Move item\">\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Move item\" >\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><rect class=\"move-box icon-primary\" x=\"3.5\" y=\"7\" width=\"7\" height=\"10\" rx=\"1.5\"/><path class=\"move-arrow icon-primary\" d=\"M9 12h11m-4-4 4 4-4 4\"/><path class=\"icon-result\" pathLength=\"1\" d=\"m5 12 4.5 4.5L19 7\"/></svg></span><span class=\"button-label\" data-label>Move item</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Ready to move.</p>\n  </section>", css: style125, mount: api155.mount, rootSelector: ".sl-component", demoMount: api155.mountPreview }
+"buttons-move-item-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-move-item\" data-phase=\"idle\" aria-busy=\"false\" aria-label=\"Move item\">\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Move item\" >\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><rect class=\"move-box icon-primary\" x=\"3.5\" y=\"7\" width=\"7\" height=\"10\" rx=\"1.5\"/><path class=\"move-arrow icon-primary\" d=\"M9 12h11m-4-4 4 4-4 4\"/><path class=\"icon-result\" pathLength=\"1\" d=\"m5 12 4.5 4.5L19 7\"/></svg></span><span class=\"button-label\" data-label>Move item</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Ready to move.</p>\n  </section>", css: style125, mount: api155.mount, rootSelector: ".sl-component", demoMount: api155.mountPreview },
+"buttons-text-editor-toolbar-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-text-editor-toolbar\" data-bold=\"false\" data-italic=\"false\" data-case=\"sentence\" data-strike=\"false\" data-align=\"left\" data-list=\"bullets\" data-indent=\"0\" aria-label=\"Text editor toolbar\">\n    <div class=\"editor-shell\">\n      <div class=\"tool-row\" role=\"toolbar\" aria-label=\"Text formatting tools\">\n        <button class=\"tool-button\" type=\"button\" data-command=\"bold\" aria-label=\"Apply bold\" title=\"Bold\" aria-pressed=\"false\" tabindex=\"0\">\n          <span class=\"tool-surface\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><path d=\"M7 4.5v15M7 5h6a4 4 0 0 1 0 8H7m0-.5h6.7a3.5 3.5 0 0 1 0 7H7\"/></svg></span>\n        </button>\n        <button class=\"tool-button\" type=\"button\" data-command=\"italic\" aria-label=\"Apply italic\" title=\"Italic\" aria-pressed=\"false\" tabindex=\"-1\">\n          <span class=\"tool-surface\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><path d=\"M10 5h7M7 19h7M14.5 5 9.5 19\"/></svg></span>\n        </button>\n        <button class=\"tool-button\" type=\"button\" data-command=\"case\" aria-label=\"Change text case to uppercase\" title=\"Text case\" tabindex=\"-1\">\n          <span class=\"tool-surface\" aria-hidden=\"true\"><span class=\"case-glyph\" data-case-glyph>Aa</span></span>\n        </button>\n        <button class=\"tool-button\" type=\"button\" data-command=\"strike\" aria-label=\"Apply strikethrough\" title=\"Strikethrough\" aria-pressed=\"false\" tabindex=\"-1\">\n          <span class=\"tool-surface\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><path d=\"M8 7.5c.8-1.4 2.2-2.1 4.2-2.1 2.2 0 3.7.8 4.5 2.3M6 12h12M15.8 15.3c-.6 2.1-2.1 3.2-4.4 3.2-2 0-3.5-.7-4.4-2\"/></svg></span>\n        </button>\n        <button class=\"tool-button\" type=\"button\" data-command=\"align\" aria-label=\"Align text to center\" title=\"Text alignment\" tabindex=\"-1\">\n          <span class=\"tool-surface\" aria-hidden=\"true\"><svg class=\"align-icon\" viewBox=\"0 0 24 24\"><path class=\"align-long\" d=\"M4 6h16M4 18h16\"/><path class=\"align-short\" d=\"M4 10h11M4 14h13\"/></svg></span>\n        </button>\n        <button class=\"tool-button\" type=\"button\" data-command=\"list\" aria-label=\"Change list to numbers\" title=\"List style\" tabindex=\"-1\">\n          <span class=\"tool-surface\" aria-hidden=\"true\"><svg class=\"list-icon\" viewBox=\"0 0 24 24\"><g class=\"list-bullets\"><circle cx=\"5\" cy=\"7\" r=\"1\"/><circle cx=\"5\" cy=\"12\" r=\"1\"/><circle cx=\"5\" cy=\"17\" r=\"1\"/></g><g class=\"list-numbers\"><path d=\"M4.5 6.2h1v2M4 12c.3-.8 2-.8 2 0 0 .8-2 1.1-2 2h2M4 17c.4-.5 1.8-.5 1.8.2 0 .5-.5.7-.9.7.5 0 1.1.2 1.1.8 0 .8-1.5.9-2 .3\"/></g><g class=\"list-checks\"><path d=\"m3.8 7 1 1 1.8-2M3.8 12l1 1 1.8-2M3.8 17l1 1 1.8-2\"/></g><path class=\"list-lines\" d=\"M9 7h11M9 12h11M9 17h11\"/><path class=\"list-off\" d=\"M4 4l16 16\"/></svg></span>\n        </button>\n        <button class=\"tool-button\" type=\"button\" data-command=\"indent\" aria-label=\"Increase indentation\" title=\"Indentation\" tabindex=\"-1\">\n          <span class=\"tool-surface\" aria-hidden=\"true\"><svg class=\"indent-icon\" viewBox=\"0 0 24 24\"><path d=\"M10 6h10M10 11h10M10 16h10M10 20h10M3.5 9l3 3-3 3\"/></svg></span>\n        </button>\n      </div>\n      <div class=\"editor-copy\" data-editor contenteditable=\"true\" role=\"textbox\" aria-multiline=\"true\" aria-label=\"Editable text sample\" spellcheck=\"true\">\n        <div data-line>Review the title</div>\n        <div data-line>Refine the opening</div>\n        <div data-line>Share the draft</div>\n      </div>\n    </div>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Formatting ready.</p>\n  </section>", css: style126, mount: api156.mount, rootSelector: ".sl-component", demoMount: api156.mountPreview },
+"buttons-image-transform-toolbar-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-image-transform-toolbar\" data-rotation=\"0\" data-mirrored=\"false\" aria-label=\"Image transform toolbar\">\n    <div class=\"editor-shell\">\n      <div class=\"tool-row\" role=\"toolbar\" aria-label=\"Image transform tools\">\n        <button class=\"tool-button\" type=\"button\" data-command=\"rotate\" aria-label=\"Rotate image 90 degrees\" title=\"Rotate 90 degrees\" tabindex=\"0\">\n          <span class=\"tool-surface\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><path class=\"rotate-arrow\" d=\"M18.7 8.5A7.5 7.5 0 1 0 19 15m-.3-6.5V4.8m0 3.7H15\"/><path class=\"rotate-corner\" d=\"M8 9v7h7\"/></svg></span>\n        </button>\n        <button class=\"tool-button\" type=\"button\" data-command=\"mirror\" aria-label=\"Mirror image horizontally\" title=\"Mirror horizontally\" aria-pressed=\"false\" tabindex=\"-1\">\n          <span class=\"tool-surface\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><path class=\"mirror-axis\" d=\"M12 4v16\"/><path class=\"mirror-left\" d=\"M9 7 4.5 12 9 17Z\"/><path class=\"mirror-right\" d=\"M15 7 19.5 12 15 17Z\"/></svg></span>\n        </button>\n      </div>\n      <div class=\"sample-window\" data-preview aria-hidden=\"true\">\n        <svg class=\"sample-picture\" viewBox=\"0 0 76 54\" focusable=\"false\"><rect x=\"1\" y=\"1\" width=\"74\" height=\"52\" rx=\"7\"/><circle cx=\"20\" cy=\"16\" r=\"5\"/><path d=\"m9 44 17-16 11 9 9-8 21 15\"/></svg>\n      </div>\n    </div>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Rotation: 0°. Original orientation.</p>\n  </section>", css: style127, mount: api157.mount, rootSelector: ".sl-component", demoMount: api157.mountPreview },
+"buttons-crop-mode-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-crop-mode\" data-state=\"idle\" data-layout=\"expanded\" aria-label=\"Crop mode\">\n    <div class=\"sample-window\" data-preview aria-hidden=\"true\"><div class=\"sample-crop\"><span></span><i class=\"crop-tl\"></i><i class=\"crop-tr\"></i><i class=\"crop-br\"></i><i class=\"crop-bl\"></i></div></div>\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Enter crop mode\" title=\"Enter crop mode\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><path class=\"crop-a\" d=\"M7 3v14a2 2 0 0 0 2 2h12\"/><path class=\"crop-b\" d=\"M3 7h12a2 2 0 0 1 2 2v12\"/></svg></span><span class=\"button-label\" data-label>Start crop</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Crop mode is off.</p>\n  </section>", css: style128, mount: api158.mount, rootSelector: ".sl-component", demoMount: api158.mountPreview },
+"buttons-cart-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-cart-toggle\" data-state=\"empty\" data-active=\"false\" aria-label=\"Cart item\">\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Add item to cart\" title=\"Add item to cart\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><g class=\"cart-shell\"><path d=\"M2.8 4.5h2.1l1.7 8.7a2.4 2.4 0 0 0 2.4 2h7.7a2.4 2.4 0 0 0 2.3-1.8l1.3-5.1H6\"/><path d=\"M8.1 11.7h9.8\"/><circle cx=\"9.2\" cy=\"19.2\" r=\"1.35\"/><circle cx=\"17.2\" cy=\"19.2\" r=\"1.35\"/></g><g class=\"cart-plus\"><path d=\"M17.4 2.8v4.8M15 5.2h4.8\"/></g><path class=\"cart-check\" pathLength=\"1\" d=\"m15.1 5.3 1.6 1.6 3.5-3.5\"/></svg></span><span class=\"button-label\" data-label>Add to cart</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Item is not in the cart.</p>\n  </section>", css: style129, mount: api159.mount, rootSelector: ".sl-component", demoMount: api159.mountPreview },
+"buttons-archive-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-archive-toggle\" data-state=\"active\" data-active=\"false\" aria-label=\"Archive item\">\n    <div class=\"sample-window\" data-preview aria-hidden=\"true\"><div class=\"archive-scene\"><span class=\"archive-document\"><i></i><b></b></span><span class=\"archive-back\"></span><span class=\"archive-front\"><i></i></span></div></div>\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Archive item\" title=\"Archive item\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><path class=\"archive-sheet\" d=\"M8 2.5h8v8H8zM10 5.5h4M10 8h3\"/><path class=\"archive-lid\" d=\"M4 9.5h16v4H4z\"/><path class=\"archive-case\" d=\"M5.5 13.5v7h13v-7M9.5 17h5\"/><path class=\"archive-chevron\" d=\"m9.5 7.5 2.5 2.5 2.5-2.5\"/></svg></span><span class=\"button-label\" data-label>Archive</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Item is active.</p>\n  </section>", css: style130, mount: api160.mount, rootSelector: ".sl-component", demoMount: api160.mountPreview },
+"buttons-task-complete-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-task-complete\" data-state=\"open\" data-active=\"false\" aria-label=\"Complete task\">\n    <div class=\"sample-window\" data-preview aria-hidden=\"true\"><div class=\"task-sample\"><svg class=\"task-state\" viewBox=\"0 0 22 22\" focusable=\"false\"><circle cx=\"11\" cy=\"11\" r=\"8.5\"/><path class=\"preview-check\" pathLength=\"1\" d=\"m7.3 11.2 2.5 2.5 5-5.2\"/></svg><span>Review notes</span></div></div>\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Mark task as done\" title=\"Mark task as done\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><circle class=\"task-ring\" cx=\"12\" cy=\"12\" r=\"8.25\"/><path class=\"task-check\" pathLength=\"1\" d=\"m8.1 12.1 2.65 2.7 5.4-5.6\"/></svg></span><span class=\"button-label\" data-label>Mark done</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Task is open.</p>\n  </section>", css: style131, mount: api161.mount, rootSelector: ".sl-component", demoMount: api161.mountPreview },
+"buttons-assign-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-assign-toggle\" data-state=\"unassigned\" data-active=\"false\" aria-label=\"Assign person\">\n    <div class=\"sample-window\" data-preview aria-hidden=\"true\"><div class=\"assign-scene\"><span class=\"assign-card\"><i></i><b></b><em></em></span><span class=\"assign-link\"></span><span class=\"assign-avatar\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><g class=\"assign-person\"><circle cx=\"12\" cy=\"7.5\" r=\"3.3\"/><path d=\"M5 19.25c.7-3.8 3.25-5.7 7-5.7s6.3 1.9 7 5.7\"/></g></svg></span></div></div>\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Assign a person to the item\" title=\"Assign a person to the item\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><circle class=\"assign-head\" cx=\"9\" cy=\"7\" r=\"3.3\"/><path class=\"assign-body\" d=\"M3.5 19a5.5 5.5 0 0 1 11 0\"/><path class=\"assign-plus\" d=\"M18 9v6m-3-3h6\"/><path class=\"assign-check\" pathLength=\"1\" d=\"m15.2 12.2 2 2 4-4\"/></svg></span><span class=\"button-label\" data-label>Assign person</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">No person is assigned.</p>\n  </section>", css: style132, mount: api162.mount, rootSelector: ".sl-component", demoMount: api162.mountPreview },
+"buttons-compare-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-compare-toggle\" data-state=\"stacked\" data-active=\"false\" aria-label=\"Compare items\">\n    <div class=\"sample-window\" data-preview aria-hidden=\"true\"><div class=\"compare-scene\"><svg class=\"compare-connector\" viewBox=\"0 0 120 56\" focusable=\"false\"><path pathLength=\"1\" d=\"M45 28H75\"/><circle cx=\"45\" cy=\"28\" r=\"1.8\"/><circle cx=\"75\" cy=\"28\" r=\"1.8\"/></svg><span class=\"compare-card card-a\"><i></i><b></b></span><span class=\"compare-card card-b\"><i></i><b></b></span></div></div>\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Separate items for comparison\" title=\"Separate items for comparison\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><rect class=\"compare-a\" x=\"5\" y=\"5\" width=\"9\" height=\"14\" rx=\"2\"/><rect class=\"compare-b\" x=\"10\" y=\"5\" width=\"9\" height=\"14\" rx=\"2\"/><path class=\"compare-link\" pathLength=\"1\" d=\"M9 12h6\"/></svg></span><span class=\"button-label\" data-label>Compare</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Two items are stacked.</p>\n  </section>", css: style133, mount: api163.mount, rootSelector: ".sl-component", demoMount: api163.mountPreview },
+"buttons-new-folder-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-new-folder\" data-state=\"empty\" data-active=\"false\" aria-label=\"New folder\">\n    <div class=\"sample-window\" data-preview aria-hidden=\"true\"><div class=\"folder-scene\"><span class=\"folder-back\"></span><i class=\"folder-doc doc-one\"></i><i class=\"folder-doc doc-two\"></i><b class=\"folder-front\"></b></div></div>\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Create a local folder\" title=\"Create a local folder\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><path class=\"folder-back-icon\" d=\"M3.5 8h7l2-2h8v12.5h-17z\"/><path class=\"folder-sheet-icon\" d=\"M8 9.5h8v7H8zM10 12h4\"/><path class=\"folder-front-icon\" d=\"M3.5 11h17l-1.5 9H5z\"/><path class=\"folder-plus\" d=\"M12 12v5m-2.5-2.5h5\"/><path class=\"folder-check\" pathLength=\"1\" d=\"m9.5 14.5 2 2 4-4\"/></svg></span><span class=\"button-label\" data-label>New folder</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">No demo folder exists.</p>\n  </section>", css: style134, mount: api164.mount, rootSelector: ".sl-component", demoMount: api164.mountPreview },
+"buttons-comment-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-comment-toggle\" data-state=\"clear\" data-active=\"false\" aria-label=\"Comment on selection\">\n    <div class=\"sample-window\" data-preview aria-hidden=\"true\"><div class=\"comment-scene\"><span class=\"comment-source\"><i></i><b></b><u></u></span><span class=\"comment-bubble\"><i></i><b></b></span><em>1</em></div></div>\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Comment on the selected text\" title=\"Comment on the selected text\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><path class=\"comment-page\" d=\"M4 3.5h11v17H4zM7 7h5M7 10h4\"/><path class=\"comment-bubble\" d=\"M10 11h10v7h-5l-3 2v-2h-2z\"/><path class=\"comment-plus\" d=\"M15 13v3m-1.5-1.5h3\"/><path class=\"comment-check\" pathLength=\"1\" d=\"m13.5 14.5 1.5 1.5 3-3\"/></svg></span><span class=\"button-label\" data-label>Add comment</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Selected text has no comment.</p>\n  </section>", css: style135, mount: api165.mount, rootSelector: ".sl-component", demoMount: api165.mountPreview },
+"buttons-translate-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-translate-toggle\" data-state=\"english\" data-active=\"false\" aria-label=\"Translate text\">\n    <div class=\"sample-window\" data-preview aria-hidden=\"true\"><div class=\"translate-sample\"><span class=\"word-en\">Hello</span><span class=\"word-ru\">Привет</span></div></div>\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Translate sample to Russian\" title=\"Translate sample to Russian\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><path class=\"translate-letter\" d=\"M3.5 17 7.5 7l4 10M5 13h5\"/><path class=\"translate-top\" d=\"M14 8h6m-2-2 2 2-2 2\"/><path class=\"translate-bottom\" d=\"M20 16h-6m2 2-2-2 2-2\"/></svg></span><span class=\"button-label\" data-label>Translate</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Sample language is English.</p>\n  </section>", css: style136, mount: api166.mount, rootSelector: ".sl-component", demoMount: api166.mountPreview },
+"buttons-tag-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-tag-toggle\" data-state=\"untagged\" data-active=\"false\" aria-label=\"Tag item\">\n    <div class=\"sample-window\" data-preview aria-hidden=\"true\"><div class=\"tag-scene\"><span><i></i><b>DESIGN</b></span></div></div>\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Add a local tag\" title=\"Add a local tag\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><path class=\"tag-body\" d=\"M3.5 5.5h8l9 9-6 6-9-9z\"/><circle cx=\"8.5\" cy=\"9\" r=\"1.3\"/><path class=\"tag-label\" d=\"M11.5 10.5h4\"/><path class=\"tag-plus\" d=\"M15.5 4v5m-2.5-2.5h5\"/><path class=\"tag-check\" pathLength=\"1\" d=\"m13 6.5 1.8 1.8 3.7-4\"/></svg></span><span class=\"button-label\" data-label>Add tag</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Item has no tag.</p>\n  </section>", css: style137, mount: api167.mount, rootSelector: ".sl-component", demoMount: api167.mountPreview },
+"buttons-photo-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-photo-toggle\" data-state=\"empty\" data-active=\"false\" aria-label=\"Add photo\">\n    <div class=\"sample-window\" data-preview aria-hidden=\"true\"><div class=\"photo-scene\"><span class=\"photo-back back-a\"></span><span class=\"photo-back back-b\"></span><svg class=\"photo-card\" viewBox=\"0 0 92 56\" focusable=\"false\"><rect x=\"1\" y=\"1\" width=\"90\" height=\"54\" rx=\"9\"/><rect class=\"photo-fill\" x=\"8\" y=\"8\" width=\"76\" height=\"40\" rx=\"6\"/><circle class=\"photo-sun\" cx=\"26\" cy=\"21\" r=\"5\"/><path class=\"photo-hills\" d=\"M12 43 31 27l12 11 10-8 27 13\"/></svg></div></div>\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Add a local demo photo\" title=\"Add a local demo photo\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><rect class=\"photo-frame\" x=\"3.5\" y=\"5\" width=\"17\" height=\"14\" rx=\"2.5\"/><circle class=\"photo-sun-icon\" cx=\"8.5\" cy=\"9.5\" r=\"1.5\"/><path class=\"photo-hills-icon\" d=\"m5.5 17 4.5-4.5 3.2 3.1 2.4-2.1 3 3.5\"/><path class=\"photo-plus\" d=\"M17.5 3v5m-2.5-2.5h5\"/><path class=\"photo-check\" pathLength=\"1\" d=\"m15 5.5 1.8 1.8 3.5-4\"/></svg></span><span class=\"button-label\" data-label>Add photo</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">No photo is selected.</p>\n  </section>", css: style138, mount: api168.mount, rootSelector: ".sl-component", demoMount: api168.mountPreview },
+"buttons-close-item-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-close-item\" data-state=\"open\" data-active=\"false\" aria-label=\"Close item\">\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Close the local item\" title=\"Close the local item\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><rect class=\"close-frame\" x=\"3.5\" y=\"3.5\" width=\"17\" height=\"17\" rx=\"4\"/><g class=\"close-x\" data-probe><path d=\"m8.5 8.5 7 7m0-7-7 7\"/></g><path class=\"close-return\" pathLength=\"1\" d=\"M16.8 13.8a5.2 5.2 0 0 0-8.9-2.7M7.8 7.8v3.7h3.7\"/></svg></span><span class=\"button-label\" data-label>Close item</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Item is open.</p>\n  </section>", css: style139, mount: api169.mount, rootSelector: ".sl-component", demoMount: api169.mountPreview },
+"buttons-open-external-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-open-external\" data-state=\"inline\" data-active=\"false\" aria-label=\"Open externally\">\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Open the local preview externally\" title=\"Open the local preview externally\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><path class=\"external-window\" d=\"M18.5 13v6.5h-14v-14H11\"/><g class=\"external-arrow\" data-probe><path d=\"M13 4.5h6.5V11M19 5l-8.5 8.5\"/></g></svg></span><span class=\"button-label\" data-label>Open externally</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Preview is inline.</p>\n  </section>", css: style140, mount: api170.mount, rootSelector: ".sl-component", demoMount: api170.mountPreview },
+"buttons-read-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-read-toggle\" data-state=\"unread\" data-active=\"false\" aria-label=\"Read status\">\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Mark the local message as read\" title=\"Mark the local message as read\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><rect x=\"3.5\" y=\"5.5\" width=\"17\" height=\"13.5\" rx=\"3\"/><path class=\"read-flap\" data-probe d=\"m4.6 7.2 7.4 5.6 7.4-5.6\"/><path class=\"read-check\" pathLength=\"1\" d=\"m8.1 13.5 2.4 2.2 5.4-5.3\"/></svg></span><span class=\"button-label\" data-label>Mark read</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Message is unread.</p>\n  </section>", css: style141, mount: api171.mount, rootSelector: ".sl-component", demoMount: api171.mountPreview },
+"buttons-flag-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-flag-toggle\" data-state=\"clear\" data-active=\"false\" aria-label=\"Flag item\">\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Flag the local item\" title=\"Flag the local item\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><path class=\"flag-pole\" d=\"M5.5 21V4\"/><path class=\"flag-cloth\" d=\"M5.7 5h11.1l-2.3 3 2.3 3H5.7\"/><path class=\"flag-fill\" data-probe d=\"M5.7 5h11.1l-2.3 3 2.3 3H5.7z\"/></svg></span><span class=\"button-label\" data-label>Flag item</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Item is not flagged.</p>\n  </section>", css: style142, mount: api172.mount, rootSelector: ".sl-component", demoMount: api172.mountPreview },
+"buttons-snooze-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-snooze-toggle\" data-state=\"active\" data-active=\"false\" aria-label=\"Snooze item\">\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Snooze the local item\" title=\"Snooze the local item\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><g class=\"alarm-frame\"><circle cx=\"12\" cy=\"12\" r=\"6.6\"/><path d=\"m7.4 5-2-1.5m11.2 1.5 2-1.5M8.2 18l-1.3 2M15.8 18l1.3 2\"/></g><g class=\"snooze-hands\" data-probe><path d=\"M12 8.3v4l2.8 1.7\"/></g><path class=\"snooze-pause\" pathLength=\"1\" d=\"M9.8 9.4v5.2m4.4-5.2v5.2\"/></svg></span><span class=\"button-label\" data-label>Snooze item</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Item is active.</p>\n  </section>", css: style143, mount: api173.mount, rootSelector: ".sl-component", demoMount: api173.mountPreview },
+"buttons-publish-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-publish-toggle\" data-state=\"draft\" data-active=\"false\" aria-label=\"Publish item\">\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Publish the local draft state\" title=\"Publish the local draft state\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><path class=\"publish-page\" d=\"M5 3.5h10l4 4v13H5zM15 3.5v4h4\"/><g class=\"publish-arrow\" data-probe><path d=\"M12 17V9m-3 3 3-3 3 3\"/></g><path class=\"publish-check\" pathLength=\"1\" d=\"m8.5 14 2.5 2.5 5-5\"/></svg></span><span class=\"button-label\" data-label>Publish item</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Item is a local draft.</p>\n  </section>", css: style144, mount: api174.mount, rootSelector: ".sl-component", demoMount: api174.mountPreview },
+"buttons-sync-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-sync-toggle\" data-state=\"local\" data-active=\"false\" aria-label=\"Sync item\">\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Include the local item in sync\" title=\"Include the local item in sync\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><g class=\"sync-arrows\" data-probe><path d=\"M5 9a7 7 0 0 1 12-3l2 2M19 4v4h-4\"/><path d=\"M19 15a7 7 0 0 1-12 3l-2-2M5 20v-4h4\"/></g><path class=\"sync-check\" pathLength=\"1\" d=\"m9 12 2.2 2.2 4.3-4.4\"/></svg></span><span class=\"button-label\" data-label>Sync item</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Item is local only.</p>\n  </section>", css: style145, mount: api175.mount, rootSelector: ".sl-component", demoMount: api175.mountPreview },
+"buttons-report-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-report-toggle\" data-state=\"clear\" data-active=\"false\" aria-label=\"Report issue\">\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Open the local report state\" title=\"Open the local report state\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><path class=\"report-frame\" d=\"M8 3.5h8l4.5 4.5v8L16 20.5H8L3.5 16V8z\"/><g class=\"report-alert\" data-probe><path d=\"M12 7.5v6\"/><circle cx=\"12\" cy=\"16.5\" r=\".8\"/></g><path class=\"report-check\" pathLength=\"1\" d=\"m8.5 12 2.3 2.3 4.8-4.8\"/></svg></span><span class=\"button-label\" data-label>Report issue</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">No report is selected.</p>\n  </section>", css: style146, mount: api176.mount, rootSelector: ".sl-component", demoMount: api176.mountPreview },
+"buttons-power-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-power-toggle\" data-state=\"off\" data-active=\"false\" aria-label=\"Power control\">\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Turn the local control on\" title=\"Turn the local control on\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><g class=\"power-symbol\" data-probe><path class=\"power-ring\" d=\"M7.1 6.6a7.6 7.6 0 1 0 9.8 0\"/><path class=\"power-stem\" d=\"M12 3v8.2\"/></g></svg></span><span class=\"button-label\" data-label>Turn on</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Control is off.</p>\n  </section>", css: style147, mount: api177.mount, rootSelector: ".sl-component", demoMount: api177.mountPreview },
+"buttons-group-toggle-v11": { markup: "<section class=\"sl-component\" data-kind=\"buttons-group-toggle\" data-state=\"separate\" data-active=\"false\" aria-label=\"Group items\">\n    <button class=\"motion-button\" type=\"button\" data-action aria-label=\"Group the local items\" title=\"Group the local items\" aria-pressed=\"false\">\n      <span class=\"button-surface\" aria-hidden=\"true\"><span class=\"button-icon\"><svg viewBox=\"0 0 24 24\" focusable=\"false\"><rect class=\"group-boundary\" x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"4\" pathLength=\"1\"/><rect class=\"group-card group-left\" data-probe x=\"3.5\" y=\"4.5\" width=\"8.5\" height=\"10.5\" rx=\"2\"/><rect class=\"group-card group-right\" x=\"12\" y=\"9\" width=\"8.5\" height=\"10.5\" rx=\"2\"/></svg></span><span class=\"button-label\" data-label>Group items</span></span>\n    </button>\n    <p class=\"component-status\" data-status role=\"status\" aria-live=\"polite\" aria-atomic=\"true\">Items are separate.</p>\n  </section>", css: style148, mount: api178.mount, rootSelector: ".sl-component", demoMount: api178.mountPreview }
 };

@@ -22,7 +22,8 @@ for(const c of components){
   for(const entry of await readdir(folder,{withFileTypes:true})){
    if(!entry.isFile()||! /\.(html|css|js)$/.test(entry.name))continue;
    const text=await readFile(new URL(entry.name,folder),'utf8');checked++;
-   assert.ok(!/[\p{Script=Cyrillic}\uFFFD]/u.test(text),'Unexpected package text: '+variant+'/'+entry.name);
+   const interfaceText=variant==='buttons-translate-toggle-v11'?text.replaceAll('Привет',''):text;
+   assert.ok(!/[\p{Script=Cyrillic}\uFFFD]/u.test(interfaceText),'Unexpected package text: '+variant+'/'+entry.name);
    assert.ok(!/C:[\\/](?:Users|Program Files)|BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY|gh[pousr]_[A-Za-z0-9]{30}/.test(text),'Private material in '+variant+'/'+entry.name);
    const refs=entry.name.endsWith('.html')?[...text.matchAll(/(?:src|href)=["']([^"']+)["']/g)].map(m=>m[1]):entry.name.endsWith('.css')?[...text.matchAll(/url\(['"]?([^)'"\s]+)['"]?\)/g)].map(m=>m[1]):[...text.matchAll(/^import\s+(?:[^;\n]+?\s+from\s+)?['"]([^'"]+)['"]/gm)].map(m=>m[1]);
    for(const ref of refs){if(/^(?:#|data:|https?:|blob:)/.test(ref))continue;const path=new URL(ref,new URL(entry.name,folder));path.search='';path.hash='';assert.ok(path.href.startsWith(root.href),'Escaped public root');await stat(path);}

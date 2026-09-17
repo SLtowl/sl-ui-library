@@ -6,6 +6,7 @@ import { once } from 'node:events';
 import { pathToFileURL } from 'node:url';
 import { Script } from 'node:vm';
 import batch from '../../public/catalog-batches/buttons-basic-3.js';
+import { components as releasedComponents } from '../../public/catalog-data.js';
 
 const project = new URL('../../', import.meta.url);
 const files = ['index.html', 'buttons.css', 'buttons.js', 'example.js', 'instrument-sans-variable.woff2', 'OFL.txt', 'LICENSE'];
@@ -15,8 +16,7 @@ const read = (variant, file) => readFile(new URL(`public/packages/${variant}/${f
 test('combined editor review batch has three distinct, complete and offline packages', async () => {
   assert.deepEqual(variants, ['buttons-text-editor-toolbar-v11', 'buttons-image-transform-toolbar-v11', 'buttons-crop-mode-v11']);
   assert.equal(new Set(batch.map(item => item.id)).size, 3);
-  const released = await readFile(new URL('public/catalog-data.js', project), 'utf8');
-  assert.doesNotMatch(released, /buttons-text-editor-toolbar-v11/);
+  assert.ok(batch.every(item => releasedComponents.some(component => component.id === item.id)));
   for (const item of batch) {
     const variant = item.variants[0];
     assert.equal(item.category, 'buttons');
