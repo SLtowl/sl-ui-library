@@ -2,7 +2,7 @@
 .sl-component {
   --field-surface:#222222; --field-raised:#2d2d2d; --field-hover:#353535; --field-text:#fafafa;
   --field-muted:#bcbcbc; --field-accent:#e7e7e7; --field-border:#555555; --field-focus:#f2f2f2;
-  --field-error:#f0bfad; --field-success:#c7dcc8; --field-ease:cubic-bezier(.4,0,.2,1);
+  --field-error:#f0bfad; --field-success:#dedede; --field-ease:cubic-bezier(.4,0,.2,1);
   box-sizing:border-box; width:min(320px,100%); min-width:0; padding:20px; border:1px solid var(--field-border);
   border-radius:18px; background:var(--field-surface); color:var(--field-text); box-shadow:0 8px 24px #00000012;
   text-align:left; font:400 14px/1.45 'Instrument Sans',sans-serif; color-scheme:dark;

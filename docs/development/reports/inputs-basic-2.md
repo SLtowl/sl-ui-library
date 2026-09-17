@@ -1,6 +1,6 @@
-# Inputs basic 2 — local owner review
+# Inputs basic 2 — owner-approved batch
 
-This batch adds ten distinct input patterns for local review only. It is intentionally not imported into `public/catalog-data.js`, built into the released catalog, pushed or published.
+This batch adds ten distinct input patterns approved by the owner on September 18, 2026. It is integrated into `public/catalog-data.js` and the generated library/plugin assets.
 
 | Package | Interaction |
 | --- | --- |

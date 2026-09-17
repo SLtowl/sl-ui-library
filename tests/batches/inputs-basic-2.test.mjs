@@ -87,7 +87,7 @@ test('input controllers pass browser interaction and lifecycle checks', { timeou
     await open('ipv4'); await page.getByRole('textbox', { name: 'IPv4 address', exact: true }).fill('192.168.1.999'); assert.equal((await state()).valid, false); await page.getByRole('textbox', { name: 'IPv4 address', exact: true }).fill('8.8.4.4'); assert.deepEqual((await state()).value, [8, 8, 4, 4]);
     await open('card-number'); await page.getByRole('textbox', { name: 'Card number', exact: true }).fill('4242424242424242'); assert.equal((await state()).valid, true);
     await open('shortcut'); await page.getByRole('button', { name: 'Record shortcut' }).click(); await page.getByRole('button', { name: 'Listening…' }).press('Control+Shift+P'); assert.equal((await state()).value, 'Ctrl + Shift + P');
-    await open('search-replace'); await page.getByRole('button', { name: 'Replace locally' }).click(); assert.match((await state()).text, /Good movement/);
+    await open('search-replace'); await page.getByRole('button', { name: 'Replace text' }).click(); assert.match((await state()).text, /Good movement/);
     await open('formula'); await page.getByRole('textbox', { name: 'Formula', exact: true }).fill('10 / (5 - 5)'); assert.equal((await state()).valid, false); await page.getByRole('textbox', { name: 'Formula', exact: true }).fill('10 / 2 + 3'); assert.deepEqual(await state(), { expression: '10 / 2 + 3', value: 8, valid: true });
 
     for (const purpose of expected) {

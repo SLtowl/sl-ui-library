@@ -1,4 +1,4 @@
-// Second local Inputs batch for owner review. Not imported into the released catalog.
+// Owner-approved second Inputs batch.
 export default [
   {
     "id": "matte-inputs-username-v11",
