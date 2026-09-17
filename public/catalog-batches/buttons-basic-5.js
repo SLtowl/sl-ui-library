@@ -431,5 +431,53 @@ export default [
         ]
       }
     ]
+  },
+  {
+    "id": "matte-buttons-group-toggle-v11",
+    "category": "buttons",
+    "name": "Group items",
+    "description": "Group or ungroup local items as two cards meet inside one shared boundary and separate along the same path.",
+    "motions": [
+      "Card convergence",
+      "Boundary draw"
+    ],
+    "variants": [
+      "buttons-group-toggle-v11"
+    ],
+    "keywords": [
+      "group",
+      "ungroup",
+      "items",
+      "editor",
+      "basic",
+      "animated icon",
+      "everyday action"
+    ],
+    "page": "./component.html?component=matte-buttons-group-toggle-v11",
+    "preview": "./packages/buttons-group-toggle-v11/index.html?embed=1",
+    "packageRoot": "./packages/",
+    "downloads": {
+      "buttons-group-toggle-v11": "./downloads/matte-buttons-group-toggle-v11.zip"
+    },
+    "usage": [
+      {
+        "title": "Use the component",
+        "paragraphs": [
+          "Serve the extracted package over HTTP. The bundled demonstration changes local preview state only. Replace mountPreview with mount when connecting application state."
+        ]
+      },
+      {
+        "title": "Controller",
+        "paragraphs": [
+          "toggle() reverses the local state and setGroupState(value) silently accepts 'separate' | 'grouped'. state reports { groupState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+        ]
+      },
+      {
+        "title": "Appearance and accessibility",
+        "paragraphs": [
+          "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon motion respects prefers-reduced-motion; forced colors remain legible."
+        ]
+      }
+    ]
   }
 ];

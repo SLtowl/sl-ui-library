@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Group items · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body{margin:0;width:100%;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:8px;box-sizing:border-box;overflow-x:hidden;background:#f5f4f2}.sl-component{justify-self:center}</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="buttons-group-toggle" data-state="separate" data-active="false" aria-label="Group items">
+    <button class="motion-button" type="button" data-action aria-label="Group the local items" title="Group the local items" aria-pressed="false">
+      <span class="button-surface" aria-hidden="true"><span class="button-icon"><svg viewBox="0 0 24 24" focusable="false"><rect class="group-boundary" x="3" y="4" width="18" height="16" rx="4" pathLength="1"/><rect class="group-card group-left" data-probe x="3.5" y="4.5" width="8.5" height="10.5" rx="2"/><rect class="group-card group-right" x="12" y="9" width="8.5" height="10.5" rx="2"/></svg></span><span class="button-label" data-label>Group items</span></span>
+    </button>
+    <p class="component-status" data-status role="status" aria-live="polite" aria-atomic="true">Items are separate.</p>
+  </section>
+</body>
+</html>

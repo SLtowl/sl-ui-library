@@ -1,6 +1,6 @@
 # Basic animated buttons — batch 5 review
 
-Status: local owner review required. These nine packages are excluded from the released catalog until approval.
+Status: local owner review required. These ten packages are excluded from the released catalog until approval.
 
 ## Components
 
@@ -13,19 +13,22 @@ Status: local owner review required. These nine packages are excluded from the r
 7. Sync item — Include or remove one local item from sync with two continuous opposing arrows.
 8. Report issue — Select or cancel one local report draft as an alert resolves into confirmation.
 9. Power control — Turn one local control on or off with a stable power-button glyph.
+10. Group items — Group or ungroup two local items as their cards meet inside one shared boundary.
 
 ## Owner feedback refinement
 
-- Removed the rejected Redo component completely; the batch now contains nine packages with no replacement.
+- Removed the rejected Redo component completely; no component or package remains under that name.
+- Added Group items later as a distinct next component, restoring a ten-package review batch without recreating Redo.
 - Removed the detached unread dot and kept read confirmation inside the envelope.
 - Removed the check from the flag fabric and made state visible through the cloth fill alone.
 - Rebuilt Snooze as an alarm clock whose hands resolve into pause bars.
 - Kept Power as a button action: a stable power glyph with a restrained pulse, never a nested switch.
 - Kept a source-level regression gate that forbids switch-track markup inside Power.
+- Rechecked Group items at initial, 120 ms forward, active and 80 ms reverse frames at the real review scale.
 
 ## Contract
 
-- All nine packages are standalone, offline and self-contained.
+- All ten packages are standalone, offline and self-contained.
 - Every interaction changes local preview state only; application persistence must be connected through onChange or sl:action.
 - Native buttons retain visible focus, centered labels, live status, forced-colors support and reduced-motion fallbacks.
 - Motion is reversible from intermediate frames and does not use delayed icon loading or stacked outlines.
