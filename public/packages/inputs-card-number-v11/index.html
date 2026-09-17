@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Card number input — SL UI Library</title><link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css"><script src="./buttons.js" defer></script><script src="./example.js" defer></script>
+  <style>body { margin:0; min-height:100svh; display:grid; place-items:center; padding:24px; box-sizing:border-box; background:#f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="inputs-card-number-v11" aria-label="Card number input">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 9h18M7 14h4"/></svg>Card number input</h2>
+    <label class="sl-label">Card number</label><div class="sl-control"><span class="sl-card-chip" aria-hidden="true"></span><input class="sl-main" type="text" inputmode="numeric" value="4242 4242 4242 4242" maxlength="23" autocomplete="cc-number" aria-label="Card number"></div><div class="sl-meta"><span>Validated locally</span><output class="sl-brand">Visa · 16 digits</output></div><p class="sl-note">Demo only. This field makes no payment or network request.</p>
+  </section>
+</body>
+</html>

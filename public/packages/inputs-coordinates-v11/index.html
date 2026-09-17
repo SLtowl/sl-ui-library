@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coordinate input — SL UI Library</title><link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css"><script src="./buttons.js" defer></script><script src="./example.js" defer></script>
+  <style>body { margin:0; min-height:100svh; display:grid; place-items:center; padding:24px; box-sizing:border-box; background:#f5f4f2; }</style>
+</head>
+<body>
+  <section class="sl-component" data-kind="inputs-coordinates-v11" aria-label="Coordinate input">
+    <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.4 6-11a6 6 0 1 0-12 0c0 5.6 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>Coordinate input</h2>
+    <div class="sl-grid-two"><label><span>Latitude</span><div class="sl-control"><input class="sl-lat" type="text" inputmode="decimal" value="55.0302" aria-label="Latitude"><span class="sl-affix">°</span></div></label><label><span>Longitude</span><div class="sl-control"><input class="sl-lng" type="text" inputmode="decimal" value="82.9204" aria-label="Longitude"><span class="sl-affix">°</span></div></label></div><p class="sl-preview"><span>Position</span><output class="sl-position">55.0302° N · 82.9204° E</output></p>
+  </section>
+</body>
+</html>
