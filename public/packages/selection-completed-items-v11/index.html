@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Completed items — SL UI Library</title><link rel="icon" href="data:,"><link rel="stylesheet" href="./buttons.css"><script src="./buttons.js" defer></script><script src="./example.js" defer></script><style>body{box-sizing:border-box;margin:0;min-height:100svh;padding:24px;display:grid;place-items:center;background:#f5f4f2}</style></head>
+<body><section class="sl-component" data-kind="selection-completed-items-v11" aria-label="Completed items">
+  <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h9"/><path d="m16 17 2 2 4-5"/></svg>Completed items</h2>
+  
+  <div class="sl-control-row">
+    <div><strong>Show completed</strong><span>Keep finished items in the list</span></div>
+    <button type="button" class="sl-toggle" role="switch" aria-label="Show completed" aria-checked="true" data-field="show" data-status-on="Completed items are visible." data-status-off="Completed items are collapsed.">
+      <span class="sl-toggle-word" aria-hidden="true">On</span><span class="sl-toggle-track" aria-hidden="true"></span>
+    </button>
+  </div>
+  <div class="sl-preview"><div class="sl-tasks" aria-hidden="true"><div><i></i><span>Review notes</span></div><div class="sl-done"><i>✓</i><span>Share draft</span></div><div><i></i><span>Plan next step</span></div></div></div>
+  <p class="sl-status" role="status" aria-live="polite" data-live-status></p>
+</section></body></html>

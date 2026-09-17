@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Text direction — SL UI Library</title><link rel="icon" href="data:,"><link rel="stylesheet" href="./buttons.css"><script src="./buttons.js" defer></script><script src="./example.js" defer></script><style>body{box-sizing:border-box;margin:0;min-height:100svh;padding:24px;display:grid;place-items:center;background:#f5f4f2}</style></head>
+<body><section class="sl-component" data-kind="selection-text-direction-v11" aria-label="Text direction">
+  <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14M5 10h10M5 14h14M9 18H5m0 0 2-2m-2 2 2 2"/></svg>Text direction</h2>
+  
+  <div class="sl-segments" role="radiogroup" aria-label="Text direction" data-field="direction" data-default="ltr">
+    <button type="button" role="radio" data-value="ltr" data-status="Text flows from left to right." aria-checked="true" tabindex="0">Left to right</button><button type="button" role="radio" data-value="rtl" data-status="Text flows from right to left." aria-checked="false" tabindex="-1">Right to left</button>
+  </div>
+  <div class="sl-preview"><div class="sl-writing" aria-hidden="true"><strong>Notes</strong><i></i><i></i><i></i></div></div>
+  <p class="sl-status" role="status" aria-live="polite" data-live-status></p>
+</section></body></html>

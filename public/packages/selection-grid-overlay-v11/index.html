@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Grid overlay — SL UI Library</title><link rel="icon" href="data:,"><link rel="stylesheet" href="./buttons.css"><script src="./buttons.js" defer></script><script src="./example.js" defer></script><style>body{box-sizing:border-box;margin:0;min-height:100svh;padding:24px;display:grid;place-items:center;background:#f5f4f2}</style></head>
+<body><section class="sl-component" data-kind="selection-grid-overlay-v11" aria-label="Grid overlay">
+  <h2 class="sl-heading"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM9.3 4v16M14.7 4v16M4 9.3h16M4 14.7h16"/></svg>Grid overlay</h2>
+  
+  <div class="sl-control-row">
+    <div><strong>Show grid</strong><span>Align items on the canvas</span></div>
+    <button type="button" class="sl-toggle" role="switch" aria-label="Show grid" aria-checked="false" data-field="grid" data-status-on="Layout grid is visible." data-status-off="Layout grid is hidden.">
+      <span class="sl-toggle-word" aria-hidden="true">Off</span><span class="sl-toggle-track" aria-hidden="true"></span>
+    </button>
+  </div>
+  <div class="sl-preview"><div class="sl-canvas" aria-hidden="true"><i class="sl-shape-a"></i><i class="sl-shape-b"></i></div></div>
+  <p class="sl-status" role="status" aria-live="polite" data-live-status></p>
+</section></body></html>
