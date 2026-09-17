@@ -4,10 +4,10 @@ export default [
     "id": "matte-buttons-redo-action-v11",
     "category": "buttons",
     "name": "Redo action",
-    "description": "Repeat one local preview action with a compact arrow that completes its arc.",
+    "description": "Repeat one local preview action with a familiar forward redo arrow and a short continuous turn.",
     "motions": [
-      "Arc complete",
-      "Arrow settle"
+      "Forward arc",
+      "Arrow turn"
     ],
     "variants": [
       "buttons-redo-action-v11"
@@ -148,10 +148,10 @@ export default [
     "id": "matte-buttons-read-toggle-v11",
     "category": "buttons",
     "name": "Read status",
-    "description": "Mark one local message read or unread as its envelope flap and status mark exchange.",
+    "description": "Mark one local message read or unread as the envelope settles and a centered check draws inside it.",
     "motions": [
-      "Flap lift",
-      "Status draw"
+      "Envelope settle",
+      "Inner check draw"
     ],
     "variants": [
       "buttons-read-toggle-v11"
@@ -196,10 +196,10 @@ export default [
     "id": "matte-buttons-flag-toggle-v11",
     "category": "buttons",
     "name": "Flag item",
-    "description": "Flag or clear one local item with a balanced fabric contour and a drawn confirmation.",
+    "description": "Flag or clear one local item as the empty fabric contour fills cleanly without an extra badge.",
     "motions": [
-      "Flag settle",
-      "Check draw"
+      "Flag unfurl",
+      "Fabric fill"
     ],
     "variants": [
       "buttons-flag-toggle-v11"
@@ -244,10 +244,10 @@ export default [
     "id": "matte-buttons-snooze-toggle-v11",
     "category": "buttons",
     "name": "Snooze item",
-    "description": "Snooze or resume one local item as the clock hand advances and a small z appears.",
+    "description": "Snooze or resume one local item as alarm-clock hands resolve into a centered pause mark.",
     "motions": [
-      "Hand advance",
-      "Z draw"
+      "Alarm settle",
+      "Pause resolve"
     ],
     "variants": [
       "buttons-snooze-toggle-v11"
@@ -436,10 +436,10 @@ export default [
     "id": "matte-buttons-power-toggle-v11",
     "category": "buttons",
     "name": "Power control",
-    "description": "Turn one local control on or off as the power ring closes around its stem.",
+    "description": "Turn one local control on or off with a compact switch whose knob moves continuously between states.",
     "motions": [
-      "Ring close",
-      "Stem settle"
+      "Switch slide",
+      "Track fill"
     ],
     "variants": [
       "buttons-power-toggle-v11"
