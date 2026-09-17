@@ -9,13 +9,13 @@ import batch from '../../public/catalog-batches/buttons-basic-5.js';
 
 const project = new URL('../../', import.meta.url);
 const files = ['index.html','buttons.css','buttons.js','example.js','instrument-sans-variable.woff2','OFL.txt','LICENSE'];
-const expected = [["buttons-close-item-v11","closeState","open","closed","setCloseState"],["buttons-open-external-v11","openState","inline","external","setOpenState"],["buttons-read-toggle-v11","readState","unread","read","setReadState"],["buttons-flag-toggle-v11","flagState","clear","flagged","setFlagState"],["buttons-snooze-toggle-v11","snoozeState","active","snoozed","setSnoozeState"],["buttons-publish-toggle-v11","publishState","draft","published","setPublishState"],["buttons-sync-toggle-v11","syncState","local","synced","setSyncState"],["buttons-report-toggle-v11","reportState","clear","reporting","setReportState"],["buttons-power-toggle-v11","powerState","off","on","setPowerState"]];
+const expected = [["buttons-close-item-v11","closeState","open","closed","setCloseState"],["buttons-open-external-v11","openState","inline","external","setOpenState"],["buttons-read-toggle-v11","readState","unread","read","setReadState"],["buttons-flag-toggle-v11","flagState","clear","flagged","setFlagState"],["buttons-snooze-toggle-v11","snoozeState","active","snoozed","setSnoozeState"],["buttons-publish-toggle-v11","publishState","draft","published","setPublishState"],["buttons-sync-toggle-v11","syncState","local","synced","setSyncState"],["buttons-report-toggle-v11","reportState","clear","reporting","setReportState"],["buttons-power-toggle-v11","powerState","off","on","setPowerState"],["buttons-group-toggle-v11","groupState","separate","grouped","setGroupState"]];
 const read = (variant, file) => readFile(new URL('public/packages/' + variant + '/' + file, project), 'utf8');
 
-test('fifth basic buttons review batch has nine distinct complete packages', async () => {
-  assert.equal(batch.length, 9);
+test('fifth basic buttons review batch has ten distinct complete packages', async () => {
+  assert.equal(batch.length, 10);
   assert.deepEqual(batch.map(item => item.variants[0]), expected.map(item => item[0]));
-  assert.equal(new Set(batch.map(item => item.id)).size, 9);
+  assert.equal(new Set(batch.map(item => item.id)).size, 10);
   const released = await readFile(new URL('public/catalog-data.js', project), 'utf8');
   for (const [variant] of expected) assert.doesNotMatch(released, new RegExp(variant));
   for (const item of batch) {
@@ -43,11 +43,20 @@ test('fifth basic buttons review batch has nine distinct complete packages', asy
   }
 });
 
-test('reviewed Power keeps a button-native glyph', async () => {
-  const powerHtml = await read('buttons-power-toggle-v11', 'index.html');
+test('reviewed Power and Group keep button-native, unambiguous glyphs', async () => {
+  const [powerHtml, groupHtml, groupCss] = await Promise.all([
+    read('buttons-power-toggle-v11', 'index.html'),
+    read('buttons-group-toggle-v11', 'index.html'),
+    read('buttons-group-toggle-v11', 'buttons.css')
+  ]);
   assert.match(powerHtml, /class="power-ring"/);
   assert.match(powerHtml, /class="power-stem"/);
   assert.doesNotMatch(powerHtml, /power-track|power-knob/);
+  assert.equal((groupHtml.match(/class="group-card/g) || []).length, 2);
+  assert.match(groupHtml, /class="group-boundary"/);
+  assert.doesNotMatch(groupHtml, /check|badge|plus/);
+  assert.match(groupCss, /\.group-left\{transform:translate\(0,0\)\}/);
+  assert.match(groupCss, /\[data-active="true"\] \.group-left\{transform:translate\(3px,2\.25px\)\}/);
 });
 
 let chromium;
