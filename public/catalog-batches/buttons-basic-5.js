@@ -1,54 +1,6 @@
 // Sixth local Buttons batch for owner review. Not imported into the released catalog.
 export default [
   {
-    "id": "matte-buttons-redo-action-v11",
-    "category": "buttons",
-    "name": "Redo action",
-    "description": "Repeat one local preview action with one familiar right-facing redo arc that never changes direction.",
-    "motions": [
-      "Arc complete",
-      "Head nudge"
-    ],
-    "variants": [
-      "buttons-redo-action-v11"
-    ],
-    "keywords": [
-      "redo",
-      "repeat",
-      "history",
-      "action",
-      "basic",
-      "animated icon",
-      "everyday action"
-    ],
-    "page": "./component.html?component=matte-buttons-redo-action-v11",
-    "preview": "./packages/buttons-redo-action-v11/index.html?embed=1",
-    "packageRoot": "./packages/",
-    "downloads": {
-      "buttons-redo-action-v11": "./downloads/matte-buttons-redo-action-v11.zip"
-    },
-    "usage": [
-      {
-        "title": "Use the component",
-        "paragraphs": [
-          "Serve the extracted package over HTTP. The bundled demonstration changes local preview state only. Replace mountPreview with mount when connecting application state."
-        ]
-      },
-      {
-        "title": "Controller",
-        "paragraphs": [
-          "toggle() reverses the local state and setRedoState(value) silently accepts 'ready' | 'redone'. state reports { redoState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
-        ]
-      },
-      {
-        "title": "Appearance and accessibility",
-        "paragraphs": [
-          "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon motion respects prefers-reduced-motion; forced colors remain legible."
-        ]
-      }
-    ]
-  },
-  {
     "id": "matte-buttons-close-item-v11",
     "category": "buttons",
     "name": "Close item",

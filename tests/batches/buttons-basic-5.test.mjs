@@ -9,13 +9,13 @@ import batch from '../../public/catalog-batches/buttons-basic-5.js';
 
 const project = new URL('../../', import.meta.url);
 const files = ['index.html','buttons.css','buttons.js','example.js','instrument-sans-variable.woff2','OFL.txt','LICENSE'];
-const expected = [["buttons-redo-action-v11","redoState","ready","redone","setRedoState"],["buttons-close-item-v11","closeState","open","closed","setCloseState"],["buttons-open-external-v11","openState","inline","external","setOpenState"],["buttons-read-toggle-v11","readState","unread","read","setReadState"],["buttons-flag-toggle-v11","flagState","clear","flagged","setFlagState"],["buttons-snooze-toggle-v11","snoozeState","active","snoozed","setSnoozeState"],["buttons-publish-toggle-v11","publishState","draft","published","setPublishState"],["buttons-sync-toggle-v11","syncState","local","synced","setSyncState"],["buttons-report-toggle-v11","reportState","clear","reporting","setReportState"],["buttons-power-toggle-v11","powerState","off","on","setPowerState"]];
+const expected = [["buttons-close-item-v11","closeState","open","closed","setCloseState"],["buttons-open-external-v11","openState","inline","external","setOpenState"],["buttons-read-toggle-v11","readState","unread","read","setReadState"],["buttons-flag-toggle-v11","flagState","clear","flagged","setFlagState"],["buttons-snooze-toggle-v11","snoozeState","active","snoozed","setSnoozeState"],["buttons-publish-toggle-v11","publishState","draft","published","setPublishState"],["buttons-sync-toggle-v11","syncState","local","synced","setSyncState"],["buttons-report-toggle-v11","reportState","clear","reporting","setReportState"],["buttons-power-toggle-v11","powerState","off","on","setPowerState"]];
 const read = (variant, file) => readFile(new URL('public/packages/' + variant + '/' + file, project), 'utf8');
 
-test('fifth basic buttons review batch has ten distinct complete packages', async () => {
-  assert.equal(batch.length, 10);
+test('fifth basic buttons review batch has nine distinct complete packages', async () => {
+  assert.equal(batch.length, 9);
   assert.deepEqual(batch.map(item => item.variants[0]), expected.map(item => item[0]));
-  assert.equal(new Set(batch.map(item => item.id)).size, 10);
+  assert.equal(new Set(batch.map(item => item.id)).size, 9);
   const released = await readFile(new URL('public/catalog-data.js', project), 'utf8');
   for (const [variant] of expected) assert.doesNotMatch(released, new RegExp(variant));
   for (const item of batch) {
@@ -43,16 +43,8 @@ test('fifth basic buttons review batch has ten distinct complete packages', asyn
   }
 });
 
-test('reviewed Redo and Power keep button-native, unambiguous glyphs', async () => {
-  const [redoHtml, redoCss, powerHtml] = await Promise.all([
-    read('buttons-redo-action-v11', 'index.html'),
-    read('buttons-redo-action-v11', 'buttons.css'),
-    read('buttons-power-toggle-v11', 'index.html')
-  ]);
-  assert.match(redoHtml, /class="redo-arc"/);
-  assert.match(redoHtml, /class="redo-head"/);
-  assert.doesNotMatch(redoHtml, /redo-return/);
-  assert.doesNotMatch(redoCss, /\.redo-mark[^}]*rotate\(/);
+test('reviewed Power keeps a button-native glyph', async () => {
+  const powerHtml = await read('buttons-power-toggle-v11', 'index.html');
   assert.match(powerHtml, /class="power-ring"/);
   assert.match(powerHtml, /class="power-stem"/);
   assert.doesNotMatch(powerHtml, /power-track|power-knob/);
