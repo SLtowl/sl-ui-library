@@ -1,6 +1,6 @@
 # Basic animated buttons — batch 4 review
 
-Status: owner approved on 2026-09-17. These ten packages remain intentionally excluded from `public/catalog-data.js` and generated plugin data until a future release transition.
+Status: owner approved on 2026-09-17 and integrated. These ten packages are included in `public/catalog-data.js` and generated plugin data.
 
 ## Components
 
@@ -28,4 +28,4 @@ Status: owner approved on 2026-09-17. These ten packages remain intentionally ex
 - Static package, source, offline and isolated-manifest contract: passed.
 - Targeted real-browser interaction, lifecycle, 226 px fit, literal Unicode and reduced motion: passed (3/3 with bundled Chromium), including Cart's plus/check endpoints, Archive's immediate reverse visibility, Assign's single-contour dock, and Compare's symmetric split.
 - Full `npm run check`: passed (165 tests passed, 96 optional browser checks skipped because their environment variables are not set by the aggregate runner).
-- Main catalog remains at 254 components and 256 export variants; this review batch is not included.
+- Main catalog includes this owner-approved batch and its generated previews, downloads and plugin source data.

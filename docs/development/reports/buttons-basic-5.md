@@ -1,6 +1,6 @@
 # Basic animated buttons — batch 5 review
 
-Status: local owner review required. These ten packages are excluded from the released catalog until approval.
+Status: owner approved on 2026-09-17 and integrated. These ten packages are included in `public/catalog-data.js` and generated plugin data.
 
 ## Components
 
@@ -38,3 +38,4 @@ Status: local owner review required. These ten packages are excluded from the re
 - Static package, source, offline, isolated-manifest and reviewed-glyph contract: passed (3/3 targeted tests; browser-enabled run).
 - Targeted real-browser interaction, lifecycle, 226 px fit, rapid reversal and reduced motion: passed in Chromium.
 - Full npm run check: passed (167 passed, 97 skipped, 0 failed).
+- Owner approval: all ten components were accepted and promoted into the main catalog.

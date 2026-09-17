@@ -1,4 +1,4 @@
-// Owner-approved local Buttons review set. Kept outside the released catalog until the next release transition.
+// Owner-approved editor Buttons batch integrated into the catalog.
 export default [
   {
     "id": "matte-buttons-text-editor-toolbar-v11",

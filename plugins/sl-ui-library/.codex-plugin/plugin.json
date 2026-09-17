@@ -9,7 +9,7 @@
   "interface": {
     "displayName": "SL UI Library",
     "shortDescription": "Handcrafted components for your next interface.",
-    "longDescription": "Let the agent choose from 254 HTML, CSS and JavaScript components across ten categories, inspect their real source, adapt your palette and integrate a complete package. The complete library works offline. Optional catalog updates require a published channel and explicit opt-in.",
+    "longDescription": "Let the agent choose from 277 HTML, CSS and JavaScript components across ten categories, inspect their real source, adapt your palette and integrate a complete package. The complete library works offline. Optional catalog updates require a published channel and explicit opt-in.",
     "developerName": "SL",
     "category": "Productivity",
     "capabilities": ["Read", "Write"],

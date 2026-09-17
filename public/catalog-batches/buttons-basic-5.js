@@ -1,4 +1,4 @@
-// Sixth local Buttons batch for owner review. Not imported into the released catalog.
+// Owner-approved workflow Buttons batch integrated into the catalog.
 export default [
   {
     "id": "matte-buttons-close-item-v11",

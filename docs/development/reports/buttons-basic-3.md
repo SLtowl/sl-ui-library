@@ -1,6 +1,6 @@
 # Basic animated buttons — batch 3 review
 
-Status: owner approved. These packages remain outside `public/catalog-data.js` and generated plugin data until the next release transition.
+Status: owner approved and integrated. These packages are included in `public/catalog-data.js` and generated plugin data.
 
 ## Components
 
@@ -31,4 +31,4 @@ Status: owner approved. These packages remain outside `public/catalog-data.js` a
 
 - Static package, source, offline and isolated-manifest contract: passed.
 - Real browser coverage for all seven text tools, literal Unicode input, the list-off state, keyboard navigation, event counts, forward 360° rotation, independent mirroring, Crop, reduced motion and 226 px fit: passed (7/7).
-- Main catalog remains at 254 components and 256 export variants; this approved future set is intentionally not included yet.
+- Main catalog includes this owner-approved set and its generated previews, downloads and plugin source data.

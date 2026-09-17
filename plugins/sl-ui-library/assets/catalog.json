@@ -14767,6 +14767,1366 @@
           "OFL.txt"
         ]
       }
+    },
+    {
+      "id": "matte-buttons-text-editor-toolbar-v11",
+      "category": "buttons",
+      "name": "Text editor toolbar",
+      "description": "Format an editable local text sample with seven compact controls in one coordinated toolbar.",
+      "motions": [
+        "Toolbar press",
+        "Format transition"
+      ],
+      "variants": [
+        "buttons-text-editor-toolbar-v11"
+      ],
+      "keywords": [
+        "text",
+        "editor",
+        "toolbar",
+        "bold",
+        "italic",
+        "case",
+        "strikethrough",
+        "alignment",
+        "list",
+        "indent"
+      ],
+      "page": "./component.html?component=matte-buttons-text-editor-toolbar-v11",
+      "preview": "./packages/buttons-text-editor-toolbar-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-text-editor-toolbar-v11": "./downloads/matte-buttons-text-editor-toolbar-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration formats only its editable local sample. Use mount(root, options) to connect the seven commands and text input to a real editor."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggleBold(), toggleItalic(), cycleCase(), toggleStrike(), cycleAlignment(), cycleList() and cycleIndent() update local state. Matching setters are silent. User commands call onChange and dispatch one sl:action event; edits call onInput and dispatch sl:text-input. reset() and destroy() are repeat-safe."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. The toolbar uses native buttons, roving arrow-key focus and visible focus states. Formatting motion respects prefers-reduced-motion and forced colors."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-text-editor-toolbar-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-image-transform-toolbar-v11",
+      "category": "buttons",
+      "name": "Image transform toolbar",
+      "description": "Rotate and mirror one local image sample from a coordinated two-action toolbar.",
+      "motions": [
+        "Forward rotation",
+        "Mirror transition"
+      ],
+      "variants": [
+        "buttons-image-transform-toolbar-v11"
+      ],
+      "keywords": [
+        "image",
+        "media",
+        "toolbar",
+        "rotate",
+        "mirror",
+        "reverse",
+        "transform"
+      ],
+      "page": "./component.html?component=matte-buttons-image-transform-toolbar-v11",
+      "preview": "./packages/buttons-image-transform-toolbar-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-image-transform-toolbar-v11": "./downloads/matte-buttons-image-transform-toolbar-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration transforms only its local image sample. Use mount(root, options) to connect the two commands to a real editor."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "rotate() advances clockwise by 90 degrees without reversing at the 360-degree boundary. toggleMirror(), setRotation(value) and setMirrored(value) update the shared transform state. User commands call onChange and dispatch one sl:action event. reset() and destroy() are repeat-safe."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. The toolbar uses native buttons, arrow-key focus and visible focus states. Transform motion respects prefers-reduced-motion and forced colors."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-image-transform-toolbar-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-crop-mode-v11",
+      "category": "buttons",
+      "name": "Crop mode",
+      "description": "Enter or leave a local crop mode while handles close around the visible sample.",
+      "motions": [
+        "Handle close",
+        "Image scale"
+      ],
+      "variants": [
+        "buttons-crop-mode-v11"
+      ],
+      "keywords": [
+        "crop",
+        "image",
+        "frame",
+        "edit",
+        "basic",
+        "animated icon",
+        "editor"
+      ],
+      "page": "./component.html?component=matte-buttons-crop-mode-v11",
+      "preview": "./packages/buttons-crop-mode-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-crop-mode-v11": "./downloads/matte-buttons-crop-mode-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting your editor or media surface."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() advances the control and setCropping(value) silently accepts 'idle' | 'cropping'. state reports { cropping, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-crop-mode-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-cart-toggle-v11",
+      "category": "buttons",
+      "name": "Cart item",
+      "description": "Add or remove one local product with a compact cart whose plus turns into a check.",
+      "motions": [
+        "Cart settle",
+        "Plus-to-check draw"
+      ],
+      "variants": [
+        "buttons-cart-toggle-v11"
+      ],
+      "keywords": [
+        "cart",
+        "shop",
+        "product",
+        "bag",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-cart-toggle-v11",
+      "preview": "./packages/buttons-cart-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-cart-toggle-v11": "./downloads/matte-buttons-cart-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setCartState(value) silently accepts 'empty' | 'added'. state reports { cartState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-cart-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-archive-toggle-v11",
+      "category": "buttons",
+      "name": "Archive item",
+      "description": "Archive or restore a local document with direction-aware sheet and lid motion.",
+      "motions": [
+        "Document descent and return",
+        "Archive lid settle"
+      ],
+      "variants": [
+        "buttons-archive-toggle-v11"
+      ],
+      "keywords": [
+        "archive",
+        "restore",
+        "box",
+        "document",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-archive-toggle-v11",
+      "preview": "./packages/buttons-archive-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-archive-toggle-v11": "./downloads/matte-buttons-archive-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setArchiveState(value) silently accepts 'active' | 'archived'. state reports { archiveState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-archive-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-task-complete-v11",
+      "category": "buttons",
+      "name": "Complete task",
+      "description": "Complete or reopen one local task with two optically centered checks and a controlled line draw.",
+      "motions": [
+        "Centered check draw",
+        "Text strike"
+      ],
+      "variants": [
+        "buttons-task-complete-v11"
+      ],
+      "keywords": [
+        "task",
+        "complete",
+        "done",
+        "check",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-task-complete-v11",
+      "preview": "./packages/buttons-task-complete-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-task-complete-v11": "./downloads/matte-buttons-task-complete-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setTaskState(value) silently accepts 'open' | 'done'. state reports { taskState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-task-complete-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-assign-toggle-v11",
+      "category": "buttons",
+      "name": "Assign person",
+      "description": "Assign or remove one local teammate as a clean single-contour avatar docks into a task slot.",
+      "motions": [
+        "Single-contour avatar dock",
+        "Connector retract"
+      ],
+      "variants": [
+        "buttons-assign-toggle-v11"
+      ],
+      "keywords": [
+        "assign",
+        "person",
+        "task",
+        "teammate",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-assign-toggle-v11",
+      "preview": "./packages/buttons-assign-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-assign-toggle-v11": "./downloads/matte-buttons-assign-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setAssignState(value) silently accepts 'unassigned' | 'assigned'. state reports { assignState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-assign-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-compare-toggle-v11",
+      "category": "buttons",
+      "name": "Compare items",
+      "description": "Split two already-visible local cards from one stack and connect their aligned edges.",
+      "motions": [
+        "Symmetric split",
+        "Straight connector"
+      ],
+      "variants": [
+        "buttons-compare-toggle-v11"
+      ],
+      "keywords": [
+        "compare",
+        "cards",
+        "products",
+        "difference",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-compare-toggle-v11",
+      "preview": "./packages/buttons-compare-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-compare-toggle-v11": "./downloads/matte-buttons-compare-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setCompareState(value) silently accepts 'stacked' | 'compared'. state reports { compareState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-compare-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-new-folder-v11",
+      "category": "buttons",
+      "name": "New folder",
+      "description": "Create or remove a local folder preview with layered documents and a hinged front panel.",
+      "motions": [
+        "Folder hinge",
+        "Document rise"
+      ],
+      "variants": [
+        "buttons-new-folder-v11"
+      ],
+      "keywords": [
+        "folder",
+        "create",
+        "files",
+        "new",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-new-folder-v11",
+      "preview": "./packages/buttons-new-folder-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-new-folder-v11": "./downloads/matte-buttons-new-folder-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setFolderState(value) silently accepts 'empty' | 'created'. state reports { folderState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-new-folder-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-comment-toggle-v11",
+      "category": "buttons",
+      "name": "Comment on selection",
+      "description": "Attach or remove one local review note from a visibly selected line of copy.",
+      "motions": [
+        "Anchored bubble",
+        "Comment reveal"
+      ],
+      "variants": [
+        "buttons-comment-toggle-v11"
+      ],
+      "keywords": [
+        "comment",
+        "selection",
+        "review",
+        "document",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-comment-toggle-v11",
+      "preview": "./packages/buttons-comment-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-comment-toggle-v11": "./downloads/matte-buttons-comment-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setCommentState(value) silently accepts 'clear' | 'commented'. state reports { commentState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-comment-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-translate-toggle-v11",
+      "category": "buttons",
+      "name": "Translate text",
+      "description": "Switch a fixed local phrase between English and Russian with a calm directional handoff.",
+      "motions": [
+        "Word handoff",
+        "Arrow exchange"
+      ],
+      "variants": [
+        "buttons-translate-toggle-v11"
+      ],
+      "keywords": [
+        "translate",
+        "language",
+        "text",
+        "locale",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-translate-toggle-v11",
+      "preview": "./packages/buttons-translate-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-translate-toggle-v11": "./downloads/matte-buttons-translate-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setLanguage(value) silently accepts 'english' | 'russian'. state reports { language, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-translate-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-tag-toggle-v11",
+      "category": "buttons",
+      "name": "Tag item",
+      "description": "Attach or remove one local category tag with compact uppercase typography and a balanced icon.",
+      "motions": [
+        "Tag settle",
+        "Label reveal"
+      ],
+      "variants": [
+        "buttons-tag-toggle-v11"
+      ],
+      "keywords": [
+        "tag",
+        "label",
+        "organize",
+        "metadata",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-tag-toggle-v11",
+      "preview": "./packages/buttons-tag-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-tag-toggle-v11": "./downloads/matte-buttons-tag-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setTagState(value) silently accepts 'untagged' | 'tagged'. state reports { tagState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-tag-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-photo-toggle-v11",
+      "category": "buttons",
+      "name": "Add photo",
+      "description": "Add or clear a synthetic local photo as a complete image card settles over a small print stack.",
+      "motions": [
+        "Photo settle",
+        "Print fan"
+      ],
+      "variants": [
+        "buttons-photo-toggle-v11"
+      ],
+      "keywords": [
+        "photo",
+        "image",
+        "gallery",
+        "add",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-photo-toggle-v11",
+      "preview": "./packages/buttons-photo-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-photo-toggle-v11": "./downloads/matte-buttons-photo-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes only its local sample. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setPhotoState(value) silently accepts 'empty' | 'added'. state reports { photoState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon and sample motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-photo-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-close-item-v11",
+      "category": "buttons",
+      "name": "Close item",
+      "description": "Close or reopen one local item as a clean cross gives way to a return arrow.",
+      "motions": [
+        "Cross retract",
+        "Return draw"
+      ],
+      "variants": [
+        "buttons-close-item-v11"
+      ],
+      "keywords": [
+        "close",
+        "reopen",
+        "dismiss",
+        "item",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-close-item-v11",
+      "preview": "./packages/buttons-close-item-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-close-item-v11": "./downloads/matte-buttons-close-item-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes local preview state only. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setCloseState(value) silently accepts 'open' | 'closed'. state reports { closeState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-close-item-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-open-external-v11",
+      "category": "buttons",
+      "name": "Open externally",
+      "description": "Move a local preview out of its frame and return it with one continuous diagonal gesture.",
+      "motions": [
+        "Diagonal launch",
+        "Frame settle"
+      ],
+      "variants": [
+        "buttons-open-external-v11"
+      ],
+      "keywords": [
+        "external",
+        "open",
+        "window",
+        "launch",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-open-external-v11",
+      "preview": "./packages/buttons-open-external-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-open-external-v11": "./downloads/matte-buttons-open-external-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes local preview state only. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setOpenState(value) silently accepts 'inline' | 'external'. state reports { openState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-open-external-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-read-toggle-v11",
+      "category": "buttons",
+      "name": "Read status",
+      "description": "Mark one local message read or unread as the envelope settles and a centered check draws inside it.",
+      "motions": [
+        "Envelope settle",
+        "Inner check draw"
+      ],
+      "variants": [
+        "buttons-read-toggle-v11"
+      ],
+      "keywords": [
+        "read",
+        "unread",
+        "message",
+        "mail",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-read-toggle-v11",
+      "preview": "./packages/buttons-read-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-read-toggle-v11": "./downloads/matte-buttons-read-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes local preview state only. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setReadState(value) silently accepts 'unread' | 'read'. state reports { readState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-read-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-flag-toggle-v11",
+      "category": "buttons",
+      "name": "Flag item",
+      "description": "Flag or clear one local item as the empty fabric contour fills cleanly without an extra badge.",
+      "motions": [
+        "Flag unfurl",
+        "Fabric fill"
+      ],
+      "variants": [
+        "buttons-flag-toggle-v11"
+      ],
+      "keywords": [
+        "flag",
+        "mark",
+        "priority",
+        "item",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-flag-toggle-v11",
+      "preview": "./packages/buttons-flag-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-flag-toggle-v11": "./downloads/matte-buttons-flag-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes local preview state only. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setFlagState(value) silently accepts 'clear' | 'flagged'. state reports { flagState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-flag-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-snooze-toggle-v11",
+      "category": "buttons",
+      "name": "Snooze item",
+      "description": "Snooze or resume one local item as alarm-clock hands resolve into a centered pause mark.",
+      "motions": [
+        "Alarm settle",
+        "Pause resolve"
+      ],
+      "variants": [
+        "buttons-snooze-toggle-v11"
+      ],
+      "keywords": [
+        "snooze",
+        "later",
+        "clock",
+        "resume",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-snooze-toggle-v11",
+      "preview": "./packages/buttons-snooze-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-snooze-toggle-v11": "./downloads/matte-buttons-snooze-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes local preview state only. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setSnoozeState(value) silently accepts 'active' | 'snoozed'. state reports { snoozeState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-snooze-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-publish-toggle-v11",
+      "category": "buttons",
+      "name": "Publish item",
+      "description": "Move one local draft into a published state while its arrow resolves into a check.",
+      "motions": [
+        "Arrow rise",
+        "Check resolve"
+      ],
+      "variants": [
+        "buttons-publish-toggle-v11"
+      ],
+      "keywords": [
+        "publish",
+        "draft",
+        "release",
+        "document",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-publish-toggle-v11",
+      "preview": "./packages/buttons-publish-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-publish-toggle-v11": "./downloads/matte-buttons-publish-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes local preview state only. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setPublishState(value) silently accepts 'draft' | 'published'. state reports { publishState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-publish-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-sync-toggle-v11",
+      "category": "buttons",
+      "name": "Sync item",
+      "description": "Include or remove one local item from sync with two continuous opposing arrows.",
+      "motions": [
+        "Arrow exchange",
+        "Sync check"
+      ],
+      "variants": [
+        "buttons-sync-toggle-v11"
+      ],
+      "keywords": [
+        "sync",
+        "refresh",
+        "cloud",
+        "item",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-sync-toggle-v11",
+      "preview": "./packages/buttons-sync-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-sync-toggle-v11": "./downloads/matte-buttons-sync-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes local preview state only. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setSyncState(value) silently accepts 'local' | 'synced'. state reports { syncState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-sync-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-report-toggle-v11",
+      "category": "buttons",
+      "name": "Report issue",
+      "description": "Select or cancel one local report draft as an alert resolves into confirmation.",
+      "motions": [
+        "Alert retract",
+        "Confirmation draw"
+      ],
+      "variants": [
+        "buttons-report-toggle-v11"
+      ],
+      "keywords": [
+        "report",
+        "issue",
+        "alert",
+        "moderation",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-report-toggle-v11",
+      "preview": "./packages/buttons-report-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-report-toggle-v11": "./downloads/matte-buttons-report-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes local preview state only. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setReportState(value) silently accepts 'clear' | 'reporting'. state reports { reportState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-report-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-power-toggle-v11",
+      "category": "buttons",
+      "name": "Power control",
+      "description": "Turn one local control on or off with a stable power-button glyph and a restrained press pulse.",
+      "motions": [
+        "Power pulse",
+        "Ring settle"
+      ],
+      "variants": [
+        "buttons-power-toggle-v11"
+      ],
+      "keywords": [
+        "power",
+        "on",
+        "off",
+        "control",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-power-toggle-v11",
+      "preview": "./packages/buttons-power-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-power-toggle-v11": "./downloads/matte-buttons-power-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes local preview state only. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setPowerState(value) silently accepts 'off' | 'on'. state reports { powerState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-power-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
+    },
+    {
+      "id": "matte-buttons-group-toggle-v11",
+      "category": "buttons",
+      "name": "Group items",
+      "description": "Group or ungroup local items as two cards meet inside one shared boundary and separate along the same path.",
+      "motions": [
+        "Card convergence",
+        "Boundary draw"
+      ],
+      "variants": [
+        "buttons-group-toggle-v11"
+      ],
+      "keywords": [
+        "group",
+        "ungroup",
+        "items",
+        "editor",
+        "basic",
+        "animated icon",
+        "everyday action"
+      ],
+      "page": "./component.html?component=matte-buttons-group-toggle-v11",
+      "preview": "./packages/buttons-group-toggle-v11/index.html?embed=1",
+      "packageRoot": "./packages/",
+      "downloads": {
+        "buttons-group-toggle-v11": "./downloads/matte-buttons-group-toggle-v11.zip"
+      },
+      "usage": [
+        {
+          "title": "Use the component",
+          "paragraphs": [
+            "Serve the extracted package over HTTP. The bundled demonstration changes local preview state only. Replace mountPreview with mount when connecting application state."
+          ]
+        },
+        {
+          "title": "Controller",
+          "paragraphs": [
+            "toggle() reverses the local state and setGroupState(value) silently accepts 'separate' | 'grouped'. state reports { groupState, index }. reset() and destroy() are repeat-safe. User changes call onChange and dispatch one bubbling, composed sl:action event."
+          ]
+        },
+        {
+          "title": "Appearance and accessibility",
+          "paragraphs": [
+            "Override the --action-* variables on .sl-component to adapt the neutral palette. Keep the native button, visible focus and live status. Icon motion respects prefers-reduced-motion; forced colors remain legible."
+          ]
+        }
+      ],
+      "files": {
+        "buttons-group-toggle-v11": [
+          "buttons.css",
+          "buttons.js",
+          "example.js",
+          "index.html",
+          "instrument-sans-variable.woff2",
+          "LICENSE",
+          "OFL.txt"
+        ]
+      }
     }
   ]
 }
