@@ -23,7 +23,7 @@ test('portable and host manifests identify the same self-contained plugin', asyn
  for (const command of ['claude plugin marketplace add SLtowl/sl-ui-library && claude plugin install sl-ui-library@sl-ui-library', 'codex plugin marketplace add SLtowl/sl-ui-library && codex plugin add sl-ui-library@sl-ui-library']) assert.ok(readme.includes(command));
  assert.equal(marketplace.plugins[0].source, './plugins/' + portable.name);
  const files = await pluginFiles();
- for (const name of ['skills/use-sl-ui/SKILL.md','scripts/library.mjs','scripts/updates.mjs','assets/catalog.json','assets/source-bundle.json','assets/update-policy.json']) assert.ok(files.has(name), name);
+ for (const name of ['skills/use-sl-ui/SKILL.md','scripts/library.mjs','scripts/updates.mjs','scripts/integration.mjs','scripts/integration-guide.md','assets/catalog.json','assets/source-bundle.json','assets/update-policy.json']) assert.ok(files.has(name), name);
  assert.equal(JSON.parse(files.get('assets/update-policy.json')).published, false);
  assert.ok(!files.has('.mcp.json') && !files.has('hooks/hooks.json'));
 });
@@ -57,4 +57,5 @@ test('downloadable plugin contains only exact package files and runs after extra
  assert.ok((await call('read', 'modal-overlay', 'buttons.js')).content.length > 100);
  assert.ok((await call('palette', 'like')).colors.length > 0);
  assert.equal((await call('install', 'like', join(temp, 'like'))).installed, true);
+ assert.equal((await call('audit', 'like', join(temp, 'like', 'index.html'))).status, 'source-markers-present');
 });

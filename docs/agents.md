@@ -4,6 +4,17 @@ SL UI Library is a skills-based plugin: the agent receives the catalog, real com
 
 The published ZIP is a plugin package, not the full website. It includes a portable `plugin.json`, Claude and Codex compatibility manifests, `skills/use-sl-ui/`, source tools and offline assets. The agent needs code execution and file access to use the source tools. The Node CLI requires Node.js 22+; the skill also describes direct, hash-verified source retrieval if another runtime is available.
 
+## Integration fidelity
+
+`inspect` and `install` return an `integration` contract covering source SVGs,
+scoped styles, focus ownership and browser verification. The portable guide is
+`plugins/sl-ui-library/scripts/integration-guide.md`. After framework adaptation,
+run `node plugins/sl-ui-library/scripts/library.mjs audit <variant> <rendered-html-file>`
+on the serialized component subtree. This read-only, offline diagnostic compares
+source class names and inline SVG geometry; `needs-review` flags differences and
+`source-markers-present` still requires visual and interaction checks. It does not
+execute the target, verify loaded CSS or automatically repair a deployed website.
+
 ## Claude
 
 Download [sl-ui-library-plugin.zip](https://sltowl.github.io/sl-ui-library/downloads/sl-ui-library-plugin.zip). In Claude, open **Customize → Plugins** and use the custom-plugin upload option. Enable the installed plugin and select **use-sl-ui**, or describe a relevant interface task. Availability and permissions depend on the client and workspace.

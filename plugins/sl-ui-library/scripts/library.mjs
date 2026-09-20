@@ -3,13 +3,14 @@ import {resolve,dirname,basename,parse,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {selectData,updateSettings} from './updates.mjs';
+import {auditIntegration,integrationContract} from './integration.mjs';
 
 const fail=message=>{throw new Error(message);};
 const safeFile=name=>/^[a-zA-Z0-9][a-zA-Z0-9._-]*$/.test(name)&&!name.includes('..');
 const own=(object,key)=>Object.hasOwn(object,key);
 export async function run(args){
  const [command,...rest]=args;
- if(!command||command==='help')return {userWorkflow:'Install the plugin once, then describe your interface to the agent.',commands:['list [category]','search <query>','inspect <component-id>','palette <variant>','read <variant> <filename>','install <variant> <new-directory> [--palette <mapping.json>]','updates enable|disable|status'],network:'Offline by default; data updates require explicit opt-in and a published channel.',overwrites:false};
+ if(!command||command==='help')return {userWorkflow:'Install the plugin once, then describe your interface to the agent.',commands:['list [category]','search <query>','inspect <component-id>','palette <variant>','read <variant> <filename>','install <variant> <new-directory> [--palette <mapping.json>]','audit <variant> <rendered-html-file>','updates enable|disable|status'],network:'Offline by default; data updates require explicit opt-in and a published channel.',overwrites:false};
  if(command==='updates'){if(rest.length!==1)fail('Usage: updates enable|disable|status');return updateSettings(rest[0]);}
  const data=await selectData();
  const catalog=data.catalog;
@@ -27,10 +28,11 @@ export async function run(args){
  }
  if(command==='inspect'){
   if(rest.length!==1)fail('Usage: inspect <component-id>');
-  return catalog.components.find(c=>c.id===rest[0])??fail('Unknown component ID');
+  const component=catalog.components.find(c=>c.id===rest[0])??fail('Unknown component ID');
+  return {...component,integration:integrationContract};
  }
- if(!['read','install','palette'].includes(command))fail('Unknown command. Run help.');
- if(command==='palette'?rest.length!==1:!(rest.length===2||(command==='install'&&rest.length===4&&rest[2]==='--palette')))fail(`Usage: ${command} <variant> <${command==='read'?'filename':'new-directory'}>`);
+ if(!['read','install','palette','audit'].includes(command))fail('Unknown command. Run help.');
+ if(command==='palette'?rest.length!==1:!(rest.length===2||(command==='install'&&rest.length===4&&rest[2]==='--palette')))fail(`Usage: ${command} <variant> <${command==='read'?'filename':command==='audit'?'rendered-html-file':'new-directory'}>`);
  const [variant,target]=rest;
  if(!catalog.components.some(c=>c.variants.includes(variant)))fail('Unknown variant');
  const bundle=data.bundle;
@@ -45,6 +47,10 @@ export async function run(args){
   return {content,encoding:blob.encoding};
  }
  const colorPattern=/#(?:[a-f0-9]{8}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{3})(?![a-f0-9\w-])/gi;
+ if(command==='audit'){
+  const rendered=await readFile(target,'utf8');
+  return {variant,...auditIntegration(bytes('index.html').content.toString('utf8'),rendered)};
+ }
  if(command==='palette'){
   const colors=new Map();
   for(const name of Object.keys(manifest).filter(name=>/\.(css|html|js)$/.test(name)))for(const match of bytes(name).content.toString('utf8').matchAll(colorPattern)){
@@ -82,7 +88,7 @@ export async function run(args){
  }
  await mkdir(destination); // Exclusive: EEXIST is an error, even for an empty directory.
  for(const entry of entries)await writeFile(join(destination,entry.name),entry.content,{flag:'wx'});
- return {installed:true,variant,destination,files:entries.map(e=>e.name),paletteApplied:Boolean(palette),next:'Serve the folder over HTTP. Read example.js and Usage notes before connecting real actions. Verify contrast after palette changes.'};
+ return {installed:true,variant,destination,files:entries.map(e=>e.name),paletteApplied:Boolean(palette),integration:integrationContract,next:'Serve the folder over HTTP. Read example.js and Usage notes before connecting real actions. Audit the rendered subtree and verify host-app layout, focus, icons and contrast.'};
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  try{console.log(JSON.stringify(await run(process.argv.slice(2)),null,2));}
