@@ -2,7 +2,7 @@
 
 An AI plugin for finding and integrating UI components, with a browsable HTML, CSS and JavaScript library.
 
-**Version 1.1** adds 124 components since the initial 110-component release, opens Feedback and Data display, and refines the neutral palette, pickers, chart typography and keyboard interactions. [Release notes](docs/releases/v1.1.0.md).
+**Version 1.1.1** adds a source-fidelity audit for integrated components, explicit integration guidance and a patch-version bump so version-aware plugin managers can detect the update. The existing catalog is unchanged by this patch. [Release notes](docs/releases/v1.1.1.md) · [Initial 1.1 release](docs/releases/v1.1.0.md).
 
 ![Graphite SL UI Library controls in a warm studio composition](docs/media/cover.png)
 
@@ -92,6 +92,48 @@ node component.mjs like ./my-button
 This exports one complete example to a new folder. Its parent must exist; existing destinations and symlink parents are refused. Source files are verified before writing.
 
 </details>
+
+## Updating the plugin
+
+For an existing GitHub marketplace installation, run the commands below one at a
+time in a terminal. Continue only if the first command succeeds.
+
+**Codex:**
+
+```sh
+codex plugin marketplace upgrade sl-ui-library
+codex plugin add sl-ui-library@sl-ui-library
+```
+
+**Claude Code:**
+
+```sh
+claude plugin marketplace update sl-ui-library
+claude plugin update sl-ui-library@sl-ui-library
+```
+
+If Claude Code was installed at project or local scope, use the matching
+`--scope project` or `--scope local` on the plugin update command. Start a new
+session after updating. For an uploaded ZIP installation, download the current
+[plugin ZIP](https://sltowl.github.io/sl-ui-library/downloads/sl-ui-library-plugin.zip)
+and replace it through the host's plugin manager.
+
+### Versions and update checks
+
+The repository package, portable manifest, Claude/Codex manifests and bundled
+catalog share the same version. Every published plugin-code change must increment
+the version; a GitHub push alone is not sufficient for version-aware caches.
+The audit first reached GitHub while still labeled 1.1.0; version 1.1.1 makes that
+change discoverable to clients that skip an unchanged version.
+
+[Claude Code version detection](https://code.claude.com/docs/en/plugin-marketplaces#version-resolution-and-release-channels)
+· [Codex marketplace commands](https://developers.openai.com/plugins/build/plugins).
+
+The source audit compares `sl-*` classes and inline SVG geometry in serialized
+component HTML. It flags missing or changed source markers, not arbitrary CSS or
+animation defects. It is an explicit offline check, not a background monitor or
+automatic repair. See the [audit guide](plugins/sl-ui-library/scripts/integration-guide.md).
+Updating the plugin never rewrites components already copied into another app.
 
 ### Catalog updates
 

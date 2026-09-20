@@ -13,6 +13,10 @@ test('release versions and public component counts agree with the catalog',async
     assert.equal((await json(`plugins/sl-ui-library/${path}`)).version,pkg.version,path);
   }
   const readme=await text('README.md');
+  assert.ok(readme.includes(`**Version ${pkg.version}**`),'README must identify the current patch version');
+  assert.ok(readme.includes(`docs/releases/v${pkg.version}.md`),'README must link to the current release notes');
+  assert.match(await text(`docs/releases/v${pkg.version}.md`),new RegExp(pkg.version.replaceAll('.', '\\.')));
+  for(const command of ['codex plugin marketplace upgrade sl-ui-library','codex plugin add sl-ui-library@sl-ui-library','claude plugin marketplace update sl-ui-library','claude plugin update sl-ui-library@sl-ui-library']) assert.ok(readme.includes(command),command);
   assert.ok(readme.includes(`**${components.length} interactive components**`));
   for(const category of categories){
     const count=components.filter(c=>c.category===category.id).length;

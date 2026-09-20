@@ -1,6 +1,6 @@
 {
   "name": "sl-ui-library",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Describe your interface. Let the agent choose real SL UI components, adapt their palette and integrate working source.",
   "author": {
     "name": "SL"
