@@ -91,6 +91,6 @@ export async function run(args){
  return {installed:true,variant,destination,files:entries.map(e=>e.name),paletteApplied:Boolean(palette),integration:integrationContract,next:'Serve the folder over HTTP. Read example.js and Usage notes before connecting real actions. Audit the rendered subtree and verify host-app layout, focus, icons and contrast.'};
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
- try{console.log(JSON.stringify(await run(process.argv.slice(2)),null,2));}
+ try{const result=await run(process.argv.slice(2));console.log(JSON.stringify(result,null,2));if(result?.status==='needs-review')process.exitCode=2;}
  catch(error){console.error(JSON.stringify({error:error.code==='EEXIST'?'Destination already exists; nothing was overwritten.':error.message}));process.exitCode=1;}
 }

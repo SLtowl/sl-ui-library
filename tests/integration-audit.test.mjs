@@ -3,6 +3,9 @@ import assert from 'node:assert/strict';
 import {mkdtemp, readFile, writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {promisify} from 'node:util';
+import {execFile} from 'node:child_process';
 import {run} from '../plugins/sl-ui-library/scripts/library.mjs';
 import {auditIntegration} from '../plugins/sl-ui-library/scripts/integration.mjs';
 
@@ -28,6 +31,28 @@ test('rewritten search with a font glyph is not a faithful export', async () => 
   assert.equal(result.status, 'needs-review');
   assert.ok(result.missingClasses.includes('sl-field'));
   assert.ok(result.missingIcons.length > 0);
+});
+
+test('a shadcn reconstruction of exclusive-none is not SL UI source', async () => {
+  const folder = await mkdtemp(join(tmpdir(), 'sl-ui-shadcn-'));
+  const file = join(folder, 'rendered.html');
+  await writeFile(file, '<form class="newsletter-form"><label class="newsletter-choice"><button type="button" role="checkbox" class="peer size-4 rounded-[4px] border border-input" aria-checked="false"></button><input type="checkbox" aria-hidden="true"><span>No updates</span></label></form>');
+  const result = await run(['audit', 'checkboxes-exclusive-none-v11', file]);
+  assert.equal(result.status, 'needs-review');
+  assert.ok(result.missingClasses.includes('sl-component'));
+  assert.ok(result.missingIcons.length > 0);
+});
+
+test('CLI audit exits nonzero when source fidelity needs review', async () => {
+  const folder = await mkdtemp(join(tmpdir(), 'sl-ui-audit-exit-'));
+  const file = join(folder, 'rendered.html');
+  await writeFile(file, '<div class="lookalike">Not the exported source</div>');
+  const execute = promisify(execFile);
+  const cli = fileURLToPath(new URL('../plugins/sl-ui-library/scripts/library.mjs', import.meta.url));
+  await assert.rejects(
+    () => execute(process.execPath, [cli, 'audit', 'checkboxes-exclusive-none-v11', file]),
+    error => error.code === 2 && JSON.parse(error.stdout).status === 'needs-review',
+  );
 });
 
 test('keeping classes but replacing the icon is detected', async () => {

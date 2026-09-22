@@ -2,7 +2,7 @@
 
 An AI plugin for finding and integrating UI components, with a browsable HTML, CSS and JavaScript library.
 
-**Version 1.1.1** adds a source-fidelity audit for integrated components, explicit integration guidance and a patch-version bump so version-aware plugin managers can detect the update. The existing catalog is unchanged by this patch. [Release notes](docs/releases/v1.1.1.md) · [Initial 1.1 release](docs/releases/v1.1.0.md).
+**Version 1.1.2** makes source provenance a required integration gate and makes a failed source audit return a nonzero exit code. The existing catalog is unchanged by this patch. [Release notes](docs/releases/v1.1.2.md) · [Previous patch](docs/releases/v1.1.1.md) · [Initial 1.1 release](docs/releases/v1.1.0.md).
 
 ![Graphite SL UI Library controls in a warm studio composition](docs/media/cover.png)
 
@@ -123,8 +123,8 @@ and replace it through the host's plugin manager.
 The repository package, portable manifest, Claude/Codex manifests and bundled
 catalog share the same version. Every published plugin-code change must increment
 the version; a GitHub push alone is not sufficient for version-aware caches.
-The audit first reached GitHub while still labeled 1.1.0; version 1.1.1 makes that
-change discoverable to clients that skip an unchanged version.
+Version 1.1.2 makes the stricter source gate discoverable to clients that skip an
+unchanged plugin version.
 
 [Claude Code version detection](https://code.claude.com/docs/en/plugin-marketplaces#version-resolution-and-release-channels)
 · [Codex marketplace commands](https://developers.openai.com/plugins/build/plugins).
@@ -133,6 +133,8 @@ The source audit compares `sl-*` classes and inline SVG geometry in serialized
 component HTML. It flags missing or changed source markers, not arbitrary CSS or
 animation defects. It is an explicit offline check, not a background monitor or
 automatic repair. See the [audit guide](plugins/sl-ui-library/scripts/integration-guide.md).
+The CLI exits nonzero when it reports `needs-review`; agents must not claim an SL UI
+integration without a returned component ID, variant, source hashes and a passing audit.
 Updating the plugin never rewrites components already copied into another app.
 
 ### Catalog updates

@@ -5,10 +5,15 @@ scoped CSS, inline SVGs, state hooks and controller together. Framework conversi
 may change attribute syntax and lifecycle wiring; it must not silently replace
 icons with font characters or redesign the control.
 
+Using a component with similar behavior is not source integration. In particular,
+rebuilding an SL UI checkbox with shadcn/Radix markup, a framework checkbox or a
+native control is a replacement even when the labels and state rules match.
+
 ## Before adapting
 
 1. Inspect and export the actual variant. Open its standalone example as a baseline.
-2. Record the variant and the files used in the host project.
+2. Record the component ID, variant and SHA-256 values returned by `read`. This is
+   the source receipt; without it, do not claim that SL UI source was used.
 3. Preserve SVG `viewBox`, shape coordinates, paths, stroke rules and animation
    classes. A Unicode magnifier such as `⌕` is a font glyph, not the library icon;
    its size, baseline and shape depend on the host font.
@@ -46,7 +51,8 @@ geometry. It reads files without executing code or contacting the website.
 `needs-review` requests investigation, not automatic overwriting. Intentional class
 renames and equivalent path syntax can produce differences; compare them manually.
 Runtime-generated icons need additional snapshots of their states. The command
-exits successfully when analysis completes; inspect `status` for its findings.
+prints its JSON findings and exits nonzero for `needs-review`, so automated agent
+workflows cannot silently treat a mismatch as success.
 
 `source-markers-present` is NOT a visual, accessibility or behavior pass. Styles
 can still be missing or overridden, and a hidden copy can contain those markers.

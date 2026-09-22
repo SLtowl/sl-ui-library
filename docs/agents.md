@@ -14,6 +14,10 @@ on the serialized component subtree. This read-only, offline diagnostic compares
 source class names and inline SVG geometry; `needs-review` flags differences and
 `source-markers-present` still requires visual and interaction checks. It does not
 execute the target, verify loaded CSS or automatically repair a deployed website.
+The CLI exits nonzero for `needs-review`. An agent must read the real package files,
+retain their returned SHA-256 values as a source receipt, and report the selected
+component ID and variant before claiming an SL UI integration. Similar shadcn,
+Radix or framework controls are replacements, not source-faithful adaptations.
 
 ## Claude
 

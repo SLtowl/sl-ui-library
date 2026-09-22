@@ -2,9 +2,10 @@
 // Input is a serialized rendered component subtree, never JSX or executable code.
 export const integrationContract = {
   source: 'Integrate the exported HTML, CSS and controller together. Do not redraw a component from its name or screenshot.',
+  provenance: 'A valid SL UI integration names the CLI-returned component ID and variant, reads the real source with SHA-256 receipts, and passes the source audit. A similar reconstruction is not a library integration.',
   icons: 'Preserve the source inline SVG geometry, viewBox and animation hooks. Never substitute Unicode glyphs, emoji or a different icon set.',
   styles: 'Retain scoped classes and required wrappers. Adapt host tokens locally; do not copy preview body styles. Assign a single visible focus treatment to each compound control.',
-  audit: 'Run audit <variant> <rendered-html-file> on the serialized component subtree after integration; investigate every difference.',
+  audit: 'Run audit <variant> <rendered-html-file> on the serialized component subtree after integration. needs-review is a blocking failure and the CLI exits nonzero.',
   verification: 'Source markers are not visual proof. Compare the export and host app at desktop and narrow widths, including focus, typing, disabled, repeated activation and reduced motion.',
   guide: 'scripts/integration-guide.md',
 };

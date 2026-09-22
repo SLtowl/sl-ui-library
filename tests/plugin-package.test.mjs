@@ -22,6 +22,8 @@ test('portable and host manifests identify the same self-contained plugin', asyn
  const readme = await readFile(new URL('README.md', root), 'utf8');
  for (const command of ['claude plugin marketplace add SLtowl/sl-ui-library && claude plugin install sl-ui-library@sl-ui-library', 'codex plugin marketplace add SLtowl/sl-ui-library && codex plugin add sl-ui-library@sl-ui-library']) assert.ok(readme.includes(command));
  assert.equal(marketplace.plugins[0].source, './plugins/' + portable.name);
+ const skill = await readFile(new URL('plugins/sl-ui-library/skills/use-sl-ui/SKILL.md', root), 'utf8');
+ for (const requirement of ['Required source gate', 'SHA-256', 'needs-review', 'similar reconstruction']) assert.ok(skill.includes(requirement), requirement);
  const files = await pluginFiles();
  for (const name of ['skills/use-sl-ui/SKILL.md','scripts/library.mjs','scripts/updates.mjs','scripts/integration.mjs','scripts/integration-guide.md','assets/catalog.json','assets/source-bundle.json','assets/update-policy.json']) assert.ok(files.has(name), name);
  assert.equal(JSON.parse(files.get('assets/update-policy.json')).published, false);

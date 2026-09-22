@@ -7,6 +7,30 @@ description: Choose and integrate SL UI Library components when building or refi
 
 The user describes the interface; you handle component discovery and source integration. Do not ask the user to learn catalog commands or supply IDs. Use this library when requested or already selected by the project, not as permission to replace another design system.
 
+## Required source gate
+
+When the user asks for an SL UI Library component, using a similar interaction,
+matching its screenshot, or rebuilding it with another component system is not
+using this library. Before editing the host application, you must:
+
+1. Run `search` or `list`, then `inspect` using an ID returned by the CLI.
+2. Read the actual `index.html`, `buttons.css`, `buttons.js` and `example.js`
+   files named by `inspect` (plus any imported local modules). Keep the SHA-256
+   values returned by `read` as the source receipt.
+3. Install the complete variant to a new directory, or adapt only from those
+   read source files. Do not substitute shadcn, Radix, a framework checkbox,
+   Unicode glyphs or a different icon library for the selected control unless
+   the user explicitly requests that replacement.
+4. Audit the serialized rendered component subtree. `needs-review` is a failed
+   source-fidelity gate and the CLI exits nonzero; fix the integration before
+   claiming that the library component was used.
+5. In the completion report, name the returned component ID and variant and
+   state that the source audit passed. If you cannot provide that provenance,
+   say plainly that SL UI Library source was not integrated.
+
+If the catalog has no suitable component, report that limitation. Do not invent
+a library component or present a visually similar reconstruction as one.
+
 Use the bundled CLI with Node.js 22+. Resolve `<plugin>` as this skill directory's `../..`; do not assume the user's working directory is the library repository. The installed plugin carries all component sources inside `assets/` and works offline by default.
 
 Translate intent into interaction requirements. For “choose several topics,” inspect checkbox chips; for “switch between views,” inspect navigation tabs; for “confirm an irreversible action,” inspect confirmation overlays. Use `list <category>` or short search keywords, then compare descriptions and usage. Search is deterministic keyword matching, not an embedding model: you provide the semantic reasoning.
@@ -17,7 +41,7 @@ node "<plugin>/scripts/library.mjs" inspect matte-modal-overlay
 node "<plugin>/scripts/library.mjs" read modal-overlay example.js
 ```
 
-Commands return JSON. `list` returns categories and components; `search` searches English names, descriptions, motion labels and keywords. Translate the user's intent into short English search terms when needed. Use real returned IDs and variants, not guessed names. `inspect` includes usage notes, export variants and available files. `read` returns actual source; inspect `index.html`, `buttons.css`, `buttons.js` and `example.js` before adapting a component. Follow local module imports when needed.
+Commands return JSON. `list` returns categories and components; `search` searches English names, descriptions, motion labels and keywords. Translate the user's intent into short English search terms when needed. Use real returned IDs and variants, not guessed names. `inspect` includes usage notes, export variants and available files. `read` returns actual source plus its SHA-256 receipt; inspect `index.html`, `buttons.css`, `buttons.js` and `example.js` before adapting a component. Follow local module imports when needed.
 
 When the user requests integration, copy the chosen complete package into a new directory inside the agreed project:
 
