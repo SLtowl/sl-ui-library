@@ -72,6 +72,18 @@ Start a new task after installation. Then ask, for example:
 
 The agent selects a component, reads its original source and the instructions for your chosen format, then exports the complete package with the requested palette. HTML, CSS, JavaScript, React and Next.js files are bundled for every variant. The complete catalog and source files work offline after installation; the AI host has its own connectivity requirements. The bundled source CLI requires Node.js 22+.
 
+### Hermes Agent
+
+Hermes can load the complete portable package as a skills-based plugin, not an
+MCP server. Install the whole package so the skill retains its source CLI and
+offline assets; copying `SKILL.md` alone is incomplete.
+
+The 1.2.1 minified source bundle can make Hermes' security scan very slow. The
+[tested Hermes installation guide](docs/hermes.md) prepares a formatting-only,
+hash-verified local package, then installs it through Hermes' normal plugin
+manager without changing or bypassing the scanner. It documents local pinning,
+verification and the limits of the tested Linux setup.
+
 ### Claude and ChatGPT without a terminal
 
 **Claude:** [download the plugin ZIP](https://sltowl.github.io/sl-ui-library/downloads/sl-ui-library-plugin.zip) and use **Customize → Plugins** to upload a custom plugin, where supported.
