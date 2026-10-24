@@ -1,6 +1,23 @@
 import {readZip,writeZip} from './catalog-zip.mjs';
 import {paletteExportSource} from './palette-export.mjs';
 const base=new URL('../../',import.meta.url),decoder=new TextDecoder('utf-8',{fatal:true}),encoder=new TextEncoder();
+const sourceFiles=new Set(['index.html','buttons.css','example.js','Component.jsx','NextClient.jsx']),sourceCache=new Map();
+// Show one small source file without downloading fonts and framework support
+// files first. Cache only completed public source, bounded across components.
+export async function loadPaletteSource(component,palette,file,{signal}={}){
+ if(!['black','white','blue'].includes(palette))throw Error('Unknown palette');
+ const variant=component?.variants?.[0];
+ if(typeof variant!=='string'||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(variant)||!sourceFiles.has(file))throw Error('Source file unavailable');
+ signal?.throwIfAborted();const key=variant+'/'+file;
+ let text=sourceCache.get(key);
+ if(text===undefined){
+  const response=await fetch(new URL('packages/'+key,base),{signal});if(!response.ok)throw Error(`Source unavailable (${response.status})`);
+  text=decoder.decode(await response.arrayBuffer());signal?.throwIfAborted();
+  sourceCache.set(key,text);if(sourceCache.size>32)sourceCache.delete(sourceCache.keys().next().value);
+ }else{sourceCache.delete(key);sourceCache.set(key,text);}
+ const type=file.endsWith('.html')?'html':file.endsWith('.css')?'css':file.endsWith('.js')?'javascript':null;
+ return type?paletteExportSource(text,{type,variant,palette}):text;
+}
 export async function loadPalettePackage(component,palette,{signal}={}){
  if(!['black','white','blue'].includes(palette))throw Error('Unknown palette');
  const variant=component?.variants?.[0],rawDownload=component?.downloads?.[variant],download=typeof rawDownload==='string'?rawDownload.replace(/^\.\//,''):rawDownload;

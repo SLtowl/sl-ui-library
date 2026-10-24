@@ -1,5 +1,5 @@
 import {setPreviewPalette,paletteControls} from './catalog-palettes.mjs';
-import {loadPalettePackage} from './catalog-export.mjs';
+import {loadPalettePackage,loadPaletteSource} from './catalog-export.mjs';
 import '../../packages/copy/buttons.js';
 const formats=[['HTML','index.html'],['CSS','buttons.css'],['JavaScript','example.js'],['React','Component.jsx'],['Next.js','NextClient.jsx']];
 
@@ -19,11 +19,11 @@ export function mountSourceDialog(root,onClose,onPaletteChange=()=>{}){
   const dialog=root.querySelector('#component-dialog'),preview=root.querySelector('#detail-preview'),help=root.querySelector('#help-dialog');
   const tabs=root.querySelector('#source-tabs'),code=root.querySelector('#source-code'),status=root.querySelector('#source-status');
   const copy=root.querySelector('#copy-source'),download=root.querySelector('#download-link');
-  let component,palette='white',file='index.html',bundle,request,generation=0;
-  // At most three finished packages for this open dialog. Discard on close or
-  // component change; aborted/failed loads never enter the cache.
+  let component,palette='white',file='index.html',bundle,request,generation=0,sourceRequest,sourceGeneration=0,sourceText;
+  // Retain at most the three finished palettes of the last component. Public
+  // source can be reopened instantly; partial/failed loads are never cached.
   const bundles=new Map();
-  const copyController=window.MatteCopy.mount(copy,{getText:()=>bundle.source(file),feedback:status});
+  const copyController=window.MatteCopy.mount(copy,{getText:()=>sourceText,feedback:status});
   copy.disabled=true;
   for(const modal of [dialog,help]){
     modal.querySelector('[data-close]').addEventListener('click',()=>modal.close());
@@ -32,25 +32,38 @@ export function mountSourceDialog(root,onClose,onPaletteChange=()=>{}){
   }
   root.querySelector('#how-to-use').addEventListener('click',()=>{help.showModal();document.documentElement.classList.add('catalog-dialog-open');});
   function resetCopy(){copyController.reset();}
-  function showSource(){
+  async function showSource(){
+    sourceRequest?.abort();sourceRequest=new AbortController();const signal=sourceRequest.signal,version=++sourceGeneration;
+    const selected=component,selectedPalette=palette,selectedFile=file;sourceText=undefined;
     resetCopy();root.querySelector('#source-filename').textContent=file;
     for(const tab of tabs.children){const selected=tab.dataset.file===file;tab.setAttribute('aria-selected',String(selected));tab.tabIndex=selected?0:-1;if(selected)code.setAttribute('aria-labelledby',tab.id);}
-    if(!bundle){copy.disabled=true;return;}
-    try{paintCode(code,bundle.source(file),file);copy.disabled=false;code.scrollTop=0;code.scrollLeft=0;}
-    catch{code.textContent='This file is not available in this package.';copy.disabled=true;}
+    copy.disabled=true;code.setAttribute('aria-busy','true');code.textContent='Preparing source…';
+    try{
+      const text=bundle?bundle.source(selectedFile):await loadPaletteSource(selected,selectedPalette,selectedFile,{signal});
+      if(signal.aborted||version!==sourceGeneration||!dialog.open)return;
+      sourceText=text;paintCode(code,text,selectedFile);copy.disabled=false;code.scrollTop=0;code.scrollLeft=0;
+    }catch{if(!signal.aborted&&version===sourceGeneration)code.textContent='This file is not available in this package.';}
+    finally{if(version===sourceGeneration)code.setAttribute('aria-busy','false');}
   }
   async function load(){
-    request?.abort();request=new AbortController();const signal=request.signal,version=++generation;bundle=undefined;
-    copy.disabled=true;download.disabled=true;code.setAttribute('aria-busy','true');code.textContent='Preparing source…';status.textContent='Preparing your palette…';showSource();
+    request?.abort();request=new AbortController();const signal=request.signal,version=++generation;
+    const selected=component,selectedPalette=palette;bundle=bundles.get(palette);download.disabled=!bundle;
+    status.textContent='';
+    await showSource();
+    if(signal.aborted||version!==generation||!dialog.open||bundle)return;
+    // Let the code paint before archive transfer/transformation competes for
+    // bandwidth or the main thread. Tabs and Copy do not depend on the ZIP.
+    await new Promise(resolve=>requestAnimationFrame(()=>setTimeout(resolve,0)));
+    if(signal.aborted||version!==generation||!dialog.open)return;
     try{
-      const result=bundles.get(palette)||await loadPalettePackage(component,palette,{signal});
+      const result=await loadPalettePackage(selected,selectedPalette,{signal});
       if(signal.aborted||version!==generation||!dialog.open)return;
-      bundles.set(palette,result);
-      bundle=result;showSource();download.disabled=false;status.textContent='';
+      bundles.set(selectedPalette,result);
+      bundle=result;download.disabled=false;status.textContent='';if(sourceText===undefined)showSource();
     }catch(error){
       if(signal.aborted||version!==generation)return;
-      code.textContent='Could not prepare the source.';status.textContent='Download unavailable. Choose a palette to retry.';
-    }finally{if(version===generation)code.setAttribute('aria-busy','false');}
+      status.textContent='Download unavailable. Choose a palette to retry.';
+    }
   }
   function mountPreview(){
     const frame=document.createElement('sl-preview');frame.setAttribute('variant',component.variants[0]);frame.setAttribute('aria-label',`${component.name} interactive preview`);preview.replaceChildren(frame);setPreviewPalette(frame,palette);
@@ -64,14 +77,14 @@ export function mountSourceDialog(root,onClose,onPaletteChange=()=>{}){
     const url=URL.createObjectURL(bundle.blob),anchor=document.createElement('a');anchor.href=url;anchor.download=bundle.filename;document.body.append(anchor);anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
   });
   root.querySelector('#reset-preview').addEventListener('click',mountPreview);
-  dialog.addEventListener('close',()=>{if(dialog.open)return;request?.abort();generation++;resetCopy();bundle=undefined;bundles.clear();preview.replaceChildren();onClose();});
+  dialog.addEventListener('close',()=>{if(dialog.open)return;request?.abort();sourceRequest?.abort();generation++;sourceGeneration++;resetCopy();copy.disabled=true;sourceText=undefined;bundle=undefined;preview.replaceChildren();onClose();});
   return {
     open(next,selectedPalette='white',category='Component'){
       if(component!==next)bundles.clear();
       component=next;palette=selectedPalette;file='index.html';
       root.querySelector('#inspector-name').textContent=component.name;root.querySelector('#inspector-description').textContent=component.description;root.querySelector('#inspector-category').textContent=category;
-      if(!dialog.open)dialog.showModal();document.documentElement.classList.add('catalog-dialog-open');mountPreview();load();
+      if(!dialog.open)dialog.showModal();document.documentElement.classList.add('catalog-dialog-open');load();mountPreview();
     },
-    close(){request?.abort();if(dialog.open)dialog.close();if(help.open)help.close();}
+    close(){request?.abort();sourceRequest?.abort();if(dialog.open)dialog.close();if(help.open)help.close();}
   };
 }
