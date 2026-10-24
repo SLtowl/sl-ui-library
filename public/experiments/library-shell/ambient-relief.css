@@ -1,0 +1,16 @@
+.relief-ambient {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+  opacity: var(--relief-light-intensity, .3);
+}
+.relief-ambient[hidden] { display: none; }
+.relief-ambient .ambient-traveller { transform-box: view-box; transform-origin: 0 0; }
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  .relief-ambient { display: none; }
+}

@@ -50,3 +50,8 @@
 @media(forced-colors:active){.account-control .as-record,.account-control .as-card,.account-control .as-choice-button,.account-control .as-details{border:1px solid CanvasText}.account-control .as-choice-button[aria-pressed=true],.account-control .as-record[aria-pressed=true]{outline:1px solid Highlight}}
 
 .sl-component .account-control:focus-visible{outline:2px solid #eee;outline-offset:-4px}
+/* Company ID is an inline field, with the same rhythm as its siblings. */
+.account-control[data-kind=recipient] .ac-fields{gap:0}
+.account-control[data-kind=recipient] .ac-fields>.ac-source+.ac-source{margin-top:12px}
+.account-control[data-kind=recipient] .ac-fields>.as-drawer{transition:grid-template-rows var(--ac-duration) var(--ac-ease),opacity var(--ac-duration) var(--ac-ease)}
+.account-control[data-kind=recipient] .ac-fields>.as-drawer>.ac-reveal-inner>.as-flow{padding:12px 2px 0}

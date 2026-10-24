@@ -96,6 +96,7 @@ function mountDataDisplay(root,{onChange}={}){
  function renderDonut(){
   const selected=state.selected===null?null:storage[state.selected];text('[data-storage-number]',selected?selected.value:72);text('[data-storage-label]',selected?`GB ${selected.label.toLowerCase()}`:'GB used');
   pressed('[data-action="segment"]',b=>Number(b.dataset.value)===state.selected);
+  const total=q('[data-action="total"]');total.textContent=selected?'Show total':'Showing total';total.setAttribute('aria-pressed',String(selected===null));total.style.background=selected?'':'var(--dd-hover)';total.style.color=selected?'':'var(--dd-text)';total.style.borderColor=selected?'':'var(--dd-muted)';
   for(const arc of all('[data-arc]'))arc.style.opacity=state.selected===null||Number(arc.dataset.arc)===state.selected?'1':'.25';
   q('.dd-donut-track').style.opacity=state.selected===null||state.selected===3?'1':'.4';
  }

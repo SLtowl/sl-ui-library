@@ -34,8 +34,8 @@
 .everyday-component .settings-example span{width:66px}
 .everyday-component .settings-example i{display:block;flex:1;height:5px;border-radius:3px;background:#ddd;overflow:hidden}
 .everyday-component .settings-example i i{background:#777;transition:width 400ms var(--action-ease)}
-.everyday-component .redo-sample{opacity:.45;text-decoration:line-through;transition:opacity 260ms ease}
-.everyday-component [data-restored=true] .redo-sample{opacity:1;text-decoration:none;color:#333}
+.everyday-component .redo-sample{opacity:1;color:inherit;text-decoration:line-through;transition:opacity 260ms ease}
+.everyday-component [data-restored=true] .redo-sample{opacity:1;text-decoration:none;color:inherit}
 .everyday-component .fold-example{display:block}
 .everyday-component .fold-example>div{padding:8px 0;border-bottom:1px solid #d3d3d3}
 .everyday-component .fold-example strong{font-size:12px;font-weight:550;color:#555}

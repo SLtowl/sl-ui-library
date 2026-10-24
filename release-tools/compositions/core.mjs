@@ -1,3 +1,6 @@
+import {prepareButtonsAccount,exportsCss,exportsDetailsCss} from './buttons-review.mjs';
+import {prepareInputsAccount,inputsAccountCss,factorInputsAccountRegistry} from './inputs-review.mjs';
+import {prepareDataDisplayAccount,prepareDataDisplayAccountRegistry} from './owner-review-data-display.mjs';
 import {readFile} from 'node:fs/promises';
 import {resolve,posix} from 'node:path';
 import {accountFamilies} from './account-families.mjs';
@@ -32,7 +35,10 @@ export function translateSource(source,copy) {
 }
 
 /** Audited public-language defaults; locale choices and integer money stay intact. */
-export function translateAccountSource(path,source,copy) {
+export function translateAccountSource(path,source,copy,entry) {
+  source=prepareInputsAccount(path,source,entry);
+  source=prepareButtonsAccount(path,source,entry);
+  source=prepareDataDisplayAccount(path,source,entry);
   let result=translateSource(prepareAccountFocus(path,prepareAccountRecovery(path,source)),copy);
   if(path==='account-extensions-ru/value.js')result=result.replace("saved={locale:'ru-RU'","saved={locale:'en-GB'");
   if(path==='account-services-ru/data.js')result=result.replace("new Intl.NumberFormat('ru-RU'","new Intl.NumberFormat('en-GB'");
@@ -43,7 +49,7 @@ export async function bundleCore({sourceRoot,targetRoot,entry,esbuild,copy,famil
   const configuration=accountFamilies[family];
   if(!configuration)throw new Error('Unknown account family');
   const registryPath=resolve(targetRoot,'public/preview-data.js');
-  const registry=pruneRegistry(await readFile(registryPath,'utf8'));
+  const registry=prepareDataDisplayAccountRegistry(factorInputsAccountRegistry(pruneRegistry(await readFile(registryPath,'utf8')),entry),entry);
   const key=entry.key,variant=entry.variants[0];
   const entrySource=`import {mount as reviewedMount} from '../account-core-ru/runtime.js';${configuration.imports}
 const instances=new WeakMap();
@@ -62,7 +68,7 @@ window.SLComponent={mount,mountPreview};`;
         if(!allowed.has(name))throw new Error(`Unapproved account source ${name}`);
         return {path:name,namespace:'approved'};
       });
-      build.onLoad({filter:/.*/,namespace:'approved'},async args=>({contents:args.path==='registry.js'?registry:translateAccountSource(args.path,await readFile(resolve(sourceRoot,'experiments',args.path),'utf8'),copy),loader:args.path.endsWith('.json')?'json':'js'}));
+      build.onLoad({filter:/.*/,namespace:'approved'},async args=>({contents:args.path==='registry.js'?registry:translateAccountSource(args.path,await readFile(resolve(sourceRoot,'experiments',args.path),'utf8'),copy,entry),loader:args.path.endsWith('.json')?'json':'js'}));
     }
   }]});
   const js=result.outputFiles[0].text;
@@ -70,11 +76,11 @@ window.SLComponent={mount,mountPreview};`;
   return js;
 }
 
-export async function coreCss(sourceRoot,family='core') {
+export async function coreCss(sourceRoot,family='core',entry) {
   const css=await readFile(resolve(sourceRoot,'experiments/account-core-ru/styles.css'),'utf8');
   const scoped=css.slice(css.indexOf('.account-control{'));
   const comfort=await readFile(resolve(sourceRoot,'experiments/account-core-ru/comfort.css'),'utf8');
   let extra='';
   for(const folder of family==='extensions'?['account-services-ru','account-extensions-ru']:family==='services'?['account-services-ru']:[])extra+='\n'+(await readFile(resolve(sourceRoot,'experiments',folder,'styles.css'),'utf8')).split('\n').slice(1).join('\n');
-  return `@font-face{font-family:'Instrument Sans';src:url('./instrument-sans-variable.woff2') format('woff2');font-weight:400 700;font-display:swap}.sl-component{width:100%;max-width:320px;min-width:0}`+scoped+'\n'+comfort+extra+'\n.sl-component .account-control:focus-visible{outline:2px solid #eee;outline-offset:-4px}';
+  return `@font-face{font-family:'Instrument Sans';src:url('./instrument-sans-variable.woff2') format('woff2');font-weight:400 700;font-display:swap}.sl-component{width:100%;max-width:320px;min-width:0}`+scoped+'\n'+comfort+extra+'\n.sl-component .account-control:focus-visible{outline:2px solid #eee;outline-offset:-4px}'+(entry?.variants?.[0]==='buttons-account-services-exports-v11'?exportsCss+exportsDetailsCss:'')+inputsAccountCss(entry);
 }

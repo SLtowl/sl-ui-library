@@ -50,7 +50,7 @@ export default [
     "id": "matte-inputs-slug-v11",
     "category": "inputs",
     "name": "Slug input",
-    "description": "Edit and normalize a readable Unicode page path without replacing text while typing.",
+    "description": "Edit a readable Unicode page path with live validation and a literal path preview.",
     "motions": [
       "Reversible field focus",
       "Smooth validation"
@@ -62,7 +62,6 @@ export default [
       "slug",
       "path",
       "url",
-      "normalize",
       "unicode"
     ],
     "page": "./component.html?component=matte-inputs-slug-v11",
@@ -75,7 +74,7 @@ export default [
       {
         "title": "Use the field",
         "paragraphs": [
-          "Edit and normalize a readable Unicode page path without replacing text while typing.",
+          "Edit a readable Unicode page path with live validation and a literal path preview.",
           "Copy the complete package and mount its .sl-component root. All demonstration changes are local."
         ]
       },

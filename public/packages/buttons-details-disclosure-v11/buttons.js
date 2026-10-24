@@ -10,6 +10,7 @@
     const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
     const activeElement = () => root.getRootNode().activeElement;
     function render() {
+      if (!expanded && panel.contains(activeElement())) button.focus();
       root.dataset.active = String(expanded); button.setAttribute('aria-expanded', String(expanded));
       button.setAttribute('aria-label', expanded ? 'Hide details' : 'Show details');
       label.textContent = expanded ? 'Hide details' : 'Show details';

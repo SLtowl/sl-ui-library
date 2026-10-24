@@ -30,3 +30,6 @@
 .account-control.account-control .ac-switch{font-size:15px;line-height:22px;font-weight:500}
 
 .sl-component .account-control:focus-visible{outline:2px solid #eee;outline-offset:-4px}
+/* Keep draft feedback close to its profile actions. */
+.account-control[data-kind=profile]>.ac-draft-line{min-height:0;margin:8px 0 0;line-height:18px}
+.account-control[data-kind=profile]>.ac-actions{margin-top:8px}

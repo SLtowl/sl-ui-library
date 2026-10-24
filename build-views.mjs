@@ -7,7 +7,7 @@ for (const [name, file] of [['home', 'index.html'], ['category', 'category.html'
   const main = html.match(/<main\b[\s\S]*?<\/main>/)?.[0];
   const dialog = html.match(/<dialog\b[\s\S]*?<\/dialog>/)?.[0];
   if (!main || !dialog) throw new Error(`Missing route content: ${file}`);
-  views[name] = main + '\n' + dialog;
+  views[name] = main + (main.includes(dialog) ? '' : '\n' + dialog);
 }
 const initialSources = {};
 for (const variant of components.flatMap(component => component.variants)) {

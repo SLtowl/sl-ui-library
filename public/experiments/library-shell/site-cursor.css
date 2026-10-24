@@ -1,0 +1,2 @@
+/* Pointer position is browser-owned. No cursor:none or DOM follower. */
+@media (forced-colors:active){html{cursor:auto}}

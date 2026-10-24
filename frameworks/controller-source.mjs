@@ -57,12 +57,10 @@ export async function compileController(packageRoot,variant){
  if(/<script\b/i.test(markup))throw new Error('Executable template is not a component export');
  let factory,rootSelector;
  if(variant.endsWith('-overlay')){
-  // The popover source explicitly layers the pin control's local stylesheet
-  // before its overlay overrides. Keep that cascade inside this ShadowRoot.
+  // Overlay packages own their complete CSS; reject undeclared dependencies.
   const links=html.match(/<link\b[^>]*\brel=["']stylesheet["'][^>]*>/g)||[];
-  const expectedLinks=variant==='popover-overlay'?['<link rel="stylesheet" href="../../packages/pin-checkbox/buttons.css">','<link rel="stylesheet" href="./buttons.css">']:['<link rel="stylesheet" href="./buttons.css">'];
+  const expectedLinks=['<link rel="stylesheet" href="./buttons.css">'];
   if(JSON.stringify(links)!==JSON.stringify(expectedLinks))throw new Error('Unrecognized overlay stylesheet dependencies');
-  if(variant==='popover-overlay')css=await read('../pin-checkbox/buttons.css')+'\n'+css;
   const overlay=await read('overlays.js'),marker='window.SLOverlayInstance=mountOverlay(';if(!overlay.includes(marker))throw new Error('Unrecognized overlay initialization');
   const outside='opened&&!panel.contains(e.target)&&!trigger.contains(e.target)';
   if(overlay.split(outside).length!==2)throw new Error('Unrecognized overlay outside-pointer guard');

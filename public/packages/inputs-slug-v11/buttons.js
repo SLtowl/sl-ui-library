@@ -13,10 +13,9 @@
     const copy = value => JSON.parse(JSON.stringify(value));
     function emit() { if (destroyed) return; const next = JSON.stringify(getState()); if (next === snapshot) return; snapshot = next; const detail = copy(getState()); if (typeof options.onChange === 'function') options.onChange(detail); root.dispatchEvent(new CustomEvent('sl:change', { bubbles: true, composed: true, detail })); }
     function finish(stateReader, resetter) { getState = stateReader; snapshot = JSON.stringify(getState()); const form = root.closest('form'); const resetHandler = () => queueMicrotask(() => { if (!destroyed) { resetter(); snapshot = JSON.stringify(getState()); } }); if (form) on(form, 'reset', resetHandler); const cleanup = () => { if (destroyed) return; destroyed = true; removers.splice(0).forEach(remove => remove()); status.remove(); if (root.__slInputCleanup === cleanup) delete root.__slInputCleanup; }; Object.defineProperty(root, '__slInputCleanup', { value: cleanup, configurable: true, writable: true }); qa('input,button').forEach(node => { node.disabled = disabled; }); return { reset() { if (destroyed) return; resetter(); snapshot = JSON.stringify(getState()); }, destroy: cleanup, get state() { return copy(getState()); } }; }
-    const input=q('.sl-main'), path=q('.sl-path'), normalize=q('.sl-normalize'); const initial=String(options.value??input.value); let value=initial;
-      const clean=text=>text.trim().toLocaleLowerCase().replace(/[\s_]+/gu,'-').replace(/[^\p{L}\p{N}-]+/gu,'').replace(/-+/g,'-').replace(/^-|-$/g,'');
+    const input=q('.sl-main'), path=q('.sl-path'); const initial=String(options.value??input.value); let value=initial;
       function render(emitChange=false){ value=input.value; const valid=/^[\p{L}\p{N}]+(?:-[\p{L}\p{N}]+)*$/u.test(value)&&value.length<=60; path.textContent='/'+(value||'…'); setValidity(valid, valid?'Readable path is ready.':'Use letters, numbers and single hyphens.', [input]); if(emitChange) emit(); }
-      input.value=initial; on(input,'input',()=>render(true)); on(normalize,'click',()=>{const next=clean(input.value); if(next!==input.value){input.value=next;render(true);} input.focus();}); render();
+      input.value=initial; on(input,'input',()=>render(true)); render();
       return finish(()=>({value,valid:root.dataset.invalid!=='true'}),()=>{input.value=initial;value=initial;render();});
   }
   function mountPreview(root) { return mount(root); }

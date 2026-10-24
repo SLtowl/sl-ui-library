@@ -17,8 +17,10 @@ test('all catalog legacy overlay adapters retain source and recognize composed i
   assert.ok(source.includes("panel.addEventListener('cancel'"),variant+' retains native modal Escape');
   if(variant==='popover-overlay'){
    const css=JSON.parse(source.match(/const sourceCSS=(.*);\n/)[1]);
-   const pinCSS=await readFile(new URL('../public/packages/pin-checkbox/buttons.css',import.meta.url),'utf8'),overlayCSS=await readFile(new URL('../public/packages/popover-overlay/buttons.css',import.meta.url),'utf8');
-   assert.equal(css,pinCSS+'\n'+overlayCSS,'preserve exact dependency-first CSS cascade');
+   const packageRoot=new URL('../public/packages/popover-overlay/',import.meta.url),overlayCSS=await readFile(new URL('buttons.css',packageRoot),'utf8'),html=await readFile(new URL('index.html',packageRoot),'utf8');
+   assert.deepEqual(html.match(/<link\b[^>]*\brel=["']stylesheet["'][^>]*>/g),['<link rel="stylesheet" href="./buttons.css">'],'native Popover is self-contained');
+   assert.equal(css,overlayCSS,'preserve exact self-contained source CSS');
+   assert.ok(css.includes('.popover-pin .sl-check__input{position:absolute;width:1px;height:1px;margin:0;opacity:0}'),'include the scoped native input geometry');
   }
  }
 });
@@ -28,10 +30,16 @@ test('overlay extraction rejects changed outside-pointer or stylesheet grammar',
  try{
   const packageRoot=pathToFileURL(target+'/'),original=new URL('../public/packages/popover-overlay/',import.meta.url),html=await readFile(new URL('index.html',original),'utf8'),overlay=await readFile(new URL('overlays.js',original),'utf8');
   await writeFile(join(target,'buttons.css'),'/* fixture */');
-  await writeFile(join(target,'index.html'),html.replace('../../packages/pin-checkbox/buttons.css','https://example.invalid/unapproved.css'));
-  await assert.rejects(compileController(packageRoot,'popover-overlay'),/Unrecognized overlay stylesheet dependencies/);
+  for(const altered of [
+   html.replace('./buttons.css','https://example.invalid/unapproved.css'),
+   html.replace('./buttons.css','../pin-checkbox/buttons.css'),
+   html.replace('./buttons.css','./altered.css'),
+   html.replace('<link rel="stylesheet" href="./buttons.css">',''),
+   html.replace('<link rel="stylesheet" href="./buttons.css">','<link rel="stylesheet" href="../../packages/pin-checkbox/buttons.css"><link rel="stylesheet" href="./buttons.css">'),
+   html.replace('</head>','<link rel="stylesheet" href="./extra.css"></head>')
+  ]){await writeFile(join(target,'index.html'),altered);await assert.rejects(compileController(packageRoot,'popover-overlay'),/Unrecognized overlay stylesheet dependencies/);}
   // A non-popover fixture exercises the pointer guard before optional pin source reads.
-  await writeFile(join(target,'index.html'),html.replace('<link rel="stylesheet" href="../../packages/pin-checkbox/buttons.css">',''));
+  await writeFile(join(target,'index.html'),html);
   await writeFile(join(target,'overlays.js'),overlay.replace('opened&&!panel.contains(e.target)&&!trigger.contains(e.target)','opened&&!root.contains(e.target)'));
   await assert.rejects(compileController(packageRoot,'quickedit-overlay'),/Unrecognized overlay outside-pointer guard/);
   await writeFile(join(target,'overlays.js'),overlay+'\n// opened&&!panel.contains(e.target)&&!trigger.contains(e.target)');

@@ -25,6 +25,7 @@
       ['[data-run]', '[data-hold]', '[data-stop]', '[data-add]'].map($).find(button => button && !button.hidden && !button.disabled)?.focus();
     }
     function cancel() {
+      if (!destroyed && holding) { stopHold(); return true; }
       if (destroyed || phase !== 'pending') return false;
       const restore = active() === $('[data-cancel]');
       abortWork(); phase = 'canceled'; render(); if (restore) returnFocus();
@@ -55,57 +56,68 @@
         emit({ error }); return false;
       }
     }
-    const hold = $('[data-hold]'), opener = $('[data-confirm-open]'), panel = $('[data-panel]');
+    const hold = $('[data-hold]'), stroke = $('[data-hold-stroke]');
     const holdMs = options.holdMs ?? 1200;
     if (!Number.isFinite(holdMs) || holdMs < 500 || holdMs > 5000) throw new RangeError('holdMs must be 500–5000.');
     const motion = view.matchMedia('(prefers-reduced-motion: reduce)');
-    let open = false, holding = false, timer = null, frame = null, startedAt = 0, pointerId = null, suppressClick = false;
+    let open = false, holding = false, timer = null, frame = null, startedAt = 0, pointerId = null;
     function render() {
       reflect(); const busy = phase === 'pending';
-      hold.setAttribute('aria-disabled', String(busy)); opener.disabled = busy;
+      hold.setAttribute('aria-disabled', String(busy));
       $('[data-label]').textContent = busy ? 'Archiving…' : holding ? 'Keep holding…' : 'Hold to archive';
-      opener.setAttribute('aria-expanded', String(open)); panel.dataset.open = String(open);
-      panel.inert = !open; panel.setAttribute('aria-hidden', String(!open)); $('[data-cancel]').hidden = !busy;
+      $('[data-cancel]').hidden = !busy;
       root.dataset.holding = String(holding);
     }
     function stopHold() {
       clearTimeout(timer); view.cancelAnimationFrame(frame); timer = frame = null; holding = false;
       if (pointerId !== null && hold.hasPointerCapture?.(pointerId)) hold.releasePointerCapture(pointerId);
-      pointerId = null; $('[data-fill]').style.transform = 'scaleX(0)'; render();
+      pointerId = null; $('[data-fill]').style.transform = 'scaleX(0)'; stroke.style.strokeDashoffset = '100'; render();
     }
     function tick() {
       if (!holding || destroyed || motion.matches) return;
-      $('[data-fill]').style.transform = 'scaleX(' + Math.min(1, (view.performance.now() - startedAt) / holdMs) + ')';
+      const progress = Math.min(1, (view.performance.now() - startedAt) / holdMs);
+      $('[data-fill]').style.transform = 'scaleX(' + progress + ')';
+      stroke.style.strokeDashoffset = String(100 * (1 - progress));
       frame = view.requestAnimationFrame(tick);
     }
     function show() {
       if (destroyed || phase === 'pending') return;
-      stopHold(); open = true; render(); $('[data-confirm]').focus(); announce('Choose Yes, archive to confirm.');
+      stopHold(); open = true; render(); hold.focus();
     }
-    function close() { if (destroyed) return; open = false; render(); opener.focus(); announce('Confirmation closed. Nothing was archived.'); }
+    function close() { if (destroyed) return; stopHold(); open = false; render(); hold.focus(); }
     function start() {
       if (destroyed || phase === 'pending') return Promise.resolve(false);
       stopHold(); open = false; hold.focus();
       return run(options.onConfirm, {}, () => {}, 'Archiving draft…', 'Draft archived.');
     }
+    function beginHold(id = null) {
+      if (destroyed || holding || phase === 'pending') return;
+      hold.focus(); stopHold(); open = false; holding = true;
+      pointerId = id; if (id !== null) hold.setPointerCapture?.(id);
+      startedAt = view.performance.now(); render(); tick();
+      timer = setTimeout(() => { start(); }, holdMs);
+    }
+    function endHold() { if (holding) { stopHold(); announce('Released early. Nothing was archived.'); } }
     listen(hold, 'pointerdown', e => {
-      if (destroyed || phase === 'pending' || e.button !== 0 || !e.isPrimary) return;
-      e.preventDefault(); hold.focus(); stopHold(); open = false; holding = true; suppressClick = false;
-      pointerId = e.pointerId; hold.setPointerCapture?.(pointerId); startedAt = view.performance.now(); render(); tick();
-      timer = setTimeout(() => { suppressClick = true; start(); }, holdMs);
+      if (e.button !== 0 || !e.isPrimary) return;
+      e.preventDefault(); beginHold(e.pointerId);
     });
-    listen(hold, 'pointerup', () => { if (holding) { suppressClick = true; stopHold(); announce('Released early. Nothing was archived.'); } });
+    listen(hold, 'pointerup', endHold);
     listen(hold, 'pointercancel', stopHold);
     listen(hold, 'lostpointercapture', () => { if (holding) stopHold(); });
     listen(hold, 'pointermove', e => { if (!holding) return; const box = hold.getBoundingClientRect(); if (e.clientX < box.left || e.clientX > box.right || e.clientY < box.top || e.clientY > box.bottom) stopHold(); });
-    listen(hold, 'click', e => { if (suppressClick && e.detail !== 0) { suppressClick = false; return; } show(); });
+    listen(hold, 'keydown', e => {
+      if (e.key !== ' ' && e.key !== 'Enter') return;
+      e.preventDefault(); if (!e.repeat) beginHold();
+    });
+    listen(hold, 'keyup', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); endHold(); } });
+    // Native synthesized clicks must never bypass the hold threshold.
+    listen(hold, 'click', e => { e.preventDefault(); });
     listen(hold, 'blur', () => { if (holding) stopHold(); });
     listen(root, 'keydown', e => { if (e.key === 'Escape' && (open || holding)) { e.preventDefault(); e.stopPropagation(); stopHold(); close(); } });
-    listen(panel, 'focusout', e => { if (open && !panel.contains(e.relatedTarget)) { open = false; render(); announce('Confirmation closed. Nothing was archived.'); } });
-    listen(motion, 'change', () => { view.cancelAnimationFrame(frame); if (motion.matches) $('[data-fill]').style.transform = 'scaleX(0)'; else tick(); });
-    listen(opener, 'click', show); listen($('[data-confirm]'), 'click', start); listen($('[data-back]'), 'click', close);
+    listen(motion, 'change', () => { view.cancelAnimationFrame(frame); if (motion.matches) { $('[data-fill]').style.transform = 'scaleX(0)'; stroke.style.strokeDashoffset = '100'; } else tick(); });
     listen($('[data-cancel]'), 'click', () => { cancel(); hold.focus(); });
-    function resetLocal() { const restore = panel.contains(active()) || active() === $('[data-cancel]'); stopHold(); open = false; suppressClick = false; if (restore) hold.focus(); }
+    function resetLocal() { const restore = active() === $('[data-cancel]'); stopHold(); open = false; if (restore) hold.focus(); }
     const methods = { confirm: start, open: show, close };
     const snapshot = () => ({ open, holding });
     function reset() {

@@ -57,12 +57,11 @@ function mountCodeField(root, { expectedCode = '482731' } = {}) {
       settle();
       root.dataset.result = valid ? 'success' : 'error';
       if (motion.matches) return;
-      const target = valid
-        ? { color: '#eaf8ef', borderColor: '#4f8d72', backgroundColor: '#234b3a', boxShadow: 'inset 0 1px rgba(255,255,255,.09), 0 0 0 2px rgba(79,141,114,.09)', transform: 'translateY(-2px)' }
-        : { color: '#fff0f0', borderColor: '#a85e63', backgroundColor: '#543134', boxShadow: 'inset 0 1px rgba(255,255,255,.07), 0 0 0 2px rgba(168,94,99,.08)', transform: 'translateY(1px)' };
+      // Palette-aware CSS owns result colors, including changes during a result.
+      const target = { transform: valid ? 'translateY(-2px)' : 'translateY(1px)' };
       cells.forEach((cell, index) => {
         const animation = cell.animate([
-          { color: '#f9f9f9', borderColor: 'rgba(0,0,0,0)', backgroundColor: '#222222', boxShadow: 'inset 0 1px rgba(255,255,255,.07), 0 1px 2px rgba(0,0,0,.05)', transform: 'translateY(0)' },
+          { transform: 'translateY(0)' },
           target,
         ], { duration: 360, delay: index * 95, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'both' });
         resultAnimations.add(animation);

@@ -59,6 +59,16 @@ To update a Git-backed Codex installation, use `codex plugin marketplace upgrade
 
 The optional `node install.mjs` wrapper remains for local development from a reviewed checkout. It only registers that local checkout through Codex CLI, refuses a same-name source elsewhere and supports `--dry-run`. It is not the public installation command.
 
+## Hermes Agent
+
+Use the existing skill through Hermes's supported `skills.external_dirs` setting. Follow the complete [English setup](../README.md#hermes-agent) or [Russian setup](../README.ru.md#hermes-agent). Keep the entire repository clone so that `skills/use-sl-ui/../..` still resolves to the plugin root, including `scripts/library.mjs` and both offline JSON bundles under `assets/`.
+
+The agent needs access to the clone and Node.js 22+ from its execution environment. A remote or sandboxed Hermes runtime must be able to access those same files; a folder on another computer is not automatically available. This is skill-directory integration, not a Hermes-native `plugin.yaml` package or a submission to the Hermes plugin catalog.
+
+After restarting Hermes, invoke `/use-sl-ui`. It uses the same source gate, CLI and complete exports as the other hosts. Review upstream changes before updating the connected clone; updating it does not change exports already copied into applications.
+
+[Official Hermes skills documentation](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills#external-skill-directories).
+
 ## ChatGPT
 
 The Codex commands install into Codex, not an ordinary ChatGPT web conversation. ChatGPT desktop Work can discover supported local plugin sources, depending on the client and workspace. Uploading a ZIP as a chat attachment is not a plugin installation. [OpenAI local plugin packaging](https://developers.openai.com/plugins/build/plugins).

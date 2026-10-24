@@ -21,7 +21,9 @@
       const node = doc.createElement('button'); node.type = 'button'; node.className = 'sl-option'; node.dataset.key = key;
       const copy = doc.createElement('span'), title = doc.createElement('strong'); title.textContent = label; copy.append(title);
       if (detail) { const small = doc.createElement('small'); small.textContent = detail; copy.append(small); }
-      const mark = doc.createElement('span'); mark.className = 'sl-mark'; mark.setAttribute('aria-hidden','true'); mark.textContent = '✓';
+      const mark = doc.createElement('span'); mark.className = 'sl-mark'; mark.setAttribute('aria-hidden','true');
+      const namespace=trigger.querySelector('svg').namespaceURI,svg=doc.createElementNS(namespace,'svg'),path=doc.createElementNS(namespace,'path');
+      svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('focusable','false');path.setAttribute('pathLength','1');path.setAttribute('d','m5 12 4.5 4.5L19 7');svg.append(path);mark.append(svg);
       node.append(copy, mark); if (pressed !== undefined) node.setAttribute('aria-pressed',String(pressed)); return node;
     }
     function report(message) { feedback.textContent = message; }
@@ -52,11 +54,13 @@
       q('.sl-summary').inert = false; q('.sl-summary').removeAttribute('aria-hidden'); onClose(); paint();
     }
     const revisions=[{id:'main',type:'branches',detail:'Default branch',ahead:0,behind:0},{id:'feature/search',type:'branches',detail:'Search improvements',ahead:4,behind:2},{id:'fix/focus',type:'branches',detail:'Keyboard fix',ahead:2,behind:0},{id:'v1.4.0',type:'tags',detail:'Latest release',ahead:0,behind:3},{id:'v1.3.0',type:'tags',detail:'Previous release',ahead:0,behind:12}];
+    const revisionNodes=new Map(revisions.map(r=>[r.id,option('revision:'+r.id,r.id,r.detail,state.value===r.id)]));
+    q('[data-revisions]').replaceChildren(...revisionNodes.values());
     function onOpen() {  }
     function onClose() {  }
     function render() { selected('tab:branches',state.tab==='branches'); selected('tab:tags',state.tab==='tags'); selected('compare',state.compare);
       const matches=revisions.filter(r=>r.type===state.tab && r.id.toLowerCase().includes(state.query.toLowerCase()));
-      q('[data-revisions]').replaceChildren(...matches.map(r=>option('revision:'+r.id,r.id,r.detail,state.value===r.id)));
+      revisionNodes.forEach((node,id)=>{node.hidden=!matches.some(r=>r.id===id);node.setAttribute('aria-pressed',String(state.value===id));});
       q('[data-empty]').hidden=matches.length>0; const revision=revisions.find(r=>r.id===state.value);
       text('[data-compare]',state.compare?revision.id+': '+revision.ahead+' ahead · '+revision.behind+' behind main.':'Comparison is off.'); text('[data-summary]',state.value); }
     function handle(key, button, event) { if(key.startsWith('tab:')) { state.tab=key.slice(4); state.query=''; q('[data-search]').value=''; paint(); }

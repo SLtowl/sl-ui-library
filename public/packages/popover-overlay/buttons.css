@@ -30,7 +30,20 @@ button,input{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:tran
 [data-overlay=sheet] .collection-choices{margin:10px 0 12px}
 [data-overlay=sheet] .collection-choices label{min-height:47px;padding:7px 0;gap:10px}
 [data-overlay=sheet] .sheet-confirm{min-height:39px;padding-block:8px}
-.popover-footer .popover-pin{width:auto;padding:0;margin:0;border:0;background:transparent;box-shadow:none;--check-ink:#262626;--check-paper:#dddddd}
+.popover-footer .sl-check-card{width:auto;padding:0;margin:0;border:0;background:transparent;box-shadow:none;--check-ink:#262626;--check-paper:#dddddd;--check-ease:cubic-bezier(.22,.61,.36,1);color:#f8f8f8;font-family:'Instrument Sans',sans-serif;text-align:left}
+/* Local pin base: this package also works without the checkbox study sheet. */
+.popover-pin .sl-check{position:relative;display:flex;align-items:center;cursor:pointer}
+.popover-pin .sl-check__input{position:absolute;width:1px;height:1px;margin:0;opacity:0}
+.popover-pin .sl-check__box{position:relative;isolation:isolate;display:grid;place-items:center;flex:none;transition:border-color 350ms ease,transform 260ms var(--check-ease)}
+.popover-pin .sl-check__box svg{stroke:#b4b4b4;stroke-width:1.65;transition:stroke 320ms ease}
+.popover-pin .sl-check__dash{opacity:0;transition:opacity 220ms ease}
+.popover-pin .sl-check__input:indeterminate+.sl-check__box .sl-check__dash{opacity:1}
+.popover-pin .sl-check:active .sl-check__box{transform:scale(.94)}
+.popover-pin .sl-check:has(.sl-check__input:disabled){opacity:.5;cursor:not-allowed}
+.popover-pin .sl-check__copy{display:grid;gap:4px;min-width:0}
+.popover-pin .sl-check__title{position:relative}
+.popover-pin .mark-icon{transform-origin:12px 12px;fill:transparent;transform:translateY(-1px) rotate(-15deg);transition:fill 360ms ease,transform 460ms var(--check-ease)}
+.popover-pin .sl-check__input:checked+.sl-check__box .mark-icon{transform:translateY(0) rotate(0)}
 .popover-pin .sl-check{min-height:34px;padding:6px 9px;gap:5px;user-select:none;background:transparent;border:1px solid #b5b5b555;border-radius:8px;transition:border-color 220ms ease}
 .popover-pin .sl-check:has(:checked){border-color:#cfcfcf}
 .popover-pin .sl-check__box{width:20px;height:20px;background:transparent;box-shadow:none;border:0;border-radius:0;overflow:visible}
@@ -47,6 +60,7 @@ button,input{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:tran
 .popover-pin .sl-check__input:checked~.sl-check__copy .pin-off{opacity:0;transform:translateY(-4px)}
 @media(max-width:290px){.overlay-panel{padding:21px 17px}.overlay-panel h2{font-size:20px}.overlay-actions{gap:4px}.overlay-actions button{padding-inline:8px;font-size:11px}[data-overlay=drawer] .overlay-panel{padding-inline:17px}[data-overlay=sheet] .overlay-panel{padding-inline:17px}.overlay-trigger{font-size:13px;gap:8px}.overlay-feedback{font-size:10px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after,*::backdrop{transition:none!important;animation:none!important}}
+@media(prefers-reduced-motion:reduce){.popover-pin .sl-check:active .sl-check__box{transform:none}}
 /* Short embedded cards are real viewports too: keep every primary action in view. */
 @media(max-height:450px){
  .overlay-panel{padding:18px;max-height:calc(100svh - 24px)}

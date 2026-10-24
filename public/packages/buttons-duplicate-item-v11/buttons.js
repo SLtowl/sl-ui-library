@@ -25,7 +25,6 @@
       root.dataset.phase = phase; root.setAttribute('aria-busy', String(phase === 'pending'));
       button.setAttribute('aria-disabled', String(phase === 'pending'));
       $('[data-run-label]').textContent = phase === 'pending' ? 'Duplicating…' : phase === 'error' ? 'Try again' : phase === 'complete' ? 'Duplicate again' : 'Duplicate';
-      $('[data-cancel]').hidden = phase !== 'pending';
       $('[data-source]').textContent = source.label;
       $('[data-created]').textContent = lastCreated?.label ?? '';
       $('[data-result]').dataset.open = String(!!lastCreated);
@@ -34,8 +33,7 @@
     }
     function abortWork() { revision++; const pending = request; request = null; pending?.abort(); }
     function settle(next, message) {
-      const restore = active() === $('[data-cancel]');
-      phase = next; render(); if (restore) button.focus(); announce(message);
+      phase = next; render(); announce(message);
     }
     function cancel() {
       if (destroyed || phase !== 'pending') return false;
@@ -75,7 +73,6 @@
       reset(); destroyed = true; life.abort(); note.textContent = originalNote;
     }
     listen(button, 'click', start);
-    listen($('[data-cancel]'), 'click', cancel);
     listen(root, 'keydown', event => {
       if (event.key === 'Escape' && phase === 'pending') { event.preventDefault(); event.stopPropagation(); cancel(); }
     });

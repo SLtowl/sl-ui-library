@@ -178,3 +178,4 @@
 .menu-study .menu-item:not(.menu-done):hover { color: #ffffff; }
 .menu-item > .person-initials { display: grid; place-items: center; flex: none!important; width: 29px; height: 29px; border: 1px solid #cbcbcb2b; border-radius: 50%; color: #d2d2d2; font: 10px/1 'Instrument Sans',sans-serif; letter-spacing: .02em; }
 @media(prefers-reduced-motion:reduce) { .menu-study *, .menu-study *::before,.menu-study *::after { transition: none!important; } }
+.menu-demo .menu-panel .menu-item:not(.menu-done){margin-block:0 4px}

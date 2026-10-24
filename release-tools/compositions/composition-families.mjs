@@ -1,3 +1,8 @@
+import {prepareButtonsComposition,ctaCss} from './buttons-review.mjs';
+import {prepareButtonsFollowupComposition} from './buttons-followup.mjs';
+import {prepareInputsComposition,prepareInputsToolkit,inputsCompositionCss} from './inputs-compositions-review.mjs';
+import {prepareOwnerReviewTogglesComposition,prepareOwnerReviewTogglesRegistry} from './owner-review-toggles.mjs';
+import {prepareDataDisplayRegistry} from './owner-review-data-display.mjs';
 import {readFile} from 'node:fs/promises';
 import {resolve,posix} from 'node:path';
 import {pruneRegistry,translateSource} from './core.mjs';
@@ -17,6 +22,10 @@ export const englishDictionary=`export function translateText(text,extra={}){con
 
 function replaceOnce(source,from,to){if(!source.includes(from)||source.indexOf(from)!==source.lastIndexOf(from))throw new Error('Unexpected reviewed composition grammar: '+from);return source.replace(from,to);}
 export function prepareCompositionSource(path,source,tag){
+  source=prepareButtonsComposition(path,source,tag);
+  source=prepareButtonsFollowupComposition(path,source,tag);
+  source=prepareInputsComposition(path,source,tag);
+  source=prepareOwnerReviewTogglesComposition(path,source,tag);
   const allowed=new Set(Object.values(compositionFamilies).flatMap(f=>f.files));
   if(!allowed.has(path))throw new Error('Unapproved composition source '+path);
   let result=path.endsWith('/source-host.js')||path.endsWith('/motion-tokens.js')?source:translateSource(source,copy);
@@ -55,8 +64,8 @@ export function compositionEntry(family,entry){
 export async function bundleComposition({sourceRoot,targetRoot,entry,esbuild,family}){
   const configuration=compositionFamilies[family];if(!configuration)throw new Error('Unknown composition family');
   const tag='sl-source-'+entry.variants[0],allowed=new Set(configuration.files);
-  const registry=pruneRegistry(await readFile(resolve(targetRoot,'public/preview-data.js'),'utf8'),configuration.primitives);
-  const runtime=reviewedToolkit(await readFile(resolve(sourceRoot,'experiments',configuration.folder,'app.js'),'utf8'),family).replaceAll('sl-source',tag);
+  const registry=prepareDataDisplayRegistry(prepareOwnerReviewTogglesRegistry(pruneRegistry(await readFile(resolve(targetRoot,'public/preview-data.js'),'utf8'),configuration.primitives),tag),tag);
+  const runtime=prepareInputsToolkit(reviewedToolkit(await readFile(resolve(sourceRoot,'experiments',configuration.folder,'app.js'),'utf8'),family).replaceAll('sl-source',tag),tag);
   const result=await esbuild.build({stdin:{contents:compositionEntry(family,entry),sourcefile:configuration.folder+'/entry.js',resolveDir:'/'},bundle:true,write:false,format:'iife',platform:'browser',target:'es2022',minify:true,legalComments:'none',sourcemap:false,plugins:[{name:'reviewed-compositions',setup(build){
     build.onResolve({filter:/.*/},args=>{
       if(args.path==='/preview-data.js')return {path:'registry.js',namespace:'composition'};
@@ -92,5 +101,5 @@ export async function compositionCss(sourceRoot,family,tag){
   let source=await readFile(resolve(sourceRoot,'experiments/library-compositions-ru/styles.css'),'utf8');
   if(family==='next')source+='\n'+await readFile(resolve(sourceRoot,'experiments/library-next-twenty-ru/styles.css'),'utf8');
   const cart=family==='next'?'.sl-component [data-component="cart"] .cart-item{min-width:0}.sl-component [data-component="cart"] .cart-item-bottom{flex-wrap:wrap}':'';
-  return `@font-face{font-family:'Instrument Sans';src:url('./instrument-sans-variable.woff2') format('woff2');font-weight:400 700;font-display:swap}.sl-component{width:100%;max-width:320px;min-width:0}`+scopeCompositionCss(source,tag)+cart;
+  return `@font-face{font-family:'Instrument Sans';src:url('./instrument-sans-variable.woff2') format('woff2');font-weight:400 700;font-display:swap}.sl-component{width:100%;max-width:320px;min-width:0}`+scopeCompositionCss(source,tag)+cart+(tag==='sl-source-buttons-compositions-cta-v11'?ctaCss:'')+inputsCompositionCss(tag);
 }

@@ -1,0 +1,12 @@
+{
+  "$description": "Local subset of motion-design looping and glow tokens. Decorative relief lighting, not a UI transition.",
+  "motion": {
+    "looping": {
+      "duration": {"ultra-slow": {"$type": "duration", "$value": "30s"}},
+      "mode": {"alternate": {"$type": "string", "$value": "alternate"}},
+      "wave": {"ease-in-out": {"$type": "string", "$value": "ease-in-out"}},
+      "initial-phase": {"$type": "number", "$value": 0.65}
+    },
+    "glow": {"intensity": {"subtle": {"$type": "number", "$value": 0.3}}}
+  }
+}

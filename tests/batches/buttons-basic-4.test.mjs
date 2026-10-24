@@ -65,7 +65,7 @@ test('refined visuals keep their intended structure and explicit use cases', asy
   );
   assert.doesNotMatch(cart, /data-preview|cart-scene/);
   assert.match(cart, /class="cart-shell"/);
-  assert.match(cart, /class="cart-plus"/);
+  assert.doesNotMatch(cart, /cart-plus/);
   assert.match(cart, /class="cart-check"/);
   assert.doesNotMatch(cart, /bag-item|bag-count/);
   assert.match(archive, /class="archive-document"/);
@@ -147,24 +147,24 @@ test('real browser: everyday actions reverse, remount cleanly and fit narrow pre
     await page.goto(`${origin}/packages/buttons-cart-toggle-v11/index.html`);
     assert.equal(await page.locator('[data-preview]').count(), 0);
     const cartInitial = await page.evaluate(() => ({
-      plus: getComputedStyle(document.querySelector('.cart-plus')).opacity,
+      basket: getComputedStyle(document.querySelector('.cart-shell')).opacity,
       check: getComputedStyle(document.querySelector('.cart-check')).opacity
     }));
-    assert.deepEqual(cartInitial, { plus: '1', check: '0' });
+    assert.deepEqual(cartInitial, { basket: '1', check: '0' });
     await page.locator('[data-action]').click();
     await page.waitForTimeout(380);
     const cartAdded = await page.evaluate(() => ({
-      plus: getComputedStyle(document.querySelector('.cart-plus')).opacity,
+      basket: getComputedStyle(document.querySelector('.cart-shell')).opacity,
       check: getComputedStyle(document.querySelector('.cart-check')).opacity
     }));
-    assert.deepEqual(cartAdded, { plus: '0', check: '1' });
+    assert.deepEqual(cartAdded, { basket: '0', check: '1' });
     await page.locator('[data-action]').click();
     await page.waitForTimeout(260);
     const cartRemoved = await page.evaluate(() => ({
-      plus: getComputedStyle(document.querySelector('.cart-plus')).opacity,
+      basket: getComputedStyle(document.querySelector('.cart-shell')).opacity,
       check: getComputedStyle(document.querySelector('.cart-check')).opacity
     }));
-    assert.deepEqual(cartRemoved, { plus: '1', check: '0' });
+    assert.deepEqual(cartRemoved, { basket: '1', check: '0' });
 
     await page.goto(`${origin}/packages/buttons-archive-toggle-v11/index.html`);
     await page.locator('[data-action]').click();
@@ -247,3 +247,4 @@ test('real browser: everyday actions reverse, remount cleanly and fit narrow pre
     await context.close(); await browser.close(); server.close(); await once(server, 'close');
   }
 });
+

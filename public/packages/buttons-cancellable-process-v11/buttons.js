@@ -61,7 +61,7 @@
       reflect(); const busy = phase === 'pending'; action.setAttribute('aria-disabled', String(busy));
       $('[data-label]').textContent = busy ? 'Preparing…' : phase === 'error' ? 'Try again' : phase === 'complete' ? 'Prepare again' : 'Prepare assets';
       $('[data-cancel]').hidden = !busy;
-      $('[data-stage]').textContent = busy ? 'Processing assets' : phase === 'complete' ? 'Assets prepared' : phase === 'canceled' ? 'Processing canceled' : 'Ready to process';
+      $('[data-stage]').textContent = busy ? 'Processing assets' : phase === 'complete' ? 'Complete' : phase === 'canceled' ? 'Processing canceled' : 'Ready to process';
       $('[data-value]').textContent = progress + '%'; $('[data-progress]').setAttribute('aria-valuenow', String(progress));
       $('[data-fill]').style.transform = 'scaleX(' + progress / 100 + ')';
     }
@@ -102,13 +102,14 @@
   function demoTask({ signal, onProgress }, result, duration = 900) {
     return new Promise((resolve, reject) => {
       if (signal.aborted) { reject(new DOMException('Canceled', 'AbortError')); return; }
-      let step = 0;
+      const startedAt = performance.now();
       const stop = () => { clearInterval(timer); signal.removeEventListener('abort', abort); };
       const abort = () => { stop(); reject(new DOMException('Canceled', 'AbortError')); };
       const timer = setInterval(() => {
-        step++; onProgress?.(step / 4);
-        if (step >= 4) { stop(); resolve(result); }
-      }, duration / 4);
+        const progress = Math.min(1, (performance.now() - startedAt) / duration);
+        onProgress?.(progress);
+        if (progress >= 1) { stop(); resolve(result); }
+      }, 30);
       signal.addEventListener('abort', abort, { once: true });
     });
   }

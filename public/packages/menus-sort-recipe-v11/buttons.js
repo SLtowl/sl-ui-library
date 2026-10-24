@@ -40,8 +40,7 @@
     function open(last = false) {
       if (destroyed || trigger.disabled || opened) return;
       opened = true; onOpen(); root.dataset.open = 'true'; trigger.setAttribute('aria-expanded','true');
-      panel.inert = false; panel.setAttribute('aria-hidden','false'); q('.sl-summary').inert = true;
-      q('.sl-summary').setAttribute('aria-hidden','true'); paint();
+      panel.inert = false; panel.setAttribute('aria-hidden','false'); paint();
       (last ? controls().at(-1) : controls()[0])?.focus({ preventScroll: true });
     }
     function close(restoreFocus = true) {
@@ -53,12 +52,21 @@
     }
     const tasks=[{name:'Draft',due:14,priority:2},{name:'Review',due:14,priority:3},{name:'Publish',due:16,priority:1}];
     const sorted=()=>[...tasks].sort((a,b)=>(state.priority?b.priority-a.priority:0) || (state.field==='due'?a.due-b.due:a.name.localeCompare(b.name,'en'))*state.direction);
+    const orderNodes=new Map(tasks.map(task=>{const li=doc.createElement('li');li.dataset.task=task.name;li.textContent=task.name+' · Sep '+task.due+' · '+['','Low','Medium','High'][task.priority];return [task.name,li];}));
+    q('[data-order]').replaceChildren(...orderNodes.values());
+    const motions=new Map(), reduced=view.matchMedia('(prefers-reduced-motion: reduce)');
+    const stopMotion=()=>{motions.forEach(animation=>animation.cancel());motions.clear();};
+    listen(reduced,'change',()=>{if(reduced.matches)stopMotion();});
     function onOpen() {  }
     function onClose() {  }
     function render() { selected('field:due',state.field==='due'); selected('field:name',state.field==='name'); selected('priority',state.priority);
-      q('[data-key="direction"] strong').textContent=state.direction===1?'Ascending':'Descending';
-      text('[data-summary]',(state.priority?'Priority first · ':'')+(state.field==='due'?'Due date':'Task name')+' · '+(state.direction===1?'Ascending':'Descending'));
-      q('[data-order]').replaceChildren(...sorted().map(task=>{const li=doc.createElement('li');li.textContent=task.name+' · Sep '+task.due+' · '+['','Low','Medium','High'][task.priority];return li;})); }
+      const direction=state.field==='due'?(state.direction===1?'Earliest first':'Latest first'):(state.direction===1?'A–Z':'Z–A');
+      q('[data-key="direction"] strong').textContent=direction;
+      text('[data-summary]',(state.priority?'Priority first · ':'')+(state.field==='due'?'Due date':'Task name')+' · '+direction);
+      const before=new Map([...orderNodes].map(([key,node])=>[key,node.isConnected?node.getBoundingClientRect().top:null]));
+      stopMotion();
+      sorted().forEach(task=>q('[data-order]').append(orderNodes.get(task.name)));
+      if(!reduced.matches)orderNodes.forEach((node,key)=>{const top=before.get(key),delta=top===null?0:top-node.getBoundingClientRect().top;if(Math.abs(delta)<1)return;const animation=node.animate([{transform:'translateY('+delta+'px)'},{transform:'translateY(0)'}],{duration:220,easing:'cubic-bezier(.22,.61,.36,1)'});motions.set(node,animation);animation.finished.then(()=>motions.delete(node),()=>{});}); }
     function handle(key, button, event) { if(key.startsWith('field:'))state.field=key.slice(6); else if(key==='direction')state.direction*=-1; else if(key==='priority')state.priority=!state.priority; else return; paint(); emit('Local order: '+sorted().map(t=>t.name).join(', ')+'.'); }
     listen(trigger, 'click', () => opened ? close() : open());
     listen(trigger, 'keydown', event => { if (['ArrowDown','ArrowUp'].includes(event.key)) { event.preventDefault(); open(event.key === 'ArrowUp'); } });
@@ -103,7 +111,7 @@
       all('.sl-scroll,.sl-summary,textarea').forEach(node => { node.scrollTop = 0; node.scrollLeft = 0; });
     }
     const controller = { open, close, reset, get state() { return structuredClone({ ...state, open: opened }); }, destroy() {
-      if (destroyed) return; reset(); destroyed = true; life.abort(); mounted.delete(root);
+      if (destroyed) return; reset(); destroyed = true; stopMotion(); life.abort(); mounted.delete(root);
     } };
     mounted.set(root, controller); reset(); return controller;
   }

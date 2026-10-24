@@ -63,17 +63,15 @@
       $('[data-decision]').textContent = decision === 'approve' ? 'Approved locally' : decision === 'reject' ? 'Rejected locally' : 'Awaiting review';
       $('[data-approval]').style.opacity = decision === 'reject' ? '0' : '1';
       $('[data-rejection]').style.opacity = decision === 'reject' ? '1' : '0';
-      $('[data-undo]').disabled = decision === null && previous === null;
     }
     function choose(value) {
       if (destroyed || !['approve','reject'].includes(value) || value === decision) return false;
       previous = decision; decision = value; phase = 'complete'; render();
-      announce(decision === 'approve' ? 'Approval selected. You can undo.' : 'Rejection selected. You can undo.'); emit({ decision }); return true;
+      announce(decision === 'approve' ? 'Approval selected.' : 'Rejection selected.'); emit({ decision }); return true;
     }
     function undo() {
       if (destroyed || (decision === null && previous === null)) return false;
       decision = previous; previous = null; phase = decision ? 'complete' : 'idle';
-      if (active() === $('[data-undo]') && decision === null) $('[data-approve]').focus();
       render(); announce(decision ? 'Previous decision restored.' : 'Decision cleared.'); emit({ decision }); return true;
     }
     function setDecision(value) {
@@ -81,8 +79,8 @@
       decision = value; previous = null; phase = value ? 'complete' : 'idle'; render();
       announce(value ? 'Decision restored locally.' : idleStatus); return true;
     }
-    listen($('[data-approve]'), 'click', () => choose('approve')); listen($('[data-reject]'), 'click', () => choose('reject')); listen($('[data-undo]'), 'click', undo);
-    function resetLocal() { decision = previous = null; if (active() === $('[data-undo]')) $('[data-approve]').focus(); }
+    listen($('[data-approve]'), 'click', () => choose('approve')); listen($('[data-reject]'), 'click', () => choose('reject'));
+    function resetLocal() { decision = previous = null; }
     const methods = { choose, undo, setDecision };
     const snapshot = () => ({ decision });
     function reset() {

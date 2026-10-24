@@ -24,8 +24,8 @@
     "nextjs": true
   },
   "verification": {
-    "controllerSHA256": "32560e293eb67a51c413635fc1fd91ff2d637119a67b0923cad9f73bf72f964f",
-    "runtimeSHA256": "484bf9df90b251deb8863b89517c95ecdd093ab23311bdd8fb5a111ff514c5aa",
+    "controllerSHA256": "9f6589f4b17d5f67db4363a4d9b6133603b98d48bc653ee8a9b5e107dfdc40f2",
+    "runtimeSHA256": "5f69caef44ff57818482e46ca57390001e04d219f1abb0dc752db51e8f51ff82",
     "scope": "Client mount, generic input/activation, focus, host geometry, runtime reduced motion, isolated instances and cleanup in React StrictMode and production Next.js; source control typography/SVG fingerprint at320px.",
     "limitations": "Not exhaustive application-state or real-backend verification. No meaningful widget SSR. Original default-size constraints and generic activation limits are recorded below.",
     "notes": []

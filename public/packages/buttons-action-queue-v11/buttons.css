@@ -14,7 +14,7 @@
 .sl-component [hidden] { display: none !important; }
 .sl-component h2, .sl-component p { margin: 0; }
 .sl-component h2 { font-size: 15px; line-height: 1.4; font-weight: 550; letter-spacing: -.02em; }
-.sl-component .ab-eyebrow { color: var(--action-muted); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
+.sl-component .ab-eyebrow { color: var(--action-muted); font-size: 10px; letter-spacing: .08em; text-transform: none; margin-bottom: 8px; }
 .sl-component .ab-description { margin-top: 5px; color: var(--action-muted); font-size: 12px; }
 .sl-component .ab-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 20px; }
 .sl-component button { appearance: none; font: inherit; font-size: 12px; line-height: 1.35; font-weight: 550; border: 1px solid var(--action-border); border-radius: 10px; padding: 11px 13px; min-height: 42px; background: var(--action-surface); color: var(--action-text); display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; touch-action: manipulation; position: relative; transition: background-color 180ms ease, color 180ms ease, transform 240ms cubic-bezier(.2,0,0,1), border-color 180ms ease; -webkit-tap-highlight-color: transparent; }

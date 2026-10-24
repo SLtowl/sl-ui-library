@@ -47,7 +47,7 @@
 .sl-follow:not(:disabled):not([aria-disabled="true"]):active .sl-follow__surface { transform: translateY(1px) scale(.98); transition-duration: 120ms; }
 .sl-follow .sl-follow__wash { position: absolute; inset: 0; z-index: -1; background: var(--follow-active); opacity: 0; transition: opacity 480ms var(--follow-ease); }
 .sl-follow[aria-pressed="true"] .sl-follow__wash { opacity: 1; }
-.sl-follow .sl-follow__label { position: absolute; inset: 0 calc(56 * var(--follow-unit)); display: grid; place-items: center; text-align: center; white-space: nowrap; }
+.sl-follow .sl-follow__label { position: absolute; inset: 0 calc(56 * var(--follow-unit)); display: flex; align-items: center; justify-content: center; text-align: center; white-space: nowrap; }
 .sl-follow .sl-follow__icon { position: absolute; left: calc(18 * var(--follow-unit)); top: 50%; width: calc(28 * var(--follow-unit)); height: calc(24 * var(--follow-unit)); transform: translateY(-50%); }
 .sl-follow .sl-follow__person { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .sl-follow .sl-follow__mark { position: absolute; left: calc(18 * var(--follow-unit)); top: calc(11 * var(--follow-unit)); width: calc(8 * var(--follow-unit)); height: calc(8 * var(--follow-unit)); }
@@ -77,3 +77,5 @@
   .sl-follow .sl-follow__wash { display: none; }
   .sl-follow:focus-visible { outline-color: Highlight; }
 }
+
+.sl-follow .sl-follow__suffix{display:inline-grid;grid-template-columns:0fr;opacity:0;transition:grid-template-columns 360ms var(--follow-ease),opacity 220ms ease}.sl-follow .sl-follow__suffix > span{min-width:0;overflow:hidden}.sl-follow[aria-pressed="true"] .sl-follow__suffix{grid-template-columns:1fr;opacity:1}

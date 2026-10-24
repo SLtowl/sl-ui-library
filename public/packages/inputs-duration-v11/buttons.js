@@ -56,6 +56,7 @@
     function render() { const state = read(); hours.setAttribute('aria-invalid', String(part(hours, 23) === null)); minutes.setAttribute('aria-invalid', String(part(minutes, 59) === null)); hours.setCustomValidity(part(hours, 23) === null ? 'Enter whole hours from 0 to 23.' : ''); minutes.setCustomValidity(part(minutes, 59) === null ? 'Enter whole minutes from 0 to 59.' : ''); output.textContent = state.valid ? state.value + (state.value === 1 ? ' minute total' : ' minutes total') : 'Enter a valid duration'; qa('[data-step]').forEach(button => { button.disabled = Boolean(options.disabled) || !state.valid || (Number(button.dataset.step) < 0 ? state.value === 0 : state.value === 1439); }); message(state.valid ? 'Up to 23 hours and 59 minutes.' : 'Hours: 0–23. Minutes: 0–59. Use whole numbers.', !state.valid); }
     function set(value) { hours.value = String(Math.floor(value / 60)); minutes.value = String(value % 60); render(); }
     [hours, minutes].forEach(input => on(input, 'input', () => { render(); emit(); }));
+    qa('.sl-number-step').forEach(button => on(button, 'click', () => { const input = q(button.dataset.field); if (!writable(input)) return; if (Number(button.dataset.delta) > 0) input.stepUp(); else input.stepDown(); render(); emit(); }));
     qa('[data-step]').forEach(button => on(button, 'click', () => { const state = read(); if (!writable(hours) || !writable(minutes) || !state.valid) return; set(Math.min(1439, Math.max(0, state.value + Number(button.dataset.step)))); emit(); }));
     return finish(() => set(initial));
   }

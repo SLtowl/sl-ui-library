@@ -1,4 +1,4 @@
-import{retainFont as M}from"./react-font.mjs";const k="theme-toggle";const S='<div class="sl-toggle sl-toggle--theme" id="theme-toggle" data-checked="false">\n            <label class="sl-toggle__label" for="demo-theme"><span class="sl-toggle__copy"><span class="sl-toggle__title">Appearance</span><span class="sl-toggle__status" data-status>Light</span></span></label>\n            <span class="sl-toggle__switch"><input class="sl-toggle__input" id="demo-theme" type="checkbox" data-on="Dark" data-off="Light"><span class="sl-toggle__track" aria-hidden="true"><span class="sl-toggle__thumb"><svg class="sl-toggle__sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3.5"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/></svg><svg class="sl-toggle__moon" viewBox="0 0 24 24" fill="none"><path d="M18.5 16.3A7 7 0 0 1 7.7 5.5 7.5 7.5 0 1 0 18.5 16.3Z"/></svg></span></span></span>\n          </div>';const C=`@font-face { font-family: 'Instrument Sans'; src: url('./instrument-sans-variable.woff2') format('woff2'); font-weight: 400 700; font-display: swap; }
+import{retainFont as M}from"./react-font.mjs";const k="theme-toggle";const S='<div class="sl-toggle sl-toggle--theme" id="theme-toggle" data-checked="false">\n            <label class="sl-toggle__label" for="demo-theme"><span class="sl-toggle__copy"><span class="sl-toggle__title">Appearance</span><span class="sl-toggle__status" data-status>Light</span></span></label>\n            <span class="sl-toggle__switch"><input class="sl-toggle__input" id="demo-theme" type="checkbox" data-on="Dark" data-off="Light"><span class="sl-toggle__track" aria-hidden="true"><span class="sl-toggle__thumb"><svg class="sl-toggle__sun" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3.5"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/></svg><svg class="sl-toggle__moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.2 8.2 0 1 0 10.2 10.2Z"/></svg></span></span></span>\n          </div>';const C=`@font-face { font-family: 'Instrument Sans'; src: url('./instrument-sans-variable.woff2') format('woff2'); font-weight: 400 700; font-display: swap; }
 .sl-toggle {
   --toggle-ink: #222222;
   --toggle-hover: #2b2b2b;
@@ -71,9 +71,9 @@ import{retainFont as M}from"./react-font.mjs";const k="theme-toggle";const S='<d
 .sl-toggle--sound[data-checked="false"] .sl-sound__wave { opacity: 0; stroke-dashoffset: 1; transform: translateX(-2px); transition-delay: 0ms; }
 .sl-toggle--sound[data-checked="false"] .sl-sound__mute { opacity: 1; transform: scale(1) rotate(0); transition-delay: 120ms; }
 
-.sl-lock__shackle { transform-box: fill-box; transform-origin: 26% 80%; transition: transform 520ms var(--toggle-ease); }
+.sl-lock__shackle { transform-box: view-box; transform-origin: 22px 13px; transition: transform 520ms var(--toggle-ease); }
 .sl-lock__body { transition: fill 300ms ease; }
-.sl-toggle--privacy[data-checked="false"] .sl-lock__shackle { transform: translate(3px, -2px) rotate(24deg); }
+.sl-toggle--privacy[data-checked="false"] .sl-lock__shackle { transform: rotate(32deg); }
 .sl-toggle--privacy[data-checked="true"] .sl-lock__shackle { transform: translate(0) rotate(0); }
 .sl-lock__key { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 360ms var(--toggle-ease) 150ms; }
 .sl-toggle--privacy[data-checked="true"] .sl-lock__key { stroke-dashoffset: 0; }

@@ -33,19 +33,43 @@
 
     const pane = q('[data-pane]'), groups = all('[data-group]'), buttons = all('[data-letter]'), backButton = q('[data-back]');
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
-    let selected = 0, previous = null;
+    let selected = 0, previous = null, frame = 0, destination = null;
     const offset = node => node.getBoundingClientRect().top - pane.getBoundingClientRect().top + pane.scrollTop;
     function paint() { current(buttons, buttons[selected], 'aria-current', 'location'); put('[data-current]', 'Group ' + groups[selected].querySelector('h3').textContent); backButton.disabled = previous === null; }
+    function stop() { cancelAnimationFrame(frame); frame = 0; destination = null; }
+    function sync() {
+      if (destination !== null) return;
+      let index = 0;
+      groups.forEach((group, i) => { if (offset(group) <= pane.scrollTop + 12) index = i; });
+      if (index !== selected) { selected = index; paint(); }
+    }
+    function scrollTo(position) {
+      stop();
+      const target = Math.max(0, Math.min(pane.scrollHeight - pane.clientHeight, position));
+      if (motion.matches || Math.abs(target - pane.scrollTop) < .5) { pane.scrollTop = target; sync(); return; }
+      const from = pane.scrollTop;
+      let started = null;
+      destination = target;
+      function step(now) {
+        if (started === null) started = now;
+        const progress = Math.min(1, (now - started) / 320);
+        pane.scrollTop = from + (target - from) * (1 - (1 - progress) ** 3);
+        if (progress < 1) frame = requestAnimationFrame(step);
+        else { frame = 0; destination = null; sync(); }
+      }
+      frame = requestAnimationFrame(step);
+    }
+    function interrupt() { stop(); sync(); }
     function jump(index) {
       if (!alive || !Number.isInteger(index) || !groups[index]) return false;
       previous = { position: pane.scrollTop, selected };
       selected = index; paint(); focus(groups[index].querySelector('h3'));
-      pane.scrollTo({ top: offset(groups[index]), behavior: motion.matches ? 'instant' : 'smooth' }); emit(); return true;
+      scrollTo(offset(groups[index])); emit(); return true;
     }
     function back() {
       if (!alive || previous === null) return false;
       const destination = previous; previous = null; selected = destination.selected; paint(); focus(buttons[selected]);
-      pane.scrollTo({ top: destination.position, behavior: motion.matches ? 'instant' : 'smooth' }); emit(); return true;
+      scrollTo(destination.position); emit(); return true;
     }
     buttons.forEach((button, i) => on(button, 'click', () => jump(i)));
     on(q('nav'), 'keydown', event => {
@@ -55,14 +79,16 @@
       const next = event.key === 'Home' ? 0 : event.key === 'End' ? 3 : (at + (event.key === 'ArrowRight' ? 1 : -1) + 4) % 4;
       jump(next); focus(buttons[next]);
     });
-    on(pane, 'scroll', () => { let index = 0; groups.forEach((group, i) => { if (offset(group) <= pane.scrollTop + 12) index = i; }); if (index !== selected) { selected = index; paint(); } });
+    on(pane, 'scroll', sync);
+    ['wheel', 'pointerdown', 'touchstart'].forEach(type => on(pane, type, interrupt));
+    on(pane, 'keydown', event => { if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) interrupt(); });
     on(backButton, 'click', back);
     on(root, 'keydown', event => { if (event.key === 'Escape' && previous) { event.preventDefault(); back(); } });
-    on(motion, 'change', () => { if (motion.matches) pane.scrollTo({ top: pane.scrollTop, behavior: 'instant' }); });
-    function resetView() { selected = 0; previous = null; pane.scrollTo({ top: 0, behavior: 'instant' }); paint(); }
+    on(motion, 'change', () => { if (motion.matches && destination !== null) { const target = destination; stop(); pane.scrollTop = target; sync(); } });
+    function resetView() { stop(); selected = 0; previous = null; pane.scrollTop = 0; paint(); }
     const readState = () => ({ selected, previous: previous ? { ...previous } : null });
     const actions = { jump, back };
-    cleanup = () => pane.scrollTo({ top: pane.scrollTop, behavior: 'instant' });
+    cleanup = stop;
 
     function reset() {
       if (!alive) return;

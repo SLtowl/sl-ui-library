@@ -137,7 +137,7 @@ test('real browser: ten interactions, lifecycle, narrow Shadow DOM and palette',
       assert.equal(result.failed, 'error'); assert.equal(result.final.phase, 'complete'); assert.equal(result.final.progress, 100);
     });
 
-    await t.test('hold: early release, pointer confirmation and untimed keyboard path', async () => {
+    await t.test('hold: early release, pointer confirmation and keyboard threshold', async () => {
       await load('hold-confirm');
       await page.evaluate(() => {
         window.confirms = 0;
@@ -150,15 +150,16 @@ test('real browser: ten interactions, lifecycle, narrow Shadow DOM and palette',
       await page.mouse.down(); await page.waitForTimeout(600); await page.mouse.up();
       assert.equal(await page.evaluate(() => window.confirms), 1);
       await page.evaluate(() => window.control.reset());
-      await page.locator('[data-hold]').focus(); await page.keyboard.press('Space');
-      assert.equal((await state()).open, true);
-      assert.equal(await page.evaluate(() => document.activeElement.hasAttribute('data-confirm')), true);
-      await page.keyboard.press('Escape'); assert.equal((await state()).open, false);
-      await page.locator('[data-confirm-open]').click(); await page.locator('[data-confirm]').click();
+      await page.locator('[data-hold]').focus(); await page.keyboard.down('Space');
+      await page.waitForTimeout(80); await page.keyboard.up('Space');
+      assert.equal((await state()).holding, false);
+      assert.equal(await page.evaluate(() => window.confirms), 1);
+      assert.equal(await page.locator('[data-confirm-open], [data-confirm], [data-panel]').count(), 0);
+      await page.keyboard.down('Enter'); await page.waitForTimeout(600); await page.keyboard.up('Enter');
       assert.equal(await page.evaluate(() => window.confirms), 2);
       await page.emulateMedia({ reducedMotion: 'reduce' });
-      await page.locator('[data-confirm-open]').click(); await page.locator('[data-back]').click();
-      assert.equal((await state()).open, false);
+      await page.keyboard.down('Space'); await page.waitForTimeout(80); await page.keyboard.press('Escape'); await page.keyboard.up('Space');
+      assert.equal((await state()).holding, false);
       await page.emulateMedia({ reducedMotion: 'no-preference' });
     });
 
@@ -190,7 +191,7 @@ test('real browser: ten interactions, lifecycle, narrow Shadow DOM and palette',
           onStop: () => { if (window.failStop) throw new Error('Expected stop failure'); if (window.cancelStop) return { status: 'canceled' }; }
         });
       });
-      await page.locator('[data-run]').click(); await page.waitForTimeout(1100);
+      await page.locator('[data-run]').click(); await page.waitForTimeout(4100);
       assert.equal((await state()).recording, true); assert.ok((await state()).elapsed >= 1);
       await page.locator('[data-stop]').click(); assert.equal((await state()).recording, true);
       const canceledFocus = await page.evaluate(async () => {
@@ -205,7 +206,7 @@ test('real browser: ten interactions, lifecycle, narrow Shadow DOM and palette',
       const result = await page.evaluate(async () => {
         const root = document.querySelector('.sl-component'); let finish, disposed = 0;
         const c = SLComponent.mount(root, { onStart: () => new Promise(resolve => { finish = resolve; }), onStop() {} });
-        const work = c.start(); c.cancel(); finish({ dispose() { disposed++; } }); await work;
+        const work = c.start(); await new Promise(resolve => setTimeout(resolve, 3050)); c.cancel(); finish({ dispose() { disposed++; } }); await work;
         const late = { disposed, ...c.state };
         let lifetime;
         window.control = SLComponent.mount(root, { onStart({ signal }) { lifetime = signal; return { dispose() { disposed++; } }; }, onStop() {} });
@@ -222,8 +223,9 @@ test('real browser: ten interactions, lifecycle, narrow Shadow DOM and palette',
       assert.equal((await state()).decision, 'approve');
       await page.locator('[data-reject]').click(); assert.equal((await state()).decision, 'reject');
       assert.equal(await page.locator('[data-reject]').getAttribute('aria-pressed'), 'true');
-      await page.locator('[data-undo]').click(); assert.equal((await state()).decision, 'approve');
-      await page.locator('[data-undo]').click(); assert.equal((await state()).decision, null);
+      assert.equal(await page.locator('[data-undo]').count(), 0);
+      await page.evaluate(() => window.control.undo()); assert.equal((await state()).decision, 'approve');
+      await page.evaluate(() => window.control.undo()); assert.equal((await state()).decision, null);
       await page.evaluate(() => { window.control.setDecision('reject'); });
       assert.equal((await state()).decision, 'reject');
     });
@@ -256,7 +258,8 @@ test('real browser: ten interactions, lifecycle, narrow Shadow DOM and palette',
       assert.equal(await page.locator('[data-source]').textContent(), 'Project brief');
       await page.keyboard.press('Space');
       await page.waitForFunction(() => window.control.state.copies === 2);
-      await page.locator('[data-run]').click(); await page.locator('[data-cancel]').focus();
+      assert.equal(await page.locator('[data-cancel]').count(), 0);
+      await page.locator('[data-run]').click();
       await page.keyboard.press('Escape');
       assert.equal((await state()).phase, 'canceled');
       assert.equal((await state()).copies, 2);
@@ -300,6 +303,12 @@ test('real browser: ten interactions, lifecycle, narrow Shadow DOM and palette',
       await page.keyboard.press('Space'); assert.equal((await state()).value, 3);
       await page.evaluate(() => window.control.reset());
       await page.waitForTimeout(450); assert.equal((await state()).value, 3);
+      await page.locator('[data-plus]').focus();
+      for (const [key, value] of [['ArrowRight',4],['ArrowUp',5],['End',12],['ArrowLeft',11],['Home',1]]) {
+        await page.keyboard.press(key); assert.equal((await state()).value, value);
+      }
+      await page.evaluate(() => { document.body.tabIndex = -1; document.body.focus(); });
+      await page.keyboard.press('ArrowRight'); assert.equal((await state()).value, 1);
     });
 
     await t.test('shuffle: no repeated pick, one-level undo and literal choices', async () => {
@@ -333,7 +342,7 @@ test('real browser: ten interactions, lifecycle, narrow Shadow DOM and palette',
             const stopped = !c.state.recording;
             c.reset(); if (c.add) c.add();
             const pending = c.start ? c.start() : c.confirm();
-            root.querySelector('[data-cancel]').focus(); c.cancel();
+            root.querySelector('[data-cancel]')?.focus(); c.cancel();
             const canceled = await pending;
             c.reset(); const final = c.state;
             c.destroy();

@@ -29,6 +29,9 @@ async function navigate(input, { mode = 'push', stateKey, initial = false } = {}
   const url = canonical(input);
   const kind = routeFor(url);
   if (!kind) return;
+  // The home page owns its new shell and entry module. Legacy category and
+  // component routes must load that document rather than mount it as old SPA HTML.
+  if (kind === 'home') { location.assign(url.href); return; }
   const revision = ++sequence;
   recordScroll();
   const root = document.createElement('div');

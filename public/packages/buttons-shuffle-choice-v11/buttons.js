@@ -63,7 +63,15 @@
     function render() {
       reflect(); $('[data-choice]').textContent = labels[index];
       $('[data-number]').textContent = String(index + 1).padStart(2, '0') + ' / ' + String(labels.length).padStart(2, '0');
-      $('[data-undo]').disabled = previous === null; root.dataset.alternate = String(index % 2 === 1);
+      $('[data-undo]').disabled = previous === null;
+      root.dataset.alternate = String(index % 2 === 1);
+      root.style.setProperty('--shuffle-progress', String(index / (labels.length - 1)));
+      // Persistent visual identities move to slots derived from the actual index.
+      $$('[data-slot]').forEach((slot, identity) => {
+        const position = (identity - index % 3 + 3) % 3;
+        slot.style.setProperty('--slot-x', (position - 1) * 38 + 'px');
+        slot.textContent = String((index + position) % labels.length + 1).padStart(2, '0');
+      });
     }
     function shuffle() {
       if (destroyed) return false;

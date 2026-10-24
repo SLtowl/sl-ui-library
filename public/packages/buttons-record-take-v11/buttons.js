@@ -55,7 +55,7 @@
         emit({ error }); return false;
       }
     }
-    let recording = false, elapsed = 0, startedAt = 0, clock = null, session = null, sessionAbort = null, operation = null;
+    let recording = false, elapsed = 0, startedAt = 0, clock = null, session = null, sessionAbort = null, operation = null, countdown = 0;
     const action = $('[data-run]');
     function updateTime() {
       if (recording) elapsed = Math.max(0, Math.floor((view.performance.now() - startedAt) / 1000));
@@ -71,7 +71,7 @@
       reflect(); const busy = phase === 'pending';
       root.dataset.recording = String(recording);
       action.hidden = recording; action.setAttribute('aria-disabled', String(busy));
-      $('[data-run-label]').textContent = busy && operation === 'start' ? 'Starting…' : 'Start recording';
+      $('[data-run-label]').textContent = busy && operation === 'start' ? countdown ? String(countdown) : 'Starting…' : 'Start recording';
       $('[data-stop]').hidden = !recording; $('[data-stop]').setAttribute('aria-disabled', String(busy));
       $('[data-cancel]').hidden = !busy;
       $('[data-session]').textContent = recording ? 'Recording' : busy ? 'Starting' : elapsed ? 'Stopped' : 'Ready';
@@ -80,9 +80,23 @@
     function start() {
       if (destroyed || recording || phase === 'pending') return Promise.resolve(false);
       if (typeof options.onStop !== 'function') { announce('Connect onStart and onStop before recording.'); return Promise.resolve(false); }
-      operation = 'start'; elapsed = 0;
+      operation = 'start'; elapsed = 0; countdown = 3;
       return run(typeof options.onStart === 'function' ? async ({ signal }) => {
         const token = revision;
+        await new Promise((resolve, reject) => {
+          let timer;
+          const clear = () => { clearTimeout(timer); signal.removeEventListener('abort', abort); };
+          const abort = () => { clear(); countdown = 0; reject(new view.DOMException('Canceled', 'AbortError')); };
+          const step = () => {
+            if (signal.aborted) { abort(); return; }
+            countdown--;
+            if (!countdown) { clear(); render(); resolve(); return; }
+            render(); timer = setTimeout(step, 1000);
+          };
+          signal.addEventListener('abort', abort, { once: true });
+          if (signal.aborted) abort(); else timer = setTimeout(step, 1000);
+        });
+        if (signal.aborted || token !== revision || destroyed) return { status: 'canceled' };
         const resource = await options.onStart({ signal });
         if (resource?.status === 'canceled') return resource;
         if (!resource || typeof resource.dispose !== 'function') throw new TypeError('onStart must return a session with dispose().');
@@ -137,7 +151,7 @@
   }
   function mountPreview(root) {
     const controller = mount(root, {
-      onStart: context => demoTask(context, { dispose() {} }, 400),
+      onStart: () => ({ dispose() {} }),
       onStop: context => demoTask(context, undefined, 500)
     });
     root.querySelector('[data-note]').textContent = 'Local demo · no microphone or media access.';

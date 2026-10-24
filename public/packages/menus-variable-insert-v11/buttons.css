@@ -75,3 +75,29 @@
 .sl-component .sl-summary { max-height: 270px; overflow: auto; scrollbar-width: thin; scrollbar-color: var(--sl-border) transparent; }
 .sl-component .sl-summary:focus-visible { outline: 1px solid var(--sl-focus); outline-offset: -3px; }
 .sl-component .sl-option, .sl-component .sl-action { overflow-wrap: anywhere; max-width: 100%; }
+
+/* Menu review: retained results and reversible source-owned selection marks. */
+.sl-component .sl-day[aria-pressed="true"]:is(:hover,:focus-visible) { color: var(--sl-accent-ink); background: var(--sl-accent); }
+.sl-component[data-kind="menus-branch-picker-v11"] .sl-tabs .sl-action::after { content: none; }
+.sl-component .sl-mark:has(svg) { display: grid; place-items: center; visibility: visible; width: 20px; height: 20px; }
+.sl-component .sl-mark svg { width: 20px; height: 20px; stroke-width: 1.65; }
+.sl-component .sl-mark path { stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; transition: stroke-dashoffset 480ms cubic-bezier(.22,.61,.36,1),opacity 240ms ease; }
+.sl-component [aria-pressed="true"] > .sl-mark path { stroke-dashoffset: 0; opacity: 1; transition-delay: 70ms; }
+.sl-component[data-kind="menus-variable-insert-v11"] textarea { resize: none; overflow-y: auto; }
+.sl-component:is([data-kind="menus-recent-actions-v11"],[data-kind="menus-sort-recipe-v11"]) { display: flex; flex-direction: column; height: 430px; }
+.sl-component:is([data-kind="menus-recent-actions-v11"],[data-kind="menus-sort-recipe-v11"]) .sl-trigger { flex: none; }
+.sl-component:is([data-kind="menus-recent-actions-v11"],[data-kind="menus-sort-recipe-v11"]) .sl-summary { order: 1; visibility: visible; flex: none; margin-top: 10px; padding: 10px 12px; min-height: 0; }
+.sl-component:is([data-kind="menus-recent-actions-v11"],[data-kind="menus-sort-recipe-v11"]) .sl-panel { order: 2; position: relative; top: auto; inset-inline: auto; flex: 1; min-height: 0; margin-top: 8px; margin-bottom: 50px; }
+.sl-component:is([data-kind="menus-recent-actions-v11"],[data-kind="menus-sort-recipe-v11"]) .sl-option { min-height: 32px; padding: 5px 8px; font-size: 12px; }
+.sl-component:is([data-kind="menus-recent-actions-v11"],[data-kind="menus-sort-recipe-v11"]) .sl-option small { display: none; }
+.sl-component:is([data-kind="menus-recent-actions-v11"],[data-kind="menus-sort-recipe-v11"]) .sl-summary [data-summary] { font-size: 12px; }
+.sl-component[data-kind="menus-sort-recipe-v11"] .sl-summary ol { margin-top: 4px; font-size: 11px; }
+.sl-component .sl-canvas { position: relative; display: grid; place-items: center; height: 72px; overflow: hidden; border: 1px solid var(--sl-border); border-radius: 6px; margin-top: 6px; background: var(--sl-panel); }
+.sl-component .sl-canvas-art { width: 108px; height: 48px; display: flex; align-items: center; gap: 8px; padding: 8px; border: 1px solid var(--sl-border); border-radius: 5px; color: var(--sl-text); background: var(--sl-surface); transform: scale(var(--canvas-scale,1)); transition: transform 220ms ease; }
+.sl-component .sl-canvas-art svg { width: 24px; height: 24px; }
+.sl-component .sl-canvas-art span { font-size: 10px; line-height: 1.3; }
+.sl-component .sl-canvas-pin { position: absolute; right: 6px; top: 5px; opacity: 0; transform: translateY(-3px); transition: opacity 180ms ease,transform 220ms ease; }
+.sl-component .sl-canvas-pin svg { width: 15px; height: 15px; }
+.sl-component [data-pinned="true"] .sl-canvas-pin { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .sl-component .sl-mark path,.sl-component .sl-canvas-art,.sl-component .sl-canvas-pin { transition: none; } }
+.sl-component .sl-panel .sl-option{margin-block:0 4px}

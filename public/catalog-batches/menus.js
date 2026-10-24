@@ -100,7 +100,7 @@ export default [
     "id": "matte-menus-recent-actions-v11",
     "category": "menus",
     "name": "Recent action menu",
-    "description": "Run local canvas actions and repeat them from a deduplicated recent-action list.",
+    "description": "Zoom and pin a visible sample canvas, then repeat or clear recent local commands.",
     "motions": [
       "Reversible panel reveal",
       "Soft selection"
@@ -292,7 +292,7 @@ export default [
     "id": "matte-menus-sort-recipe-v11",
     "category": "menus",
     "name": "Sort recipe menu",
-    "description": "Sort sample tasks by date or name, with an optional High-to-Low priority-first mode.",
+    "description": "See sample tasks reorder while choosing date or name, direction and priority-first sorting.",
     "motions": [
       "Reversible panel reveal",
       "Soft selection"

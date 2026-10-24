@@ -54,10 +54,26 @@ test('reviewed Power and Group keep button-native, unambiguous glyphs', async ()
   assert.match(powerHtml, /class="power-stem"/);
   assert.doesNotMatch(powerHtml, /power-track|power-knob/);
   assert.equal((groupHtml.match(/class="group-card/g) || []).length, 2);
-  assert.match(groupHtml, /class="group-boundary"/);
-  assert.doesNotMatch(groupHtml, /check|badge|plus/);
-  assert.match(groupCss, /\.group-left\{transform:translate\(0,0\)\}/);
-  assert.match(groupCss, /\[data-active="true"\] \.group-left\{transform:translate\(3px,2\.25px\)\}/);
+  assert.doesNotMatch(groupHtml, /group-boundary|check|badge|plus/);
+  const cards = [...groupHtml.matchAll(/<rect\b([^>]+)\/>/g)].map(([, attributes]) =>
+    Object.fromEntries([...attributes.matchAll(/([\w-]+)="([^"]*)"/g)].map(([, name, value]) => [name, value])));
+  assert.equal(cards.length, 2, 'only the two item squares form the Group glyph');
+  assert.deepEqual(cards.map(card => [card.class, card.x, card.y, card.width, card.height, card.rx]), [
+    ['group-card group-left', '4', '4', '7', '7', '2'],
+    ['group-card group-right', '13', '13', '7', '7', '2']
+  ]);
+  assert.match(groupHtml, /<svg viewBox="0 0 24 24"/);
+  const activeRule = side => groupCss.match(new RegExp('\\[data-active="true"\\] \\.' + side + '\\{([^}]+)\\}'))?.[1];
+  const leftRule = activeRule('group-left'), rightRule = activeRule('group-right');
+  assert.match(leftRule, /^transform:translate\(4\.5px,4\.5px\)$/);
+  assert.match(rightRule, /^transform:translate\(-4\.5px,-4\.5px\);opacity:0$/);
+  const offsets = [leftRule, rightRule].map(rule => rule.match(/translate\((-?[\d.]+)px,(-?[\d.]+)px\)/).slice(1).map(Number));
+  const grouped = cards.map((card, index) => ({ x: Number(card.x) + offsets[index][0], y: Number(card.y) + offsets[index][1], width: Number(card.width), height: Number(card.height) }));
+  assert.deepEqual(grouped[0], grouped[1], 'both item squares converge onto identical geometry');
+  assert.equal(grouped[0].x + grouped[0].width / 2, 12, 'grouped square is horizontally centered');
+  assert.equal(grouped[0].y + grouped[0].height / 2, 12, 'grouped square is vertically centered');
+  assert.doesNotMatch(leftRule, /opacity|visibility|display/, 'the central left square remains visible');
+  assert.match(rightRule, /opacity:0$/, 'the overlapping right square disappears, leaving one visible square');
 });
 
 let chromium;

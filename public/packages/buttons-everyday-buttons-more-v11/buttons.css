@@ -42,8 +42,8 @@
 .everyday-component .sample-fold{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows 380ms var(--action-ease),opacity 260ms ease}
 .everyday-component .sample-fold>div{overflow:hidden;min-height:0}
 .everyday-component [data-expanded=true] .sample-fold{grid-template-rows:1fr;opacity:1}
-.everyday-component .arriving{animation:sl-everyday-arrive 380ms var(--action-ease) both;animation-delay:var(--arrival-delay,0ms)}
-@keyframes sl-everyday-arrive{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.everyday-component .arriving{animation:sl-everyday-arrive 280ms var(--action-ease) both;animation-delay:var(--arrival-delay,0ms)}
+@keyframes sl-everyday-arrive{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
 @media(hover:hover){.everyday-component .everyday-button:not([aria-disabled=true]):hover .button-surface{background:var(--action-hover);transform:translateY(-2px);box-shadow:inset 0 1px #ffffff18,0 8px 16px -12px #0008}}
 @media(hover:hover){.everyday-component .everyday-button:not([aria-disabled=true]):hover [data-part=front]{fill:var(--action-hover)}}
 .everyday-component .everyday-button:not([aria-disabled=true]):active .button-surface{transform:translateY(1px) scale(.98);transition-duration:100ms}

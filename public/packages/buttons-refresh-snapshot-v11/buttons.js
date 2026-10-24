@@ -61,19 +61,25 @@
     const action = $('[data-run]');
     function render() {
       reflect(); const busy = phase === 'pending';
-      action.setAttribute('aria-disabled', String(busy)); $('[data-cancel]').hidden = !busy;
+      action.setAttribute('aria-disabled', String(busy));
+      const cancelButton = $('[data-cancel]');
+      if (!busy && active() === cancelButton) action.focus();
+      cancelButton.inert = !busy; cancelButton.tabIndex = busy ? 0 : -1;
+      cancelButton.setAttribute('aria-hidden', String(!busy)); cancelButton.dataset.open = String(busy);
       $('[data-run-label]').textContent = busy ? 'Refreshing…' : phase === 'error' ? 'Retry refresh' : 'Refresh snapshot';
       $('[data-count]').textContent = String(count);
       $('[data-revision]').textContent = version ? 'Revision ' + version : 'Initial snapshot';
       $('[data-updated]').textContent = updatedAt ? new Date(updatedAt).toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit' }) : 'Not refreshed';
     }
     function start() {
-      return run(options.onRefresh, { count, version }, result => {
+      const work = run(options.onRefresh, { count, version }, result => {
         if (!Number.isSafeInteger(result?.count) || result.count < 0) throw new TypeError('onRefresh must return a non-negative safe integer count.');
         count = result.count; label = result.label == null ? '' : String(result.label);
         version++; updatedAt = Date.now();
-      }, 'Reading latest snapshot…', 'Snapshot refreshed.').then(ok => {
-        if (ok && !destroyed && phase === 'complete' && label) announce(label);
+      }, 'Reading latest snapshot…', 'Snapshot refreshed.');
+      const token = revision;
+      return work.then(ok => {
+        if (ok && !destroyed && token === revision && phase === 'complete' && label) announce(label);
         return ok;
       });
     }
@@ -111,7 +117,7 @@
     });
   }
   function mountPreview(root) {
-    const controller = mount(root, { onRefresh: context => demoTask(context, { count: context.count + 2, label: 'Demo snapshot updated locally.' }, 1200) });
+    const controller = mount(root, { onRefresh: context => demoTask(context, { count: context.count + 2 }, 1200) });
     root.querySelector('[data-note]').textContent = 'Local demo · no server is contacted.';
     return controller;
   }

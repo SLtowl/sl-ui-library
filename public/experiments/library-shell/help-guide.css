@@ -1,0 +1,82 @@
+/* Illustrated Help guide. All rules stay inside the existing native dialog. */
+#help-dialog {
+  width:min(560px,calc(100% - 32px));
+  padding:40px 32px 28px;
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+
+#help-dialog #help-title {
+  margin:0 0 28px;
+  text-align:center;
+  font-size:28px;
+  line-height:1.2;
+  font-weight:550;
+  letter-spacing:-.04em;
+}
+
+#help-dialog .help-steps {
+  display:grid;
+  row-gap:18px;
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+#help-dialog .help-step {
+  display:grid;
+  grid-template-columns:112px minmax(0,1fr);
+  column-gap:24px;
+  align-items:center;
+  min-width:0;
+  margin:0;
+  padding:0;
+}
+
+#help-dialog .help-art {
+  display:block;
+  width:100%;
+  max-width:100%;
+  aspect-ratio:2463 / 1915;
+}
+
+#help-dialog .help-copy { min-width:0; }
+#help-dialog .help-copy h3 {
+  margin:0 0 5px;
+  color:var(--catalog-ink);
+  font-size:18px;
+  font-weight:600;
+  line-height:1.25;
+}
+#help-dialog .help-copy p {
+  margin:0;
+  color:var(--catalog-muted);
+  font-size:15px;
+  line-height:1.5;
+}
+#help-dialog .help-note {
+  margin:24px 0 0;
+  color:var(--catalog-muted);
+  font-size:13px;
+  line-height:1.5;
+}
+
+@media (max-width:700px) {
+  #help-dialog {
+    max-height:calc(100svh - 24px);
+    padding:20px;
+  }
+  #help-dialog .dialog-close { top:12px;right:12px; }
+  #help-dialog #help-title {
+    margin:38px 0 24px;
+    font-size:26px;
+  }
+  #help-dialog .help-steps { row-gap:14px; }
+  #help-dialog .help-step {
+    grid-template-columns:68px minmax(0,1fr);
+    column-gap:16px;
+  }
+  #help-dialog .help-copy h3 { font-size:16px; }
+  #help-dialog .help-copy p { font-size:14px;line-height:1.5; }
+  #help-dialog .help-note { margin-top:20px; }
+}

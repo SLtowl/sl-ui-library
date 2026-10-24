@@ -1,0 +1,26 @@
+/* Isolated transition study. Same hero and catalog geometry as the approved shell. */
+html { scroll-behavior: auto; scrollbar-width: none; overflow-anchor: none; }
+html::-webkit-scrollbar { display: none; }
+body { --pieces: 1; --chrome: 1; }
+body:is([data-journey="moving"],[data-journey="returning"]) { overscroll-behavior: none; }
+main { position: relative; z-index: 1; }
+.journey-backdrop { position: fixed; inset: 0; z-index: 0; isolation: isolate; overflow: hidden; pointer-events: none; background: #fafafa; }
+.journey-art { position: absolute; inset: 0; transform-origin: 50% 0; will-change: transform,opacity; }
+.journey-art .relief-background { z-index: 0; }
+.journey-art .relief-ambient { z-index: 1; }
+body:is([data-journey="moving"],[data-journey="returning"]) .intro { background: transparent; }
+.workspace { position: relative; isolation: isolate; background: transparent; }
+.workspace::before { content: ''; position: absolute; inset: 0; z-index: -1; background: #f6f7f8; opacity: var(--chrome); pointer-events: none; }
+.workspace-header,.categories,.inspector,.catalog-heading,.catalog-intro,.card-footer,.load-more,.catalog-empty { opacity: var(--assembly-opacity,var(--chrome)); }
+[data-assembly] { opacity: var(--assembly-opacity,1); translate: var(--assembly-x,0px) var(--assembly-y,0px); }
+body[data-journey="moving"] [data-assembly] { will-change: opacity,translate; }
+.component-card { background: rgb(255 255 255 / var(--card-surface,var(--chrome))); border-color: rgb(224 229 234 / var(--card-surface,var(--chrome))); }
+.preview-window { background: transparent; border-bottom-color: rgb(237 240 243 / var(--card-surface,var(--chrome))); }
+.preview-window::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 25% 0%,#fafbfd,transparent 95%),linear-gradient(145deg,#f0f2f6,#e7ecf3); opacity: var(--card-surface,var(--chrome)); pointer-events: none; }
+.preview-window sl-preview { position: relative; opacity: var(--piece-opacity,var(--pieces)); transform: scale(var(--piece-scale,1)); transform-origin: center; }
+body[data-journey="moving"] .preview-window sl-preview { will-change: opacity,transform; }
+body[data-journey="moving"] .component-card { transition: none; box-shadow: none; }
+body[data-journey="moving"] .hero-copy { will-change: opacity; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy,.workspace-header,.categories,.inspector,.catalog-heading,.catalog-intro,.card-footer,.preview-window sl-preview { will-change: auto; }
+}

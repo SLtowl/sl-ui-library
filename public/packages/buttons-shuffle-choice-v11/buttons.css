@@ -14,7 +14,7 @@
 .sl-component [hidden] { display: none !important; }
 .sl-component h2, .sl-component p { margin: 0; }
 .sl-component h2 { font-size: 15px; line-height: 1.4; font-weight: 550; letter-spacing: -.02em; }
-.sl-component .ab-eyebrow { color: var(--action-muted); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
+.sl-component .ab-eyebrow { color: var(--action-muted); font-size: 10px; letter-spacing: .08em; text-transform: none; margin-bottom: 8px; }
 .sl-component .ab-description { margin-top: 5px; color: var(--action-muted); font-size: 12px; }
 .sl-component .ab-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 20px; }
 .sl-component button { appearance: none; font: inherit; font-size: 12px; line-height: 1.35; font-weight: 550; border: 1px solid var(--action-border); border-radius: 10px; padding: 11px 13px; min-height: 42px; background: var(--action-surface); color: var(--action-text); display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; touch-action: manipulation; position: relative; transition: background-color 180ms ease, color 180ms ease, transform 240ms cubic-bezier(.2,0,0,1), border-color 180ms ease; -webkit-tap-highlight-color: transparent; }
@@ -58,7 +58,9 @@
 .sl-component .ab-suggestion .ab-value { font-size: 10px; letter-spacing: .08em; display: block; margin-bottom: 8px; }
 .sl-component .ab-suggestion strong { font-size: 21px; font-weight: 500; line-height: 1.35; display: block; min-height: 57px; overflow-wrap: anywhere; }
 .sl-component .ab-suggestion svg { width: 120px; height: 30px; margin-top: 8px; color: var(--action-accent); transition: transform 280ms ease; }
-.sl-component[data-alternate="true"] .ab-suggestion svg { transform: scaleY(-1); }
+
 .sl-component .ab-actions { flex-wrap: nowrap; }
 .sl-component .ab-actions button { padding-inline: 10px; }
 .sl-component [data-shuffle] { flex: 1; min-width: 0; }
+
+.sl-component .shuffle-slots{display:flex;gap:8px;justify-content:center;margin-top:8px;height:30px}.sl-component .shuffle-slots span{position:absolute;width:30px;padding:4px;border:1px solid var(--action-border);border-radius:6px;transform:translateX(var(--slot-x));transition:transform 300ms ease,opacity 220ms ease}.sl-component .shuffle-slots span:nth-child(2){border-radius:50%}.sl-component .shuffle-slots span:nth-child(3){border-radius:2px 9px 2px 9px}.sl-component .shuffle-up,.sl-component .shuffle-down{transition:transform 300ms ease;stroke-dasharray:none;stroke-dashoffset:0}.sl-component .shuffle-up{transform:translate(calc(var(--shuffle-progress,0) * 1px),calc(var(--shuffle-progress,0) * -1px))}.sl-component .shuffle-down{transform:translate(calc(var(--shuffle-progress,0) * 1px),calc(var(--shuffle-progress,0) * 1px))}

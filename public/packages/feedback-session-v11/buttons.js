@@ -67,28 +67,36 @@
 
     const initialDuration = options.durationSeconds ?? 90;
     if (!Number.isFinite(initialDuration) || initialDuration < 1 || initialDuration > 86400) { destroy(); throw new TypeError('durationSeconds must be between 1 and 86400.'); }
-    let deadline = 0, timer = 0, expired = false;
+    let deadline = 0, timer = 0, expired = false, paused = false;
+    function pauseClock() { cleanup(); paused = true; }
     function tick() {
       if (destroyed) return;
+      if (state === 'error') pauseClock();
+      if (paused) {
+        q('[data-session-label]').textContent = 'Countdown paused';
+        q('[data-action="renew"]').textContent = 'Retry renewal';
+        return;
+      }
       const seconds = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
       q('[data-countdown]').textContent = String(Math.floor(seconds / 60)).padStart(2,'0') + ':' + String(seconds % 60).padStart(2,'0');
       q('[data-session-label]').textContent = seconds ? 'Session active' : 'Session expired';
       q('[data-action="renew"]').textContent = seconds ? 'Extend session' : 'Restore session';
-      if (!seconds && !expired) { expired = true; say('The session expired. Restore it to continue.'); }
+      if (!seconds && !expired) { expired = true; cleanup(); say('The session expired. Restore it to continue.'); }
     }
     async function renew() {
-      const result = await run('renew');
-      if (!result.ok) return false;
+      if (destroyed || pending) return false;
+      const token = revision + 1, result = await run('renew');
+      if (!result.ok || destroyed || token !== revision) return false;
       if (!Number.isFinite(result.value?.expiresAt) || result.value.expiresAt <= Date.now()) {
         state = 'error'; say('The callback must return a future expiresAt timestamp.'); sync(); return false;
       }
-      deadline = result.value.expiresAt; expired = false; state = 'active';
-      say('The session deadline has been extended.'); tick(); sync(); return true;
+      deadline = result.value.expiresAt; expired = paused = false; state = 'active';
+      cleanup(); say('The session deadline has been extended.'); tick(); timer = view.setInterval(tick,1000); sync(); return true;
     }
     on(q('[data-action="renew"]'),'click',renew);
     render = tick;
     cleanup = () => { view.clearInterval(timer); timer = 0; };
-    resetView = () => { deadline = Date.now() + initialDuration * 1000; expired = false; say('Time is measured against the session deadline.'); tick(); timer = view.setInterval(tick,1000); };
+    resetView = () => { deadline = Date.now() + initialDuration * 1000; expired = paused = false; say('Time is measured against the session deadline.'); tick(); timer = view.setInterval(tick,1000); };
     reset();
     return { renew, cancel, reset, destroy, get state() { return { status: state, expiresAt: deadline, expired }; } };
 

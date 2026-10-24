@@ -32,6 +32,14 @@
 .sl-component .sl-primary:hover { background: var(--field-text); }
 .sl-component .sl-row { display: flex; align-items: end; gap: 8px; }
 .sl-component .sl-row > label { flex: 1; min-width: 0; }
+.sl-component .sl-number-field { position: relative; flex: 1; min-width: 0; }
+.sl-component .sl-number-field input { min-height: 50px; padding-right: 38px; appearance: textfield; }
+.sl-component .sl-number-field input::-webkit-inner-spin-button, .sl-component .sl-number-field input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.sl-component .sl-number-steps { position: absolute; right: 1px; bottom: 1px; display: grid; width: 32px; height: 48px; grid-template-rows: 1fr 1fr; }
+.sl-component .sl-number-step { display: grid; place-items: center; min-height: 0; padding: 0; border: 0; border-left: 1px solid var(--field-border); border-radius: 0; color: var(--field-text); background: var(--field-active); }
+.sl-component .sl-number-step:first-child { border-radius: 0 7px 0 0; border-bottom: 1px solid var(--field-border); }
+.sl-component .sl-number-step:last-child { border-radius: 0 0 7px 0; }
+.sl-component .sl-number-step svg { width: 18px; height: 18px; }
 .sl-component .sl-stack { display: grid; gap: 12px; }
 .sl-component .sl-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
 .sl-component .sl-note { margin: 12px 0 0; color: var(--field-muted); font-size: 12px; overflow-wrap: anywhere; }

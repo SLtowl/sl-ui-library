@@ -16,53 +16,122 @@
   <meta name="twitter:title" content="SL UI Library">
   <meta name="twitter:description" content="Interactive UI components with HTML, CSS, JavaScript, React and Next.js exports, plus tools for coding agents.">
   <meta name="twitter:image" content="https://sltowl.github.io/sl-ui-library/assets/social-preview-v1.jpg">
+  <link rel="canonical" href="https://sltowl.github.io/sl-ui-library/">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <style>html,body{background-color:#020303;color:#f3f5f6}html{color-scheme:dark}body{margin:0}</style>
+  <meta name="color-scheme" content="light">
   <meta name="description" content="Browse interactive UI components with HTML, CSS, JavaScript, React and Next.js exports. Try each interaction and download its complete source package.">
-  <title>Components · SL UI Library</title>
+  <title>Made to interact · SL UI Library</title>
   <link rel="icon" href="data:,">
   <link rel="preload" href="./assets/instrument-sans-variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="./library.css?v=preview-fit-1">
-  <link rel="stylesheet" href="./catalog.css?v=preview-fit-1">
-  <link rel="modulepreload" href="./view-data.js">
-  <link rel="modulepreload" href="./preview-data.js?v=instant-4">
-  <script src="./navigation.js?v=preview-fit-1" type="module"></script>
+  <link rel="preload" href="./experiments/library-shell/plus-jakarta-sans-heading-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./experiments/library-shell/shell.css">
+  <link rel="stylesheet" href="./experiments/library-shell/relief.css">
+  <link rel="stylesheet" href="./experiments/library-shell/ambient-relief.css">
+  <link rel="stylesheet" href="./experiments/library-shell/hero-controls.css">
+  <link rel="stylesheet" href="./experiments/library-shell/site-cursor.css">
+  <link rel="preload" href="./experiments/library-shell/relief-bg-neutral-v2.png" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="./experiments/library-shell/scroll-transition.css">
+  <link rel="stylesheet" href="./packages/search-input/buttons.css">
+  <link rel="stylesheet" href="./experiments/library-shell/catalog-rail.css">
+  <link rel="stylesheet" href="./experiments/library-shell/component-workspace.css">
+  <link rel="stylesheet" href="./experiments/library-shell/help-guide.css">
+  <link rel="stylesheet" href="./packages/copy/buttons.css">
+  <script type="module" src="./experiments/library-shell/scroll-transition.mjs"></script>
 </head>
-<body data-page="home">
-  <a class="skip-link" href="#main">Skip to components</a>
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="wordmark" href="./">SL UI Library</a>
-      <nav class="navigation" aria-label="Library">
-        <a class="nav-item is-current" href="./" aria-current="page">
-          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="3" y="3" width="10" height="10" rx="3"/><rect x="19" y="3" width="10" height="10" rx="3"/><rect x="3" y="19" width="10" height="10" rx="3"/><rect x="19" y="19" width="10" height="10" rx="3"/></svg>
-          <span>Components</span>
-        </a>
-        <button class="nav-item" id="open-usage" type="button" aria-haspopup="dialog">
-          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 7C12 3.5 7 3.5 2.5 4.5v23C7 26 12 26 16 29c4-3 9-3 13.5-1.5v-23C25 3.5 20 3.5 16 7Z"/><path d="M16 7v22M7 11h4M7 17h4M21 11h4M21 17h4"/></svg>
-          <span>Usage</span>
-        </button>
-      </nav>
-    </div>
-  </header>
-  <main id="main" class="catalog-main category-home" tabindex="-1">
-    <div class="home-intro">
-      <h1>Components</h1>
-      <p>Choose a type to explore its components.</p>
-    </div>
-    <nav class="category-tiles" id="category-tiles" aria-label="Component categories"></nav>
-    <noscript><p><a href="./component.html?component=matte-save-cancel">Open Save &amp; Cancel</a>. Enable JavaScript to browse all categories.</p></noscript>
+<body>
+  <main>
+    <section class="intro" id="intro" aria-labelledby="intro-title">
+      <img class="relief-background" src="./experiments/library-shell/relief-bg-neutral-v2.png" width="1672" height="941" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
+      <div class="hero-copy"><h1 id="intro-title">Made to interact</h1><a class="explore" id="explore" href="#catalog"><span class="explore-base" aria-hidden="true"></span><span class="explore-face" aria-hidden="true"><span class="explore-light"></span></span><span class="explore-label">Explore library</span></a></div>
+      <noscript><p class="no-script">Enable JavaScript to browse the library, or <a href="./packages/pair/index.html">open Save &amp; Cancel</a>.</p></noscript>
+    </section>
+    <section class="workspace" id="workspace" hidden aria-labelledby="catalog-title">
+      <header class="workspace-header">
+        <div class="brand-block"><a class="brand" href="#" id="home">SL UI Library</a>
+          <div class="brand-socials">
+            <a class="social-link" href="https://t.me/SLtowl" target="_blank" rel="noopener noreferrer" aria-label="Telegram: @SLtowl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 17-6-4 16-5-5-3 3v-6l9-6-7 8-7-3Z"/></svg><span class="social-handle">@SLtowl</span></a>
+          </div>
+        </div>
+        <button class="filter-toggle quiet-button" id="filter-toggle" type="button" aria-expanded="false" aria-controls="categories">Categories</button>
+        <form id="catalog-search-form" class="catalog-search" role="search" data-site-cursor-surface>
+          <div class="sl-field sl-field--search" id="search-field" data-search-open="false">
+            <div class="sl-field__control">
+              <svg class="sl-field__leading" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+              <input class="sl-field__input" id="catalog-search" type="search" placeholder=" " autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-controls="search-options" aria-expanded="false" aria-describedby="search-help">
+              <label class="sl-field__label" for="catalog-search">Find a component</label>
+              <button class="sl-field__action sl-field__clear" type="button" id="clear-search" aria-label="Clear search" aria-controls="catalog-search" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+            </div>
+            <div class="sl-field__popup" aria-hidden="true" inert><ul class="sl-field__options" id="search-options" role="listbox" aria-label="Component suggestions"></ul><p class="sl-field__empty" hidden>No matches. Try another word.</p></div>
+            <p class="sl-field__helper sr-only" id="search-help" role="status" aria-live="polite">Search the component library.</p>
+          </div>
+        </form>
+        <div class="header-tools"><button class="header-help" id="how-to-use" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="book-left" d="M12 5C9 3 5 3 3 4v14c3-1 6-1 9 2Z"/><path class="book-right" d="M12 5c3-2 7-2 9-1v14c-3-1-6-1-9 2Z"/><path class="book-spine" d="M12 5v15"/></svg><span class="help-label">How to use</span></button></div>
+      </header>
+      <div class="workspace-layout"><aside class="categories" id="categories"><nav id="category-nav" aria-label="Component categories"></nav></aside>
+      <div class="catalog-content"><div class="catalog-heading"><div><h2 id="catalog-title" tabindex="-1">Components</h2></div><span id="result-count" role="status" aria-live="polite"></span></div><div class="component-grid" id="component-grid" aria-busy="true"></div><div class="catalog-empty" id="catalog-empty" hidden><h3>No matching components</h3><p>Try a different name or clear the search.</p><button class="quiet-button" id="reset-filters" type="button">Show all components</button></div><p class="catalog-error" id="catalog-error" role="alert" hidden>Could not load the catalog. Please <button type="button" id="retry-catalog">try again</button>.</p><button class="load-more explore relief-button" id="load-more" type="button" hidden><span class="explore-base" aria-hidden="true"></span><span class="explore-face" aria-hidden="true"><span class="explore-light"></span></span><span class="explore-label">Load more components</span></button></div>
+      </div>
+      <dialog class="component-dialog" id="component-dialog" aria-labelledby="inspector-name" data-native-cursor>
+        <button class="dialog-close" type="button" data-close autofocus aria-label="Close component">×</button>
+        <header class="detail-heading"><p id="inspector-category">Buttons</p><h3 id="inspector-name">Component source</h3><p class="inspector-description" id="inspector-description"></p></header>
+        <div class="detail-layout">
+          <div class="detail-stage"><div class="detail-toolbar"><h4>Preview</h4><div id="detail-palettes"></div></div><div class="detail-canvas"><div class="preview-window" id="detail-preview"></div><div class="preview-tools"><button type="button" id="reset-preview" aria-label="Reset preview" title="Reset preview"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9a8 8 0 1 0 1 6M19 3v6h-6"/></svg></button></div></div><p class="detail-hint">Click, type and try every state.</p></div>
+          <section class="inspector" id="inspector" aria-label="Component source for HTML, CSS, JavaScript, React and Next.js">
+            <div class="source-tabs" id="source-tabs" role="tablist" aria-label="Source format"></div>
+            <div class="source-panel"><div class="source-toolbar"><span id="source-filename">index.html</span><button class="sl-copy" type="button" id="copy-source" aria-label="Copy code" data-state="idle" disabled><span class="sl-copy__surface" aria-hidden="true"><span class="sl-copy__wash"></span><span class="sl-copy__icon"><svg class="sl-copy__sheets" viewBox="0 0 24 24" fill="none" focusable="false"><rect class="sl-copy__back" x="3.5" y="3.5" width="12" height="14" rx="3"/><rect class="sl-copy__front" x="8.5" y="7.5" width="12" height="14" rx="3"/></svg><svg class="sl-copy__check" viewBox="0 0 24 24" fill="none" focusable="false"><path d="M4 12.5 9.2 17.5 20 6.5" pathLength="1"/></svg></span><span class="sl-copy__label">Copy</span></span></button></div><pre class="source-code" id="source-code" tabindex="0" role="tabpanel"></pre></div>
+          </section>
+        </div>
+        <footer class="detail-footer"><p id="source-status" role="status" aria-live="polite"></p><button class="download-link" id="download-link" type="button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 15v6h16v-6"/></svg><span>Download ZIP</span></button></footer>
+      </dialog>
+      <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title" data-native-cursor>
+        <button class="dialog-close" type="button" data-close autofocus aria-label="Close guide">×</button>
+        <h2 id="help-title">Make it yours</h2>
+        <ol class="help-steps" role="list">
+          <li class="help-step">
+            <svg class="help-art help-art--find" viewBox="0 0 112 88" fill="none" stroke="#8190a6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <rect x="5.5" y="4.5" width="36" height="36" rx="4" fill="#fff" stroke="#b9c5d5"/>
+              <rect x="49.5" y="4.5" width="36" height="36" rx="4" fill="#eaf0ff" stroke="#5474ed" stroke-width="2"/>
+              <rect x="5.5" y="48.5" width="36" height="36" rx="4" fill="#fff" stroke="#b9c5d5"/>
+              <rect x="49.5" y="48.5" width="36" height="36" rx="4" fill="#fff" stroke="#b9c5d5"/>
+              <rect x="16.5" y="15.5" width="14" height="14" rx="1" fill="#dce3ec" stroke="#a9b6c8"/>
+              <rect x="60.5" y="15.5" width="14" height="14" rx="1" fill="#a7b9ff" stroke="#5474ed"/>
+              <circle cx="23.5" cy="66.5" r="8" fill="#afbbca" stroke="none"/>
+              <path d="M58 76.5 66.5 57l9 19.5Z" fill="#8898ad" stroke="none"/>
+              <path d="M79 34.5v28l6.5-6 5.5 11 5-2.5-5.5-10.5 9.5-1Z" fill="#344257" stroke="#fff" stroke-width="1.5"/>
+            </svg>
+            <div class="help-copy"><h3>Find a component</h3><p>Search by name or explore the categories to find what you need.</p></div>
+          </li>
+          <li class="help-step">
+            <svg class="help-art help-art--try" viewBox="0 0 112 88" fill="none" stroke="#8190a6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <rect x="6" y="6" width="100" height="76" rx="5" fill="#fff" stroke="#aebdce"/>
+              <circle cx="17" cy="16" r="2.3" fill="#aebdce" stroke="none"/>
+              <circle cx="25" cy="16" r="2.3" fill="#aebdce" stroke="none"/>
+              <circle cx="33" cy="16" r="2.3" fill="#aebdce" stroke="none"/>
+              <path d="M16 34h37M16 42h25" stroke="#c4cfdd" stroke-width="5"/>
+              <rect x="68" y="31" width="28" height="15" rx="7.5" fill="#e1e9ff" stroke="#5474ed"/>
+              <circle cx="88" cy="38.5" r="5" fill="#5474ed" stroke="none"/>
+              <circle cx="27" cy="65" r="8" fill="#a7b5c7" stroke="none"/>
+              <circle cx="56" cy="65" r="8" fill="#5474ed" stroke="none"/>
+              <circle cx="85" cy="65" r="8" fill="#d1dae6" stroke="none"/>
+            </svg>
+            <div class="help-copy"><h3>Try it out</h3><p>Click, type and switch palettes. Explore the interaction before taking the code.</p></div>
+          </li>
+          <li class="help-step">
+            <svg class="help-art help-art--make" viewBox="0 0 112 88" fill="none" stroke="#8190a6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M56 8h29l17 17v50a4 4 0 0 1-4 4H56a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4Z" fill="#fff"/>
+              <path d="M85 8v17h17" stroke="#aebdce"/>
+              <path d="M70 36h21M70 45h21M70 54h21M70 63h13" stroke="#d5deea" stroke-width="2.5"/>
+              <rect x="7" y="16" width="55" height="66" rx="4" fill="#fff" stroke="#70839c"/>
+              <path d="m22 37-6 6 6 6m14-12 6 6-6 6m-11 2 8-16" stroke="#344b6a" stroke-width="2.2"/>
+              <path d="M17 59h35M17 66h27M17 73h31" stroke="#cbd6e3" stroke-width="2.5"/>
+              <path d="M54 52h27m-7-7 7 7-7 7" stroke="#5474ed" stroke-width="2.8"/>
+            </svg>
+            <div class="help-copy"><h3>Make it yours</h3><p>Open View code or download the complete ZIP to keep all supporting files together.</p></div>
+          </li>
+        </ol>
+        <p class="help-note">Connect demo actions to your own app.</p>
+      </dialog>
+    </section>
   </main>
-  <dialog id="usage-dialog" aria-labelledby="usage-title">
-    <div class="dialog-header"><h2 id="usage-title">Using the library</h2><button id="close-usage" class="close-button" type="button" aria-label="Close usage"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
-    <div class="usage-content">
-      <section><h3>Start with a type</h3><p>Choose an icon tile on the home page to open a component category. Inside that category, search by name, action or motion.</p></section>
-      <section><h3>Try it before you take it</h3><p>Use a component’s live preview, then inspect its HTML, CSS, JavaScript, React and Next.js exports. Copy a source file or download the complete ZIP with all required companions.</p></section>
-      <section><h3>Keep structure and motion separate</h3><p>A component belongs to one type. Different motion treatments stay inside that type. Pair, Save and Cancel are export options for one component, not three separate components.</p></section>
-      <section><h3>Bring it into your project</h3><p>Choose the vanilla HTML, CSS and JavaScript example or a source-preserving React / Next.js client adapter. Keep the complete package and font together, adapt CSS variables and connect actions to your own application logic.</p></section>
-    </div>
-  </dialog>
 </body>
 </html>

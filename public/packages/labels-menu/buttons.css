@@ -100,3 +100,4 @@
 .menu-review .navigation .menu-glyph { width: 22px; height: 22px; }
 @media(prefers-reduced-motion:reduce) { .menu-demo *, .menu-demo *::before, .menu-demo *::after { transition: none !important; } }
 @media(forced-colors:active) { .menu-trigger,.menu-panel,.context-target { border: 1px solid CanvasText; } .menu-item[aria-checked="true"] { outline: 1px solid Highlight; } }
+.menu-demo .menu-panel .menu-item:not(.menu-done){margin-block:0 4px}

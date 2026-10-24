@@ -59,7 +59,9 @@
 .sl-component > label { margin-bottom: 6px; }
 .sl-component .sl-time-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .sl-component .sl-time-columns > div > span { display: block; margin-bottom: 8px; color: var(--field-muted); font-size: 12px; }
-.sl-component .sl-time-list { height: 156px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--field-border) transparent; padding: 4px; border: 1px solid var(--field-border); border-radius: 8px; position: relative; }
+.sl-component .sl-time-list { height: 156px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; padding: 4px; border: 1px solid var(--field-border); border-radius: 8px; position: relative; }
+.sl-component .sl-time-list::-webkit-scrollbar, .sl-component .sl-picker-body::-webkit-scrollbar { display: none; }
+.sl-component .sl-picker-body { scrollbar-width: none; }
 .sl-component .sl-time-list button { display: block; width: 100%; min-height: 32px; padding: 4px; margin-bottom: 3px; border-color: transparent; font-variant-numeric: tabular-nums; }
 .sl-component .sl-time-draft { font-size: 18px; color: var(--field-accent); font-variant-numeric: tabular-nums; }
 .sl-component .sl-picker-footer button { padding: 7px 9px; font-size: 12px; }

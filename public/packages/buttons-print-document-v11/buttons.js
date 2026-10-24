@@ -21,13 +21,15 @@
     async function start() {
       if (destroyed || phase === 'pending') return false;
       if (typeof options.onPrint !== 'function') { phase = 'error'; render(); status.textContent = 'Connect onPrint before using this button.'; return false; }
+      clearTimeout(resetTimer);
       const token = ++revision; request = new view.AbortController(); phase = 'pending'; render(); status.textContent = "Preparing print job.";
       try {
         const result = await options.onPrint({ signal: request.signal });
         if (destroyed || token !== revision || request.signal.aborted) return false;
         request = null; phase = 'complete'; render(); status.textContent = options.preview ? "Demo finished locally. No print job was created." : "Print job started.";
         root.dispatchEvent(new view.CustomEvent('sl:action', { bubbles: true, composed: true, detail: { kind: root.dataset.kind, phase, result } }));
-        resetTimer = view.setTimeout(() => { if (!destroyed && phase === 'complete') { phase = 'idle'; render(); status.textContent = "Ready to print."; } }, 1800);
+        if (destroyed || token !== revision || phase !== 'complete') return true;
+        resetTimer = view.setTimeout(() => { if (!destroyed && token === revision && phase === 'complete') { phase = 'idle'; render(); status.textContent = "Ready to print."; } }, 1800);
         return true;
       } catch (error) {
         if (destroyed || token !== revision) return false;

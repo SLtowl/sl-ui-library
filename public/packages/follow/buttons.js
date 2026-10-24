@@ -10,55 +10,19 @@ function mountFollowButton(button, { feedback, onChange } = {}) {
   if (onChange != null && typeof onChange !== 'function') throw new TypeError('onChange must be a function.');
   const label = button.querySelector('.sl-follow__label');
   const mark = button.querySelector('.sl-follow__mark');
-  if (!label || !mark) throw new TypeError('The Follow button needs its label and mark elements.');
+  const suffix = label?.querySelector('.sl-follow__suffix');
+  if (!label || !mark || !suffix) throw new TypeError('The Follow button needs its persistent label, suffix and mark elements.');
   const view = button.ownerDocument.defaultView;
   const motion = view.matchMedia('(prefers-reduced-motion: reduce)');
   let following = button.getAttribute('aria-pressed') === 'true';
-  let targetLabel = following ? 'Following' : 'Follow';
-  let labelAnimation = null;
-  let revision = 0;
   let destroyed = false;
 
+  // CSS owns only the suffix width/opacity. The persistent word never fades.
   function settleLabel() {
-    revision++;
-    labelAnimation?.cancel();
-    labelAnimation = null;
-    label.textContent = targetLabel;
-    label.style.removeProperty('opacity');
+    button.setAttribute('aria-pressed', String(following));
   }
 
-  async function changeLabel(text) {
-    if (text === targetLabel) return;
-    const opacity = labelAnimation ? view.getComputedStyle(label).opacity : '1';
-    targetLabel = text;
-    const id = ++revision;
-    // Preserve the rendered opacity when a click reverses an unfinished fade.
-    label.style.opacity = opacity;
-    labelAnimation?.cancel();
-    if (motion.matches || !label.animate) { settleLabel(); return; }
-    try {
-      if (label.textContent !== text) {
-        labelAnimation = label.animate([{ opacity }, { opacity: 0 }], {
-          duration: 180, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards',
-        });
-        await labelAnimation.finished;
-        if (id !== revision || destroyed) return;
-        label.style.opacity = '0';
-        labelAnimation.cancel();
-        label.textContent = text;
-      }
-      labelAnimation = label.animate([{ opacity: label.style.opacity }, { opacity: 1 }], {
-        duration: 300, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards',
-      });
-      await labelAnimation.finished;
-      if (id !== revision || destroyed) return;
-      label.style.removeProperty('opacity');
-      labelAnimation.cancel();
-      labelAnimation = null;
-    } catch (error) {
-      if (error.name !== 'AbortError' && id === revision) settleLabel();
-    }
-  }
+  function changeLabel() { settleLabel(); }
 
   function setFollowing(value, notify = false) {
     const next = Boolean(value);
@@ -81,7 +45,7 @@ function mountFollowButton(button, { feedback, onChange } = {}) {
   button.type = 'button';
   if (!button.hasAttribute('aria-label') && !button.hasAttribute('aria-labelledby')) button.setAttribute('aria-label', 'Follow');
   button.setAttribute('aria-pressed', String(following));
-  label.textContent = targetLabel;
+  settleLabel();
   button.disabled = false;
   button.addEventListener('click', toggle);
   motion.addEventListener('change', onMotionChange);
@@ -91,7 +55,6 @@ function mountFollowButton(button, { feedback, onChange } = {}) {
     reset() {
       if (destroyed) return;
       following = false;
-      targetLabel = 'Follow';
       button.setAttribute('aria-pressed', 'false');
       settleLabel();
       if (feedback) feedback.textContent = initialFeedback;

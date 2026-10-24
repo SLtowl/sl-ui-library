@@ -21,7 +21,7 @@
 .sl-component input { display:block; width:100%; min-width:0; height:44px; margin:0; padding:10px 12px; border:0; outline:0; background:transparent; color:var(--field-text); caret-color:var(--field-text); }
 .sl-component input::placeholder { color:var(--field-muted); opacity:.8; }
 .sl-component input[readonly] { cursor:default; }
-.sl-component .sl-affix { flex:none; padding-left:12px; color:var(--field-muted); font-variant-numeric:tabular-nums; transition:color 200ms var(--field-ease), transform 200ms var(--field-ease); }
+.sl-component .sl-affix { flex:none; padding-left:12px; color:var(--field-text); font-size:18px; font-weight:600; line-height:1; font-variant-numeric:tabular-nums; transition:color 200ms var(--field-ease), transform 200ms var(--field-ease); }
 .sl-component .sl-control>.sl-affix:last-child { padding:0 12px 0 6px; }
 .sl-component .sl-control:focus-within .sl-affix { color:var(--field-text); transform:translateX(1px); }
 .sl-component .sl-domain { max-width:94px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }

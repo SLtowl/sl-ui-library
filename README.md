@@ -2,7 +2,9 @@
 
 An AI plugin and interactive UI library with HTML, CSS, JavaScript, React and Next.js exports.
 
-**Version 1.2.1** makes all five export formats explicit throughout plugin discovery, documentation and website descriptions. It retains the 91 owner-approved additions and source-preserving React / Next.js adapters introduced in 1.2.0. Existing HTML, CSS and JavaScript remain available. [Release notes](docs/releases/v1.2.1.md) · [Framework integration](docs/frameworks.md) · [Previous release](docs/releases/v1.2.0.md).
+[English](README.md) · [Русский](README.ru.md)
+
+**Version 1.2.2** publishes the redesigned library website, owner-reviewed interaction fixes, palette-aware code and ZIP exports, and Hermes Agent setup. It retains all 388 components and the source-preserving React / Next.js adapters alongside HTML, CSS and JavaScript. [Release notes](docs/releases/v1.2.2.md) · [Framework integration](docs/frameworks.md) · [Previous release](docs/releases/v1.2.1.md).
 
 ![Graphite SL UI Library controls in a warm studio composition](docs/media/cover.png)
 
@@ -72,6 +74,30 @@ Start a new task after installation. Then ask, for example:
 
 The agent selects a component, reads its original source and the instructions for your chosen format, then exports the complete package with the requested palette. HTML, CSS, JavaScript, React and Next.js files are bundled for every variant. The complete catalog and source files work offline after installation; the AI host has its own connectivity requirements. The bundled source CLI requires Node.js 22+.
 
+### Hermes Agent
+
+Connect the existing `use-sl-ui` skill through Hermes's external skill directories. Requires Hermes Agent, Git and Node.js 22+ on the machine where the agent runs.
+
+Clone this repository into a permanent location:
+
+```sh
+git clone https://github.com/SLtowl/sl-ui-library.git
+```
+
+In the active Hermes profile's `config.yaml` (`~/.hermes/config.yaml` for the default profile), add the clone's skill directory:
+
+```yaml
+skills:
+  external_dirs:
+    - /absolute/path/to/sl-ui-library/plugins/sl-ui-library/skills
+```
+
+Replace the example with your actual absolute path. On Windows, use forward slashes, for example `C:/Tools/sl-ui-library/plugins/sl-ui-library/skills`. Merge this into an existing `skills` section and retain any other directories.
+
+Restart Hermes, then enter `/use-sl-ui` in a new conversation and describe your interface task. Keep the complete clone: the skill resolves its source tools and offline assets relative to its own directory. Copying only `SKILL.md` is not a complete installation. This connects a skill; no Hermes plugin-catalog listing is required.
+
+[Official Hermes external skill directories](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills#external-skill-directories) · [Detailed setup](docs/agents.md#hermes-agent)
+
 ### Claude and ChatGPT without a terminal
 
 **Claude:** [download the plugin ZIP](https://sltowl.github.io/sl-ui-library/downloads/sl-ui-library-plugin.zip) and use **Customize → Plugins** to upload a custom plugin, where supported.
@@ -120,10 +146,13 @@ and replace it through the host's plugin manager.
 
 ### Versions and update checks
 
+**Hermes Agent:** review upstream changes, then run `git -C "/absolute/path/to/sl-ui-library" pull --ff-only` against the clone connected above and restart Hermes. Use your actual clone path. This updates the connected library, not components already exported into your applications.
+
 The repository package, portable manifest, Claude/Codex manifests and bundled
 catalog share the same version. Every published plugin-code change must increment
 the version; a GitHub push alone is not sufficient for version-aware caches.
-Version 1.2.1 refreshes framework-format descriptions for version-aware clients.
+Version 1.2.2 refreshes the reviewed component sources and catalogue website.
+Version 1.2.1 clarified framework-format descriptions for version-aware clients.
 The earlier 1.1.2 release introduced the stricter source gate.
 
 [Claude Code version detection](https://code.claude.com/docs/en/plugin-marketplaces#version-resolution-and-release-channels)
@@ -217,3 +246,5 @@ Cover and closing image: generated studio artwork from the first release. Film: 
 The library and agent plugin are licensed under the [MIT License](LICENSE). You can use, modify and redistribute the code, including in commercial projects, provided you retain the copyright and license notices.
 
 The bundled Instrument Sans font is licensed separately under the SIL Open Font License 1.1. Its [OFL notice](public/packages/like/OFL.txt) remains included with component downloads.
+
+The website also bundles Plus Jakarta Sans and Manrope under their respective [Plus Jakarta Sans OFL notice](public/experiments/library-shell/plus-jakarta-sans-OFL.txt) and [Manrope OFL notice](public/experiments/library-shell/manrope-OFL.txt).

@@ -23,3 +23,11 @@ The original fixed-size Bookmark and Follow controls need236px, Share240px, and 
 For source audits, serialize the component's open ShadowRoot subtrees, not just the outer React host: host.outerHTML omits shadow content. Strict Trusted Types or style CSP policies may need an explicit integration adaptation for the trusted template/style injection; a restrictive policy is not bypassed automatically.
 
 Where the original controller exports mountPreview(), the optional preview prop explicitly selects that local demonstration. It defaults to false and is not a production action handler. Sources without a preview adapter reject preview mode rather than silently performing a real operation. The supplied examples for those sources use explicitly local callbacks, except the documented Share sample's user-activated Copy link clipboard action. Upload's companion local file input and standard feedback nodes are bound within the component automatically; no file contents are read or uploaded without your handler.
+
+## Verification
+
+Scope: Client mount, generic input/activation, focus, host geometry, runtime reduced motion, isolated instances and cleanup in React StrictMode and production Next.js; source control typography/SVG fingerprint at320px.
+
+Limitations: Not exhaustive application-state or real-backend verification. No meaningful widget SSR. Original default-size constraints and generic activation limits are recorded below.
+
+Per-variant constraints and activation notes are recorded in framework.json under verification.notes.

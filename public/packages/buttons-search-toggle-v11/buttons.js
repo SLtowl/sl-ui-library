@@ -18,6 +18,9 @@
     let query = '';
     let matches = [...items];
     let destroyed = false;
+    const measurePanel = () => panel.style.setProperty('--reveal-height', panel.firstElementChild.scrollHeight + 'px');
+    const panelResize = new view.ResizeObserver(measurePanel);
+    panelResize.observe(panel.firstElementChild);
     const listen = (target, type, fn) => target.addEventListener(type, fn, { signal: life.signal });
     const activeElement = () => root.getRootNode().activeElement;
     const snapshot = () => Object.freeze({ open, query, matches: Object.freeze([...matches]) });
@@ -47,10 +50,12 @@
       matches = items.filter(value => value.toLocaleLowerCase().includes(needle));
       renderResults();
       clear.hidden = query.length === 0;
+      measurePanel();
       if (open) status.textContent = `${matches.length} ${matches.length === 1 ? 'result' : 'results'}.`;
     }
 
     function renderOpen() {
+      if (!open && panel.contains(activeElement())) button.focus();
       root.dataset.active = String(open);
       button.setAttribute('aria-expanded', String(open));
       button.setAttribute('aria-label', open ? 'Close search' : 'Open search');
@@ -71,8 +76,7 @@
       if (destroyed || next === open) return false;
       open = next;
       renderOpen();
-      if (open && focus) input.focus();
-      if (!open && activeElement() !== button) button.focus();
+      if (open && focus) input.focus({ preventScroll: true });
       if (emit) emitChange();
       return true;
     }
@@ -102,6 +106,7 @@
 
     function reset() {
       if (destroyed) return;
+      if (panel.contains(activeElement())) button.focus();
       open = false;
       query = '';
       input.value = '';
@@ -115,6 +120,7 @@
       if (destroyed) return;
       reset();
       destroyed = true;
+      panelResize.disconnect();
       life.abort();
     }
 
@@ -148,3 +154,4 @@
   function mountPreview(root) { return mount(root, { items: previewItems }); }
   window.SLComponent = { mount, mountPreview };
 })();
+

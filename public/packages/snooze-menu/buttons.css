@@ -101,6 +101,9 @@
 @media(prefers-reduced-motion:reduce) { .menu-demo *, .menu-demo *::before, .menu-demo *::after { transition: none !important; } }
 @media(forced-colors:active) { .menu-trigger,.menu-panel,.context-target { border: 1px solid CanvasText; } .menu-item[aria-checked="true"] { outline: 1px solid Highlight; } }
 
+.menu-demo.menu-demo .sl-time-list { scrollbar-width: none; }
+.menu-demo .sl-time-list::-webkit-scrollbar { display: none; }
+
 .menu-study { height: 366px; --study-ease: cubic-bezier(.22,.61,.36,1); }
 .menu-review:has(.menu-study) .toggle-stage { min-height: 440px; }
 .menu-study .menu-trigger-label { font-size: 14px; }
@@ -202,6 +205,7 @@
 .menu-demo .sl-time-open svg { width: 18px; height: 18px; }
 .menu-demo .sl-picker-panel button { font: inherit; cursor: pointer; border: 1px solid var(--field-border); border-radius: 7px; background: transparent; color: var(--field-text); min-height: 28px; }
 .menu-demo .sl-picker-panel button:hover { background: var(--field-active); }
+.menu-demo .sl-picker-panel button:is([aria-pressed="true"],[aria-selected="true"]):is(:hover,:focus-visible) { background: var(--field-accent); color: var(--field-surface); }
 .menu-demo .sl-picker-panel button:focus-visible { outline: 2px solid var(--field-focus); outline-offset: -2px; }
 .menu-demo .sl-picker-panel { padding: 10px; gap: 8px; }
 .menu-demo .sl-time-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
@@ -210,3 +214,7 @@
 .menu-demo .sl-time-list button { display: block; width: 100%; min-height: 29px; padding: 4px; margin-bottom: 3px; font-size: 12px; border-color: transparent; }
 .menu-demo .sl-time-draft { font-size: 16px; color: var(--field-accent); font-variant-numeric: tabular-nums; }
 .menu-demo .sl-picker-footer .sl-time-confirm { padding: 6px 10px; background: var(--field-accent); color: var(--field-surface); font-size: 12px; }
+
+.menu-demo .custom-time [data-time-apply] { width: 32px; height: 36px; padding: 6px; }
+.menu-demo .custom-time [data-time-apply] .menu-glyph,.menu-demo .custom-time [data-time-apply] svg { display: block; width: 20px; height: 20px; }
+.menu-demo .menu-panel .menu-item:not(.menu-done){margin-block:0 4px}

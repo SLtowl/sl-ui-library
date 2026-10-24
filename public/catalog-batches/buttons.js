@@ -96,7 +96,7 @@ export default [
     "id": "matte-buttons-hold-confirm-v11",
     "category": "buttons",
     "name": "Hold to confirm",
-    "description": "Hold a pointer to confirm, or use an untimed two-step keyboard confirmation.",
+    "description": "Hold using pointer, Space or Enter to confirm a deliberate action.",
     "motions": [
       "Soft press",
       "Hold progress"
@@ -120,13 +120,13 @@ export default [
       {
         "title": "Connect the action",
         "paragraphs": [
-          "Pass onConfirm({ signal }); resolve only after the archive succeeds. holdMs defaults to 1200 and accepts 500–5000 ms. Releasing early or leaving the button cancels the hold. Keyboard activation opens an untimed confirmation."
+          "Pass onConfirm({ signal }); resolve only after the archive succeeds. holdMs defaults to 1200 and accepts 500–5000 ms. Pointer, Space and Enter share the hold threshold. Releasing early, leaving the button, blur or Escape stops the hold."
         ]
       },
       {
         "title": "Controller",
         "paragraphs": [
-          "confirm() returns Promise<boolean> and bypasses the UI confirmation for trusted application code; open(), close(), cancel(), reset(), destroy(). state is { phase, open, holding }. sl:action reports operation outcomes.",
+          "confirm() returns Promise<boolean> for trusted application code; cancel(), reset(), destroy(). open() focuses the hold button and close() stops holding and restores focus; neither opens alternate UI. state is { phase, open, holding }; open tracks the compatibility focus helper. sl:action reports operation outcomes.",
           "All controllers expose reset() and destroy(); both are repeat-safe. Remounting the same root disposes its previous controller. Async callbacks accept an AbortSignal; return { status: \"canceled\" } or throw AbortError for cancellation. Reset cannot undo a completed external action."
         ]
       },
@@ -212,7 +212,7 @@ export default [
       {
         "title": "Connect the action",
         "paragraphs": [
-          "Pass onStart({ signal }) returning a session object with an idempotent synchronous dispose(), and onStop({ session, signal }). dispose() must stop all device tracks. The start signal stays active until session cleanup. A late session is disposed if start was canceled. Resolve onStop only when stopping succeeds."
+          "start() displays an abortable three-second 3, 2, 1 countdown before calling onStart({ signal }). Pass onStart returning a session object with an idempotent synchronous dispose(), and onStop({ session, signal }). dispose() must stop all device tracks. The start signal stays active until session cleanup. A late session is disposed if start was canceled. Resolve onStop only when stopping succeeds."
         ]
       },
       {
@@ -234,7 +234,7 @@ export default [
     "id": "matte-buttons-review-decision-v11",
     "category": "buttons",
     "name": "Approve or reject",
-    "description": "Make a reversible local review decision, with explicit selection and undo.",
+    "description": "Make a reversible local review decision with explicit Approve and Reject controls.",
     "motions": [
       "Soft press",
       "State transition"
@@ -264,7 +264,7 @@ export default [
       {
         "title": "Controller",
         "paragraphs": [
-          "choose(value), undo(), setDecision(value) return booleans; reset(), destroy(). state is { phase, decision }. Approve and Reject are native buttons with aria-pressed. Undo restores one previous decision.",
+          "choose(value), undo(), setDecision(value) return booleans; reset(), destroy(). state is { phase, decision }. Approve and Reject are native buttons with aria-pressed. Programmatic undo() restores one previous decision; no Undo button is displayed.",
           "All controllers expose reset() and destroy(); both are repeat-safe. Remounting the same root disposes its previous controller. Async callbacks accept an AbortSignal; return { status: \"canceled\" } or throw AbortError for cancellation. Reset cannot undo a completed external action."
         ]
       },
@@ -356,7 +356,7 @@ export default [
       {
         "title": "Controller",
         "paragraphs": [
-          "start() returns Promise<boolean>; cancel() returns boolean; reset(), destroy(). state is { phase, copies, source, lastCreated }. sl:action reports phase, copies and the last confirmed item. Repeated clicks during one request do not create extra copies. Escape cancels and returns focus from Cancel.",
+          "start() returns Promise<boolean>; cancel() returns boolean; reset(), destroy(). state is { phase, copies, source, lastCreated }. sl:action reports phase, copies and the last confirmed item. Repeated clicks during one request do not create extra copies. Escape or programmatic cancel() aborts pending work; no Cancel button is displayed. After completion another activation creates a new copy.",
           "Reset clears local state, not existing copies. Destroy and remount dispose listeners and abort pending work; late results are ignored. Cancellation is best-effort: your app must reconcile an operation that completed despite abort. Return { status: \"canceled\" } or throw AbortError to report cancellation."
         ]
       },

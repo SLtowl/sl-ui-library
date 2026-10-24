@@ -57,6 +57,9 @@
     }
     const trigger = $('[data-toggle]'), panel = $('[data-panel]'), choices = $$('[data-format]'), action = $('[data-run]');
     let format = 'SVG', open = false;
+    const measurePanel = () => panel.style.setProperty('--reveal-height', panel.firstElementChild.scrollHeight + 'px');
+    const panelResize = new view.ResizeObserver(measurePanel);
+    panelResize.observe(panel.querySelector('.ab-inset'));
     function render() {
       reflect(); const busy = phase === 'pending';
       action.setAttribute('aria-disabled', String(busy)); trigger.disabled = busy;
@@ -69,7 +72,7 @@
     function close(restore = false) { if (destroyed) return; open = false; render(); if (restore) trigger.focus(); }
     function show(last = false) {
       if (destroyed || phase === 'pending') return;
-      open = true; render(); (last ? choices.at(-1) : choices.find(b => b.dataset.format === format)).focus();
+      measurePanel(); open = true; render(); (last ? choices.at(-1) : choices.find(b => b.dataset.format === format)).focus({ preventScroll: true });
     }
     function start() {
       if (destroyed || phase === 'pending') return Promise.resolve(false);
@@ -101,7 +104,7 @@
     }
     function destroy() {
       if (destroyed) return;
-      reset(); destroyed = true; life.abort(); note.textContent = initialNote;
+      reset(); destroyed = true; panelResize.disconnect(); life.abort(); note.textContent = initialNote;
     }
     listen(root, 'sl:buttons-remount', destroy);
     listen(root, 'keydown', event => {
@@ -131,3 +134,4 @@
   }
   window.SLComponent = { mount, mountPreview };
 })();
+

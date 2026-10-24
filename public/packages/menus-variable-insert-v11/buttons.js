@@ -15,6 +15,15 @@
     const active = () => root.getRootNode().activeElement;
     const controls = () => [...panel.querySelectorAll('button,input,select,textarea')].filter(n => !n.disabled && !n.closest('[hidden],[inert]'));
     const listen = (target, type, fn) => target.addEventListener(type, fn, { signal });
+    const editor=q('[data-editor]'); let resizeFrame=0, editorWidth=0;
+    function fitEditor(){
+      if(resizeFrame)view.cancelAnimationFrame(resizeFrame);resizeFrame=0;if(destroyed)return;
+      const top=editor.scrollTop;editor.style.height='0px';
+      const styles=view.getComputedStyle(editor),border=parseFloat(styles.borderTopWidth)+parseFloat(styles.borderBottomWidth);
+      editor.style.height=Math.max(76,Math.min(132,editor.scrollHeight+border))+'px';editor.scrollTop=top;
+    }
+    const editorResize=new view.ResizeObserver(entries=>{const width=entries[0].contentRect.width;if(Math.abs(width-editorWidth)<.5)return;editorWidth=width;if(resizeFrame)view.cancelAnimationFrame(resizeFrame);resizeFrame=view.requestAnimationFrame(fitEditor);});
+    editorResize.observe(editor);
     function text(selector, value) { q(selector).textContent = value; }
     function selected(key, value) { const n = all('[data-key]').find(n => n.dataset.key === key); if(n) n.setAttribute('aria-pressed', String(value)); }
     function option(key, label, detail, pressed) {
@@ -57,7 +66,7 @@
     function render() { all('[data-token]').forEach(n=>n.hidden=!n.textContent.toLowerCase().includes(state.query.toLowerCase()));
       all('[data-group]').forEach(g=>g.hidden=![...g.querySelectorAll('[data-token]')].some(n=>!n.hidden));
       q('[data-empty]').hidden=all('[data-token]').some(n=>!n.hidden); if(q('[data-editor]').value!==state.text) q('[data-editor]').value=state.text;
-      q('[data-key="undo"]').disabled=state.previous===null; }
+      q('[data-key="undo"]').disabled=state.previous===null; fitEditor(); }
     function handle(key, button, event) { if(key.startsWith('token:')&&button.dataset.value){
         state.previous={text:state.text,start:state.start,end:state.end}; const token=button.dataset.value;
         state.text=state.text.slice(0,state.start)+token+state.text.slice(state.end); state.start+=token.length; state.end=state.start;
@@ -107,7 +116,7 @@
       all('.sl-scroll,.sl-summary,textarea').forEach(node => { node.scrollTop = 0; node.scrollLeft = 0; });
     }
     const controller = { open, close, reset, get state() { return structuredClone({ ...state, open: opened }); }, destroy() {
-      if (destroyed) return; reset(); destroyed = true; life.abort(); mounted.delete(root);
+      if (destroyed) return; reset(); destroyed = true; if(resizeFrame)view.cancelAnimationFrame(resizeFrame); editorResize.disconnect(); editor.style.removeProperty('height'); life.abort(); mounted.delete(root);
     } };
     mounted.set(root, controller); reset(); return controller;
   }

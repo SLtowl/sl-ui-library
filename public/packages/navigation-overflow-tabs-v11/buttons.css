@@ -46,4 +46,5 @@
 .sl-component .nv-input option{background:var(--nav-raised);color:var(--nav-text)}
 .sl-component .nv-tabstrip{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(78px,100%),1fr));gap:4px;width:100%;padding:4px}
 .sl-component .nv-tabstrip .nv-button{min-width:0;padding:7px 4px;text-align:center;overflow-wrap:anywhere}
-.sl-component .nv-tabstrip [aria-selected=true]{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.sl-component .nv-tabstrip{position:relative;isolation:isolate}
+.sl-component .nv-tabstrip .nv-tab-indicator{position:absolute;top:0;left:0;height:1px;border-radius:1px;background:var(--nav-accent-ink);pointer-events:none;z-index:1;transition:transform 260ms var(--nav-ease),width 260ms var(--nav-ease)}

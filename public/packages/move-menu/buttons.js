@@ -68,7 +68,7 @@ function mountMenuStudy(root,{onSelect}={}){
  doc.addEventListener('pointerdown',e=>{if(opened&&!e.composedPath().includes(root))close();},{signal});
  root.addEventListener('focusout',()=>queueMicrotask(()=>{if(opened&&!root.matches(':focus-within'))close();}),{signal});
  function reset(){close(root.matches(':focus-within'));committed=[...initialValues];choices.forEach((n,i)=>{n.hidden=false;n.removeAttribute('aria-current');if(defaults[i]!==null)n.setAttribute('aria-checked',defaults[i]);});label.textContent=initialLabel;feedback.textContent=initialFeedback;delete root.dataset.appearance;if(search){search.value='';root.querySelector('[data-empty]').hidden=true;}if(time)time.value='15:00';if(folderRoot)showFolder(null,false);clearTimeout(typeTimer);buffer='';}
- close();
+ close();if(folderRoot)showFolder(null,false);
  const control={open,close,reset,destroy(){close();destroyed=true;clearTimeout(typeTimer);life.abort();mounted.delete(root);}};
  mounted.set(root,control);return control;
 }

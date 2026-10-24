@@ -1,4 +1,4 @@
-import{retainFont as S}from"./react-font.mjs";const k="privacy-toggle";const C='<div class="sl-toggle sl-toggle--privacy" id="privacy-toggle" data-checked="false">\n            <span class="sl-toggle__emblem" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path class="sl-lock__shackle" d="M10 14V10a6 6 0 0 1 12 0v4"/><rect class="sl-lock__body" x="7" y="13" width="18" height="14" rx="4"/><path class="sl-lock__key" d="M16 19v3"/></svg></span>\n            <label class="sl-toggle__label" for="demo-privacy"><span class="sl-toggle__copy"><span class="sl-toggle__title">Private profile</span><span class="sl-toggle__status" data-status>Public</span></span></label>\n            <span class="sl-toggle__switch"><input class="sl-toggle__input" id="demo-privacy" type="checkbox" data-on="Private" data-off="Public"><span class="sl-toggle__track" aria-hidden="true"><span class="sl-toggle__thumb"></span></span></span>\n          </div>';const q=`@font-face { font-family: 'Instrument Sans'; src: url('./instrument-sans-variable.woff2') format('woff2'); font-weight: 400 700; font-display: swap; }
+import{retainFont as S}from"./react-font.mjs";const k="privacy-toggle";const C='<div class="sl-toggle sl-toggle--privacy" id="privacy-toggle" data-checked="false">\n            <span class="sl-toggle__emblem" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path class="sl-lock__shackle" d="M10 13V10a6 6 0 0 1 12 0v3"/><rect class="sl-lock__body" x="7" y="13" width="18" height="14" rx="4"/><path class="sl-lock__key" pathLength="1" d="M16 19v3"/></svg></span>\n            <label class="sl-toggle__label" for="demo-privacy"><span class="sl-toggle__copy"><span class="sl-toggle__title">Private profile</span><span class="sl-toggle__status" data-status>Public</span></span></label>\n            <span class="sl-toggle__switch"><input class="sl-toggle__input" id="demo-privacy" type="checkbox" data-on="Private" data-off="Public"><span class="sl-toggle__track" aria-hidden="true"><span class="sl-toggle__thumb"></span></span></span>\n          </div>';const q=`@font-face { font-family: 'Instrument Sans'; src: url('./instrument-sans-variable.woff2') format('woff2'); font-weight: 400 700; font-display: swap; }
 .sl-toggle {
   --toggle-ink: #222222;
   --toggle-hover: #2b2b2b;
@@ -71,9 +71,9 @@ import{retainFont as S}from"./react-font.mjs";const k="privacy-toggle";const C='
 .sl-toggle--sound[data-checked="false"] .sl-sound__wave { opacity: 0; stroke-dashoffset: 1; transform: translateX(-2px); transition-delay: 0ms; }
 .sl-toggle--sound[data-checked="false"] .sl-sound__mute { opacity: 1; transform: scale(1) rotate(0); transition-delay: 120ms; }
 
-.sl-lock__shackle { transform-box: fill-box; transform-origin: 26% 80%; transition: transform 520ms var(--toggle-ease); }
+.sl-lock__shackle { transform-box: view-box; transform-origin: 22px 13px; transition: transform 520ms var(--toggle-ease); }
 .sl-lock__body { transition: fill 300ms ease; }
-.sl-toggle--privacy[data-checked="false"] .sl-lock__shackle { transform: translate(3px, -2px) rotate(24deg); }
+.sl-toggle--privacy[data-checked="false"] .sl-lock__shackle { transform: rotate(32deg); }
 .sl-toggle--privacy[data-checked="true"] .sl-lock__shackle { transform: translate(0) rotate(0); }
 .sl-lock__key { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 360ms var(--toggle-ease) 150ms; }
 .sl-toggle--privacy[data-checked="true"] .sl-lock__key { stroke-dashoffset: 0; }

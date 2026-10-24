@@ -8,6 +8,29 @@
     const q = selector => root.querySelector(selector);
     const tabs = [...root.querySelectorAll('[data-tab]')];
     const panel = q('[role=tabpanel]');
+    const track = q('[role=tablist]');
+    const motion = matchMedia('(prefers-reduced-motion: reduce)');
+    const indicator = document.createElement('span');
+    indicator.className = 'nv-tab-indicator';
+    indicator.setAttribute('aria-hidden', 'true');
+    track.append(indicator);
+    let animation = null;
+    function position(animate = true) {
+      const tab = tabs[selected];
+      if (!animate) indicator.style.transition = 'none';
+      indicator.style.width = Math.max(0, tab.offsetWidth - 16) + 'px';
+      indicator.style.transform = 'translate(' + (tab.offsetLeft + 8) + 'px,' + (tab.offsetTop + tab.offsetHeight - 3) + 'px)';
+      if (!animate) { indicator.getBoundingClientRect(); indicator.style.removeProperty('transition'); }
+    }
+    function reveal() {
+      const style = animation ? getComputedStyle(panel) : null;
+      const from = style ? { opacity: style.opacity, transform: style.transform } : { opacity: .5, transform: 'translateY(4px)' };
+      animation?.cancel(); animation = null;
+      if (motion.matches) return;
+      const next = panel.animate([from, { opacity: 1, transform: 'translateY(0)' }], { duration: 180, easing: 'cubic-bezier(.22,.61,.36,1)' });
+      animation = next;
+      next.onfinish = () => { if (animation === next) animation = null; };
+    }
     const on = (node, type, handler) => node.addEventListener(type, handler, { signal: life.signal });
     const active = () => root.getRootNode().activeElement;
     const focus = node => node.focus({ preventScroll: true });
@@ -38,6 +61,7 @@
       const changed = selected !== index;
       selected = index; paint();
       if (changed) {
+        position(); reveal();
         const detail = { kind: root.dataset.kind, ...readState() };
         root.dispatchEvent(new CustomEvent('sl-navigate', { detail, bubbles: true, composed: true }));
         options.onNavigate?.(detail);
@@ -45,7 +69,7 @@
       return true;
     }
     tabs.forEach((tab, i) => on(tab, 'click', () => navigate(i)));
-    on(q('[role=tablist]'), 'keydown', event => {
+    on(track, 'keydown', event => {
       if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
       event.preventDefault();
       navigate(event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1
@@ -55,13 +79,18 @@
     function reset() {
       if (!alive) return;
       const restoreFocus = tabs.includes(active());
-      selected = 0; paint();
+      animation?.cancel(); animation = null;
+      selected = 0; paint(); position(false);
       if (restoreFocus) focus(tabs[0]);
     }
     function destroy() {
       if (!alive) return;
-      alive = false; life.abort();
+      alive = false; life.abort(); observer.disconnect();
+      animation?.cancel(); animation = null; indicator.remove();
     }
+    const observer = new ResizeObserver(() => position(false));
+    observer.observe(track);
+    on(motion, 'change', () => { if (motion.matches) { animation?.cancel(); animation = null; } });
     on(root, 'sl-navigation:remount', destroy);
     reset();
     return { navigate, reset, destroy, get state() { return readState(); } };

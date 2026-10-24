@@ -66,7 +66,7 @@ function mountDeleteButton(button, { onDelete, feedback } = {}) {
     if (state !== 'pending' && state !== 'deleted') button.removeAttribute('data-delete-motion');
     button.dataset.state = state;
     button.setAttribute('aria-label', labels[state]);
-    button.setAttribute('aria-disabled', String(state === 'pending' || state === 'deleted'));
+    button.setAttribute('aria-disabled', String(state === 'pending'));
     button.setAttribute('aria-busy', String(state === 'pending'));
     changeLabel(labels[state]);
     if (message) report(message);
@@ -90,7 +90,7 @@ function mountDeleteButton(button, { onDelete, feedback } = {}) {
   }
   function activate() {
     if (destroyed || button.disabled || button.getAttribute('aria-disabled') === 'true') return;
-    if (state === 'idle' || state === 'error') performDelete();
+    if (state === 'idle' || state === 'error' || state === 'deleted') performDelete();
   }
   function onKeyDown(event) {
     if (event.repeat && (event.key === 'Enter' || event.key === ' ')) event.preventDefault();

@@ -21,8 +21,7 @@
       const node = doc.createElement('button'); node.type = 'button'; node.className = 'sl-option'; node.dataset.key = key;
       const copy = doc.createElement('span'), title = doc.createElement('strong'); title.textContent = label; copy.append(title);
       if (detail) { const small = doc.createElement('small'); small.textContent = detail; copy.append(small); }
-      const mark = doc.createElement('span'); mark.className = 'sl-mark'; mark.setAttribute('aria-hidden','true'); mark.textContent = '✓';
-      node.append(copy, mark); if (pressed !== undefined) node.setAttribute('aria-pressed',String(pressed)); return node;
+      node.append(copy); if (pressed !== undefined) node.setAttribute('aria-pressed',String(pressed)); return node;
     }
     function report(message) { feedback.textContent = message; }
     function emit(message) {
@@ -40,8 +39,7 @@
     function open(last = false) {
       if (destroyed || trigger.disabled || opened) return;
       opened = true; onOpen(); root.dataset.open = 'true'; trigger.setAttribute('aria-expanded','true');
-      panel.inert = false; panel.setAttribute('aria-hidden','false'); q('.sl-summary').inert = true;
-      q('.sl-summary').setAttribute('aria-hidden','true'); paint();
+      panel.inert = false; panel.setAttribute('aria-hidden','false'); paint();
       (last ? controls().at(-1) : controls()[0])?.focus({ preventScroll: true });
     }
     function close(restoreFocus = true) {
@@ -55,6 +53,8 @@
     function onOpen() {  }
     function onClose() {  }
     function render() { text('[data-summary]', 'Canvas · '+state.zoom+'% · '+(state.pinned?'Pinned':'Unpinned'));
+      q('[data-canvas-art]').style.setProperty('--canvas-scale',String(state.zoom/100));
+      q('[data-canvas]').dataset.pinned=String(state.pinned);
       q('[data-recent]').replaceChildren(...state.recent.map(key => option('recent:'+key,names[key],'Repeat action')));
       q('[data-empty]').hidden = state.recent.length > 0; q('[data-key="clear"]').disabled = state.recent.length === 0;
       all('[data-key]').forEach(n => { const key=n.dataset.key.replace('recent:',''); if(key==='zoom-in')n.disabled=state.zoom>=150; if(key==='zoom-out')n.disabled=state.zoom<=50; }); }

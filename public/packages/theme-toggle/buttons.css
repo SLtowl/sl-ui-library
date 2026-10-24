@@ -71,9 +71,9 @@
 .sl-toggle--sound[data-checked="false"] .sl-sound__wave { opacity: 0; stroke-dashoffset: 1; transform: translateX(-2px); transition-delay: 0ms; }
 .sl-toggle--sound[data-checked="false"] .sl-sound__mute { opacity: 1; transform: scale(1) rotate(0); transition-delay: 120ms; }
 
-.sl-lock__shackle { transform-box: fill-box; transform-origin: 26% 80%; transition: transform 520ms var(--toggle-ease); }
+.sl-lock__shackle { transform-box: view-box; transform-origin: 22px 13px; transition: transform 520ms var(--toggle-ease); }
 .sl-lock__body { transition: fill 300ms ease; }
-.sl-toggle--privacy[data-checked="false"] .sl-lock__shackle { transform: translate(3px, -2px) rotate(24deg); }
+.sl-toggle--privacy[data-checked="false"] .sl-lock__shackle { transform: rotate(32deg); }
 .sl-toggle--privacy[data-checked="true"] .sl-lock__shackle { transform: translate(0) rotate(0); }
 .sl-lock__key { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 360ms var(--toggle-ease) 150ms; }
 .sl-toggle--privacy[data-checked="true"] .sl-lock__key { stroke-dashoffset: 0; }

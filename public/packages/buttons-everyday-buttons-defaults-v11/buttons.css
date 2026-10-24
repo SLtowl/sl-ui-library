@@ -50,3 +50,5 @@
 @media(max-width:280px){.everyday-component .button-surface{padding-inline:14px;gap:9px}.everyday-component .everyday-button{font-size:13px}}
 @media(prefers-reduced-motion:reduce){.everyday-component *,.everyday-component *:before{transition:none!important;animation:none!important;scroll-behavior:auto!important}.everyday-component .everyday-button .button-surface{transform:none!important}}
 @media(forced-colors:active){.everyday-component .button-surface{border:1px solid ButtonText}.everyday-component .button-surface:before{display:none}.everyday-component .everyday-button:focus-visible{outline-color:Highlight}}
+
+.everyday-component .settings-example{min-height:0;padding:14px;border:1px solid var(--action-edge);border-radius:10px;gap:12px;align-items:stretch}.everyday-component .settings-example>div{width:100%;gap:12px}.everyday-component .settings-example span{width:64px;flex:0 0 64px}.everyday-component .settings-example i{min-width:0}

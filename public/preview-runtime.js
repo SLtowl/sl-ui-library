@@ -1,6 +1,8 @@
 import { previews } from './preview-data.js?v=instant-4';
 
 const layout = `
+  :host, * { scrollbar-width: none !important; }
+  :host::-webkit-scrollbar, *::-webkit-scrollbar { display: none; }
   :host { display: block; position: relative; width: 100%; height: 100%; container-type: inline-size; color: #202222; color-scheme: light; font-family: 'Instrument Sans', sans-serif; }
   :host([variant="share"]) { container-type: size; }
   .stage { position: absolute; inset: 0; display: grid; place-content: center; }
@@ -34,6 +36,17 @@ const layout = `
   @container (min-width: 512px) { .sl-delete { --delete-unit: 2px; } }
   @container (min-width: 480px) and (min-height: 350px) { .sl-share-control { --share-unit: 2px; } }
   @container (max-height: 349px) { .sl-share__popover { bottom: calc(100% + 6px); padding: 10px; } }
+`;
+// The catalogue owns the stage paint. Keep native dialog modality and authored
+// scrolling inside its isolated viewport without painting a second rectangle.
+const framePresentation = `
+  html, body { background: transparent !important; }
+  .overlay-panel::backdrop { background: transparent !important; }
+  * { scrollbar-width: none !important; }
+  *::-webkit-scrollbar { display: none; }
+  @media (max-height: 350px) {
+    .overlay-panel { box-shadow: inset 0 1px #ffffff09, 0 3px 8px #1d1d1d24 !important; }
+  }
 `;
 const sheets = new Map();
 // Intrinsic flow owns height. Observation only repairs focus-induced shell scroll;
@@ -162,7 +175,7 @@ class Preview extends HTMLElement {
         const actions=pending;pending=[];actions.forEach(activate);
       });
       // A complete srcdoc survives initial iframe navigation; no document.write race.
-      iframe.srcdoc = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>'+definition.css.replace(/<\/style/gi,'<\\/style')+'</style></head><body>'+definition.markup+'</body></html>';
+      iframe.srcdoc = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>'+definition.css.replace(/<\/style/gi,'<\\/style')+'</style><style data-preview-presentation>'+framePresentation+'</style></head><body>'+definition.markup+'</body></html>';
       this.controller = { reset() { pending=[];controller?.reset(); }, destroy() { disposed = true;pending=[];controller?.destroy();iframe.remove(); } };
       root.append(iframe);
       return;

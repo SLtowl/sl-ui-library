@@ -14,6 +14,7 @@ function mountFeedback(root, { onAction, returnFocus, timeout = 5000 } = {}) {
   const lifecycle=new view.AbortController(), reduced=view.matchMedia('(prefers-reduced-motion: reduce)');
   const timers=new Set();
   let destroyed=false, revision=0, request=null, raf=0, progress=0, target=0, mode='determinate', state='idle';
+  let circleVelocity=0, circleTime=0;
   let queue=[], serial=3, expiryTimer=0, expiryRemaining=0, expiryAt=0, inView=true;
   for(const button of all('button')){button.type='button';button.disabled=false;}
   const baseline=[...root.childNodes].map(node=>node.cloneNode(true));
@@ -27,6 +28,7 @@ function mountFeedback(root, { onAction, returnFocus, timeout = 5000 } = {}) {
   function glyph(name){
     const svg=q('.fb-icon svg');if(!svg)return;
     const shapes={check:'<path d="m5 12 4 4L19 6"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/>',error:'<circle cx="12" cy="12" r="9"/><path d="M12 7v6m0 4h.01"/>',file:'<path d="M14 3H5v18h14V8Zm0 0v5h5M8 12h8m-8 4h5"/>',wifi:'<path d="M3 8a15 15 0 0 1 18 0M6 12a10 10 0 0 1 12 0m-9 4a5 5 0 0 1 6 0m-3 4h.01"/>',retry:'<path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.2 7a8 8 0 0 1 13.4-1L20 8M4 16l1.4 2A8 8 0 0 0 18.8 17"/>'};
+    if(kind==='toast'&&(name==='info'||name==='error'))shapes[name]='<circle cx="12" cy="12" r="9"/><path d="'+(name==='info'?'M12 11v6':'M12 7v6')+'"/><circle cx="12" cy="'+(name==='info'?7:17)+'" r="1" fill="currentColor" stroke="none"/>';
     // Only this fixed icon dictionary is used as markup. Application messages use textContent.
     svg.innerHTML=shapes[name]||shapes.info;
   }
@@ -125,11 +127,33 @@ function mountFeedback(root, { onAction, returnFocus, timeout = 5000 } = {}) {
   function update(value){
     if(destroyed)return false;
     if(!Number.isFinite(value))throw new TypeError('Progress must be a finite number.');
+    if(kind==='circular'){
+      const now=view.performance.now();
+      if(!raf){circleVelocity=0;circleTime=now;}
+      target=Math.min(100,Math.max(0,value));
+      if(reduced.matches){view.cancelAnimationFrame(raf);raf=0;circleVelocity=0;progress=target;renderProgress();return true;}
+      if(!raf)raf=view.requestAnimationFrame(tickCircle);
+      return true;
+    }
     target=Math.min(100,Math.max(0,value));view.cancelAnimationFrame(raf);raf=0;
     if(reduced.matches){progress=target;renderProgress();return true;}
     const from=progress,started=view.performance.now(),length=motion.duration['medium-4'];
     function tick(now){if(destroyed)return;const t=Math.min(1,(now-started)/length);const eased=t*t*(3-2*t);progress=from+(target-from)*eased;renderProgress();if(t<1)raf=view.requestAnimationFrame(tick);else raf=0;}
     raf=view.requestAnimationFrame(tick);return true;
+  }
+  function advanceCircle(now){
+    // Critically damped target following: retarget position without resetting velocity.
+    // The existing 400ms motion token supplies the settling scale; no CSS tween is stacked.
+    const dt=Math.max(0,(now-circleTime)/1000),omega=8/(motion.duration['medium-4']/1000),offset=progress-target,carry=circleVelocity+omega*offset,decay=Math.exp(-omega*dt);
+    progress=target+(offset+carry*dt)*decay;circleVelocity=(circleVelocity-omega*carry*dt)*decay;circleTime=now;
+    if(progress<0||progress>100){progress=Math.min(100,Math.max(0,progress));circleVelocity=0;}
+    renderProgress();
+  }
+  function tickCircle(now){
+    if(destroyed)return;
+    advanceCircle(now);
+    if(Math.abs(target-progress)<.005&&Math.abs(circleVelocity)<.05){progress=target;circleVelocity=0;raf=0;renderProgress();}
+    else raf=view.requestAnimationFrame(tickCircle);
   }
   function setMode(value){if(!['determinate','unknown'].includes(value))throw new TypeError('Unknown progress mode.');if(destroyed)return;mode=value;renderProgress();}
   function cancelRequest(){revision++;request?.abort();request=null;}

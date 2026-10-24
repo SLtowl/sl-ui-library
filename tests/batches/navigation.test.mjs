@@ -54,7 +54,9 @@ for (const entry of batch) {
     assert.match(html.split('</head>')[0], /example\.js" defer/);
     assert.doesNotMatch(html.split('<body>')[1], /<script/);
     assert.doesNotMatch(html + css + js, /(?:src|href)=["']https?:|fetch\(|XMLHttpRequest|innerHTML|insertAdjacentHTML/);
-    assert.doesNotMatch(js, /document\.(?:querySelector|activeElement)|setTimeout|setInterval|requestAnimationFrame/);
+    assert.doesNotMatch(js, /document\.(?:querySelector|activeElement)|setTimeout|setInterval/);
+    // Alphabet owns cancellable smooth scrolling; its RAF lifecycle is exercised below.
+    if (variant !== 'navigation-alphabet-jump-v11') assert.doesNotMatch(js, /requestAnimationFrame/);
     assert.match(js, /root\.getRootNode\(\)\.activeElement/);
     assert.match(js, /window\.SLComponent = \{ mount, mountPreview \};/);
     assert.match(js, /life\.abort\(\)/);
@@ -354,6 +356,159 @@ for (const entry of batch) {
   });
 }
 
+test('Alphabet smooth scrolling keeps the latest intent and releases RAF on interruption, reset, destroy and live reduction', { skip: !playwright && 'Playwright unavailable', timeout: 20000 }, async () => {
+  assert.ok(playwright, 'Alphabet lifecycle verification requires installed Playwright or SL_UI_PLAYWRIGHT_PATH');
+  const context = await browser.newContext({ viewport: { width: 320, height: 640 }, reducedMotion: 'no-preference' });
+  const page = await context.newPage();
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  try {
+    await open(page, 'alphabet-jump');
+    await page.evaluate(() => {
+      controller.destroy();
+      const nativeRequest = window.requestAnimationFrame.bind(window);
+      const nativeCancel = window.cancelAnimationFrame.bind(window);
+      const pending = new Set();
+      window.rafAudit = { pending, nativeRequest, nativeCancel, peak: 0 };
+      window.requestAnimationFrame = callback => {
+        let id;
+        id = nativeRequest(time => { pending.delete(id); callback(time); });
+        pending.add(id); rafAudit.peak = Math.max(rafAudit.peak, pending.size);
+        return id;
+      };
+      window.cancelAnimationFrame = id => { pending.delete(id); nativeCancel(id); };
+      controller = SLComponent.mount(document.querySelector('.sl-component'), { onNavigate: detail => events.push(detail) });
+    });
+    const motion = await page.evaluate(async () => {
+      const root = document.querySelector('.sl-component'), pane = root.querySelector('[data-pane]');
+      const groups = [...root.querySelectorAll('[data-group]')];
+      const frame = () => new Promise(rafAudit.nativeRequest);
+      const sample = () => ({ top: pane.scrollTop, selected: controller.state.selected,
+        current: [...root.querySelectorAll('[data-letter]')].findIndex(node => node.hasAttribute('aria-current')),
+        pending: rafAudit.pending.size });
+      const target = index => Math.max(0, Math.min(pane.scrollHeight - pane.clientHeight,
+        groups[index].getBoundingClientRect().top - pane.getBoundingClientRect().top + pane.scrollTop));
+      const settle = async () => {
+        for (let i = 0; i < 120 && rafAudit.pending.size; i++) await frame();
+        if (rafAudit.pending.size) throw Error('Alphabet RAF failed to settle within 120 frames');
+      };
+      controller.jump(3);
+      const immediate = sample(), singleFrames = [];
+      while (rafAudit.pending.size && singleFrames.length < 120) { await frame(); singleFrames.push(sample()); }
+      const single = sample(), endpoint = target(3);
+      controller.reset(); controller.jump(3);
+      await frame(); await frame(); await frame();
+      const beforeReverse = sample(); controller.jump(1); const afterReverse = sample();
+      await frame(); await frame(); await frame();
+      const beforeRetarget = sample(); controller.jump(2); const afterRetarget = sample();
+      const rapidFrames = [];
+      while (rafAudit.pending.size && rapidFrames.length < 120) { await frame(); rapidFrames.push(sample()); }
+      const rapid = sample(), rapidTarget = target(2), returnPosition = controller.state.previous.position;
+      controller.back(); const backStart = sample(); await settle(); const backEnd = sample();
+      let returnGroup = 0;
+      groups.forEach((group, i) => { if (group.getBoundingClientRect().top - pane.getBoundingClientRect().top <= 12) returnGroup = i; });
+      const interruptions = [];
+      for (const type of ['wheel', 'pointerdown', 'touchstart', 'keydown']) {
+        controller.reset(); controller.jump(3); await frame(); await frame(); await frame();
+        const before = sample();
+        pane.dispatchEvent(type === 'keydown' ? new KeyboardEvent(type, { key: 'PageDown', bubbles: true }) : new Event(type, { bubbles: true }));
+        const stopped = sample();
+        for (let i = 0; i < 24; i++) await frame();
+        const after = sample();
+        pane.scrollTop = target(2); pane.dispatchEvent(new Event('scroll'));
+        interruptions.push({ type, before, stopped, after, manual: sample() });
+      }
+      controller.reset(); controller.jump(3); await frame(); await frame(); await frame();
+      const beforeReset = sample(); controller.reset(); controller.reset(); const reset = sample();
+      for (let i = 0; i < 24; i++) await frame();
+      const resetAfter = sample();
+      controller.jump(3); await frame(); await frame(); await frame();
+      const beforeDestroy = sample(), destroyedState = JSON.stringify(controller.state), eventCount = events.length;
+      controller.destroy(); controller.destroy();
+      const destroyed = sample();
+      root.querySelector('[data-letter="1"]').click(); controller.jump(2); controller.reset();
+      pane.dispatchEvent(new Event('wheel'));
+      for (let i = 0; i < 24; i++) await frame();
+      const destroyedAfter = sample(), deadStable = JSON.stringify(controller.state) === destroyedState, deadEvents = events.length - eventCount;
+      controller = SLComponent.mount(root); controller.jump(3); await frame(); await frame();
+      const replaced = controller; controller = SLComponent.mount(root);
+      const remount = sample(); replaced.jump(2); replaced.reset(); replaced.destroy();
+      const remountAfterOldActions = sample();
+      controller = SLComponent.mount(root, { onNavigate: detail => events.push(detail) });
+      const beforeClick = events.length; root.querySelector('[data-letter="3"]').click();
+      const remountEvents = events.length - beforeClick; controller.reset();
+      return { immediate, singleFrames, single, endpoint, beforeReverse, afterReverse, beforeRetarget, afterRetarget,
+        rapidFrames, rapid, rapidTarget, returnPosition, backStart, backEnd, returnGroup, interruptions,
+        beforeReset, reset, resetAfter, beforeDestroy, destroyed, destroyedAfter, deadStable, deadEvents,
+        remount, remountAfterOldActions, remountEvents, peak: rafAudit.peak };
+    });
+    assert.equal(motion.immediate.top, 0, 'Focusing the destination must not synchronously jump the pane');
+    assert.equal(motion.immediate.current, 3);
+    assert.ok(motion.singleFrames.some(frame => frame.top > 0 && frame.top < motion.endpoint), 'Actual intermediate smooth-scroll positions required');
+    assert.ok(motion.singleFrames.every(frame => frame.current === 3 && frame.selected === 3), 'Travelling through groups must retain the requested letter');
+    assert.ok(Math.abs(motion.single.top - motion.endpoint) <= 1);
+    assert.equal(motion.single.pending, 0);
+    assert.ok(motion.beforeReverse.top > 0 && motion.beforeReverse.top < motion.endpoint);
+    assert.equal(motion.beforeReverse.top, motion.afterReverse.top, 'Reverse from the displayed position');
+    assert.equal(motion.beforeRetarget.top, motion.afterRetarget.top, 'Rapid retarget must preserve displayed position');
+    assert.equal(motion.afterReverse.current, 1); assert.equal(motion.afterRetarget.current, 2);
+    assert.ok(motion.rapidFrames.every(frame => frame.current === 2 && frame.selected === 2));
+    assert.ok(Math.abs(motion.rapid.top - motion.rapidTarget) <= 1);
+    assert.equal(motion.rapid.pending, 0);
+    assert.equal(motion.backStart.top, motion.rapid.top);
+    assert.ok(Math.abs(motion.backEnd.top - motion.returnPosition) <= 1);
+    assert.equal(motion.backEnd.selected, motion.returnGroup);
+    for (const item of motion.interruptions) {
+      assert.equal(item.before.pending, 1, item.type + ' must interrupt active movement');
+      assert.equal(item.stopped.pending, 0, item.type + ' must cancel the owned RAF');
+      assert.equal(item.after.top, item.stopped.top, item.type + ' must stay stopped');
+      assert.equal(item.manual.current, 2, item.type + ' must resume position-derived selection');
+    }
+    assert.equal(motion.beforeReset.pending, 1); assert.equal(motion.reset.pending, 0);
+    assert.equal(motion.reset.top, 0); assert.equal(motion.reset.selected, 0);
+    assert.deepEqual(motion.resetAfter, motion.reset);
+    assert.equal(motion.beforeDestroy.pending, 1); assert.equal(motion.destroyed.pending, 0);
+    assert.deepEqual(motion.destroyedAfter, motion.destroyed);
+    assert.equal(motion.deadStable, true); assert.equal(motion.deadEvents, 0);
+    assert.equal(motion.remount.pending, 0); assert.equal(motion.remount.top, 0);
+    assert.deepEqual(motion.remountAfterOldActions, motion.remount); assert.equal(motion.remountEvents, 1);
+    assert.equal(motion.peak, 1, 'Rapid actions must own at most one RAF');
+
+    await page.evaluate(() => controller.jump(3));
+    await page.waitForFunction(() => document.querySelector('[data-pane]').scrollTop > 0 && rafAudit.pending.size === 1);
+    await page.locator('[data-pane]').hover();
+    await page.mouse.wheel(0, -40);
+    await page.waitForFunction(() => rafAudit.pending.size === 0);
+    const wheel = await page.evaluate(async () => {
+      // Let the browser apply its own wheel delta before checking that our movement stopped.
+      await new Promise(rafAudit.nativeRequest); await new Promise(rafAudit.nativeRequest);
+      const pane = document.querySelector('[data-pane]'), stopped = pane.scrollTop;
+      for (let i = 0; i < 24; i++) await new Promise(rafAudit.nativeRequest);
+      return { stopped, after: pane.scrollTop, pending: rafAudit.pending.size };
+    });
+    assert.equal(wheel.after, wheel.stopped); assert.equal(wheel.pending, 0);
+    await page.evaluate(() => controller.reset());
+    await page.evaluate(() => controller.jump(3));
+    await page.waitForFunction(() => document.querySelector('[data-pane]').scrollTop > 0 && rafAudit.pending.size === 1);
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.waitForFunction(() => matchMedia('(prefers-reduced-motion: reduce)').matches && rafAudit.pending.size === 0);
+    const reduced = await page.evaluate(() => {
+      const pane = document.querySelector('[data-pane]'), group = document.querySelectorAll('[data-group]')[3];
+      const settled = { gap: group.getBoundingClientRect().top - pane.getBoundingClientRect().top, selected: controller.state.selected };
+      controller.reset(); controller.jump(2);
+      return { settled, pending: rafAudit.pending.size, selected: controller.state.selected,
+        gap: document.querySelectorAll('[data-group]')[2].getBoundingClientRect().top - pane.getBoundingClientRect().top };
+    });
+    assert.ok(Math.abs(reduced.settled.gap) <= 1); assert.equal(reduced.settled.selected, 3);
+    assert.equal(reduced.pending, 0); assert.equal(reduced.selected, 2); assert.ok(Math.abs(reduced.gap) <= 1);
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    await page.waitForFunction(() => !matchMedia('(prefers-reduced-motion: reduce)').matches);
+    assert.equal(await page.evaluate(() => { controller.jump(3); return rafAudit.pending.size; }), 1, 'Live restoration must restore smooth movement');
+    await page.evaluate(() => { controller.destroy(); window.requestAnimationFrame = rafAudit.nativeRequest; window.cancelAnimationFrame = rafAudit.nativeCancel; });
+    assert.deepEqual(errors, []);
+  } finally { await context.close(); }
+});
+
 test('compiled navigation previews mount in independent Shadow DOM cards', { skip: !playwright && 'Playwright unavailable', timeout: 30000 }, async () => {
   const page = await browser.newPage({ viewport: { width: 320, height: 640 }, reducedMotion: 'reduce' });
   try {
@@ -408,6 +563,17 @@ regression('section tabs are the only navigation control and every destination s
   assert.equal(await page.locator('[data-toggle],[data-menu],[data-previous-section],[data-next-section]').count(),0);
   for(const width of [226,320]) {
     await page.locator('.sl-component').evaluate((root,w)=>root.style.width=w+'px',width);
+    // ResizeObserver repositions the owned indicator after the grid has reflowed.
+    // Observe that actual result before measuring overflow; retain every fit assertion below.
+    await page.waitForFunction(() => {
+      const root = document.querySelector('.sl-component');
+      const tab = root.querySelector('[data-tab][aria-selected="true"]');
+      const indicator = root.querySelector('.nv-tab-indicator');
+      const style = getComputedStyle(indicator), transform = new DOMMatrix(style.transform);
+      return Math.abs(transform.e - (tab.offsetLeft + 8)) < .5
+        && Math.abs(transform.f - (tab.offsetTop + tab.offsetHeight - 3)) < .5
+        && Math.abs(parseFloat(style.width) - Math.max(0, tab.offsetWidth - 16)) < .5;
+    });
     for(let i=0;i<6;i++) {
       const fit=await page.locator(`[data-tab="${i}"]`).evaluate(tab=>{
         const strip=tab.parentElement,a=tab.getBoundingClientRect(),b=strip.getBoundingClientRect();

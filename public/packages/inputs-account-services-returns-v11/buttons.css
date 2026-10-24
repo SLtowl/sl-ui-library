@@ -50,3 +50,5 @@
 @media(forced-colors:active){.account-control .as-record,.account-control .as-card,.account-control .as-choice-button,.account-control .as-details{border:1px solid CanvasText}.account-control .as-choice-button[aria-pressed=true],.account-control .as-record[aria-pressed=true]{outline:1px solid Highlight}}
 
 .sl-component .account-control:focus-visible{outline:2px solid #eee;outline-offset:-4px}
+/* A request action fills its local row at every supported width. */
+.account-control[data-kind=returns] .ac-actions>.ac-action{width:100%}

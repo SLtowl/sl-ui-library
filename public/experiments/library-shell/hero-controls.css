@@ -1,0 +1,11 @@
+/* Approved white relief CTA; no comparison-page styles are imported. */
+.hero-copy .explore,.relief-button{position:relative;isolation:isolate;display:inline-grid;place-items:center;width:222px;height:62px;min-height:0;margin:0;padding:0;border:0;border-radius:13px;background:transparent;color:#2a3038;font-size:23px;font-weight:500;letter-spacing:-.025em;line-height:1.2;box-shadow:none;overflow:visible;transform:scale(1);transform-origin:center;transition:transform 200ms cubic-bezier(.2,0,0,1)}
+.hero-copy .explore:is(:hover,:focus-visible),.relief-button:is(:hover,:focus-visible){transform:scale(1.07);box-shadow:none}.hero-copy .explore:active,.relief-button:active{transform:scale(1.01);box-shadow:none}
+.explore-base,.explore-face{position:absolute;inset:0;border-radius:inherit;pointer-events:none}
+.explore-base{background:#d9dee5;box-shadow:0 14px 25px #4b586123,0 3px 5px #4b586111}
+.explore-face{background:linear-gradient(160deg,#fff,#f3f5f8);border:1px solid #e0e5ec;box-shadow:inset 0 2px 2px #fff;transform:translateY(-3px);overflow:hidden;transition:transform 100ms cubic-bezier(.2,0,0,1),box-shadow 200ms cubic-bezier(.2,0,0,1)}
+.explore:is(:hover,:focus-visible) .explore-face{transform:translateY(-4px);box-shadow:inset 0 1px 2px #fff}.explore:active .explore-face{transform:translateY(0)}
+.explore-label{position:relative;z-index:2;pointer-events:none;text-shadow:0 1px #fff}
+.explore-light{position:absolute;inset:0;opacity:var(--near-strength,0);background:radial-gradient(150px 95px at var(--light-x,50%) var(--light-y,10%),#b7cefa8c,transparent 90%),linear-gradient(115deg,transparent 15%,#ffffffb8 38%,#e3ecff45 49%,transparent 68%);background-size:100% 100%,200% 100%;background-position:center,var(--sheen-x,50%) 50%;background-repeat:no-repeat;transition:opacity 200ms cubic-bezier(.2,0,0,1),background-position 200ms cubic-bezier(.2,0,0,1)}
+.explore:is(:hover,:focus-visible) .explore-light{opacity:1}
+@media(prefers-reduced-motion:reduce){.hero-copy .explore,.relief-button,.explore .explore-face,.explore:is(:hover,:focus-visible,:active) .explore-face{transform:none!important}.explore-light{background:#ffffff0d!important}.hero-copy .explore:active,.relief-button:active{opacity:.9}}
