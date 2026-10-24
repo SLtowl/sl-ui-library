@@ -146,14 +146,23 @@ async function enter({animate=true}={}){
   if(version!==revision)return;
   workspace.hidden=false;workspace.inert=true;intro.inert=true;
   if(!animate||reduced.matches){complete();return;}
-  paint(0,0);mark('moving');
+  paint(0,0);
   const from=scrollY;
   pieces=[...workspace.querySelectorAll('sl-preview')];
   planAssembly(tokens);
   for(const piece of pieces){piece.style.setProperty('--piece-opacity','0');piece.style.setProperty('--piece-scale',String(tokens.scaleFrom));}
   art.style.height=`${intro.offsetHeight}px`;art.style.opacity='1';
   art.style.transform=`translateY(${-from}px)`;
+  // The first layout and preview font must not compete with the journey clock.
+  // Keep the hero intact while the same final nodes become render-ready.
+  workspace.getBoundingClientRect();
+  try{await document.fonts.load('16px "Instrument Sans"');await document.fonts.ready;}catch{/* A fallback font must not block navigation. */}
+  await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  if(version!==revision)return;
+  if(reduced.matches){complete();return;}
   art.append(background);if(glow)art.append(glow);backdrop.hidden=false;
+  mark('moving');
+  const target=workspace.offsetTop;
   const start=performance.now();
   const assemblyStart=tokens.start*tokens.duration+tokens.assembly.afterFirstPop;
   const finish=Math.max(tokens.duration,assemblyStart+Math.max(0,...assembly.map(part=>part.delay))+tokens.chrome,tokens.start*tokens.duration+(pieces.length-1)*tokens.stagger+tokens.pop);
@@ -161,7 +170,6 @@ async function enter({animate=true}={}){
     if(version!==revision)return;
     const elapsed=now-start,t=Math.min(1,elapsed/tokens.duration);
     // Real document scroll: every preview remains the same node in its final grid cell.
-    const target=workspace.offsetTop;
     const travel=smooth(1-Math.pow(1-t,tokens.bias));
     window.scrollTo({top:from+(target-from)*travel,behavior:'instant'});
     copy.style.opacity=String(1-phase(t,0,tokens.exit));

@@ -5,9 +5,11 @@ import {mountSourceDialog} from './catalog-dialog.mjs';
 import {paletteControls,setPreviewPalette} from './catalog-palettes.mjs';
 import {mountReliefCTA} from './hero-controls.mjs';
 export async function mountWorkspace(root){
-  const {categories,components}=await import(new URL('catalog-data.js',base));
-  await import(new URL('preview-runtime.js',base));
-  await import(new URL('packages/search-input/buttons.js',base));
+  const [{categories,components}]=await Promise.all([
+    import(new URL('catalog-data.js',base)),
+    import(new URL('preview-runtime.js',base)),
+    import(new URL('packages/search-input/buttons.js',base))
+  ]);
   const grid=root.querySelector('#component-grid'),nav=root.querySelector('#category-nav'),input=root.querySelector('#catalog-search'),more=root.querySelector('#load-more');
   let category='all',collection='all',query='',shown=12,selected='';
   const collections=document.createElement('div');collections.id='collection-filters';collections.className='collection-filters';collections.setAttribute('role','group');collections.setAttribute('aria-label','Component collections');grid.before(collections);
