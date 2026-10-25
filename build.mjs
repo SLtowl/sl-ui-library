@@ -4,6 +4,8 @@ import {components,categories} from './public/catalog-data.js';
 import {zip} from './zip.mjs';
 await import('./build-previews.mjs');
 await import('./build-views.mjs');
+const {buildAnalytics}=await import('./build-analytics.mjs');
+await buildAnalytics();
 const publicRoot=new URL('./public/',import.meta.url);
 const pluginRoot=new URL('./plugins/sl-ui-library/assets/',import.meta.url);
 await mkdir(new URL('downloads/',publicRoot),{recursive:true});

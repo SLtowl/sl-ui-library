@@ -4,12 +4,17 @@ import { createHash } from 'node:crypto';
 import { gzipSync } from 'node:zlib';
 import { categories, components } from './public/catalog-data.js';
 import {libraryShellFiles} from './public/experiments/library-shell/release-assets.mjs';
+import {configurationReady} from './plugins/sl-ui-library/scripts/analytics-core.mjs';
 const port = Number(process.env.PORT || 4321);
 const root = new URL('./public/', import.meta.url);
+let analyticsOrigin='';
+try{const config=JSON.parse(await readFile(new URL('analytics/config.json',root),'utf8'));if(configurationReady(config))analyticsOrigin=' '+config.apiHost;}catch{}
 const types = { html: 'text/html; charset=utf-8', css: 'text/css; charset=utf-8', js: 'text/javascript; charset=utf-8', mjs: 'text/javascript; charset=utf-8', jsx: 'text/plain; charset=utf-8', json: 'application/json; charset=utf-8', md: 'text/plain; charset=utf-8', png: 'image/png', woff2: 'font/woff2', txt: 'text/plain; charset=utf-8', zip: 'application/zip' };
 // Explicit local asset allowlist. Menu contours are embedded SVG.
 const allowed = new Set(['index.html', 'library.css', 'library.js', 'component.html', 'category.html', 'catalog.css', 'catalog.js', 'catalog-data.js', 'assets/instrument-sans-variable.woff2']);
 for(const file of libraryShellFiles)allowed.add('experiments/library-shell/'+file);
+for(const file of ['config.json','analytics-core.mjs','site-analytics.mjs','analytics.css','privacy.html'])allowed.add('analytics/'+file);
+allowed.add('downloads/sl-ui-library-plugin.zip');
 allowed.add('preview-runtime.js');
 for (const category of categories) allowed.add(`catalog-batches/${category.id}.js`);
 // The catalogue also imports reviewed basic batches beyond the ten category IDs.
@@ -59,7 +64,7 @@ createServer(async (req, res) => {
     const type = types[path.split('.').pop()];
     const headers = {
       'Content-Type': type, 'Cache-Control': path.endsWith('.woff2') ? 'public, max-age=86400' : 'no-cache', 'ETag': asset.etag, 'Vary': 'Accept-Encoding', 'X-Content-Type-Options': 'nosniff',
-      'Content-Security-Policy': "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; frame-src 'self'; frame-ancestors 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'",
+      'Content-Security-Policy': "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; frame-src 'self'; frame-ancestors 'self'; connect-src 'self'"+analyticsOrigin+"; base-uri 'none'; form-action 'none'",
     };
     if (path.endsWith('.zip')) headers['Content-Disposition'] = `attachment; filename="${path.split('/').pop()}"`;
     if (req.headers['if-none-match'] === asset.etag) { res.writeHead(304, headers).end(); return; }

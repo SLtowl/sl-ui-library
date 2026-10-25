@@ -4,13 +4,15 @@ import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {selectData,updateSettings} from './updates.mjs';
 import {auditIntegration,integrationContract} from './integration.mjs';
+import {analyticsSettings} from './analytics.mjs';
 
 const fail=message=>{throw new Error(message);};
 const safeFile=name=>/^[a-zA-Z0-9][a-zA-Z0-9._-]*$/.test(name)&&!name.includes('..');
 const own=(object,key)=>Object.hasOwn(object,key);
 export async function run(args){
  const [command,...rest]=args;
- if(!command||command==='help')return {userWorkflow:'Install the plugin once, then describe your interface to the agent.',commands:['list [category]','search <query>','inspect <component-id>','palette <variant>','read <variant> <filename>','install <variant> <new-directory> [--palette <mapping.json>]','audit <variant> <rendered-html-file>','updates enable|disable|status'],network:'Offline by default; data updates require explicit opt-in and a published channel.',overwrites:false};
+ if(!command||command==='help')return {userWorkflow:'Install the plugin once, then describe your interface to the agent.',commands:['list [category]','search <query>','inspect <component-id>','palette <variant>','read <variant> <filename>','install <variant> <new-directory> [--palette <mapping.json>]','audit <variant> <rendered-html-file>','updates enable|disable|status','analytics status|enable <host>|disable|send'],network:'Offline by default. Data updates and one optional activation each require explicit consent. Activation configuration may be retrieved from the library website after consent.',overwrites:false};
+ if(command==='analytics'){if(rest.length<1||rest.length>2)fail('Usage: analytics status|enable <host>|disable|send');return analyticsSettings(...rest);}
  if(command==='updates'){if(rest.length!==1)fail('Usage: updates enable|disable|status');return updateSettings(rest[0]);}
  const data=await selectData();
  const catalog=data.catalog;

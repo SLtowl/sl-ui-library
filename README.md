@@ -4,7 +4,7 @@ An AI plugin and interactive UI library with HTML, CSS, JavaScript, React and Ne
 
 [English](README.md) · [Русский](README.ru.md)
 
-**Version 1.2.2** publishes the redesigned library website, owner-reviewed interaction fixes, palette-aware code and ZIP exports, and Hermes Agent setup. It retains all 388 components and the source-preserving React / Next.js adapters alongside HTML, CSS and JavaScript. [Release notes](docs/releases/v1.2.2.md) · [Framework integration](docs/frameworks.md) · [Previous release](docs/releases/v1.2.1.md).
+**Version 1.2.3** adds optional website analytics and separately consented plugin activations. It retains all 388 components, palette-aware exports, Hermes Agent setup and the source-preserving framework adapters. [Release notes](docs/releases/v1.2.3.md) · [Framework integration](docs/frameworks.md) · [Previous release](docs/releases/v1.2.2.md).
 
 ![Graphite SL UI Library controls in a warm studio composition](docs/media/cover.png)
 
@@ -170,7 +170,7 @@ Updating the plugin never rewrites components already copied into another app.
 
 An opt-in data updater is prepared for the release channel. Once published and enabled by the user, it checks for a newer catalog on use, at most once per day, with an offline fallback. Existing components in your app are never silently replaced. Plugin code and skill updates remain host-managed.
 
-**Update status:** the public update channel is not live. No telemetry is enabled. Owner-only release-download reporting is provided as a local tool, not a tracker; asset downloads are not unique installations. See the [update and metrics details](docs/agents.md).
+**Update status:** the public data-update channel is not live. Optional analytics is separate: website collection starts only after Allow analytics; the plugin can send one activation only after explicit consent. No ongoing plugin usage is collected. Downloads and consenting activations are not verified installations. See [analytics and privacy](docs/agents.md#download-reporting-and-privacy).
 
 ## Component integration
 
@@ -229,7 +229,7 @@ Edit component sources in `public/packages/` and metadata in `public/catalog-dat
 - Keyboard interaction, visible focus and reduced-motion support.
 - Repeated interaction and reset checks.
 - Source, ZIP export and agent bundle consistency checks.
-- No analytics scripts or tracking pixels.
+- No tracking in exported components. Optional site analytics and plugin activation reporting require consent; no session recordings, source code or input text.
 
 See [QA evidence and limitations](QA.md). The 1.2.0 framework release was checked in Chromium-based Microsoft Edge; Firefox, Safari and physical touch devices still need a separate release check.
 
@@ -239,7 +239,7 @@ Cover and closing image: generated studio artwork from the first release. Film: 
 
 ## Release status
 
-[SLtowl/sl-ui-library](https://github.com/SLtowl/sl-ui-library) is public. The plugin archive and Claude Code repository marketplace are available. A public ChatGPT Plugins Directory listing has not been submitted or approved. No analytics collection is enabled.
+[SLtowl/sl-ui-library](https://github.com/SLtowl/sl-ui-library) is public. The plugin archive and Claude Code repository marketplace are available. A public ChatGPT Plugins Directory listing has not been submitted or approved. Version 1.2.3 adds optional analytics with separate website and plugin consent. Component source and interaction behavior are unchanged.
 
 ## License
 

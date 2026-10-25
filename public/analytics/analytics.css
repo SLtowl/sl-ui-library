@@ -1,0 +1,10 @@
+.analytics-choice{position:fixed;z-index:10000;bottom:22px;left:22px;width:min(440px,calc(100vw - 44px));box-sizing:border-box;padding:20px;border:1px solid #d7e0e9;border-radius:20px;background:#f7f9fc;color:#314355;box-shadow:0 12px 40px #1c314222;font:14px/1.5 'Instrument Sans',sans-serif}
+.analytics-choice[hidden],.analytics-choice button[hidden]{display:none}
+.analytics-choice p{margin:0 0 14px}.analytics-choice strong,.analytics-choice span{display:block}.analytics-choice strong{margin-bottom:4px;font-size:16px}
+.analytics-choice button,.analytics-privacy{appearance:none;padding:9px 13px;border:1px solid #c4d0dd;border-radius:10px;background:#fff;color:#314355;font:inherit;cursor:pointer}
+.analytics-choice button{margin:0 8px 0 0}.analytics-choice button:hover,.analytics-privacy:hover{background:#e4ebf3}
+.analytics-choice button:focus-visible,.analytics-privacy:focus-visible{outline:2px solid #57769a;outline-offset:3px}
+.analytics-choice button:disabled{opacity:.5;cursor:default}
+.analytics-privacy{position:fixed;z-index:9999;left:20px;bottom:18px;font:12px/1.4 'Instrument Sans',sans-serif;background:#f7f9fc}
+.help-plugin-download{display:inline-block;margin-top:12px;color:#45648a;text-underline-offset:4px}
+.analytics-policy{display:block;margin-top:12px;color:#45648a;text-underline-offset:3px}

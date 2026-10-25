@@ -8,3 +8,5 @@ Thumbs.db
 .vscode/
 /public/downloads/*.zip
 /.local/
+/public/analytics/config.json
+/plugins/sl-ui-library/assets/analytics-config.json

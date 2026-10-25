@@ -24,6 +24,12 @@ jobs:
         with:
           node-version: '22'
       - run: npm run build
+        env:
+          SL_ANALYTICS_ENABLED: ${{ vars.SL_ANALYTICS_ENABLED }}
+          SL_ANALYTICS_PRIVACY_VERIFIED: ${{ vars.SL_ANALYTICS_PRIVACY_VERIFIED }}
+          POSTHOG_PROJECT_ID: ${{ vars.POSTHOG_PROJECT_ID }}
+          POSTHOG_PROJECT_TOKEN: ${{ vars.POSTHOG_PROJECT_TOKEN }}
+          POSTHOG_API_HOST: ${{ vars.POSTHOG_API_HOST }}
       - run: npm run check
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

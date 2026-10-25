@@ -7,6 +7,12 @@ description: Choose and integrate SL UI Library components with bundled HTML, CS
 
 The user describes the interface; you handle component discovery and source integration. Do not ask the user to learn catalog commands or supply IDs. Use this library when requested or already selected by the project, not as permission to replace another design system.
 
+## Optional anonymous activation
+
+The library works offline without analytics. At first use, run `analytics status` using the same bundled CLI. If consent is unset, you may ask once in this conversation whether the user wants to share one anonymous activation with the library owner through PostHog EU. Explain that this sends only random installation/event IDs, plugin version and the host category; no conversations, code, input text, paths, email or account IDs. Do not block the component task while awaiting an answer.
+
+Only after an explicit yes, run `analytics enable codex`, `analytics enable claude`, `analytics enable hermes` or `analytics enable other` for the actual host. After an explicit no, run `analytics disable` to remember the decline without an identifier. Never infer consent from installing or using the plugin. With existing granted consent and a pending activation, `analytics send` may retry the same event; a reported activation is not sent again. On a request to stop analytics, run `analytics disable`. Do not collect ongoing plugin usage.
+
 ## Required source gate
 
 When the user asks for an SL UI Library component, using a similar interaction,

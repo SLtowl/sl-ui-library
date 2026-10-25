@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Analytics privacy — SL UI Library</title>
+<style>body{max-width:720px;margin:60px auto;padding:0 24px;background:#f5f7fa;color:#314355;font:17px/1.7 system-ui,sans-serif}a{color:#45648a}h1,h2{line-height:1.2}h2{font-size:22px;margin-top:32px}</style>
+<main><a href="../">Back to the library</a><h1>Optional analytics</h1>
+<p>SL UI Library uses PostHog EU to understand visits, component interest and download clicks. Collection starts only after you choose Allow analytics. Choose Privacy, then Decline to stop future collection and clear the local analytics identifiers. Global Privacy Control and Do Not Track are respected.</p>
+<h2>What is sent</h2><p>A random browser and session ID, fixed Home/Catalog page names, a broad referral category, library version, and IDs, palettes and source formats of components you inspect, copy or download. These IDs are not connected to an account. The service processes network requests; IP storage is disabled and events request no GeoIP enrichment.</p>
+<h2>What stays private</h2><p>No recordings, automatic DOM capture, conversation content, copied source code, form input, search text, full referral links or URL query strings. Component ZIPs contain no analytics. You can use the full library after declining.</p>
+<h2>Plugin activation</h2><p>The plugin is offline by default. Separately agreeing to activation reporting sends one random installation ID, event ID, plugin version and host category. It does not track ongoing use. Ask your agent to disable analytics, or run the bundled CLI with analytics disable, to clear that preference's identifiers.</p>
+<h2>Understanding the numbers</h2><p>Visits count consenting browsers. ZIP clicks do not prove a completed download. Consented activations do not represent all installations. Declined analytics, blocked requests, older plugin versions and direct GitHub downloads are not included in those counts.</p>
+<p>The owner views reports in a private PostHog project. <a href="https://posthog.com/privacy">PostHog privacy policy</a>.</p></main></html>
