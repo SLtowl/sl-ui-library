@@ -1,8 +1,8 @@
 import {setPreviewPalette,paletteControls} from './catalog-palettes.mjs';
 import {loadPalettePackage,loadPaletteSource} from './catalog-export.mjs';
+import {mountReliefCTA} from './hero-controls.mjs';
 import '../../packages/copy/buttons.js';
 const formats=[['HTML','index.html'],['CSS','buttons.css'],['JavaScript','example.js'],['React','Component.jsx'],['Next.js','NextClient.jsx']];
-const track=(event,input)=>window.dispatchEvent(new CustomEvent('sl:analytics',{detail:{event,input}}));
 
 // Source remains literal text; line numbers are CSS counters, never copied content.
 function paintCode(code,text,file){
@@ -24,11 +24,8 @@ export function mountSourceDialog(root,onClose,onPaletteChange=()=>{}){
   // Retain at most the three finished palettes of the last component. Public
   // source can be reopened instantly; partial/failed loads are never cached.
   const bundles=new Map();
-  const copyController=window.MatteCopy.mount(copy,{getText:()=>sourceText,feedback:status,writeText:async text=>{
-    const input={componentId:component.id,palette,format:formats.find(([,name])=>name===file)?.[0]};
-    if(!navigator.clipboard?.writeText)throw new Error('Clipboard unavailable.');
-    await navigator.clipboard.writeText(text);track('source_copied',input);
-  }});
+  const copyController=window.MatteCopy.mount(copy,{getText:()=>sourceText,feedback:status});
+  mountReliefCTA(help.querySelector('.help-plugin-download'));
   copy.disabled=true;
   for(const modal of [dialog,help]){
     modal.querySelector('[data-close]').addEventListener('click',()=>modal.close());
@@ -79,7 +76,6 @@ export function mountSourceDialog(root,onClose,onPaletteChange=()=>{}){
   tabs.addEventListener('keydown',event=>{const buttons=[...tabs.children],i=buttons.indexOf(document.activeElement);let next;if(event.key==='ArrowRight')next=(i+1)%buttons.length;if(event.key==='ArrowLeft')next=(i+buttons.length-1)%buttons.length;if(event.key==='Home')next=0;if(event.key==='End')next=buttons.length-1;if(next!==undefined){event.preventDefault();buttons[next].focus();buttons[next].click();}});
   download.addEventListener('click',()=>{
     if(!bundle)return;
-    track('component_zip_clicked',{componentId:component.id,palette});
     const url=URL.createObjectURL(bundle.blob),anchor=document.createElement('a');anchor.href=url;anchor.download=bundle.filename;document.body.append(anchor);anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
   });
   root.querySelector('#reset-preview').addEventListener('click',mountPreview);
@@ -88,7 +84,6 @@ export function mountSourceDialog(root,onClose,onPaletteChange=()=>{}){
     open(next,selectedPalette='white',category='Component'){
       if(component!==next)bundles.clear();
       component=next;palette=selectedPalette;file='index.html';
-      track('component_opened',{componentId:component.id,palette});
       root.querySelector('#inspector-name').textContent=component.name;root.querySelector('#inspector-description').textContent=component.description;root.querySelector('#inspector-category').textContent=category;
       if(!dialog.open)dialog.showModal();document.documentElement.classList.add('catalog-dialog-open');load();mountPreview();
     },

@@ -42,15 +42,10 @@ test('page URL and traffic never include Unicode searches, tokens or paths',asyn
   for(const forbidden of [secret,'secret=','token=','private/repo','example.com'])assert.equal(body.includes(forbidden),false);
   assert.equal(p.properties.$process_person_profile,false);
 });
-test('only published component IDs, supported palettes and formats pass',async()=>{
+test('component interactions are never collected, including valid published metadata',async()=>{
   const f=fixture();
-  for(const input of [{componentId:'unknown',palette:'white'},{componentId:'copy',palette:'red'},{componentId:'copy',palette:'white',format:'TypeScript'}]) {
-    assert.equal(await f.capture('source_copied',input),false);
-  }
+  for(const event of ['component_opened','source_copied','component_zip_clicked'])for(const palette of ['white','black','blue'])assert.equal(await f.capture(event,{componentId:'copy',palette,format:'HTML'}),false);
   assert.equal(f.calls.length,0);assert.equal(f.allocated(),0);
-  for(const palette of ['white','black','blue'])for(const format of ['HTML','CSS','JavaScript','React','Next.js'])assert.equal(await f.capture('source_copied',{componentId:'copy',palette,format,code:'SECRET source'}),true);
-  assert.equal(f.calls.length,15);
-  assert.equal(f.calls.some(c=>c.options.body.includes('SECRET source')),false);
 });
 test('unknown events, identify and activation cannot leak through website channel',async()=>{
   const f=fixture();
@@ -82,15 +77,37 @@ test('production destination is fixed; cookies and raw referrer are omitted',asy
   assert.equal(f.calls[0].options.referrerPolicy,'no-referrer');
   assert.equal(f.calls[0].options.redirect,'error');
 });
-test('identity remains stable after consent and is dropped after withdrawal',async()=>{
-  const f=fixture();
+test('website sends daily server-hash sentinel and no browser or session identity',async()=>{
+  const identity=randomUUID(),f=fixture({identity,userAgent:'Browser QA 1.0'});
   await f.capture('$pageview',{page:'home'});await f.capture('$pageview',{page:'catalog'});
-  assert.equal(f.calls[0].payload.distinct_id,f.calls[1].payload.distinct_id);
-  assert.equal(f.calls[0].payload.properties.$session_id,f.calls[1].payload.properties.$session_id);
+  for(const {payload} of f.calls){
+    assert.equal(payload.distinct_id,'$posthog_cookieless');
+    assert.equal(payload.properties.$cookieless_mode,true);
+    assert.equal(payload.properties.collection_mode,'cookieless');
+    assert.equal(payload.properties.$host,'sltowl.github.io');
+    assert.equal(payload.properties.$raw_user_agent,'Browser QA 1.0');
+    assert.equal(payload.properties.$session_id,undefined);
+    assert.equal(payload.properties.$ip,undefined);
+    assert.equal(JSON.stringify(payload).includes(identity),false);
+  }
+  assert.equal(f.allocated(),2,'only independent event UUIDs are allocated');
+  assert.notEqual(f.calls[0].payload.uuid,f.calls[1].payload.uuid);
+  assert.deepEqual(f.identifiers(),{});
   f.setConsent(false);assert.deepEqual(f.identifiers(),{});
   assert.equal(await f.capture('$pageview',{page:'home'}),false);
-  f.setConsent(true);await f.capture('$pageview',{page:'home'});
-  assert.notEqual(f.calls[2].payload.distinct_id,f.calls[0].payload.distinct_id);
+});
+test('plugin retains a stable consented installation identity and no cookieless metadata',async()=>{
+  const identity=randomUUID(),f=fixture({channel:'plugin',identity,userAgent:'Browser QA'});
+  await f.capture('plugin_activated',{host:'codex'});
+  await f.capture('plugin_activated',{host:'codex'});
+  for(const {payload} of f.calls){
+    assert.equal(payload.distinct_id,identity);
+    assert.equal(payload.properties.collection_mode,undefined);
+    assert.equal(payload.properties.$cookieless_mode,undefined);
+    assert.equal(payload.properties.$host,undefined);
+    assert.equal(payload.properties.$raw_user_agent,undefined);
+  }
+  f.setConsent(false);assert.deepEqual(f.identifiers(),{});
 });
 test('withdrawal aborts in-flight work without sending an opt-out event',async()=>{
   let signal;

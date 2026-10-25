@@ -1,14 +1,8 @@
 // No SDK/autocapture: only explicitly allowlisted events can reach the transport.
 const allowedHosts = new Set(['https://eu.i.posthog.com','https://us.i.posthog.com']);
-const websiteEvents = new Set(['$pageview','component_opened','source_copied','component_zip_clicked','plugin_zip_clicked']);
-const palettes = new Set(['white','black','blue']);
-const formats = new Set(['HTML','CSS','JavaScript','React','Next.js']);
+const websiteEvents = new Set(['$pageview','plugin_zip_clicked']);
 const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const canonicalURL = 'https://sltowl.github.io/sl-ui-library/';
-export function sessionUUID(randomUUID,now) {
- const random=randomUUID().replaceAll('-',''),time=Math.trunc(now).toString(16).padStart(12,'0').slice(-12);
- return time.slice(0,8)+'-'+time.slice(8)+'-7'+random.slice(13,16)+'-'+random.slice(16,20)+'-'+random.slice(20);
-}
 
 export function configurationReady(config) {
   return config?.enabled===true && config.privacyVerified===true &&
@@ -40,14 +34,6 @@ export function eventProperties(event,input,{channel,componentIds,version,enviro
     if (!['home','catalog'].includes(input.page)) return null;
     return {...properties,page:input.page,$current_url:canonicalURL+(input.page==='catalog'?'#catalog':''),traffic_source:trafficSource(input.referrer)};
   }
-  if (['component_opened','source_copied','component_zip_clicked'].includes(event)) {
-    if (!componentIds.has(input.componentId) || !palettes.has(input.palette)) return null;
-    properties.component_id=input.componentId; properties.palette=input.palette;
-    if (event==='source_copied') {
-      if (!formats.has(input.format)) return null;
-      properties.format=input.format;
-    }
-  }
   if (event==='plugin_activated') {
     if (!['claude','codex','hermes','other'].includes(input.host)) return null;
     properties.host=input.host;
@@ -55,30 +41,28 @@ export function eventProperties(event,input,{channel,componentIds,version,enviro
   return properties;
 }
 
-// The production wrapper must persist consent and supply its existing random ID
-// only after consent. Never pass a username, path, hardware ID or host account ID.
-export function createAnalytics({config={},channel='website',componentIds=new Set(),fetcher=globalThis.fetch,
+// Website IDs are computed at ingestion for one day, never persisted here.
+// The plugin must receive explicit consent before creating an installation ID.
+export function createAnalytics({config={},channel='website',fetcher=globalThis.fetch,
   randomUUID=()=>globalThis.crypto.randomUUID(),now=Date.now,privacySignal=()=>false,
-  consent=false,identity,sessionId,timeoutMs=1500}={}) {
-  config={...config}; componentIds=new Set(componentIds);
+  consent=false,identity,userAgent='',timeoutMs=1500}={}) {
+  config={...config};
   let allowed=consent===true,distinctId=uuidPattern.test(identity??'')?identity:undefined;
-  let session=uuidPattern.test(sessionId??'')?sessionId:undefined;
   let budgetStart=0,sentInMinute=0;
   const requests=new Set();
   function setConsent(value) {
     allowed=value===true;
     if (!allowed) {
       for(const controller of requests)controller.abort();
-      distinctId=undefined;session=undefined;
+      distinctId=undefined;
     }
   }
-  function identifiers() { return allowed?{identity:distinctId,sessionId:session}:{}; }
-  function setSessionId(value) { if(allowed && uuidPattern.test(value??''))session=value; }
+  function identifiers() { return allowed&&channel==='plugin'?{identity:distinctId}:{}; }
   async function capture(event,input={},options={}) {
     let controller,timer;
     try {
       if (!allowed || !configurationReady(config) || privacySignal() || typeof fetcher!=='function') return false;
-      const properties=eventProperties(event,input,{channel,componentIds,version:config.version,environment:config.environment});
+      const properties=eventProperties(event,input,{channel,version:config.version,environment:config.environment});
       if (!properties || requests.size>=4) return false;
       const time=now();
       if (!Number.isFinite(time)) return false;
@@ -87,14 +71,18 @@ export function createAnalytics({config={},channel='website',componentIds=new Se
       // The optional UUID lets the plugin reuse the same event after a retry.
       const eventId=options.eventId??randomUUID();
       if (!uuidPattern.test(eventId)) return false;
-      distinctId??=randomUUID();
-      if (!uuidPattern.test(distinctId)) return false;
       if (channel==='website') {
-        session??=sessionUUID(randomUUID,time);
-        if (!uuidPattern.test(session)) return false;
-        properties.$session_id=session;
+        // Both the sentinel and mode marker are required by ingestion. Verified
+        // against posthog-js 1.438.21 and stored-event QA, not HTTP acceptance.
+        properties.$cookieless_mode=true;
+        properties.collection_mode='cookieless';
+        properties.$host='sltowl.github.io';
+        if(typeof userAgent==='string'&&userAgent)properties.$raw_user_agent=userAgent.slice(0,1024);
+      } else {
+        distinctId??=randomUUID();
+        if (!uuidPattern.test(distinctId)) return false;
       }
-      const payload={api_key:config.projectToken,event,distinct_id:distinctId,uuid:eventId,
+      const payload={api_key:config.projectToken,event,distinct_id:channel==='website'?'$posthog_cookieless':distinctId,uuid:eventId,
         timestamp:new Date(time).toISOString(),properties};
       controller=new AbortController(); requests.add(controller); sentInMinute++;
       // A stalled collector must never stall an interaction or keep a Node host alive.
@@ -109,5 +97,5 @@ export function createAnalytics({config={},channel='website',componentIds=new Se
     } catch { return false; }
     finally {clearTimeout(timer);if(controller)requests.delete(controller);}
   }
-  return {capture,setConsent,identifiers,setSessionId};
+  return {capture,setConsent,identifiers};
 }

@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "sl-ui-library",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Find SL UI components with HTML, CSS, JavaScript, React and Next.js exports. Adapt their palette and preserve source behavior.",
   "author": {
     "name": "SLtowl"
