@@ -76,9 +76,10 @@ COMP_COLLECTIONS.inputs=[
 COMP_COLLECTIONS.selection=[
   {id:'product',name:'Product',desc:'Switches you can feel change things',art:'<span class="pa"><span class="pa-field pt-field"><span>Do not disturb</span><i class="pt-sw"></i></span><span class="pa-bar pt-bar"><i></i><b>Monthly</b><b>Yearly</b></span></span>'},
   {id:'matte',name:'Matte',desc:'Everyday switches and segmented controls',art:'<span class="pa pa-row"><span class="mt on"></span><span class="mt"></span></span>'}];
+const coverCheck = '<svg viewBox="0 0 20 20"><path d="M5 10l3.25 3.25L15 6.5"/></svg>';
 COMP_COLLECTIONS.checkboxes=[
-  {id:'product',name:'Product',desc:'Checkboxes that do what the choice needs',art:'<span class="pa"><span class="pa-field ct-field"><i class="ct-box"><svg viewBox="0 0 22 22"><path pathLength="1" d="M6 11.5l3.5 3.5L16 7.5"/></svg></i><span class="ct-text">Review the contract</span></span><span class="pa-bar"><b>2 of 3 done</b></span></span>'},
-  {id:'matte',name:'Matte',desc:'Everyday checkboxes and radio groups',art:'<span class="pa pa-row"><i class="mc" style="--k:0"><svg viewBox="0 0 22 22"><path pathLength="1" d="M6 11.5l3.5 3.5L16 7.5"/></svg></i><i class="mc" style="--k:1"><svg viewBox="0 0 22 22"><path pathLength="1" d="M6 11.5l3.5 3.5L16 7.5"/></svg></i><i class="mc" style="--k:2"><svg viewBox="0 0 22 22"><path pathLength="1" d="M6 11.5l3.5 3.5L16 7.5"/></svg></i></span>'}];
+  {id:'product',name:'Product',desc:'Checkboxes that do what the choice needs',art:`<span class="pa"><span class="pa-field ct-field"><i class="ct-box">${coverCheck}</i><span class="ct-text">Review the contract</span></span><span class="pa-bar ct-progress"><b>2 of 3 done</b></span></span>`},
+  {id:'matte',name:'Matte',desc:'Everyday checkboxes and radio groups',art:`<span class="pa pa-row ct-matte"><i class="mc"></i><i class="mc checked">${coverCheck}</i><i class="mc radio"></i></span>`}];
 COMP_COLLECTIONS.sliders=[
   {id:'product',name:'Product',desc:'Sliders that show what they change',art:'<span class="pa"><span class="pa-field st-field"><span>Volume</span><i class="st-rail"><u></u></i></span><span class="pa-bar"><b>$1,200</b></span></span>'},
   {id:'matte',name:'Matte',desc:'Everyday sliders and ranges',art:'<span class="pa"><i class="st-rail"><u></u></i></span>'}];
@@ -91,14 +92,14 @@ function buildComponents(enter){
   dock.classList.remove('away');groupIds=groups.map(g=>g.id);if(!groupIds.includes(state.cat))state.cat=groupIds[0];const g=groups.find(x=>x.id===state.cat),items=(state.q?hits:g.items).slice(0,PEEK?12:Infinity);
   const sets=!state.q&&!PEEK&&COMP_COLLECTIONS[g.id],set=sets&&sets.find(x=>x.id===state.coll);
   if(sets&&!set){state.coll='';const s=document.createElement('section');s.className='shelf';s.toggleAttribute('data-enter',enter);s.innerHTML=`<div class="shelf-head"><h2>${g.label}</h2><span>${sets.length} collections</span></div><div class="collections">${sets.map(x=>`<button class="collection" type="button" data-coll="${x.id}" aria-label="Open ${x.name} buttons"><span class="peek art" aria-hidden="true">${x.art}</span><span class="about"><b>${x.name}</b><i>${x.desc}</i></span><span class="formats">${(n=>n+" "+(n===1?g.label.toLowerCase().replace(/(x)es$|s$/,"$1"):g.label.toLowerCase()))(g.items.filter(c=>collectionOf(c)===x.id).length)}</span></button>`).join('')}</div>`;main.append(s);
-    const sig=groupIds.join();if(sig!==dockSig){dockSig=sig;for(const b of [...dock.querySelectorAll('button')])b.remove();dock.append(...groups.map((x,i)=>{const b=document.createElement('button');b.type='button';b.dataset.go=i;b.innerHTML=`<span>${x.id==='data-display'?'Data':x.label}</span>`;return b}));measureDock();setDock(groupIds.indexOf(state.cat),true)}else setDock(groupIds.indexOf(state.cat));return}
+    updateDock(groups);return}
   const list=set?items.filter(c=>collectionOf(c)===set.id):items;
   const s=document.createElement('section');s.className='shelf';s.toggleAttribute('data-enter',enter);s.style.setProperty('--min',state.q?300:MIN_CARD_WIDTH[g.id]||300);s.innerHTML=`<div class="shelf-head">${set?'<button class="back" type="button" data-back aria-label="All collections"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 6.5-5.5 5.5 5.5 5.5"/></svg></button>':''}<h2>${state.q?'Results':set?set.name:g.label}</h2><span>${list.length}</span></div><div class="track"></div>`;s.querySelector('.track').append(...list.map(makeCard));
   const cards=s.querySelectorAll('.card');
   if(enter)cards.forEach((card,i)=>card.style.setProperty('--i',Math.min(i,12)));
   main.append(s);
   cards.forEach(card=>previewsInView.observe(card));
-  const sig=groupIds.join();if(sig!==dockSig){dockSig=sig;for(const b of [...dock.querySelectorAll('button')])b.remove();dock.append(...groups.map((x,i)=>{const b=document.createElement('button');b.type='button';b.dataset.go=i;b.innerHTML=`<span>${x.id==='data-display'?'Data':x.label}</span>`;return b}));measureDock();setDock(groupIds.indexOf(state.cat),true)}else setDock(groupIds.indexOf(state.cat));
+  updateDock(groups);
 }
 function moveSectionKnob(instant){const knob=$('#secKnob'),b=document.querySelector('.sections [aria-current]');if(!knob||!b)return;if(instant)knob.style.transition='none';knob.style.width=b.offsetWidth+'px';knob.style.transform=`translateX(${b.offsetLeft}px)`;if(instant){knob.offsetWidth;knob.style.transition=''}}
 function build(initial=false){
@@ -109,32 +110,69 @@ function build(initial=false){
 function saveUrl(push){const p=new URLSearchParams();if(!state.q&&state.cat&&state.cat!=='buttons')p.set('cat',state.cat);if(!state.q&&state.coll)p.set('coll',state.coll);if(state.q)p.set('q',state.q);if(sheet.dataset.id)p.set('open',sheet.dataset.id);history[push?'pushState':'replaceState'](null,'',location.pathname+(p.size?'?'+p:''))}
 
 const S={active:-1};
-const dock=$('#dock'),dockKnob=$('#dockKnob');
-// Cache both real states, including the selected font weight and fractional widths.
-// Buttons keep their natural widths and scroll rather than shrinking under this cache.
-function measureDock(){
-  dock.classList.add('still');const btns=[...dock.querySelectorAll('button')];
-  btns.forEach(b=>b.classList.remove('on'));
-  S.bases=btns.map(b=>b.getBoundingClientRect().width);
-  S.dockStart=btns[0]?.offsetLeft||0;
-  btns.forEach(b=>b.classList.add('on'));
-  S.expanded=btns.map(b=>b.getBoundingClientRect().width);
-  btns.forEach(b=>b.classList.remove('on'));S.active=-1;
+const dock=$('#dock'),dockScroll=dock.querySelector('.dock-scroll'),dockKnob=$('#dockKnob');
+function updateDock(groups) {
+  const signature=groupIds.join();
+  const rebuild=signature!==dockSig;
+  if(rebuild){
+    dockSig=signature;
+    dockScroll.querySelectorAll('button').forEach(button=>button.remove());
+    for(const [index,group] of groups.entries()){
+      const button=document.createElement('button');
+      const label=document.createElement('span');
+      button.type='button';
+      button.dataset.go=index;
+      label.textContent=group.id==='data-display'?'Data':group.label;
+      button.append(label);
+      dockScroll.append(button);
+    }
+    measureDock();
+  }
+  setDock(groupIds.indexOf(state.cat),rebuild);
 }
-function setDock(i,instant){
-  const btns=dock.querySelectorAll('button');if(i<0||i>=btns.length||i===S.active)return;
-  S.active=i;btns.forEach((b,n)=>b.classList.toggle('on',n===i));
-  const left=S.dockStart+S.bases.slice(0,i).reduce((sum,w)=>sum+w,0);
-  dockKnob.style.width=S.expanded[i]+'px';dockKnob.style.transform=`translateX(${left}px)`;
-  if(instant){dock.offsetWidth;dock.classList.remove('still')}
-  if(dock.scrollWidth>dock.clientWidth){
-    const minLeft=left+S.expanded[i]+S.dockStart-dock.clientWidth;
-    const maxLeft=left-S.dockStart;
-    const nextLeft=Math.max(0,minLeft,Math.min(dock.scrollLeft,maxLeft));
-    if(Math.abs(nextLeft-dock.scrollLeft)>1) dock.scrollTo({left:nextLeft,behavior:instant||calm.matches?'instant':'smooth'});
+// Measure both button states with fractional widths before starting the transition.
+function measureDock() {
+  dock.classList.add('still');
+  const buttons=[...dockScroll.querySelectorAll('button')];
+  buttons.forEach(button=>button.classList.remove('on'));
+  S.bases=buttons.map(button=>button.getBoundingClientRect().width);
+  S.inset=parseFloat(getComputedStyle(dockScroll).paddingInlineStart);
+  buttons.forEach(button=>button.classList.add('on'));
+  S.expanded=buttons.map(button=>button.getBoundingClientRect().width);
+  buttons.forEach(button=>button.classList.remove('on'));
+  S.active=-1;
+}
+function revealDockSelection(left,width,instant) {
+  if(dockScroll.scrollWidth<=dockScroll.clientWidth)return;
+  const minLeft=left+width+S.inset-dockScroll.clientWidth;
+  const maxLeft=left-S.inset;
+  const nextLeft=Math.max(0,minLeft,Math.min(dockScroll.scrollLeft,maxLeft));
+  if(Math.abs(nextLeft-dockScroll.scrollLeft)>.5){
+    dockScroll.scrollTo({left:nextLeft,behavior:instant||calm.matches?'instant':'smooth'});
   }
 }
-function refreshDock(){if(!dock.querySelector('button'))return;measureDock();setDock(groupIds.indexOf(state.cat),true)}
+function setDock(index,instant) {
+  const buttons=dockScroll.querySelectorAll('button');
+  if(index<0||index>=buttons.length||index===S.active)return;
+  S.active=index;
+  buttons.forEach((button,i)=>button.classList.toggle('on',i===index));
+  const left=S.inset+S.bases.slice(0,index).reduce((sum,width)=>sum+width,0);
+  const width=S.expanded[index];
+  const start=index===0?S.inset:0;
+  const end=index===buttons.length-1?S.inset:0;
+  dockKnob.style.width=width+start+end+'px';
+  dockKnob.style.transform=`translateX(${left-start}px)`;
+  if(instant){dock.offsetWidth;dock.classList.remove('still')}
+  revealDockSelection(left,width,instant);
+}
+// Recheck the edges once the active button has finished growing.
+dockScroll.addEventListener('transitionend',event=>{
+  if(!event.target.matches('button.on')||!event.propertyName.startsWith('padding'))return;
+  const button=event.target.getBoundingClientRect();
+  const viewport=dockScroll.getBoundingClientRect();
+  revealDockSelection(button.left-viewport.left+dockScroll.scrollLeft,button.width,true);
+});
+function refreshDock(){if(!dockScroll.querySelector('button'))return;measureDock();setDock(groupIds.indexOf(state.cat),true)}
 addEventListener('resize',refreshDock,{passive:true});
 
 // Code sheet

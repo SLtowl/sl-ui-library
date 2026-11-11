@@ -39,26 +39,28 @@ h2{margin:0;font-size:26px;font-weight:600;letter-spacing:-.025em}
 section>p{margin:8px 0 22px;font-size:16px;line-height:1.6;color:var(--muted)}
 /* The terminal: a light window with the agent tabs in its bar and the command on a prompt line. */
 .term{overflow:hidden;border-radius:18px;background:var(--surface);box-shadow:0 0 0 1px var(--line),var(--shadow-2)}
-.term-bar{display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;background:var(--n2);box-shadow:inset 0 -1px 0 var(--line)}
+.term-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:8px 8px 8px 14px;background:var(--n2);box-shadow:inset 0 -1px 0 var(--line)}
 .dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:var(--n6)}
-.tabs{position:relative;display:flex;gap:2px;margin-left:8px;padding:3px;border-radius:11px;background:var(--chip)}
+.tabs{position:relative;display:flex;flex:none;gap:2px;margin-left:8px;padding:3px;border-radius:11px;background:var(--chip)}
 .tab-plate{position:absolute;top:3px;left:0;height:30px;border-radius:8px;background:var(--surface);box-shadow:var(--shadow-1);transition:translate .4s cubic-bezier(.3,1.2,.4,1),width .4s cubic-bezier(.3,1.2,.4,1)}
 .tabs button{position:relative;z-index:1;height:30px;padding:0 12px;border-radius:8px;font-size:13.5px;color:var(--muted);transition:color .2s var(--out),background .2s var(--out),box-shadow .2s var(--out)}
 .tabs button:hover{color:var(--ink)}
 .tabs button[aria-selected=true]{color:var(--ink)}
-.copy{margin-left:auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:84px;height:34px;padding:0 12px;border-radius:10px;color:var(--accent-ink);background:var(--accent);font-size:13.5px;font-weight:600;transition:background .25s var(--out),transform .25s var(--out)}
-.copy:hover{background:var(--accent-hi)}
-.copy:active{transform:scale(.97);transition-duration:.08s}
+.term-action{margin-left:auto;display:inline-flex;align-items:center;justify-content:center;flex:none;gap:6px;width:114px;height:34px;padding:0 10px;text-decoration:none;white-space:nowrap;border-radius:10px;color:var(--accent-ink);background:var(--accent);font-size:13.5px;font-weight:600;transition:background .25s var(--out),transform .25s var(--out)}
+.term-action:hover{background:var(--accent-hi)}
+.term-action:active{transform:scale(.97);transition-duration:.08s}
 .copy svg{display:none;width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .copy[data-state=done] svg{display:block}
 .copy[data-state=done] svg path{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .45s var(--out) forwards}
 @keyframes draw{to{stroke-dashoffset:0}}
+.term-panels{display:grid}
+.term-panels > *{grid-area:1/1;min-width:0}
+#cmdBox[hidden]{display:flex!important;visibility:hidden}
 .term-body{display:flex;gap:12px;padding:20px 22px 22px;font:14px/1.75 'Cascadia Code',ui-monospace,Consolas,monospace;font-variant-ligatures:none}
 .term-body .prompt{color:var(--faint);user-select:none}
 .term-body .cmd{flex:1;min-width:0;overflow-wrap:anywhere;color:var(--ink)}
-.zip{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:20px 22px 22px}
+.zip{display:flex;align-items:center;padding:20px 22px 22px}
 .zip p{margin:0;font-size:15px;color:var(--muted)}
-.zip .btn{height:42px;padding:0 18px;border-radius:11px;font-size:14.5px}
 .note{display:flex;gap:10px;align-items:flex-start;margin:14px 0 0;padding:12px 14px;border-radius:14px;font-size:14px;line-height:1.5;color:var(--muted);background:var(--n2);box-shadow:inset 0 0 0 1px var(--line)}
 .note svg{flex:none;width:17px;height:17px;margin-top:1px;fill:none;stroke:var(--faint);stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
 /* The request, shown the way it looks in a chat with the agent. */
@@ -81,8 +83,8 @@ section>p{margin:8px 0 22px;font-size:16px;line-height:1.6;color:var(--muted)}
 .formats span{display:block;margin-top:5px;font-size:14px;line-height:1.5;color:var(--muted)}
 .formats code{font:12.5px 'Cascadia Code',ui-monospace,Consolas,monospace;font-variant-ligatures:none;color:var(--accent-text)}
 /* Motion. Each block plays once as it comes into view; nothing moves for people who turned motion off. */
-.cmd{position:relative;display:block}
-.cmd .ghost{visibility:hidden}
+.cmd{position:relative;display:grid}
+.cmd .ghost{visibility:hidden;grid-area:1/1}
 .cmd .typed{position:absolute;inset:0}
 .caret{display:inline-block;width:.55em;height:1.15em;margin-left:1px;vertical-align:-.2em;background:var(--accent);animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
@@ -111,7 +113,8 @@ section>p{margin:8px 0 22px;font-size:16px;line-height:1.6;color:var(--muted)}
 .ways i svg *{transform-box:fill-box;transform-origin:center}
 @media(prefers-reduced-motion:reduce){.chat .msg,.steps li::before,.steps li>div,.formats div{opacity:1;translate:0 0;scale:1}.steps li:not(:last-child)::after{scale:1 1}.caret{animation:none}}
 @media(max-width:900px){.docs{grid-template-columns:minmax(0,1fr)}.toc{display:none}.ways{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:560px){.tabs{margin-left:0}.dots{display:none}.term-body{padding:16px}}
+@media(max-width:560px){.tabs{margin-left:0}.dots{display:none}.term-body,.zip{padding:16px}}
+@media(max-width:420px){.term-bar{gap:6px;padding:8px}.tabs button{padding-inline:7px;font-size:12px}.term-action{width:102px;font-size:12px}}
 ::selection{background:#dce4ed;color:#2e3b49;text-shadow:none}
 /* Going to the catalog: the same drop as the home page. */
 body>:not(#field):not(.top),.top,#field{transition:transform .42s cubic-bezier(.6,0,.85,.3),opacity .32s cubic-bezier(.6,0,.85,.3) .08s}
@@ -151,10 +154,13 @@ html.enter main>section:first-of-type{animation:in-rise .8s var(--in) .56s both}
       <div class="term">
         <div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
           <div class="tabs" role="tablist" aria-label="Agent"><span class="tab-plate" aria-hidden="true"></span><button type="button" role="tab" data-t="claude" aria-selected="true">Claude Code</button><button type="button" role="tab" data-t="codex" aria-selected="false">Codex</button><button type="button" role="tab" data-t="zip" aria-selected="false">ZIP</button></div>
-          <button class="copy" type="button" id="copy"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M5 12.8 10 18 19 7"/></svg><span id="copyText">Copy</span></button>
+          <button class="term-action copy" type="button" id="copy"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M5 12.8 10 18 19 7"/></svg><span id="copyText">Copy</span></button>
+          <a class="term-action" id="download-zip" href="../downloads/sl-ui-library-plugin.zip" download hidden>Download ZIP</a>
         </div>
-        <div class="term-body" id="cmdBox"><span class="prompt" aria-hidden="true">$</span><code class="cmd"><span class="ghost" id="ghost"></span><span class="typed" id="cmd"></span></code></div>
-        <div class="zip" id="zipBox" hidden><p>Upload the ZIP in Claude under Customize, then Plugins</p><a class="btn btn-main" href="../downloads/sl-ui-library-plugin.zip" download>Download ZIP</a></div>
+        <div class="term-panels">
+          <div class="term-body" id="cmdBox"><span class="prompt" aria-hidden="true">$</span><code class="cmd"><span class="ghost" id="ghost-claude" aria-hidden="true"></span><span class="ghost" id="ghost-codex" aria-hidden="true"></span><span class="typed" id="cmd"></span></code></div>
+          <div class="zip" id="zipBox" hidden><p>Upload the ZIP in Claude under Customize, then Plugins</p></div>
+        </div>
       </div>
       <p class="note"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.75"/><path d="M12 11v5M12 8h.01"/></svg><span id="note"></span></p>
     </section>

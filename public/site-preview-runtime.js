@@ -4,6 +4,7 @@ import {menuPresentation} from './experiments/library-shell/menu-presentations.m
 import {inputPresentation} from './experiments/library-shell/input-presentations.mjs';
 import { previews, loadPreview } from './site-preview-data.js';
 
+const centeredOverlayLaunch = '.overlay-demo:not([data-open="true"]) .overlay-launch { align-self: center; margin-block: 0; }';
 const layout = `
   :host, * { scrollbar-width: none !important; }
   :host::-webkit-scrollbar, *::-webkit-scrollbar { display: none; }
@@ -26,6 +27,7 @@ const layout = `
   .stage > .sl-component { width: min(320px, calc(100cqw - 32px)); min-width: 0; }
   .overlay-idle { position:absolute; inset:0; }
   .overlay-idle > .overlay-demo { min-height:100%; height:100%; width:100%; }
+  ${centeredOverlayLaunch}
   .stage > .mixer-group { width: min(320px, calc(100cqw - 40px)); }
   .stage > .sl-slider--vertical { width: min(178px, calc(100cqw - 40px)); }
   :is(.stage--text-input, .stage--search-input, .stage--email-input, .stage--password-input, .stage--number-input, .stage--textarea-input, .stage--url-input, .stage--phone-input, .stage--amount-input, .stage--code-input) > .sl-field { width: min(300px, calc(100cqw - 48px)); }
@@ -49,6 +51,7 @@ const layout = `
 // scrolling inside its isolated viewport without painting a second rectangle.
 const framePresentation = `
   html, body { background: transparent !important; }
+  ${centeredOverlayLaunch}
   .overlay-panel::backdrop { background: transparent !important; }
   * { scrollbar-width: none !important; }
   *::-webkit-scrollbar { display: none; }

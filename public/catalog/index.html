@@ -175,8 +175,11 @@ dialog::backdrop{background:rgb(232 236 243 / .82)}
 .steps p{margin:0;color:var(--muted)}
 .help-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted)}
 /* Dock */
-.dock{position:fixed;left:50%;bottom:16px;z-index:5;display:flex;align-items:center;max-width:calc(100vw - 20px);padding:5px;border-radius:25px;background:#fff;box-shadow:0 2px 6px rgb(40 55 80 / .1),0 24px 44px -14px rgb(40 55 80 / .36);transform:translateX(-50%);overflow-x:auto;scrollbar-width:none}
-.dock-knob{position:absolute;left:0;top:5px;height:40px;width:40px;border-radius:20px;background:var(--ink);will-change:transform,width}
+.dock{position:fixed;left:50%;bottom:4px;z-index:5;width:max-content;height:74px;max-width:calc(100vw - 20px);transform:translateX(-50%);pointer-events:none}
+.dock::before{content:"";position:absolute;inset:12px 0;border-radius:25px;background:#fff;box-shadow:0 2px 6px rgb(40 55 80 / .1),0 24px 44px -14px rgb(40 55 80 / .36)}
+.dock-scroll{position:relative;display:flex;align-items:center;height:100%;padding-inline:5px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;pointer-events:auto}
+.dock-scroll::-webkit-scrollbar{display:none}
+.dock-knob{position:absolute;left:0;top:50%;translate:0 -50%;height:60px;width:40px;border-radius:30px;background:var(--ink);pointer-events:none}
 .dock button{position:relative;z-index:1;height:40px;min-width:40px;padding:0 clamp(7px,1vw,14px);border-radius:20px;font-size:clamp(12.5px,.98vw,14px);color:var(--muted);white-space:nowrap;transition:color .35s var(--out)}
 .dock button:hover{color:var(--ink)}
 .dock button.on,.dock button.on:hover{color:#fff}
@@ -194,7 +197,7 @@ dialog::backdrop{background:rgb(232 236 243 / .82)}
 html[data-theme=dark]{color-scheme:dark;--page:#121417;--ink:#e8ecf1;--muted:#98a2af;--faint:#6d7682;--line:rgb(255 255 255 / .08);--surface:#1c1f24;--chip:#272b31;--chip-hi:#31363d;--stage:radial-gradient(ellipse at 25% 0%,#2b2f36,transparent 95%),linear-gradient(145deg,#24272d,#1d2025);--knob:#eef1f5;--knob-ink:#20252c;--knob-hi:#fff;--veil:rgb(10 12 15 / .78);--code:#14171b;--edge:rgb(255 255 255 / .09);
   --card:0 1px 0 rgb(255 255 255 / .05) inset,0 18px 36px -20px rgb(0 0 0 / .7);--card-hi:0 1px 0 rgb(255 255 255 / .08) inset,0 26px 46px -22px rgb(0 0 0 / .85)}
 .sky{background:var(--page)}
-.pill,.tg,.more,.card,.tile,.dock,.sheet,.help{background:var(--surface)}
+.pill,.tg,.more,.card,.tile,.dock::before,.sheet,.help{background:var(--surface)}
 .stage,.big,.steps li{background:var(--stage)}
 .sections button[aria-current]{background:var(--chip)}
 .finder .sl-field .sl-field__popup{background:var(--surface)}
@@ -219,7 +222,7 @@ html[data-layout=single] .shelf-head{margin-bottom:6px}
 /* Graphite, chosen by the owner. */
 html[data-theme=dark]{--surface:#20242a;--chip:#2b3037;--chip-hi:#363c45;--muted:#a7b0bb}
 /* Pills carry a fine edge, so they never melt into the dark page. */
-html[data-theme=dark] :is(.pill,.tg,.dock,.more,.tile){box-shadow:0 0 0 1px rgb(255 255 255 / .1),0 18px 36px -20px rgb(0 0 0 / .7)}
+html[data-theme=dark] :is(.pill,.tg,.more,.tile),html[data-theme=dark] .dock::before{box-shadow:0 0 0 1px rgb(255 255 255 / .1),0 18px 36px -20px rgb(0 0 0 / .7)}
 html[data-theme=dark] .finder:focus-within{box-shadow:0 0 0 1px rgb(255 255 255 / .24),0 26px 46px -22px rgb(0 0 0 / .85)}
 html[data-theme=dark] .tg:is(:hover,:focus-visible){box-shadow:0 0 0 1px rgb(255 255 255 / .2),0 26px 46px -22px rgb(0 0 0 / .85)}
 .finder .sl-field .sl-field__label,.finder .sl-field .sl-field__leading{color:var(--muted)}
@@ -232,7 +235,8 @@ html[data-theme=dark] .more:hover{box-shadow:0 0 0 1px rgb(255 255 255 / .22)}
 .sections button{position:relative;z-index:1}
 .sections button[aria-current]{background:none}
 .dock{transition:opacity .45s var(--out),transform .55s var(--out)}
-.dock.away{opacity:0;transform:translate(-50%,24px);pointer-events:none}
+.dock.away{opacity:0;transform:translate(-50%,24px)}
+.dock.away .dock-scroll{pointer-events:none}
 /* A measured mosaic: each card gets a slot that suits its component, placed so no gaps open. */
 .track,.shelf.all .track{grid-template-columns:repeat(var(--c,12),minmax(0,1fr));grid-auto-rows:130px;grid-auto-flow:row;gap:14px}
 .card,.shelf.all .card{grid-row:auto}
@@ -281,15 +285,13 @@ html[data-theme=dark] .more:hover{box-shadow:0 0 0 1px rgb(255 255 255 / .22)}
 @media(hover:hover){.card:hover,.shelf.all .card:hover{box-shadow:0 0 0 1px rgb(255 255 255 / .1)}.card:hover::after{opacity:1}}
 .stage{background:linear-gradient(145deg,#272b31,#1d2025)}
 /* The chosen dock item is plainly larger than the rest. */
-.dock{height:50px;overflow:visible;contain:layout style}
-.dock-knob{top:-5px;height:60px;border-radius:30px;background:var(--knob);box-shadow:0 10px 24px -8px rgb(0 0 0 / .7);will-change:auto;transition:transform .5s var(--out),width .5s var(--out)}
+.dock-knob{background:var(--knob);box-shadow:0 10px 24px -8px rgb(0 0 0 / .7);will-change:auto;transition:transform .5s var(--out),width .5s var(--out)}
 .dock button{flex-shrink:0;transition:color .35s var(--out),padding .5s var(--out)}
 .dock button span{display:inline-block;transition:transform .5s var(--out)}
 .dock button.on{padding-inline:calc(clamp(7px,1vw,14px) + 18px);font-weight:600}
 .dock button.on span{transform:scale(1.28)}
 .dock.still .dock-knob,.dock.still button,.dock.still button span{transition:none}
 @media(prefers-reduced-motion:reduce){.dock .dock-knob,.dock button,.dock button span{transition:none}}
-@media(max-width:760px){.dock{overflow-x:auto;overflow-y:hidden;height:62px;padding-block:11px}.dock-knob{top:1px}}
 /* Code window: lower, so it never fills the screen top to bottom. */
 .sheet{height:min(620px,calc(100dvh - 48px))}
 /* Copy code and Download ZIP answer with motion: the icon turns into a drawn check while the label rolls over. */
@@ -340,7 +342,7 @@ body{-webkit-user-select:none;user-select:none}
 .foot b{text-shadow:0 1px 1px rgb(0 0 0 / .5)}
 /* Pills sit highest, with a lit top edge. */
 html[data-theme=dark] :is(.pill,.tg,.more,.tile){background:linear-gradient(180deg,#2b2f37,#1f2228);box-shadow:inset 0 1px 0 rgb(255 255 255 / .13),inset 0 0 0 1px rgb(255 255 255 / .04),0 2px 4px rgb(0 0 0 / .45),0 18px 32px -14px rgb(0 0 0 / .9)}
-html[data-theme=dark] .dock{background:linear-gradient(180deg,#2b2f37,#1f2228);box-shadow:inset 0 1px 0 rgb(255 255 255 / .13),inset 0 0 0 1px rgb(255 255 255 / .04),0 3px 6px rgb(0 0 0 / .5),0 26px 44px -14px rgb(0 0 0 / .95)}
+html[data-theme=dark] .dock::before{background:linear-gradient(180deg,#2b2f37,#1f2228);box-shadow:inset 0 1px 0 rgb(255 255 255 / .13),inset 0 0 0 1px rgb(255 255 255 / .04),0 3px 6px rgb(0 0 0 / .5),0 26px 44px -14px rgb(0 0 0 / .95)}
 .more{background:linear-gradient(180deg,#414753,#32373f)}
 html[data-theme=dark] .more:hover{background:linear-gradient(180deg,#4b525f,#3a4049)}
 .sections button[aria-current]{background:none}
@@ -358,7 +360,7 @@ html[data-theme=dark] .more:hover{background:linear-gradient(180deg,#4b525f,#3a4
 html[data-theme=dark]{--page:#0c0d0f;--surface:#17191c;--chip:#222428;--chip-hi:#2c2f34;--ink:#f3f4f6;--muted:#8e939b;--faint:#5e636b;--line:rgb(255 255 255 / .08);--knob:#f3f4f6;--knob-ink:#111214;--knob-hi:#fff;--veil:rgb(6 7 8 / .8);--code:#0a0b0c;--stage:#17191c}
 .sky{background:var(--page)}
 /* Header and dock keep their shape; only the material is plainer. */
-html[data-theme=dark] :is(.pill,.tg,.tile),html[data-theme=dark] .dock{background:#17191c;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .08),0 16px 30px -18px #000}
+html[data-theme=dark] :is(.pill,.tg,.tile),html[data-theme=dark] .dock::before{background:#17191c;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .08),0 16px 30px -18px #000}
 .sec-knob{background:#26282d;box-shadow:none}
 .dock-knob{background:#f3f4f6;box-shadow:0 10px 22px -10px #000}
 /* The catalog: a plain even grid. No card frames, the component and its name. */
@@ -392,7 +394,7 @@ main{padding:22px 0 130px}
 .tile{border-radius:14px}
 html[data-theme=dark] .tile:hover{transform:none;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .18)}
 .sky{background:var(--page)}
-html[data-theme=dark] :is(.pill,.tg,.tile),html[data-theme=dark] .dock{background:var(--surface)}
+html[data-theme=dark] :is(.pill,.tg,.tile),html[data-theme=dark] .dock::before{background:var(--surface)}
 .more{background:var(--chip-hi)}
 .sec-knob{background:var(--chip-hi)}
 .dock-knob{background:var(--knob)}
@@ -422,7 +424,7 @@ html[data-theme=dark] :is(.pill,.tg,.tile),html[data-theme=dark] .dock{backgroun
 html[data-theme=light] .sec-knob{background:var(--accent-soft)}
 html[data-theme=light] .sections button[aria-current]{color:var(--accent-text)}
 html[data-theme=light] .finder:focus-within{box-shadow:0 0 0 1px var(--accent),0 0 0 4px var(--accent-soft)}
-html[data-theme=light] :is(.pill,.tg,.tile,.dock,.more){box-shadow:0 0 0 1px var(--line),var(--shadow-2)}
+html[data-theme=light] :is(.pill,.tg,.tile,.more),html[data-theme=light] .dock::before{box-shadow:0 0 0 1px var(--line),var(--shadow-2)}
 html[data-theme=light] .sheet,html[data-theme=light] .help{box-shadow:0 0 0 1px var(--line),var(--shadow-3)}
 html[data-theme=light] .shelf-head>span{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:11px;font-size:12.5px;font-weight:600;color:var(--muted);background:var(--chip)}
 html[data-theme=light] .dock-knob{box-shadow:0 6px 16px -8px var(--accent)}
@@ -510,19 +512,16 @@ html.enter .dock{animation:kit-dock .8s cubic-bezier(.3,1.3,.6,1) 1.05s both}
 @keyframes st-thumb{0%,12%,92%,100%{translate:21px 0}38%,54%{translate:100px 0}72%,82%{translate:55px 0}}
 /* Checkboxes covers. */
 .pa-field.ct-field{justify-content:flex-start;padding-left:13px;font-weight:500;color:#16181d}
-.ct-box{position:relative;flex:none;display:block;width:22px;height:22px;border-radius:7px;background:#e3e6eb}
-.ct-box::before{content:"";position:absolute;inset:0;border-radius:inherit;background:#2d6af6;animation:ct-fill 5s ease-in-out infinite}
-.ct-box svg{position:absolute;inset:0;width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.ct-box path{stroke-dasharray:1 1;animation:ct-tick 5s ease-in-out infinite}
-@keyframes ct-fill{0%,18%,88%,100%{opacity:0;scale:.55}30%,78%{opacity:1;scale:1}}
-@keyframes ct-tick{0%,22%,84%,100%{stroke-dashoffset:1}36%,76%{stroke-dashoffset:0}}
-.ct-text{position:relative}
-.ct-text::after{content:"";position:absolute;left:-2px;right:-2px;top:50%;height:1.5px;background:currentColor;scale:0 1;transform-origin:0 50%;animation:ct-strike 5s ease-in-out infinite}
-@keyframes ct-strike{0%,30%,84%,100%{scale:0 1}46%,76%{scale:1 1}}
-.mc{position:relative;display:block;width:30px;height:30px;border-radius:9px;background:#dfe3e9}
-.mc::before{content:"";position:absolute;inset:0;border-radius:inherit;background:#2d6af6;animation:ct-fill 5s ease-in-out infinite;animation-delay:calc(var(--k) * .5s)}
-.mc svg{position:absolute;inset:4px;width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.mc path{stroke-dasharray:1 1;animation:ct-tick 5s ease-in-out infinite;animation-delay:calc(var(--k) * .5s)}
+.ct-box,.mc{display:grid;place-items:center;flex:none;box-sizing:border-box}
+.ct-box{width:22px;height:22px;border-radius:7px;background:#2d6af6}
+.ct-box svg,.mc svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ct-text{text-decoration:line-through;text-decoration-color:#64748b}
+.pa-bar.ct-progress::before{width:66.6667%;animation:none}
+.pa-row.ct-matte{gap:12px}
+.mc{width:30px;height:30px;border:1.5px solid #a3adbb;border-radius:8px;background:#fff}
+.mc.checked{background:#2d6af6;border-color:#2d6af6}
+.mc.radio{border-radius:50%;border-color:#2d6af6}
+.mc.radio::after{content:"";width:12px;height:12px;border-radius:50%;background:#2d6af6}
 /* Toggles cover: the same two pieces as the Buttons cover, a white field and a blue bar. */
 .pa-field.pt-field{padding-right:9px;font-weight:500;color:#16181d}
 .pt-sw{position:relative;flex:none;width:40px;height:24px;border-radius:12px;background:#e3e6eb}
@@ -581,7 +580,7 @@ html.enter .dock{animation:kit-dock .8s cubic-bezier(.3,1.3,.6,1) 1.05s both}
 <div class="sky" aria-hidden="true"></div>
 
 <main id="main"></main>
-<nav class="dock" id="dock" aria-label="Categories"><span class="dock-knob" id="dockKnob"></span></nav>
+<nav class="dock" id="dock" aria-label="Categories"><div class="dock-scroll"><span class="dock-knob" id="dockKnob" aria-hidden="true"></span></div></nav>
 <dialog class="sheet" id="sheet" aria-labelledby="sheet-title"><div class="view"><div class="big" id="sheet-big"></div><div class="info"><h3 id="sheet-title"></h3><p id="sheet-desc"></p></div></div><div class="side"><div class="bar"><div class="tabs" id="sheet-tabs" role="tablist" aria-label="Source format"></div><button class="x" type="button" id="sheet-close" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><p class="source-note" id="sheet-source-note" hidden>Code and ZIP for the base version</p><pre id="sheet-code" tabindex="0" role="tabpanel"></pre><div class="acts"><button class="act act-main act-fx" type="button" id="sheet-copy"><span class="fx-ico" aria-hidden="true"><svg class="fx-main" viewBox="0 0 24 24"><rect class="fx-back" x="4" y="4" width="11.5" height="13" rx="3"/><rect class="fx-front" x="8.5" y="7.5" width="11.5" height="13" rx="3" fill="#fff"/></svg><svg class="fx-check" viewBox="0 0 24 24"><path pathLength="1" d="M4.5 12.8 9.8 18 19.5 6.8"/></svg></span><span class="fx-text" aria-live="polite"><span data-s="idle">Copy code</span><span data-s="done">Copied</span><span data-s="fail">Failed</span></span></button><button class="act act-fx" type="button" id="sheet-zip"><span class="fx-ico" aria-hidden="true"><svg class="fx-main" viewBox="0 0 24 24"><g class="fx-arrow"><path d="M12 4v11"/><path d="m7.5 11 4.5 4.5 4.5-4.5"/></g><path d="M4.5 19.500h15"/></svg><svg class="fx-check" viewBox="0 0 24 24"><path pathLength="1" d="M4.5 12.8 9.8 18 19.5 6.8"/></svg></span><span class="fx-text" aria-live="polite"><span data-s="idle">Download ZIP</span><span data-s="busy">Preparing</span><span data-s="done">Started</span><span data-s="fail">Failed</span></span></button></div></div></dialog>
 <dialog class="help" id="help" aria-labelledby="help-title"><div class="help-head"><h3 id="help-title">How to use</h3><button class="x" type="button" id="help-close" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
 <ol class="steps">

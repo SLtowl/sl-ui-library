@@ -4,15 +4,17 @@ import('./site-shell/dots.mjs').then(m=>m.mountDots(document.getElementById('fie
 const $=s=>document.querySelector(s),PS5='In Windows PowerShell 5, run the two commands separately';
 // Commands as documented in docs/agents.md and the README.
 const WAYS={claude:{cmd:'claude plugin marketplace add SLtowl/sl-ui-library && claude plugin install sl-ui-library@sl-ui-library',note:PS5},codex:{cmd:'codex plugin marketplace add SLtowl/sl-ui-library && codex plugin add sl-ui-library@sl-ui-library',note:PS5},zip:{note:'A ZIP copy does not update by itself. Download it again for new components'}};
+$('#ghost-claude').textContent=WAYS.claude.cmd;
+$('#ghost-codex').textContent=WAYS.codex.cmd;
 let way='claude',back;
 const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;let typing=0,termSeen=false;
 // The command types itself out, with a blinking caret at the end.
-function type(text){clearInterval(typing);$('#ghost').textContent=text;const out=$('#cmd');if(calm||!termSeen){out.innerHTML='';out.append(text,caret());return}
+function type(text){clearInterval(typing);const out=$('#cmd');if(calm||!termSeen){out.innerHTML='';out.append(text,caret());return}
   let k=0;out.replaceChildren(caret());typing=setInterval(()=>{k=Math.min(text.length,k+2);out.replaceChildren(text.slice(0,k),caret());if(k>=text.length)clearInterval(typing)},16)}
 const caret=()=>Object.assign(document.createElement('span'),{className:'caret'});
 // The plate moves under the chosen tab; the first placement has no transition.
 function plate(instant){const b=document.querySelector(`.tabs [data-t="${way}"]`),p=$('.tab-plate');if(instant)p.style.transition='none';p.style.width=b.offsetWidth+'px';p.style.translate=b.offsetLeft+'px 0';if(instant){p.offsetWidth;p.style.transition=''}}
-function paint(){const w=WAYS[way];for(const b of document.querySelectorAll('.tabs button'))b.setAttribute('aria-selected',String(b.dataset.t===way));plate();$('#cmdBox').hidden=!w.cmd;$('#zipBox').hidden=!!w.cmd;$('#copy').hidden=!w.cmd;if(w.cmd)type(w.cmd);$('#note').textContent=w.note;reset()}
+function paint(){const w=WAYS[way];for(const b of document.querySelectorAll('.tabs button'))b.setAttribute('aria-selected',String(b.dataset.t===way));plate();$('#cmdBox').hidden=!w.cmd;$('#zipBox').hidden=!!w.cmd;$('#copy').hidden=!w.cmd;$('#download-zip').hidden=!!w.cmd;if(w.cmd)type(w.cmd);else clearInterval(typing);$('#note').textContent=w.note;reset()}
 function reset(){clearTimeout(back);delete $('#copy').dataset.state;$('#copyText').textContent='Copy'}
 $('.tabs').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b){way=b.dataset.t;paint()}});paint();plate(true);document.fonts?.ready.then(()=>plate(true));addEventListener('resize',()=>plate(true),{passive:true});
 $('#copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(WAYS[way].cmd);$('#copy').dataset.state='done';$('#copyText').textContent='Copied';clearTimeout(back);back=setTimeout(reset,1800)}catch{$('#copyText').textContent='Failed';back=setTimeout(reset,1500)}});
