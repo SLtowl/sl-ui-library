@@ -11,11 +11,11 @@ const port = Number(process.env.PORT || 4321);
 const root = new URL('./public/', import.meta.url);
 let analyticsOrigin='';
 try{const config=JSON.parse(await readFile(new URL('analytics/config.json',root),'utf8'));if(configurationReady(config))analyticsOrigin=' '+config.apiHost;}catch{}
-const types = { html: 'text/html; charset=utf-8', css: 'text/css; charset=utf-8', js: 'text/javascript; charset=utf-8', mjs: 'text/javascript; charset=utf-8', jsx: 'text/plain; charset=utf-8', json: 'application/json; charset=utf-8', md: 'text/plain; charset=utf-8', png: 'image/png', svg: 'image/svg+xml', mp4: 'video/mp4', webm: 'video/webm', woff2: 'font/woff2', txt: 'text/plain; charset=utf-8', zip: 'application/zip' };
+const types = { html: 'text/html; charset=utf-8', css: 'text/css; charset=utf-8', js: 'text/javascript; charset=utf-8', mjs: 'text/javascript; charset=utf-8', jsx: 'text/plain; charset=utf-8', json: 'application/json; charset=utf-8', md: 'text/plain; charset=utf-8', png: 'image/png', webp: 'image/webp', svg: 'image/svg+xml', mp4: 'video/mp4', webm: 'video/webm', woff2: 'font/woff2', txt: 'text/plain; charset=utf-8', zip: 'application/zip' };
 // Explicit local asset allowlist. Menu contours are embedded SVG.
 const allowed = new Set(['index.html', 'library.css', 'library.js', 'component.html', 'category.html', 'catalog.css', 'catalog.js', 'catalog-data.js', 'assets/instrument-sans-variable.woff2']);
 for (const file of [
-  'intro.html', 'catalog.html', 'docs.html', 'home-page.mjs', 'catalog-page.mjs', 'docs-page.mjs',
+  'intro.html', 'catalog.html', 'docs.html', 'assets/home-catalog-preview.webp', 'home-page.mjs', 'catalog-page.mjs', 'docs-page.mjs',
   'site-preview-data.js', 'site-preview-runtime.js', 'media/studio-motion.mp4', 'media/studio-motion.webm',
   'previews/index.js', 'previews-product/index.js', 'previews-product/_shared.js',
 ]) allowed.add(file);

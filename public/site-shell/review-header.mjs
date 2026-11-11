@@ -1,6 +1,6 @@
 // Shared markup for the home, catalog and docs in the local design.
 const markup = `<header class="top" id="site-header">
-  <a class="brand pill" href="./index.html" aria-label="SL UI Library, home"><strong>SL UI Library</strong></a>
+  <a class="brand pill" href="./" aria-label="SL UI Library, home"><strong>SL UI Library</strong></a>
   <div class="tg-slot"><a class="tg" href="https://t.me/SLtowl" target="_blank" rel="noopener noreferrer" aria-label="Telegram: @SLtowl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4 3 11.2l6 2.3L17.5 8 11.6 15l6.2 5L21 4Z"/></svg></a><a class="tg tg-gh" href="https://github.com/SLtowl/sl-ui-library" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1.3-4-2-6-2.500m12 5v-3.500a3 3 0 0 0-.9-2.300c3-.3 6-1.5 6-6.500a5 5 0 0 0-1.4-3.5 4.6 4.6 0 0 0-.1-3.500s-1.1-.3-3.6 1.400a12.3 12.3 0 0 0-6.5 0C6 2.9 4.9 3.2 4.9 3.200a4.6 4.6 0 0 0-.1 3.500A5 5 0 0 0 3.4 10.200c0 5 3 6.2 6 6.500a3 3 0 0 0-.9 2.300V21.5"/></svg></a></div>
   <form class="finder pill" id="finder" role="search">
     <div class="sl-field sl-field--search" id="search-field" data-search-open="false">
@@ -18,7 +18,7 @@ const markup = `<header class="top" id="site-header">
 </header>`;
 
 export function mountReviewHeader({
-  current = '', home, catalog, docs, onComponents, onDocs, catalogSearch = false
+  current = '', catalog, docs, onComponents, onDocs, catalogSearch = false
 }) {
   let headerStyles = document.querySelector('link[data-review-header]');
   if (!headerStyles) {
@@ -40,7 +40,6 @@ export function mountReviewHeader({
   template.innerHTML = markup;
   const header = template.content.firstElementChild;
   document.body.prepend(header);
-  header.querySelector('.brand').href = home;
   const components = header.querySelector('[data-view]');
   const docsLink = header.querySelector('.sec-link');
   docsLink.href = docs;

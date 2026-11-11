@@ -13,7 +13,7 @@ function leaveFor(to, e) {
 export const goCatalog = e => leaveFor(CATALOG + '?cat=buttons&enter', e);
 export const goDocs = e => leaveFor(DOCS + '?enter', e);
 export function mountHeader(current) {
-  const header=mountReviewHeader({current,home:'./index.html',catalog:CATALOG,docs:DOCS,onComponents:goCatalog,onDocs:current==='Docs'?null:goDocs});
+  const header=mountReviewHeader({current,catalog:CATALOG,docs:DOCS,onComponents:goCatalog,onDocs:current==='Docs'?null:goDocs});
   addEventListener('pageshow',e=>{if(e.persisted)document.documentElement.classList.remove('going')});
   return header;
 }

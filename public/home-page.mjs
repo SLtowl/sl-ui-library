@@ -20,13 +20,6 @@ const win=document.getElementById('shot');
 document.querySelector('.split a[href="./docs.html"]').addEventListener('click',goDocs);document.getElementById('browse').addEventListener('click',goCatalog);win.addEventListener('click',goCatalog);
 // Coming back with the browser's Back button shows the page as it was.
 addEventListener('pageshow',e=>{if(e.persisted)document.documentElement.classList.remove('going')});
-// The catalog frame keeps the real page at its own width and scales it to fit, so text stays crisp.
-// The catalog frame keeps the real page at its own width and scales it to fit, so text stays crisp.
-const view=document.getElementById('view'),frame=view.querySelector('iframe');
-const later=f=>('requestIdleCallback' in window)?requestIdleCallback(f,{timeout:1200}):setTimeout(f,300);
-const start=()=>later(()=>{frame.addEventListener('load',()=>setTimeout(()=>frame.classList.add('ready'),250),{once:true});frame.src=frame.dataset.src});
-document.readyState==='complete'?start():addEventListener('load',start,{once:true});
-const fit=()=>{frame.style.transform=`scale(${view.clientWidth/1440})`};fit();new ResizeObserver(fit).observe(view);
 // The floating components drift a few pixels against the pointer. Flat movement only, so they never blur.
 const floats=[...document.querySelectorAll('.float')];let tRaf=0,lastE=null;
 addEventListener('pointermove',e=>{if(calm.matches||e.pointerType==='touch')return;lastE=e;if(tRaf)return;tRaf=requestAnimationFrame(()=>{tRaf=0;const dx=lastE.clientX/innerWidth-.5,dy=lastE.clientY/innerHeight-.5;floats.forEach((f,i)=>{const k=i?-1:1;f.style.setProperty('--px',(dx*14*k).toFixed(1)+'px');f.style.setProperty('--py',(dy*10*k).toFixed(1)+'px')})})},{passive:true});

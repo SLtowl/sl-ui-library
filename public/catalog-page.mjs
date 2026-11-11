@@ -1,6 +1,6 @@
 import './site-preview-runtime.js';
 import {mountReviewHeader} from './site-shell/review-header.mjs';
-mountReviewHeader({current:'Components',home:'./index.html',catalog:'./catalog.html',docs:'./docs.html',catalogSearch:true});
+mountReviewHeader({current:'Components',catalog:'./catalog.html',docs:'./docs.html',catalogSearch:true});
 import './packages/search-input/buttons.js';
 import {components,categories} from './catalog-data.js';
 import {choices as batchChoices} from './experiments/library-shell/batch-presentations.mjs';
