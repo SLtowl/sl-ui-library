@@ -14,6 +14,8 @@ test('portable and host manifests identify the same self-contained plugin', asyn
   const manifest = JSON.parse(await readFile(new URL('plugins/sl-ui-library/' + host + '/plugin.json', root)));
   assert.equal(manifest.name, portable.name);
   assert.equal(manifest.version, portable.version);
+  assert.equal(manifest.homepage, portable.homepage);
+  if (host === '.codex-plugin') assert.equal(manifest.interface.websiteURL, portable.homepage);
   assert.ok(manifest.description.length > 20);
  }
  const marketplace = JSON.parse(await readFile(new URL('.claude-plugin/marketplace.json', root)));
@@ -22,6 +24,7 @@ test('portable and host manifests identify the same self-contained plugin', asyn
  const readme = await readFile(new URL('README.md', root), 'utf8');
  for (const command of ['claude plugin marketplace add SLtowl/sl-ui-library && claude plugin install sl-ui-library@sl-ui-library', 'codex plugin marketplace add SLtowl/sl-ui-library && codex plugin add sl-ui-library@sl-ui-library']) assert.ok(readme.includes(command));
  assert.equal(marketplace.plugins[0].source, './plugins/' + portable.name);
+ assert.ok(marketplace.plugins[0].description.includes(portable.homepage));
  const skill = await readFile(new URL('plugins/sl-ui-library/skills/use-sl-ui/SKILL.md', root), 'utf8');
  for (const requirement of ['Required source gate', 'SHA-256', 'needs-review', 'similar reconstruction']) assert.ok(skill.includes(requirement), requirement);
  const files = await pluginFiles();

@@ -5,12 +5,14 @@
   "author": {
     "name": "SL"
   },
+  "homepage": "https://sltowl.com/",
   "skills": "./skills/",
   "interface": {
     "displayName": "SL UI Library",
     "shortDescription": "UI components for HTML, CSS, JavaScript, React and Next.js.",
-    "longDescription": "Choose from 439 interactive components across ten categories, with HTML, CSS, JavaScript, React and Next.js exports. Read real source, adapt its palette and integrate a complete package. React and Next.js adapters preserve the original controllers as isolated client widgets; meaningful widget SSR is not provided. Catalog and source files work offline. Optional catalog updates require a published channel and explicit opt-in.",
+    "longDescription": "Choose from 439 interactive components across ten categories, with HTML, CSS, JavaScript, React and Next.js exports. Read real source, adapt its palette and integrate a complete package. React and Next.js adapters preserve the original controllers as isolated client widgets; meaningful widget SSR is not provided. Catalog and source files work offline. Optional catalog updates require a published channel and explicit opt-in. Browse the catalog at https://sltowl.com/.",
     "developerName": "SL",
+    "websiteURL": "https://sltowl.com/",
     "category": "Productivity",
     "capabilities": [
       "Read",

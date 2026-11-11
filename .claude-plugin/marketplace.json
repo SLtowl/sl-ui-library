@@ -7,7 +7,7 @@
     {
       "name": "sl-ui-library",
       "source": "./plugins/sl-ui-library",
-      "description": "UI components with HTML, CSS, JavaScript, React and Next.js exports, palette adaptation and real source tools."
+      "description": "UI components with HTML, CSS, JavaScript, React and Next.js exports, palette adaptation and real source tools. Browse the catalog at https://sltowl.com/."
     }
   ]
 }
