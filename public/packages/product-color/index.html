@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Color · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <div class="pb pb-f pb-color cl" data-sheet="closed">
+    <div class="cl-plate">
+      <div class="cl-clip cl-shade-clip" aria-hidden="true"><div class="cl-shade"></div></div>
+      <div class="cl-clip" aria-hidden="true"><div class="cl-sheet"></div></div>
+      <div class="cl-head"><div class="cl-well">
+        <span class="cl-ring" aria-hidden="true"></span>
+        <span class="cl-paint" aria-hidden="true"><span class="cl-base"></span></span>
+        <input type="text" aria-label="Color code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Color" data-bwignore="true" data-1p-ignore="true" data-lpignore="true" data-form-type="other">
+        <button class="cl-swatch" type="button" aria-label="Choose a color" aria-expanded="false"></button>
+      </div></div>
+      <div class="cl-reveal"><div class="cl-pick"><div class="cl-grid" role="group" aria-label="Ready colors"></div><div class="cl-sv" tabindex="-1" role="slider" aria-label="Vividness and brightness"><span class="cl-knob"></span></div><div class="cl-hue" tabindex="-1" role="slider" aria-label="Hue" aria-valuemin="0" aria-valuemax="360"><span class="cl-knob"></span></div></div></div>
+    </div>
+    <span class="pb-sr" role="status" aria-live="polite"></span>
+  </div>
+</body>
+</html>

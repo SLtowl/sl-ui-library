@@ -1,0 +1,145 @@
+@font-face { font-family: 'Instrument Sans'; src: url('./instrument-sans-variable.woff2') format('woff2'); font-weight: 400 700; font-style: normal; font-display: swap; }
+/* Product buttons. Change the tokens on .pb to recolour one button, or on a parent to recolour all of them. */
+.pb {
+  --pb-accent: #2d6af6; --pb-accent-hover: #4a7ff8; --pb-on-accent: #ffffff;
+  /* The accent used as text, rings and outlines on light surfaces. Palettes darken it where the fill is white or pale. */
+  --pb-ink: var(--pb-accent);
+  --pb-field: #ffffff; --pb-field-text: #16181d; --pb-hint: #8a8f99; --pb-line: rgb(16 20 30 / .1);
+  --pb-success: #1e9e5a; --pb-danger: #e0484e; --pb-on-state: #ffffff;
+  --pb-spring: cubic-bezier(.3, 1.25, .5, 1); --pb-spring-time: .6s; --pb-out: cubic-bezier(.2, .8, .2, 1);
+  --h: 52px;
+  font-family: 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased;
+}
+.pb *, .pb *::before, .pb *::after { box-sizing: border-box; }
+.pb-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* The shared button body: a pill whose width springs between states. */
+.pb-btn {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; height: var(--h); padding: 0; border: 0; border-radius: calc(var(--h) / 2);
+  font-family: inherit; font-size: 15.5px; font-weight: 600; line-height: 1; letter-spacing: -.005em; white-space: nowrap; font-variant-numeric: tabular-nums;
+  color: var(--pb-on-accent); background: var(--pb-accent); cursor: pointer; -webkit-tap-highlight-color: transparent;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .22), 0 1px 2px rgb(10 14 24 / .14), 0 8px 20px -10px var(--pb-accent);
+  transition: width var(--pb-spring-time) var(--pb-spring), background .35s var(--pb-out), color .35s var(--pb-out), scale .2s var(--pb-out), box-shadow .35s var(--pb-out);
+}
+.pb-btn:focus-visible { outline: 2px solid var(--pb-ink); outline-offset: 3px; }
+.pb[data-state=done] .pb-btn { color: var(--pb-on-state); background: var(--pb-success); box-shadow: inset 0 1px 0 rgb(255 255 255 / .22), 0 1px 2px rgb(10 14 24 / .14), 0 8px 20px -10px var(--pb-success); cursor: default; }
+.pb[data-state=fail] .pb-btn { color: var(--pb-on-state); background: var(--pb-danger); box-shadow: inset 0 1px 0 rgb(255 255 255 / .22), 0 1px 2px rgb(10 14 24 / .14), 0 8px 20px -10px var(--pb-danger); cursor: default; }
+
+/* Stacked labels: one shows at a time, swapping with a short lift and blur. */
+.pb-t { grid-area: 1 / 1; position: relative; transition: opacity .22s var(--pb-out), translate .4s var(--pb-out), filter .3s var(--pb-out); }
+.pb-t.pb-hide-up { opacity: 0; translate: 0 -7px; filter: blur(4px); }
+.pb-t.pb-hide-down { opacity: 0; translate: 0 7px; filter: blur(4px); }
+
+/* A layer for one-off rings (Delete's warning pulse). Success lands quietly, without a ring. */
+.pb-btn::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; }
+
+/* Three dots that hop while something is working. */
+.pb-dots { display: flex; gap: 5px; }
+.pb-dots i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: pb-hop .9s ease-in-out infinite paused; }
+.pb-dots i:nth-child(2) { animation-delay: .13s; }
+.pb-dots i:nth-child(3) { animation-delay: .26s; }
+.pb[data-state=busy] .pb-dots i { animation-play-state: running; }
+@keyframes pb-hop { 0%, 60%, 100% { translate: 0 0; opacity: .45; } 30% { translate: 0 -5px; opacity: 1; } }
+
+/* A progress band that fills the button from the left. Clipped, not scaled, so its rounded end stays round. */
+.pb-fill { position: absolute; inset: 0; border-radius: inherit; background: color-mix(in oklab, currentColor 18%, transparent);
+  clip-path: inset(0 calc((1 - var(--p, 0)) * 100%) 0 0 round calc(var(--h) / 2)); opacity: 0; transition: opacity .3s var(--pb-out); pointer-events: none; }
+.pb[data-state=busy] .pb-fill { opacity: 1; }
+
+/* A quiet secondary pill, used for Cancel and for "on" states. */
+.pb-quiet { color: var(--pb-field-text); background: var(--pb-field); box-shadow: 0 0 0 1px var(--pb-line), 0 1px 2px rgb(10 14 24 / .08); }
+
+@media (prefers-reduced-motion: reduce) { .pb, .pb * , .pb-btn::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0s !important; } }
+
+/* ---- Fields (Product inputs) ---- */
+.pb-f { width: var(--pb-w, 320px); max-width: 100%; }
+/* Fields move smoothly and settle without overshoot; the bouncier spring is for buttons. */
+.pb-f { --pb-spring: cubic-bezier(.22, 1, .36, 1); --pb-spring-time: .42s; }
+.pb-label { display: block; margin: 0 0 8px 4px; font-size: 13.5px; font-weight: 600; color: inherit; }
+.pb-box { position: relative; display: flex; align-items: center; gap: 8px; min-height: var(--h); padding: 0 6px 0 16px; border-radius: 16px; color: var(--pb-field-text); background: var(--pb-field);
+  box-shadow: 0 0 0 1px var(--pb-line), 0 1px 2px rgb(10 14 24 / .06); transition: box-shadow .25s var(--pb-out), background .25s var(--pb-out); }
+.pb-box:focus-within { box-shadow: 0 0 0 1px var(--pb-accent), 0 0 0 4px color-mix(in oklab, var(--pb-accent) 20%, transparent); }
+.pb-f.pb-error .pb-box { box-shadow: 0 0 0 1px var(--pb-danger), 0 0 0 4px color-mix(in oklab, var(--pb-danger) 18%, transparent); }
+.pb-input { flex: 1; min-width: 0; height: var(--h); margin: 0; padding: 0; border: 0; background: none; outline: none; font-family: inherit; font-size: 16px; font-weight: 500; color: inherit; caret-color: var(--pb-accent); }
+.pb-input::placeholder { color: var(--pb-hint); font-weight: 400; }
+.pb-prefix { flex: none; font-size: 16px; font-weight: 500; color: var(--pb-hint); }
+/* A small pill inside a field: a toggle, a suggestion, a status. */
+.pb-chip { flex: none; display: inline-grid; place-items: center; height: 32px; padding: 0 11px; border: 0; border-radius: 10px; font-family: inherit; font-size: 13.5px; font-weight: 600;
+  color: inherit; background: color-mix(in oklab, var(--pb-field-text) 6%, var(--pb-field)); cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent; user-select: none;
+  transition: background .2s var(--pb-out), color .2s var(--pb-out), opacity .2s var(--pb-out), scale .3s var(--pb-spring), translate .3s var(--pb-out); }
+.pb-chip:hover { background: color-mix(in oklab, var(--pb-field-text) 11%, var(--pb-field)); }
+.pb-chip:active { scale: .94; transition: scale .08s var(--pb-out); }
+.pb-chip:focus-visible { outline: 2px solid var(--pb-ink); outline-offset: 2px; }
+/* The line under a field: a hint, a warning or a result. It changes with a short lift. */
+.pb-note { min-height: 20px; margin: 8px 0 0 4px; font-size: 13.5px; line-height: 20px; color: var(--pb-hint); transition: color .2s var(--pb-out); }
+.pb-note.pb-swap { animation: pb-note .3s var(--pb-out); }
+.pb-note:empty { min-height: 0; margin: 0; }
+.pb-f.pb-error .pb-note { color: var(--pb-danger); }
+@keyframes pb-note { from { opacity: 0; translate: 0 4px; } }
+.pb-roll { position: relative; display: inline-grid; overflow: hidden; height: 1.3em; line-height: 1.3em; vertical-align: middle; }
+.pb-roll > span { grid-area: 1 / 1; }
+
+/* A layer drawn exactly over an input's text, for letters that need to move (password reveal, rolling digits). */
+.pb-mirror { position: absolute; z-index: 1; display: flex; align-items: center; white-space: pre; pointer-events: none; font-variant-numeric: tabular-nums; }
+.pb-mirror > span { position: relative; display: inline-grid; overflow: hidden; height: 1.3em; line-height: 1.3em; }
+.pb-mirror > span > span { grid-area: 1 / 1; }
+.pb-quiet-text { color: transparent !important; }
+
+/* Card: a plate of grey wells. The pressed well grows and turns white; linking folds them into one line that fills with green. */
+.cp{--calm:cubic-bezier(.22,1,.36,1);--sheen:var(--pb-sheen,rgb(255 255 255 / .75));--well:color-mix(in oklab,var(--pb-field-text) 9%,var(--pb-field));position:relative;width:380px;max-width:100%}
+.cp *{box-sizing:border-box}
+.cp-plate{position:relative;padding:6px;border-radius:22px;background:var(--pb-field);box-shadow:0 0 0 1px var(--pb-line),0 1px 2px rgb(10 14 24 / .06),0 10px 24px -12px rgb(10 14 24 / .2)}
+.cp-row{display:flex;gap:6px}
+.cp-fold{display:grid;grid-template-rows:1fr;margin-top:6px;transition:grid-template-rows .5s var(--calm),margin-top .5s var(--calm),opacity .2s var(--pb-out)}
+/* The extra room inside the clip keeps a grown well and its ring from being cut off. */
+.cp-fold>div{min-height:0;overflow:hidden;margin:-8px;padding:8px}
+.cp-well{position:relative;flex:1 1 0;min-width:0;display:flex;align-items:center;height:52px;cursor:text;transition:flex-grow .48s var(--calm),height .48s var(--calm),opacity .25s var(--pb-out)}
+/* The well's surface is its own layer: pressed, it grows a little past its edges and smoothly turns white. */
+.cp-well::before{content:"";position:absolute;inset:0;border-radius:16px;background:var(--well);transition:inset .42s var(--calm),border-radius .42s var(--calm),background .32s var(--pb-out),box-shadow .28s var(--pb-out)}
+.cp-well:focus-within{z-index:1}
+.cp-well:focus-within::before{inset:-4px;border-radius:20px;background:var(--pb-field);box-shadow:0 0 0 1.5px var(--pb-ink),0 0 0 4px color-mix(in oklab,var(--pb-ink) 18%,transparent),0 8px 18px -10px rgb(10 14 24 / .3)}
+.cp.cp-bad .cp-well:has(.wrong)::before{box-shadow:0 0 0 1.5px var(--pb-danger),0 0 0 4px color-mix(in oklab,var(--pb-danger) 18%,transparent)}
+/* In the shared row the pressed well pushes its neighbour aside. Heights stay even. */
+.cp-fold .cp-well:focus-within{flex-grow:2}
+.cp input{position:relative;z-index:2;width:100%;height:100%;min-width:0;margin:0;padding:0 16px;border:0;border-radius:inherit;background:none;outline:none;font-family:inherit;font-size:16px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--pb-field-text);caret-color:var(--pb-ink);transition:color .2s var(--pb-out)}
+.cp input::placeholder{color:var(--pb-hint);font-weight:400}
+.cp .cp-num{padding-right:96px}
+.cp-cvc{-webkit-text-security:disc}
+.cp.cp-bad .wrong{color:var(--pb-danger)}
+.cp-brand{position:absolute;z-index:2;right:16px;top:50%;translate:0 -50%;display:inline-grid;justify-items:end;overflow:hidden;height:1.3em;line-height:1.3em;font-size:13.5px;font-weight:600;color:var(--pb-field-text);pointer-events:none;transition:opacity .2s var(--pb-out)}
+.cp-brand span{grid-area:1/1}
+
+/* Linking is one movement: the fields gather into a single line, a soft light runs along it while the bank answers,
+   then green pours in from the left and the check draws itself. */
+.cp-well::after{content:"";position:absolute;inset:0;z-index:1;border-radius:16px;pointer-events:none;opacity:0;background:linear-gradient(100deg,transparent 32%,var(--sheen) 50%,transparent 68%) 130% 0/240% 100% no-repeat;transition:opacity .25s var(--pb-out)}
+.cp[data-step=checking] .cp-row:first-child .cp-well::after{opacity:1;animation:cp-sheen 1.15s linear infinite}
+@keyframes cp-sheen{to{background-position:-30% 0}}
+.cp-sweep{position:absolute;inset:0;z-index:1;border-radius:16px;background:color-mix(in oklab,var(--pb-success) 13%,var(--pb-field));box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--pb-success) 38%,transparent);clip-path:inset(0 100% 0 0 round 16px);pointer-events:none;transition:clip-path .65s var(--calm)}
+.cp[data-step=done] .cp-sweep{clip-path:inset(0 0 0 0 round 16px)}
+.cp-line{position:absolute;z-index:2;inset:0;display:flex;align-items:center;gap:10px;padding:0 6px 0 16px;font-size:16px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--pb-field-text);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s var(--pb-out)}
+.cp-line b{font-weight:600}
+/* Linking rolls into Linked at the right edge. */
+.cp-state{margin-left:auto;display:inline-grid;justify-items:end;font-size:15px;font-weight:600}
+.cp-state i{grid-area:1/1;display:inline-flex;align-items:center;gap:5px;font-style:normal;transition:opacity .22s var(--pb-out),translate .4s var(--calm),filter .25s var(--pb-out)}
+.cp-state .wait{color:var(--pb-hint)}
+.cp-state .ok{color:var(--pb-success);opacity:0;translate:0 7px;filter:blur(3px)}
+.cp[data-step=done] .cp-state .wait{opacity:0;translate:0 -7px;filter:blur(3px)}
+.cp[data-step=done] .cp-state .ok{opacity:1;translate:0 0;filter:none;transition-delay:.22s}
+.cp-state svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.cp-state path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .36s var(--calm)}
+.cp[data-step=done] .cp-state path{stroke-dashoffset:0;transition-delay:.34s}
+.cp-edit{height:40px;padding:0 14px;border:0;border-radius:11px;font:inherit;font-size:14.5px;font-weight:600;color:var(--pb-field-text);background:var(--pb-field);cursor:pointer;box-shadow:0 1px 2px rgb(10 14 24 / .08);transition:box-shadow .2s var(--pb-out)}
+.cp-edit{opacity:0;pointer-events:none}
+.cp[data-step=done] .cp-edit{opacity:1;pointer-events:auto;transition:opacity .3s var(--pb-out) .42s,box-shadow .2s var(--pb-out)}
+.cp-edit:hover{box-shadow:0 1px 2px rgb(10 14 24 / .12),0 6px 14px -8px rgb(10 14 24 / .3)}
+.cp-edit:focus-visible{outline:2px solid var(--pb-ink);outline-offset:2px}
+.cp:is([data-step=checking],[data-step=done]) .cp-fold{grid-template-rows:0fr;margin-top:0;opacity:0;pointer-events:none}
+.cp:is([data-step=checking],[data-step=done]) :is(.cp-num,.cp-brand){opacity:0;pointer-events:none}
+.cp:is([data-step=checking],[data-step=done]) .cp-line{opacity:1;pointer-events:auto;transition-delay:.12s}
+.cp:is([data-step=checking],[data-step=done]) .cp-well{cursor:default}
+
+@media(prefers-reduced-motion:reduce){.cp,.cp *{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}}
+/* Where the plate is narrow, the digits stay and the network name gives way so Linked and Change both fit. */
+.cp-plate { container-type: inline-size; }
+.cp-name { font-style: normal; }
+@container (max-width: 345px) { .cp-name { display: none; } }

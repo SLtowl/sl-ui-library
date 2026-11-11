@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Download · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <div class="pb pb-download" data-state="idle">
+    <button class="pb-btn" type="button">
+      <span class="pb-fill" aria-hidden="true"></span>
+      <span class="pb-t" data-label="idle">Download</span>
+      <span class="pb-t" data-label="pct" aria-hidden="true">0%</span>
+      <span class="pb-t" data-label="cancel" aria-hidden="true">Cancel</span>
+      <span class="pb-t" data-label="done" aria-hidden="true">Open file</span>
+    </button>
+    <span class="pb-sr" data-status role="status" aria-live="polite"></span>
+  </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "variant": "product-brightness",
+  "category": "sliders",
+  "global": "SLBrightness",
+  "root": ".pb-brightness",
+  "name": "Brightness",
+  "description": "A thick bar you drag anywhere. The sun grows its rays, and the icon changes colour exactly where the fill passes it.",
+  "motions": [
+    "Sliding fill",
+    "Growing rays"
+  ],
+  "keywords": [
+    "brightness",
+    "display",
+    "light",
+    "sun",
+    "level",
+    "slider"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Pass value from 0 to 100 and read onChange(value).",
+  "example": "SLBrightness.mount(document.querySelector('.pb-brightness'), {\n  onChange: value => { screen.brightness = value / 100; },\n});"
+}

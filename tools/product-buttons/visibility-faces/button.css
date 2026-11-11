@@ -1,0 +1,15 @@
+/* Audience: everyone folds away from the far end toward you, and comes back from you outward. The cut between circles is a mask, so it fits any background. */
+.au{--calm:cubic-bezier(.22,1,.36,1);--au-note:#6b7280;display:inline-block;width:fit-content;margin-inline:auto;-webkit-tap-highlight-color:transparent}
+.au *{box-sizing:border-box}
+.au-btn{display:grid;justify-items:center;gap:12px;padding:0;border:0;border-radius:30px;background:none;font:inherit;cursor:pointer}
+.au-btn:focus-visible{outline:2px solid var(--pb-ink);outline-offset:6px}
+.au-faces{display:flex}
+.au-f{position:relative;display:block;width:52px;height:52px;margin-left:-12px;border-radius:50%;background:color-mix(in oklab,var(--pb-field-text) 9%,var(--pb-field));-webkit-mask:radial-gradient(circle 29px at -14px 50%,transparent 98%,#000);mask:radial-gradient(circle 29px at -14px 50%,transparent 98%,#000)}
+.au-f.me{margin-left:0;-webkit-mask:none;mask:none;background:none}
+.au-c{position:absolute;inset:0;display:grid;place-items:center;border-radius:50%;background:var(--c);color:#fff;font-size:15px;font-weight:600;will-change:scale,opacity;transition:scale .5s var(--calm) calc(var(--i,0) * 45ms),opacity .28s var(--pb-out) calc(var(--i,0) * 45ms)}
+.au-f.me .au-c{background:var(--pb-field);color:var(--pb-field-text);font-size:14px;box-shadow:0 0 0 1px var(--pb-line)}
+.au[data-private=true] .au-f:not(.me) .au-c{scale:.55;opacity:0;transition-delay:calc((4 - var(--i,0)) * 45ms)}
+.au-note{display:grid;justify-items:center;font-size:14px;font-weight:500;color:var(--au-note)}
+.au-note>span{grid-area:1/1;transition:opacity .26s var(--pb-out) .1s}
+.au[data-private=false] .v-prv,.au[data-private=true] .v-pub{opacity:0;transition:opacity .14s var(--pb-out)}
+@media(prefers-reduced-motion:reduce){.au *{transition-duration:.01ms!important;transition-delay:0s!important}}

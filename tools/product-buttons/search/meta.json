@@ -1,0 +1,28 @@
+{
+  "variant": "product-search",
+  "category": "inputs",
+  "global": "SLSearch",
+  "root": ".pb-search",
+  "name": "Search",
+  "description": "Typed letters stay lit while the names around them go quiet. The row you pick rises straight into the field.",
+  "motions": [
+    "Sliding sheet",
+    "Lit letters",
+    "Row into field"
+  ],
+  "keywords": [
+    "search",
+    "autocomplete",
+    "combobox",
+    "filter",
+    "suggest",
+    "find",
+    "results"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Pass items, as strings or { name, tag }, or search(query, { signal }) for server results. suggest fills the list before typing. onPick(item) runs when a result is chosen.",
+  "example": "SLSearch.mount(document.querySelector('.pb-search'), {\n  // Ask your server; return strings or { name, tag }.\n  search: async (query, { signal }) => (await fetch('/api/search?q=' + encodeURIComponent(query), { signal })).json(),\n  onPick: item => location.assign('/components/' + encodeURIComponent(item.name)),\n});"
+}

@@ -71,7 +71,7 @@ export async function selectData({cache=defaultCache,policy,fetcher=fetch,now=Da
   if(manifest.schemaVersion!==1||!/^\d+\.\d+\.\d+$/.test(manifest.version)||!/^\d+\.\d+\.\d+$/.test(bundled.catalog.version))throw new Error('Unsupported release');
   if(compareVersions(manifest.version,(cached??bundled).catalog.version)<=0){await save(cache,'checked.json',{at:now});return cached??bundled;}
   const result={};
-  for(const [key,limit] of [['catalog',4e6],['bundle',32e6]]){
+  for(const [key,limit] of [['catalog',4e6],['bundle',40e6]]){
    const item=manifest[key];if(!item||!/^[a-f0-9]{64}$/.test(item.sha256)||!/^https:\/\/raw\.githubusercontent\.com\/SLtowl\/sl-ui-library\/[a-f0-9]{40}\//.test(item.url??''))throw new Error('Invalid release hash or mutable source URL');
    const bytes=await get(item.url,limit);if(hash(bytes)!==item.sha256)throw new Error('Update integrity check failed');result[key]=JSON.parse(bytes.toString());
   }

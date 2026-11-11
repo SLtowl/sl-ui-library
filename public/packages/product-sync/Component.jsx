@@ -1,0 +1,17 @@
+import { useEffect, useRef } from 'react';
+import './buttons.css';
+import './buttons.js';
+
+const markup = "<div class=\"pb pb-f pb-sync sr\" data-sync=\"done\">\n  <button class=\"sr-row\" type=\"button\" role=\"switch\" aria-checked=\"true\" aria-label=\"Sync\">\n    <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M20 11a8 8 0 0 0-14.3-4.3L4 8.5M4 4v4.5h4.5M4 13a8 8 0 0 0 14.3 4.3l1.7-1.8M20 20v-4.5h-4.5\"/></svg>\n    <span class=\"sr-label\">Sync</span>\n    <span class=\"sr-status\"><span data-s=\"paused\">Paused</span><span data-s=\"busy\">Syncing</span><span data-s=\"done\">Up to date</span></span>\n    <span class=\"sr-sw\" aria-hidden=\"true\"></span>\n  </button>\n</div>";
+
+/** Sync. Read onChange(on). Pass run, a function that returns a promise, and the status stays on Syncing until it finishes. If it rejects, the switch turns off. */
+export default function Sync({ options = {}, className, style }) {
+  const host = useRef(null), latest = useRef(options);
+  latest.current = options;
+  useEffect(() => {
+    const live = Object.fromEntries(Object.keys(latest.current).map(key => [key, typeof latest.current[key] === 'function' ? (...args) => latest.current[key](...args) : latest.current[key]]));
+    const controller = globalThis.SLSync.mount(host.current.firstElementChild, live);
+    return () => controller.destroy();
+  }, []);
+  return <div ref={host} className={className} style={style} dangerouslySetInnerHTML={{ __html: markup }} />;
+}

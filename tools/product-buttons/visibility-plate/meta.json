@@ -1,0 +1,13 @@
+{
+  "variant": "product-public-private",
+  "category": "selection",
+  "global": "SLPublicPrivate",
+  "root": ".pb-publicprivate",
+  "name": "Public / Private",
+  "description": "A well slides between Public and Private, each with its own icon.",
+  "motions": ["Sliding well"],
+  "keywords": ["public", "private", "visibility", "access", "privacy", "segmented", "lock", "globe"],
+  "size": [380, 300],
+  "connect": "Read onChange(value), which gives 'public' or 'private'. Pass value to start on Private.",
+  "example": "SLPublicPrivate.mount(document.querySelector('.pb-publicprivate'), {\n  value: 'public',\n  onChange: value => { document.querySelector('#visibility').value = value; },\n});"
+}

@@ -1,0 +1,26 @@
+{
+  "variant": "product-price-range",
+  "category": "sliders",
+  "global": "SLPriceRange",
+  "root": ".pb-pricerange",
+  "name": "Price range",
+  "description": "Two thumbs that keep a little distance from each other, with the range written above.",
+  "motions": [
+    "Two thumbs",
+    "Following band"
+  ],
+  "keywords": [
+    "price",
+    "range",
+    "filter",
+    "min",
+    "max",
+    "slider"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Pass from and to, then read onChange({ from, to }).",
+  "example": "SLPriceRange.mount(document.querySelector('.pb-pricerange'), {\n  onChange: ({ from, to }) => { filterProducts(from, to); },\n});"
+}

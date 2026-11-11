@@ -1,0 +1,50 @@
+/* Password: a white plate with one grey well. The conditions live on a sheet that folds away once all are met. */
+.pw{--calm:cubic-bezier(.22,1,.36,1);--open:cubic-bezier(.32,.72,0,1);--well:color-mix(in oklab,var(--pb-field-text) 9%,var(--pb-field));--full:126px;position:relative;width:380px;max-width:100%;height:64px}
+.pw *{box-sizing:border-box}
+.pw-plate{position:absolute;z-index:5;top:0;left:0;right:0;height:64px}
+/* The head never changes. Behind it a full-height sheet only slides, so opening and folding need no repainting. */
+.pw-head{position:relative;z-index:2;height:64px;padding:6px;border-radius:22px;background:var(--pb-field)}
+.pw-head::before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 1px var(--pb-line);clip-path:inset(-2px -2px 50% -2px);pointer-events:none}
+.pw-clip{position:absolute;z-index:1;top:32px;left:-70px;right:-70px;height:calc(var(--full) + 96px);overflow:hidden;pointer-events:none}
+.pw-sheet{position:absolute;top:0;left:70px;right:70px;height:calc(var(--full) + 32px);border-radius:22px;background:var(--pb-field);box-shadow:0 0 0 1px var(--pb-line),0 1px 2px rgb(10 14 24 / .06),0 10px 24px -12px rgb(10 14 24 / .2);translate:0 calc(var(--full) * -1);pointer-events:auto;will-change:translate;transition:translate .62s var(--open)}
+/* The deep shadow lives on its own layer and fades in near the top, so it has no hard edge beside the field. */
+.pw-shade-clip{z-index:0;-webkit-mask-image:linear-gradient(transparent,#000 46px);mask-image:linear-gradient(transparent,#000 46px)}
+.pw-shade{position:absolute;top:0;left:70px;right:70px;height:calc(var(--full) + 32px);border-radius:22px;box-shadow:0 2px 4px rgb(10 14 24 / .06),0 22px 44px -18px rgb(10 14 24 / .32);translate:0 calc(var(--full) * -1);opacity:0;will-change:translate,opacity;transition:translate .62s var(--open),opacity .5s var(--pb-out)}
+.pw[data-phase=open] .pw-shade{opacity:1}
+.pw-well{position:relative;isolation:isolate;display:flex;align-items:center;height:52px;cursor:text}
+.pw-well::before{content:"";position:absolute;inset:0;border-radius:16px;background:var(--well)}
+.pw-ring{position:absolute;inset:-4px;border-radius:20px;background:var(--pb-field);box-shadow:0 0 0 1.5px var(--pb-ink),0 0 0 4px color-mix(in oklab,var(--pb-ink) 18%,transparent),0 8px 18px -10px rgb(10 14 24 / .3);opacity:0;scale:.975;will-change:opacity,scale;transition:opacity .42s var(--pb-out),scale .6s var(--open)}
+.pw-well:focus-within .pw-ring{opacity:1;scale:1}
+.pw input{position:relative;z-index:2;width:100%;height:100%;min-width:0;margin:0;padding:0 84px 0 16px;border:0;border-radius:inherit;background:none;outline:none;font-family:inherit;font-size:16px;font-weight:500;color:var(--pb-field-text);caret-color:var(--pb-ink);will-change:opacity}
+.pw input::placeholder{color:var(--pb-hint);font-weight:400}
+/* Where a page should not attract password managers, the field is plain text drawn as dots. */
+.pw.pw-css:not(.pw-shown) input{-webkit-text-security:disc}
+.pw-show{position:absolute;z-index:3;right:8px;top:8px;display:grid;place-items:center;width:40px;height:36px;padding:0;border:0;border-radius:11px;font:inherit;font-size:14px;font-weight:600;color:var(--pb-hint);background:none;cursor:pointer;transition:color .2s var(--pb-out)}
+.pw-show:hover{color:var(--pb-field-text)}
+.pw-show:focus-visible{outline:2px solid var(--pb-ink);outline-offset:-2px}
+/* The password's own three dots: the outer two stretch into eyelids, the middle one becomes the pupil. */
+.morph{width:24px;height:24px;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+.morph .a,.morph .b{stroke-width:3.6;transition:d .44s var(--calm),stroke-width .44s var(--calm)}
+.morph .a{d:path("M6 12C6 12 6 12 6 12S6 12 6 12")}
+.morph .b{d:path("M18 12C18 12 18 12 18 12S18 12 18 12")}
+.pw-on .morph .a{stroke-width:1.75;d:path("M3 12C6 7 9 5.5 12 5.5S18 7 21 12")}
+.pw-on .morph .b{stroke-width:1.75;d:path("M21 12C18 17 15 18.5 12 18.5S6 17 3 12")}
+.morph .mid{fill:currentColor;stroke:none;transform-box:fill-box;transform-origin:center;transition:transform .44s var(--calm)}
+.pw-on .morph .mid{transform:scale(1.6)}
+/* A drawn check once every condition is met. */
+.pw-ok{position:absolute;z-index:3;right:54px;top:50%;width:18px;height:18px;margin-top:-9px;fill:none;stroke:var(--pb-success);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;opacity:0;transition:opacity .15s var(--pb-out)}
+.pw-ok path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .36s var(--calm)}
+.pw-whole .pw-ok{opacity:1}
+.pw-whole .pw-ok path{stroke-dashoffset:0}
+/* The window slides with the sheet and the rows counter-slide inside it, so they stay still and the sheet's edge reveals them. */
+.pw-reveal{position:absolute;z-index:3;top:-2px;left:6px;right:6px;height:calc(var(--full) + 60px);overflow:hidden;translate:0 calc(var(--full) * -1);pointer-events:none;will-change:translate;transition:translate .62s var(--open)}
+.pw-rules{position:absolute;top:60px;left:0;right:0;height:0;margin:0;padding:0;list-style:none;translate:0 var(--full);will-change:translate;transition:translate .62s var(--open)}
+.pw-rule{position:absolute;left:0;right:0;display:flex;align-items:center;gap:10px;height:40px;padding:0 16px;font-size:15px;font-weight:500;color:var(--pb-hint);white-space:nowrap;transition:color .25s var(--pb-out)}
+.pw-rule.met{color:var(--pb-field-text)}
+.pw-mark{position:relative;flex:none;width:16px;height:16px}
+.pw-mark::before{content:"";position:absolute;left:6px;top:6px;width:4px;height:4px;border-radius:50%;background:var(--pb-hint);transition:opacity .15s var(--pb-out)}
+.met .pw-mark::before{opacity:0}
+.pw-mark svg{position:absolute;inset:0;width:16px;height:16px;fill:none;stroke:var(--pb-success);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.pw-mark path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .32s var(--calm)}
+.met .pw-mark path{stroke-dashoffset:0}
+@media(prefers-reduced-motion:reduce){.pw,.pw *{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}}

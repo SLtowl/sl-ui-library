@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Promo code · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <form class="pb pb-promo" data-bwignore="true" data-state="idle" novalidate>
+    <input class="pb-field" data-bwignore="true" data-1p-ignore="true" data-lpignore="true" data-form-type="other" type="text" name="pb-promo" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Try SPRING20" aria-label="Promo" tabindex="-1">
+    <button class="pb-btn" type="submit" aria-expanded="false">
+      <span class="pb-t" data-label="idle">Have a code?</span>
+      <span class="pb-t" data-label="apply" aria-hidden="true">Apply</span>
+      <span class="pb-t pb-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="pb-t" data-label="done" aria-hidden="true">Code applied</span>
+      <span class="pb-t" data-label="remove" aria-hidden="true">Remove code</span>
+    </button>
+    <span class="pb-sr" data-status role="status" aria-live="polite"></span>
+  </form>
+</body>
+</html>

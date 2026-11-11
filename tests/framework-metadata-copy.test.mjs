@@ -30,11 +30,11 @@ test('README and integration guide explain complete source-preserving exports',a
  assert.ok(!(await text('docs/integration.md')).includes('not a framework-specific component'),'Remove superseded blanket integration statement');
 });
 test('website discovery metadata and help mention React and Next.js',async()=>{
- for(const file of ['index.html','category.html','component.html','showcase.html','studio-motion.html']){
+ for(const file of ['index.html','catalog.html','docs.html','intro.html','category.html','component.html','showcase.html','studio-motion.html']){
   const html=await text('public/'+file);
   for(const key of ['og:description','twitter:description'])five(html.match(new RegExp('<meta (?:property|name)="'+key+'" content="([^"]+)"'))?.[1]||'',file+' '+key);
-  if(['index.html','category.html'].includes(file)){
-   const help=html.match(/<dialog\b[\s\S]*?<\/dialog>/)?.[0]||'';
+  if(['catalog.html','intro.html','category.html'].includes(file)){
+   const help=(file==='catalog.html'?html.match(/<dialog\b[^>]*id="help"[\s\S]*?<\/dialog>/):html.match(/<dialog\b[\s\S]*?<\/dialog>/))?.[0]||'';
    assert.ok(help.includes('React')&&help.includes('Next.js'),file+' help');
   }
  }

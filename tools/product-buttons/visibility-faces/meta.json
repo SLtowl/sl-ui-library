@@ -1,0 +1,13 @@
+{
+  "variant": "product-audience",
+  "category": "selection",
+  "global": "SLAudience",
+  "root": ".pb-audience",
+  "name": "Audience",
+  "description": "A row of people shows who can see this. Going private folds everyone away one by one until only you remain.",
+  "motions": ["Staggered faces", "In-place label"],
+  "keywords": ["audience", "people", "avatars", "public", "private", "visibility", "sharing", "access"],
+  "size": [380, 300],
+  "connect": "Read onChange(isPrivate). Pass private: true to start with only you and text to rename the two lines. Replace the letters in the markup with your people. Set --au-note on the root to match a dark page.",
+  "example": "SLAudience.mount(document.querySelector('.pb-audience'), {\n  private: false,\n  onChange: isPrivate => { document.querySelector('#private').checked = isPrivate; },\n});"
+}

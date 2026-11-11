@@ -1,0 +1,5 @@
+/* Demo only: previews show the field a little smaller, with what to paste to try it. The line sits on the card, not on the field, so its colours stay fixed. One click selects the whole example. */
+.pb-link { zoom: .85; }
+.lk-hint { display: flex; flex-wrap: wrap; gap: 0 12px; margin: 10px 0 0 2px; font-size: 13px; line-height: 20px; color: #1b1f26; }
+.lk-hint i { font-style: normal; color: #6b7280; }
+.lk-hint b { font-weight: 600; user-select: all; -webkit-user-select: all; cursor: text; }

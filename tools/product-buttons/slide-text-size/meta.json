@@ -1,0 +1,25 @@
+{
+  "variant": "product-text-size",
+  "category": "sliders",
+  "global": "SLTextSize",
+  "root": ".pb-textsize",
+  "name": "Text size",
+  "description": "A sample line grows and shrinks with the thumb, so you see the size before you choose it.",
+  "motions": [
+    "Live sample",
+    "Gliding stops"
+  ],
+  "keywords": [
+    "text size",
+    "font size",
+    "accessibility",
+    "reading",
+    "slider"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Pass value in pixels from 12 to 24 and read onChange(value).",
+  "example": "SLTextSize.mount(document.querySelector('.pb-textsize'), {\n  onChange: value => { document.documentElement.style.fontSize = value + 'px'; },\n});"
+}

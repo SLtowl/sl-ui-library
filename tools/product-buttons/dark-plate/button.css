@@ -1,0 +1,17 @@
+/* Light / Dark: a plate with two words and a well that slides between them, while night spreads from the switch. */
+.ld{--calm:cubic-bezier(.22,1,.36,1);--open:cubic-bezier(.32,.72,0,1);--plate:var(--pb-field);--well:color-mix(in oklab,var(--pb-field-text) 9%,var(--pb-field));--fi:var(--pb-field-text);--hint:var(--pb-hint);--edge:var(--pb-line);display:inline-flex;width:fit-content;margin-inline:auto;-webkit-tap-highlight-color:transparent}
+.ld[data-on=true]{--plate:#1c1f24;--well:#2a2e35;--fi:#f2f4f7;--hint:#8c919a;--edge:rgb(255 255 255 / .1)}
+.ld *{box-sizing:border-box}
+.ld-plate{display:flex;align-items:center;padding:6px;border-radius:22px;background:var(--plate);box-shadow:0 0 0 1px var(--edge),0 1px 2px rgb(10 14 24 / .06),0 10px 24px -12px rgb(10 14 24 / .2);transition:background .36s var(--pb-out) .06s,box-shadow .36s var(--pb-out)}
+.ld-switch{display:block;padding:0;border:0;background:none;font:inherit;color:var(--fi);cursor:pointer}
+.ld-switch:focus-visible{outline:2px solid #2d6af6;outline-offset:4px;border-radius:18px}
+.ld-seg{position:relative;display:grid;grid-template-columns:1fr 1fr;width:190px;height:52px;font-size:16px;font-weight:500}
+.ld-seg>span{position:relative;z-index:1;display:grid;place-items:center;color:var(--hint);transition:color .28s var(--pb-out)}
+.ld[data-on=false] .ld-seg>.day,.ld[data-on=true] .ld-seg>.night{color:var(--fi)}
+.ld-seg>i{position:absolute;left:0;top:0;width:50%;height:100%;border-radius:16px;background:var(--well);will-change:translate;transition:translate .5s var(--calm),background .36s var(--pb-out) .06s}
+.ld[data-on=true] .ld-seg>i{translate:100% 0}
+/* One circle, only ever scaled: it grows from the switch and shrinks back, so fast presses just turn it around. */
+.ld-sky{position:absolute;z-index:-1;inset:0;overflow:hidden;border-radius:inherit;pointer-events:none}
+.ld-night{position:absolute;border-radius:50%;background:#0d1017;scale:0;will-change:scale;transition:scale .78s cubic-bezier(.32,.72,0,1)}
+.ld-night.on{scale:1}
+@media(prefers-reduced-motion:reduce){.ld,.ld *,.ld-night{transition-duration:.01ms!important;transition-delay:0s!important}}

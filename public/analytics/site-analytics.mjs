@@ -16,7 +16,8 @@ export async function mountAnalytics() {
  try {
   const response=await fetch(new URL('./config.json',import.meta.url),{credentials:'omit',signal:AbortSignal.timeout(5000)});
   if(!response.ok)return;config=await response.json();if(!configurationReady(config))return;
-  if(location.origin!=='https://sltowl.github.io'||!location.pathname.startsWith('/sl-ui-library/'))config={...config,environment:'qa'};
+  const production=location.origin==='https://sltowl.com'||(location.origin==='https://sltowl.github.io'&&location.pathname.startsWith('/sl-ui-library/'));
+  if(!production)config={...config,environment:'qa'};
  }catch{return;}
  const client=createAnalytics({config,consent:true,userAgent:navigator.userAgent,privacySignal:()=>blocked()||previouslyDeclined()});
  let lastPage='';
@@ -34,4 +35,4 @@ export async function mountAnalytics() {
  new MutationObserver(pageview).observe(document.body,{attributes:true,attributeFilter:['data-journey']});
  pageview();
 }
-if(typeof document!=='undefined')void mountAnalytics().catch(()=>{});
+if(typeof document!=='undefined'&&window.top===window.self)void mountAnalytics().catch(()=>{});

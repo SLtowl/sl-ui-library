@@ -1,0 +1,28 @@
+{
+  "variant": "product-date",
+  "category": "inputs",
+  "global": "SLDate",
+  "root": ".pb-date",
+  "name": "Date",
+  "description": "The whole date waits in grey, so typing only darkens it. A disc glides across the calendar and a label says how far away it is.",
+  "motions": [
+    "Sliding sheet",
+    "Gliding day",
+    "In-place mask"
+  ],
+  "keywords": [
+    "date",
+    "calendar",
+    "picker",
+    "day",
+    "schedule",
+    "birthday",
+    "deadline"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Read onChange({ date, iso, valid }). Pass min and max as Date objects to limit the days that can be chosen.",
+  "example": "SLDate.mount(document.querySelector('.pb-date'), {\n  min: new Date(),\n  onChange: ({ iso, valid }) => {\n    if (valid) document.querySelector('#due').value = iso;\n  },\n});"
+}

@@ -1,0 +1,13 @@
+{
+  "variant": "product-lock",
+  "category": "selection",
+  "global": "SLLock",
+  "root": ".pb-lock",
+  "name": "Lock",
+  "description": "A round padlock whose shackle lifts open for Public and drops shut for Private.",
+  "motions": ["Closing shackle", "In-place label"],
+  "keywords": ["lock", "padlock", "public", "private", "visibility", "access", "privacy", "switch"],
+  "size": [380, 300],
+  "connect": "Read onChange(isPrivate). Pass private: true to start locked and text to rename the two words. Set --lk-text on the root to match a dark page.",
+  "example": "SLLock.mount(document.querySelector('.pb-lock'), {\n  private: false,\n  onChange: isPrivate => { document.querySelector('#private').checked = isPrivate; },\n});"
+}

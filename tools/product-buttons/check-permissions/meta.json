@@ -1,0 +1,26 @@
+{
+  "variant": "product-permissions",
+  "category": "checkboxes",
+  "global": "SLPermissions",
+  "root": ".pb-permissions",
+  "name": "Permissions",
+  "description": "Levels depend on each other. Ticking a higher one ticks those below it in turn, and clearing a lower one clears those above.",
+  "motions": [
+    "Drawn tick",
+    "Cascading levels"
+  ],
+  "keywords": [
+    "permissions",
+    "roles",
+    "access",
+    "levels",
+    "admin",
+    "checkbox"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "List rows from the lowest level to the highest in the markup and read onChange(selected).",
+  "example": "SLPermissions.mount(document.querySelector('.pb-permissions'), {\n  onChange: selected => { savePermissions(selected); },\n});"
+}

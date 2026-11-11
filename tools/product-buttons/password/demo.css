@@ -1,0 +1,3 @@
+/* Demo only: previews show the field a little smaller, and it rises as it opens so the list stays inside the card. */
+.pb-password { zoom: .85; transition: translate .62s var(--open); }
+.pb-password[data-phase=open] { translate: 0 -63px; }

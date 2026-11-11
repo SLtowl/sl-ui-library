@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Invite · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <form class="pb pb-invite" data-bwignore="true" data-state="idle" novalidate>
+    <input class="pb-field" data-bwignore="true" data-1p-ignore="true" data-lpignore="true" data-form-type="other" type="text" inputmode="email" name="pb-invitee" autocomplete="off" spellcheck="false" placeholder="teammate@company.com" aria-label="Who to invite" tabindex="-1">
+    <button class="pb-role" type="button" tabindex="-1"><span class="pb-rn"><span>Editor</span></span></button>
+    <button class="pb-btn" type="submit" aria-expanded="false">
+      <span class="pb-t" data-label="idle">Invite</span>
+      <span class="pb-t" data-label="send" aria-hidden="true">Send</span>
+      <span class="pb-t pb-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="pb-t" data-label="done" aria-hidden="true">Invite sent</span>
+    </button>
+    <span class="pb-sr" data-status role="status" aria-live="polite"></span>
+  </form>
+</body>
+</html>

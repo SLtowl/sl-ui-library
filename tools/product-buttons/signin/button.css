@@ -1,0 +1,72 @@
+/* Email sign-in: type an address, it flies up into a chip while the field pulls apart into six cells for the code, and a right code joins them back as "Signed in". */
+.si{--h:56px;--gap:0px;position:relative;width:380px;max-width:100%}
+.si *{box-sizing:border-box}
+/* The line above the field: the label while you type the address, then the address itself as a small chip. */
+.si-top{position:relative;display:flex;align-items:center;gap:8px;height:28px;margin:0 0 8px 2px}
+.si-label{font-size:13.5px;font-weight:600;transition:opacity .2s var(--pb-out),translate .3s var(--pb-out)}
+.si-chip{display:block;flex:0 1 auto;min-width:0;height:28px;line-height:28px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 10px;border-radius:9px;font-size:13.5px;font-weight:600;color:var(--pb-field-text);background:var(--pb-field);box-shadow:0 0 0 1px var(--pb-line);opacity:0}
+.si-change,.si-resend{flex:none;white-space:nowrap;height:28px;padding:0 6px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:13.5px;font-weight:600;color:var(--pb-hint);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .25s var(--pb-out),color .2s var(--pb-out)}
+.si-resend{margin-left:auto}
+.si-change:hover,.si-resend:not(:disabled):hover{color:var(--pb-ink)}
+.si-resend:disabled{cursor:default}
+.si-change:focus-visible,.si-resend:focus-visible{outline:2px solid var(--pb-ink);outline-offset:1px}
+.si:not([data-state=email]):not([data-state=sending]) .si-label{position:absolute;opacity:0;translate:0 -6px}
+.si:is([data-state=code],[data-state=checking],[data-state=done]) .si-chip{opacity:1}
+.si:is([data-state=code],[data-state=checking]) :is(.si-change,.si-resend){opacity:1;pointer-events:auto;transition-delay:.25s}
+.si:is([data-state=code],[data-state=checking]) .si-resend:disabled{opacity:.45}
+.si[data-state=email] .si-chip,.si[data-state=sending] .si-chip{position:absolute;pointer-events:none}
+
+/* The box: a field while you type the address. */
+.si-box{position:relative;height:var(--h);border-radius:16px;background:var(--pb-field);box-shadow:0 0 0 1px var(--pb-line),0 1px 2px rgb(10 14 24 / .06);
+  transition:box-shadow .3s var(--pb-out),background .3s var(--pb-out)}
+.si[data-state=email] .si-box:focus-within{box-shadow:0 0 0 1px var(--pb-ink),0 0 0 4px color-mix(in oklab,var(--pb-ink) 20%,transparent)}
+.si.si-error[data-state=email] .si-box{box-shadow:0 0 0 1px var(--pb-danger),0 0 0 4px color-mix(in oklab,var(--pb-danger) 18%,transparent)}
+.si-input{position:absolute;inset:0;width:100%;margin:0;padding:0 132px 0 18px;border:0;border-radius:inherit;background:none;outline:none;font-family:inherit;font-size:16px;font-weight:500;color:var(--pb-field-text);caret-color:var(--pb-ink);transition:opacity .2s var(--pb-out)}
+.si-input::placeholder{color:var(--pb-hint);font-weight:400}
+/* Continue grows in at the right edge only once the address looks complete. */
+.si-go{position:absolute;top:6px;right:6px;bottom:6px;display:grid;place-items:center;width:var(--wg,112px);padding:0;border:0;border-radius:11px;font-family:inherit;font-size:15px;font-weight:600;line-height:1;color:var(--pb-on-accent);background:var(--pb-accent);cursor:pointer;
+  opacity:0;scale:.96;pointer-events:none;transition:opacity .22s var(--pb-out),scale .4s cubic-bezier(.22,1,.36,1),background .25s var(--pb-out)}
+.si-go:hover{background:var(--pb-accent-hover)}
+.si-go:active{scale:.96}
+.si-go:focus-visible{outline:2px solid var(--pb-ink);outline-offset:2px}
+.si.si-ready[data-state=email] .si-go,.si[data-state=sending] .si-go{opacity:1;scale:1;pointer-events:auto}
+.si-go .t{grid-area:1/1;transition:opacity .2s var(--pb-out),translate .35s var(--pb-out),filter .25s var(--pb-out)}
+.si-go .dots{display:flex;gap:5px;opacity:0;translate:0 6px;filter:blur(3px)}
+.si-go .dots i{width:6px;height:6px;border-radius:50%;background:currentColor;animation:si-hop .9s ease-in-out infinite paused}
+.si-go .dots i:nth-child(2){animation-delay:.13s}.si-go .dots i:nth-child(3){animation-delay:.26s}
+.si[data-state=sending] .si-go .go{opacity:0;translate:0 -6px;filter:blur(3px)}
+.si[data-state=sending] .si-go .dots{opacity:1;translate:0 0;filter:none}
+.si[data-state=sending] .si-go .dots i{animation-play-state:running}
+@keyframes si-hop{0%,60%,100%{translate:0 0;opacity:.45}30%{translate:0 -5px;opacity:1}}
+.si:not([data-state=email]):not([data-state=sending]) :is(.si-input,.si-go){opacity:0;pointer-events:none}
+/* The field's text goes at once: the address is already on its way, and two copies would read as bold. */
+.si:not([data-state=email]):not([data-state=sending]) .si-input{transition:none}
+
+/* The cells: they start joined, exactly covering the field, then pull apart into six. On success they join again. */
+.si-cells{position:absolute;inset:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--gap);opacity:0;pointer-events:none;transition:gap var(--pb-spring-time) var(--pb-spring)}
+.si-cell{position:relative;z-index:1;width:100%;height:100%;min-width:0;margin:0;padding:0;border:0;border-radius:0;outline:none;text-align:center;
+  font-family:inherit;font-size:22px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--pb-field-text);caret-color:transparent;background:var(--pb-field);box-shadow:none;
+  transition:border-radius var(--pb-spring-time) var(--pb-spring),box-shadow .3s var(--pb-out),background .3s var(--pb-out),color .2s var(--pb-out),opacity .3s var(--pb-out)}
+.si-cell:first-of-type{border-radius:16px 0 0 16px}
+.si-cell:nth-of-type(6){border-radius:0 16px 16px 0}
+.si:is([data-state=split],[data-state=code],[data-state=checking],[data-state=done]) .si-cells{opacity:1}
+.si:is([data-state=code],[data-state=checking]) .si-cells{--gap:8px;pointer-events:auto}
+.si:is([data-state=code],[data-state=checking]) .si-box{background:transparent;box-shadow:none}
+.si:is([data-state=code],[data-state=checking]) .si-cell{border-radius:14px;box-shadow:0 0 0 1px var(--pb-line),0 1px 2px rgb(10 14 24 / .06)}
+.si:is([data-state=code],[data-state=checking]) .si-cell.filled{box-shadow:0 0 0 1px color-mix(in oklab,var(--pb-field-text) 24%,transparent),0 1px 2px rgb(10 14 24 / .06)}
+.si.si-error .si-cell{box-shadow:0 0 0 1px var(--pb-danger),0 0 0 3px color-mix(in oklab,var(--pb-danger) 14%,transparent)!important}
+.si[data-state=checking] .si-cell{opacity:.5}
+/* One focus ring for all six: it glides to the cell you are on. */
+.si-ring{position:absolute;z-index:2;top:0;left:0;width:var(--cw,0px);height:100%;border-radius:14px;pointer-events:none;opacity:0;translate:var(--cx,0px) 0;
+  box-shadow:0 0 0 1.5px var(--pb-ink),0 0 0 5px color-mix(in oklab,var(--pb-ink) 18%,transparent);transition:translate .35s cubic-bezier(.22,1,.36,1),width .35s cubic-bezier(.22,1,.36,1),opacity .2s var(--pb-out)}
+.si[data-state=code] .si-cells:focus-within .si-ring{opacity:1}
+/* Signed in: the six join into one calm field. */
+.si:is([data-state=split],[data-state=done]) .si-cell{background:transparent}
+.si[data-state=done] .si-cell{color:transparent}
+.si[data-state=done] .si-box{background:color-mix(in oklab,var(--pb-success) 10%,var(--pb-field));box-shadow:0 0 0 1px color-mix(in oklab,var(--pb-success) 40%,transparent)}
+.si-done{position:absolute;inset:0;z-index:3;display:grid;place-items:center;font-size:16px;font-weight:600;color:var(--pb-success);opacity:0;translate:0 6px;filter:blur(4px);pointer-events:none;
+  transition:opacity .3s var(--pb-out),translate .45s var(--pb-out),filter .3s var(--pb-out)}
+.si[data-state=done] .si-done{opacity:1;translate:0 0;filter:none;transition-delay:.3s}
+/* The address on its way from the field up into the chip. */
+.si-fly{position:absolute;z-index:5;left:0;top:0;font-family:inherit;font-size:16px;font-weight:600;color:var(--pb-field-text);white-space:nowrap;pointer-events:none;transform-origin:left center}
+@media(prefers-reduced-motion:reduce){.si,.si *{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}}

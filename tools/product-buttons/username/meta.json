@@ -1,0 +1,28 @@
+{
+  "variant": "product-username",
+  "category": "inputs",
+  "global": "SLUsername",
+  "root": ".pb-username",
+  "name": "Username",
+  "description": "Checks the name as you type. A free one gets a check; a taken one opens a sheet of free ones to pick from.",
+  "motions": [
+    "Checking sheen",
+    "Drawn check",
+    "Sliding sheet"
+  ],
+  "keywords": [
+    "username",
+    "handle",
+    "name",
+    "availability",
+    "sign up",
+    "suggestions",
+    "profile"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Pass check(name, { signal }) and return true for free, false for taken, or { free, suggest: [names] }. Read onChange({ name, free }).",
+  "example": "SLUsername.mount(document.querySelector('.pb-username'), {\n  check: async (name, { signal }) => (await fetch('/api/username?name=' + encodeURIComponent(name), { signal })).json(),\n  onChange: ({ free }) => { document.querySelector('#next').disabled = !free; },\n});"
+}

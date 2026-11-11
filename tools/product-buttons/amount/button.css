@@ -1,0 +1,43 @@
+/* Transfer: a white plate with two wells. The amount well fills toward the limit and turns red past it. */
+.am{--calm:cubic-bezier(.22,1,.36,1);--open:cubic-bezier(.32,.72,0,1);--well:color-mix(in oklab,var(--pb-field-text) 9%,var(--pb-field));--full:244px;position:relative;width:380px;max-width:100%;min-height:64px}
+.am *{box-sizing:border-box}
+.am-plate{position:absolute;z-index:5;top:0;left:0;right:0;height:64px}
+/* The head never changes. Behind it a full-height sheet only slides, so opening and folding need no repainting. */
+.am-head{position:relative;z-index:2;display:flex;gap:6px;height:64px;padding:6px;border-radius:22px;background:var(--pb-field)}
+.am-head::before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 1px var(--pb-line);clip-path:inset(-2px -2px 50% -2px);pointer-events:none}
+.am-clip{position:absolute;z-index:1;top:32px;left:-70px;right:-70px;height:calc(var(--full) + 96px);overflow:hidden;pointer-events:none}
+.am-sheet{position:absolute;top:0;left:70px;right:70px;height:calc(var(--full) + 32px);border-radius:22px;background:var(--pb-field);box-shadow:0 0 0 1px var(--pb-line),0 1px 2px rgb(10 14 24 / .06),0 10px 24px -12px rgb(10 14 24 / .2);translate:0 calc(var(--full) * -1);pointer-events:auto;will-change:translate;transition:translate .62s var(--open)}
+/* The deep shadow lives on its own layer and fades in near the top, so it has no hard edge beside the field. */
+.am-shade-clip{z-index:0;-webkit-mask-image:linear-gradient(transparent,#000 46px);mask-image:linear-gradient(transparent,#000 46px)}
+.am-shade{position:absolute;top:0;left:70px;right:70px;height:calc(var(--full) + 32px);border-radius:22px;box-shadow:0 2px 4px rgb(10 14 24 / .06),0 22px 44px -18px rgb(10 14 24 / .32);translate:0 calc(var(--full) * -1);opacity:0;will-change:translate,opacity;transition:translate .62s var(--open),opacity .5s var(--pb-out)}
+.am[data-sheet=open] .am-shade{opacity:1}
+.am-well{position:relative;isolation:isolate;flex:1 1 0;min-width:0;display:flex;align-items:center;height:52px;cursor:text}
+.am-well.cur{flex:0 0 78px;cursor:pointer}
+.am-well::before{content:"";position:absolute;inset:0;border-radius:16px;background:var(--well)}
+.am-ring{position:absolute;inset:0;border-radius:16px;background:var(--pb-field);box-shadow:0 0 0 1.5px var(--pb-ink),0 0 0 4px color-mix(in oklab,var(--pb-ink) 18%,transparent),0 8px 18px -10px rgb(10 14 24 / .3);opacity:0;scale:.975;will-change:opacity,scale;transition:opacity .42s var(--pb-out),scale .6s var(--open),box-shadow .2s var(--pb-out)}
+.am-well:focus-within .am-ring{opacity:1;scale:1}
+.am-over .am-well.num .am-ring{box-shadow:0 0 0 1.5px var(--pb-danger),0 0 0 4px color-mix(in oklab,var(--pb-danger) 18%,transparent)}
+/* How much of the limit is used: one layer that only stretches. */
+.am-meter{position:absolute;inset:0;border-radius:16px;overflow:hidden;pointer-events:none}
+.am-meter i{position:absolute;inset:0;background:color-mix(in oklab,var(--pb-ink) 16%,transparent);transform-origin:0 50%;scale:var(--used,0) 1;will-change:scale;transition:scale .5s var(--calm),background .25s var(--pb-out)}
+.am-over .am-meter i{background:color-mix(in oklab,var(--pb-danger) 18%,transparent)}
+.am input{position:relative;z-index:2;width:100%;height:100%;min-width:0;margin:0;padding:0 66px 0 16px;border:0;background:none;outline:none;font-family:inherit;font-size:16px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--pb-field-text);caret-color:var(--pb-ink);will-change:opacity}
+.am input::placeholder{color:var(--pb-hint);font-weight:400}
+.am-cur{position:relative;z-index:2;width:100%;height:100%;padding:0;border:0;background:none;outline:none;font:inherit;font-size:15px;font-weight:600;color:var(--pb-field-text);cursor:pointer;will-change:opacity}
+.am-max,.am-note{position:absolute;z-index:3;right:8px;top:8px;height:36px;line-height:36px;font-size:14px;font-weight:600;white-space:nowrap;transition:opacity .2s var(--pb-out),color .2s var(--pb-out)}
+.am-max{padding:0 8px;border:0;border-radius:11px;font-family:inherit;color:var(--pb-hint);background:none;cursor:pointer}
+.am-max[hidden]{display:none}
+.am-max:hover{color:var(--pb-field-text)}
+.am-max:focus-visible{outline:2px solid var(--pb-ink);outline-offset:-2px}
+.am-note{padding:0 8px;color:var(--pb-danger);opacity:0;pointer-events:none}
+.am-over .am-max{opacity:0;pointer-events:none}
+.am-over .am-note{opacity:1}
+/* The window slides with the sheet and the rows counter-slide inside it, so they stay still and the sheet's edge reveals them. */
+.am-reveal{position:absolute;z-index:3;top:-2px;left:6px;right:6px;height:calc(var(--full) + 60px);overflow:hidden;translate:0 calc(var(--full) * -1);pointer-events:none;will-change:translate;transition:translate .62s var(--open)}
+.am-list{position:absolute;top:60px;left:0;right:0;height:0;translate:0 var(--full);will-change:translate;transition:translate .62s var(--open)}
+.am-knob{position:absolute;pointer-events:none;left:0;right:0;top:0;height:46px;border-radius:16px;background:var(--well);opacity:0;will-change:translate,opacity;transition:translate .32s var(--calm),opacity .18s var(--pb-out)}
+.am-row{pointer-events:auto;position:absolute;z-index:1;left:0;right:0;display:flex;align-items:center;height:46px;padding:0 16px;font-size:16px;font-weight:500;color:var(--pb-field-text);white-space:nowrap;cursor:pointer;user-select:none}
+.am-row b{flex:0 0 28px;font-weight:500;color:var(--pb-hint)}
+.am-row u{flex:0 0 52px;text-decoration:none}
+.am-row span{color:var(--pb-hint);font-size:15px}
+@media(prefers-reduced-motion:reduce){.am,.am *{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}}

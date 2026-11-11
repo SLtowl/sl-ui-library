@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Billing · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <div class="pb pb-f pb-billing bl" data-period="monthly">
+    <div class="bl-price"><span class="bl-num"><span class="mo">$15</span><span class="yr" aria-hidden="true">$12</span></span><span class="bl-per">/ month</span></div>
+    <div class="bl-plate">
+      <div class="bl-seg" role="radiogroup" aria-label="Billing period"><i></i>
+        <button class="bl-opt" type="button" role="radio" aria-checked="true" data-period="monthly">Monthly</button>
+        <button class="bl-opt" type="button" role="radio" aria-checked="false" tabindex="-1" data-period="yearly">Yearly</button>
+      </div>
+    </div>
+    <div class="bl-note"><span class="mo">Save 20% with Yearly</span><span class="yr" aria-hidden="true">You save $36 a year</span></div>
+  </div>
+</body>
+</html>

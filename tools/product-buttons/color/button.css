@@ -1,0 +1,47 @@
+/* Color: a white plate with one well. A valid code pours from the swatch; a rainbow circle among the swatches opens the full palette. */
+.cl{--calm:cubic-bezier(.22,1,.36,1);--open:cubic-bezier(.32,.72,0,1);--well:color-mix(in oklab,var(--pb-field-text) 9%,var(--pb-field));--full:256px;position:relative;width:380px;max-width:100%;min-height:64px}
+.cl *{box-sizing:border-box}
+.cl-plate{position:absolute;z-index:5;top:0;left:0;right:0;height:64px}
+/* The head never changes. Behind it a full-height sheet only slides, so opening and folding need no repainting. */
+.cl-head{position:relative;z-index:2;height:64px;padding:6px;border-radius:22px;background:var(--pb-field)}
+.cl-head::before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 1px var(--pb-line);clip-path:inset(-2px -2px 50% -2px);pointer-events:none}
+.cl-clip{position:absolute;z-index:1;top:32px;left:-70px;right:-70px;height:calc(var(--full) + 96px);overflow:hidden;pointer-events:none}
+.cl-sheet{position:absolute;top:0;left:70px;right:70px;height:calc(var(--full) + 32px);border-radius:22px;background:var(--pb-field);box-shadow:0 0 0 1px var(--pb-line),0 1px 2px rgb(10 14 24 / .06),0 10px 24px -12px rgb(10 14 24 / .2);translate:0 calc(var(--full) * -1);pointer-events:auto;will-change:translate;transition:translate .62s var(--open)}
+/* The deep shadow lives on its own layer and fades in near the top, so it has no hard edge beside the field. */
+.cl-shade-clip{z-index:0;-webkit-mask-image:linear-gradient(transparent,#000 46px);mask-image:linear-gradient(transparent,#000 46px)}
+.cl-shade{position:absolute;top:0;left:70px;right:70px;height:calc(var(--full) + 32px);border-radius:22px;box-shadow:0 2px 4px rgb(10 14 24 / .06),0 22px 44px -18px rgb(10 14 24 / .32);translate:0 calc(var(--full) * -1);opacity:0;will-change:translate,opacity;transition:translate .62s var(--open),opacity .5s var(--pb-out)}
+.cl[data-sheet=open] .cl-shade{opacity:1}
+.cl-well{position:relative;isolation:isolate;display:flex;align-items:center;height:52px;cursor:text}
+.cl-well::before{content:"";position:absolute;inset:0;border-radius:16px;background:var(--well)}
+.cl-ring{position:absolute;inset:-4px;border-radius:20px;background:var(--pb-field);box-shadow:0 0 0 1.5px var(--pb-ink),0 0 0 4px color-mix(in oklab,var(--pb-ink) 18%,transparent),0 8px 18px -10px rgb(10 14 24 / .3);opacity:0;scale:.975;will-change:opacity,scale;transition:opacity .42s var(--pb-out),scale .6s var(--open),box-shadow .2s var(--pb-out)}
+.cl-well:focus-within .cl-ring{opacity:1;scale:1}
+.cl-bad .cl-ring{box-shadow:0 0 0 1.5px var(--pb-danger),0 0 0 4px color-mix(in oklab,var(--pb-danger) 18%,transparent)}
+/* The colour itself: a resting layer, and a circle that grows from the swatch over it. Only opacity and scale ever change. */
+.cl-paint{position:absolute;inset:0;border-radius:16px;overflow:hidden;pointer-events:none}
+.cl-base{position:absolute;inset:0;opacity:0;will-change:opacity;transition:opacity .28s var(--pb-out)}
+.cl-pour{position:absolute;left:12px;top:12px;width:28px;height:28px;border-radius:50%;scale:1;will-change:scale;transition:scale .62s var(--open)}
+.cl-pour.go{scale:28}
+.cl input{position:relative;z-index:2;width:100%;height:100%;min-width:0;margin:0;padding:0 16px 0 50px;border:0;background:none;outline:none;font-family:inherit;font-size:16px;font-weight:500;letter-spacing:.02em;color:var(--cl-ink,var(--pb-field-text));caret-color:var(--cl-ink,var(--pb-ink));transition:color .25s var(--pb-out) .12s;will-change:opacity}
+.cl input::placeholder{color:var(--pb-hint);font-weight:400;letter-spacing:0}
+.cl-swatch{position:absolute;z-index:3;left:12px;top:12px;width:28px;height:28px;padding:0;border:0;border-radius:50%;background:var(--cl-swatch,var(--pb-field));box-shadow:0 0 0 1px var(--pb-line);cursor:pointer;transition:scale .3s var(--calm)}
+.cl-has .cl-swatch{box-shadow:0 0 0 2px rgb(255 255 255 / .9),0 0 0 3px rgb(10 14 24 / .12)}
+.cl-swatch:hover{scale:1.08}
+.cl-swatch:focus-visible{outline:2px solid var(--pb-ink);outline-offset:3px}
+/* The window slides with the sheet and the swatches counter-slide inside it, so they stay still and the sheet's edge reveals them. */
+.cl-reveal{position:absolute;z-index:3;top:-2px;left:6px;right:6px;height:calc(var(--full) + 60px);overflow:hidden;translate:0 calc(var(--full) * -1);pointer-events:none;will-change:translate;transition:translate .62s var(--open)}
+.cl-pick{position:absolute;top:66px;left:0;right:0;translate:0 var(--full);will-change:translate;transition:translate .62s var(--open)}
+/* Any colour: a square for how vivid and how bright, a strip for the hue. Only the two knobs move. */
+.cl-sv{position:relative;height:var(--sv,124px);margin-top:8px;border-radius:14px;touch-action:none;cursor:crosshair;pointer-events:auto;background:linear-gradient(to top,#000,transparent),linear-gradient(to right,#fff,transparent),hsl(var(--hue,220) 100% 50%);box-shadow:inset 0 0 0 1px var(--pb-line)}
+.cl-hue{position:relative;height:14px;margin-top:12px;border-radius:7px;touch-action:none;cursor:ew-resize;pointer-events:auto;background:linear-gradient(90deg,#f00,#ff0 16.66%,#0f0 33.33%,#0ff 50%,#00f 66.66%,#f0f 83.33%,#f00);box-shadow:inset 0 0 0 1px var(--pb-line)}
+.cl-knob{position:absolute;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:var(--k,#fff);box-shadow:0 0 0 2.5px #fff,0 0 0 3.5px rgb(10 14 24 / .25),0 2px 6px rgb(10 14 24 / .3);pointer-events:none}
+.cl-hue .cl-knob{top:50%}
+.cl-sv:focus-visible,.cl-hue:focus-visible{outline:2px solid var(--pb-ink);outline-offset:2px}
+.cl-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px 0}
+.cl-dot{justify-self:center;display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;background:none;cursor:pointer;pointer-events:auto}
+.cl-dot i{display:block;width:28px;height:28px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px var(--pb-line);transition:scale .3s var(--calm)}
+.cl-dot:hover i{scale:1.16}
+.cl-dot.on i{box-shadow:0 0 0 2px var(--pb-field),0 0 0 3.5px var(--pb-ink)}
+.cl-dot:focus-visible{outline:2px solid var(--pb-ink);outline-offset:-4px;border-radius:50%}
+/* The last circle is not a colour: it opens the extra palette underneath. */
+.cl-more i{background:conic-gradient(#f43f5e,#f59e0b,#eab308,#22c55e,#06b6d4,#3b82f6,#8b5cf6,#f43f5e)}
+@media(prefers-reduced-motion:reduce){.cl,.cl *{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}}

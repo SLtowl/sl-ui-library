@@ -1,0 +1,26 @@
+{
+  "variant": "product-volume",
+  "category": "sliders",
+  "global": "SLVolume",
+  "root": ".pb-volume",
+  "name": "Volume",
+  "description": "The speaker gains and loses its waves as you drag, and a line crosses it at zero.",
+  "motions": [
+    "Following thumb",
+    "Fading waves"
+  ],
+  "keywords": [
+    "volume",
+    "sound",
+    "audio",
+    "speaker",
+    "mute",
+    "slider"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Pass value from 0 to 100 and read onChange(value).",
+  "example": "SLVolume.mount(document.querySelector('.pb-volume'), {\n  onChange: value => { player.volume = value / 100; },\n});"
+}

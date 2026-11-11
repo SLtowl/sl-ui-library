@@ -1,0 +1,26 @@
+.ck{--calm:cubic-bezier(.22,1,.36,1);--ck-note:#6b7280;color:var(--pb-field-text);-webkit-tap-highlight-color:transparent}
+.ck *{box-sizing:border-box}
+.ck-plate{width:300px;max-width:100%;margin-inline:auto;padding:6px 16px;border-radius:20px;background:var(--pb-field);box-shadow:0 0 0 1px var(--pb-line),0 1px 2px rgb(10 14 24 / .06),0 10px 24px -12px rgb(10 14 24 / .2)}
+.ck-one{padding:0 16px}
+.ck-one .ck-row{min-height:62px}
+/* The colour swells from the middle, then the tick draws itself. Nothing reacts to the press. */
+.ck-row{position:relative;display:flex;align-items:center;gap:12px;min-height:46px;font-size:15.5px;font-weight:500;cursor:pointer}
+.ck-row input{position:absolute;width:1px;height:1px;opacity:0;margin:0;pointer-events:none}
+.ck-box{position:relative;flex:none;display:block;width:22px;height:22px;border-radius:7px;background:color-mix(in oklab,var(--pb-field-text) 10%,var(--pb-field))}
+.ck-box::before{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--pb-accent);opacity:0;scale:.55;transition:scale .3s var(--calm) var(--d,0s),opacity .2s ease var(--d,0s)}
+.ck-box svg{position:absolute;inset:0;width:22px;height:22px;overflow:visible;fill:none;stroke:var(--pb-on-accent);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.ck-tick{stroke-dasharray:1 1;stroke-dashoffset:1;transition:stroke-dashoffset .16s ease var(--d,0s)}
+input:checked~.ck-box::before{opacity:1;scale:1}
+input:checked~.ck-box .ck-tick{stroke-dashoffset:0;transition:stroke-dashoffset .32s var(--calm) calc(var(--d,0s) + .06s)}
+input:focus-visible~.ck-box{outline:2px solid var(--pb-ink);outline-offset:2px}
+.ck-text{flex:1;min-width:0}
+.ck-side{display:grid;justify-items:end;font-size:13.5px;color:var(--pb-hint)}
+.ck-side>span{grid-area:1/1}
+.ck-dash{position:absolute;z-index:1;left:6px;top:10px;width:10px;height:2.5px;border-radius:2px;background:var(--pb-on-accent);opacity:0;scale:.2 1;transition:scale .28s var(--calm),opacity .16s ease}
+input:indeterminate~.ck-box::before{opacity:1;scale:1}
+input:indeterminate~.ck-box .ck-dash{opacity:1;scale:1 1}
+.ck-head{border-bottom:1px solid var(--pb-line)}
+.ck-cascade .ck-kid{--d:calc(var(--i) * 60ms)}
+.ck-count>span{opacity:0;transition:opacity .14s ease}
+.ck-count>span.on{opacity:1;transition:opacity .26s ease .08s}
+@media(prefers-reduced-motion:reduce){.ck *,.ck *::before,.ck *::after{transition-duration:.01ms!important;transition-delay:0s!important}}

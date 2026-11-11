@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project privacy · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <div class="pb pb-f pb-privacyrow pr" data-private="false">
+    <button class="pr-btn" type="button" role="switch" aria-checked="false">
+      <span class="pr-text"><strong>Private project</strong><span class="pr-sub"><span class="v-pub">Anyone with the link can view</span><span class="v-prv" aria-hidden="true">Only you can view</span></span></span>
+      <span class="pr-sw" aria-hidden="true"></span>
+    </button>
+  </div>
+</body>
+</html>

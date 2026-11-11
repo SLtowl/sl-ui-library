@@ -1,0 +1,12 @@
+{
+  "variant": "product-delete",
+  "global": "SLDelete",
+  "root": ".pb-delete",
+  "name": "Delete",
+  "description": "Splits into Cancel and Yes, delete, waits for the answer and settles as Deleted.",
+  "motions": ["Spring split", "Warning pulse"],
+  "keywords": ["delete", "remove", "destroy", "confirm", "danger", "trash", "two-step"],
+  "size": [300, 52],
+  "connect": "Pass onDelete({ signal }); resolve once the item is gone, reject to put the button back. The confirmation closes by itself after a few seconds.",
+  "example": "SLDelete.mount(document.querySelector('.pb-delete'), {\n  // Delete for real. Resolve when it is done, throw to show the error.\n  onDelete: async ({ signal }) => {\n    const response = await fetch('/api/projects/42', { method: 'DELETE', signal });\n    if (!response.ok) throw new Error('Delete failed');\n  },\n});"
+}

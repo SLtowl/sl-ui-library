@@ -1,0 +1,21 @@
+/* Billing: the well slides between two words while the price rolls in its own window, on the same curve. */
+.bl{--calm:cubic-bezier(.22,1,.36,1);--well:color-mix(in oklab,var(--pb-field-text) 9%,var(--pb-field));--bl-text:#16181d;--bl-note:#6b7280;display:inline-grid;justify-items:center;gap:18px;color:var(--bl-text);-webkit-tap-highlight-color:transparent}
+.bl *{box-sizing:border-box}
+.bl-price{display:flex;align-items:baseline;gap:7px;font-variant-numeric:tabular-nums}
+.bl-num{display:inline-grid;justify-items:end;overflow:clip;overflow-clip-margin:2px;font-size:44px;font-weight:600;line-height:1.14;letter-spacing:-.03em}
+.bl-num>span{grid-area:1/1;will-change:translate;transition:translate .5s var(--calm),opacity .28s var(--pb-out)}
+.bl[data-period=monthly] .bl-num>.yr{translate:0 105%;opacity:0}
+.bl[data-period=yearly] .bl-num>.mo{translate:0 -105%;opacity:0}
+.bl-per{font-size:15px;font-weight:500;color:var(--bl-note)}
+.bl-plate{padding:6px;border-radius:22px;background:var(--pb-field);box-shadow:0 0 0 1px var(--pb-line),0 1px 2px rgb(10 14 24 / .06),0 10px 24px -12px rgb(10 14 24 / .2)}
+.bl-seg{position:relative;display:grid;grid-template-columns:1fr 1fr;width:236px;height:52px}
+.bl-seg>i{position:absolute;left:0;top:0;width:50%;height:100%;border-radius:16px;background:var(--well);will-change:translate;transition:translate .5s var(--calm)}
+.bl[data-period=yearly] .bl-seg>i{translate:100% 0}
+.bl-opt{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;padding:0;border:0;border-radius:16px;background:none;font:inherit;font-size:15.5px;font-weight:500;color:var(--pb-hint);cursor:pointer;transition:color .28s var(--pb-out)}
+.bl-opt[aria-checked=true]{color:var(--pb-field-text);cursor:default}
+.bl-opt:focus-visible{outline:2px solid var(--pb-ink);outline-offset:2px}
+/* Both lines share one cell, so the switch never changes size; the old line leaves before the new one arrives. */
+.bl-note{display:grid;justify-items:center;margin-top:-4px;font-size:14px;font-weight:500;color:var(--bl-note)}
+.bl-note>span{grid-area:1/1;transition:opacity .26s var(--pb-out) .1s}
+.bl[data-period=monthly] .bl-note>.yr,.bl[data-period=yearly] .bl-note>.mo{opacity:0;transition:opacity .14s var(--pb-out)}
+@media(prefers-reduced-motion:reduce){.bl *{transition-duration:.01ms!important;transition-delay:0s!important}}

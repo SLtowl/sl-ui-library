@@ -1,0 +1,13 @@
+{
+  "variant": "product-light-dark",
+  "category": "selection",
+  "global": "SLLightDark",
+  "root": ".pb-lightdark",
+  "name": "Light / Dark",
+  "description": "A well slides between two words while night spreads from the switch and pulls back into it.",
+  "motions": ["Sliding well", "Spreading night"],
+  "keywords": ["dark mode", "light", "theme", "toggle", "segmented", "appearance"],
+  "size": [380, 300],
+  "connect": "Pass target for the surface the night spreads over and read onChange(on) to apply your theme. Pass on to start in dark mode.",
+  "example": "SLLightDark.mount(document.querySelector('.pb-lightdark'), {\n  target: document.body,\n  onChange: on => { document.documentElement.dataset.theme = on ? 'dark' : 'light'; },\n});"
+}

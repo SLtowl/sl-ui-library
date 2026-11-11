@@ -1,0 +1,14 @@
+/* Lock: the shackle is one line, hidden behind the body at both ends. Opening shortens its right end and lifts it, so fast presses just turn around. */
+.lk{--calm:cubic-bezier(.22,1,.36,1);--lk-text:#16181d;display:inline-grid;justify-items:center;gap:12px;-webkit-tap-highlight-color:transparent}
+.lk *{box-sizing:border-box}
+.lk-btn{display:grid;place-items:center;width:96px;height:96px;padding:0;border:0;border-radius:50%;background:var(--pb-field);color:var(--pb-field-text);box-shadow:0 0 0 1px var(--pb-line),0 16px 26px -12px rgb(10 14 24 / .28);cursor:pointer;transition:scale .3s var(--calm)}
+.lk-btn:active{scale:.96}
+.lk-btn:focus-visible{outline:2px solid var(--pb-ink);outline-offset:4px}
+.lk-btn svg{display:block;width:46px;height:46px;overflow:visible}
+.lk-shackle{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-dasharray:78 100;translate:0 -2.2px;will-change:translate;transition:stroke-dasharray .46s var(--calm),translate .46s var(--calm)}
+.lk[data-private=true] .lk-shackle{stroke-dasharray:100 100;translate:0 0}
+.lk-body{fill:currentColor}
+.lk-word{display:grid;justify-items:center;font-size:16px;font-weight:600;color:var(--lk-text)}
+.lk-word>span{grid-area:1/1;transition:opacity .26s var(--pb-out) .1s}
+.lk[data-private=false] .v-prv,.lk[data-private=true] .v-pub{opacity:0;transition:opacity .14s var(--pb-out)}
+@media(prefers-reduced-motion:reduce){.lk *{transition-duration:.01ms!important;transition-delay:0s!important}}

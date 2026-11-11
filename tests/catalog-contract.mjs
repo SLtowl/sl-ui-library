@@ -6,9 +6,10 @@ export const approved=JSON.parse(await readFile(new URL('./approved-components.j
 export const approvedRelease91=JSON.parse(await readFile(new URL('./approved-release-91.json',import.meta.url),'utf8'));
 const originalIds=new Set(approved.map(item=>item.id)),releaseIds=new Set(approvedRelease91.map(item=>item.id));
 // Keep the original167 owner-reviewed batch contract independent of this release.
-export const additions=components.filter(component=>!originalIds.has(component.id)&&!releaseIds.has(component.id));
-export const expectedCount=388;
-export const expectedVariants=390;
+const product=components.filter(component=>component.collection==='product');
+export const additions=components.filter(component=>component.collection!=='product'&&!originalIds.has(component.id)&&!releaseIds.has(component.id));
+export const expectedCount=439;
+export const expectedVariants=441;
 
 export function assertCatalogContract({complete=false}={}){
  assert.equal(approved.length,130,'The original approved baseline remains frozen.');
@@ -32,6 +33,15 @@ export function assertCatalogContract({complete=false}={}){
   assert.ok(categories.some(category=>category.id===item.category));
  }
  assert.equal(additions.length,167,'Preserve all167 previously approved batches, with no unrelated additions.');
+ assert.equal(product.length,51);
+ for(const [category,count] of [['buttons',10],['inputs',11],['selection',10],['checkboxes',10],['sliders',10]]){
+  assert.equal(product.filter(component=>component.category===category).length,count);
+ }
+ for(const item of product){
+  assert.match(item.id,/^product-[a-z0-9-]+$/);
+  assert.deepEqual(item.variants,[item.id]);
+  assert.equal(item.downloads[item.id],`./downloads/matte-${item.id}.zip`);
+ }
  assert.equal(components.length,expectedCount);assert.equal(new Set(components.flatMap(item=>item.variants)).size,expectedVariants);
- if(complete)assert.equal(approved.length+additions.length+approvedRelease91.length,388);
+ if(complete)assert.equal(approved.length+additions.length+approvedRelease91.length+product.length,expectedCount);
 }

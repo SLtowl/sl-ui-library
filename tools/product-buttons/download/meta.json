@@ -1,0 +1,12 @@
+{
+  "variant": "product-download",
+  "global": "SLDownload",
+  "root": ".pb-download",
+  "name": "Download",
+  "description": "Becomes its own progress bar with a percentage, offers Cancel on hover and ends as Open file.",
+  "motions": ["Spring morph", "Progress fill"],
+  "keywords": ["download", "progress", "file", "export", "save", "open", "cancel"],
+  "size": [300, 52],
+  "connect": "Pass onDownload({ signal, progress }); call progress(0…1) as bytes arrive and resolve when the file is saved. Clicking during the download aborts the signal. onOpen() runs from Open file.",
+  "example": "SLDownload.mount(document.querySelector('.pb-download'), {\n  // Report progress as it arrives; the bar eases toward it. The signal aborts when the person cancels.\n  onDownload: async ({ signal, progress }) => {\n    const response = await fetch('/files/report.pdf', { signal });\n    const total = Number(response.headers.get('content-length')) || 0, reader = response.body.getReader(), parts = [];\n    for (let got = 0; ;) { const { done, value } = await reader.read(); if (done) break; parts.push(value); got += value.length; if (total) progress(got / total); }\n    window.lastFile = URL.createObjectURL(new Blob(parts));\n  },\n  onOpen: () => window.open(window.lastFile),\n});"
+}

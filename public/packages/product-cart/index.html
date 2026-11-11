@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add to cart · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <div class="pb pb-cart" data-state="idle">
+    <button class="pb-btn pb-add" type="button"><span class="pb-t" data-label="idle">Add to cart</span></button>
+    <div class="pb-stepper" role="group" aria-label="Quantity">
+      <button class="pb-step" type="button" data-step="-1" aria-label="Remove one" tabindex="-1">−</button>
+      <span class="pb-qty"><span class="pb-n"><span>1</span></span> in cart</span>
+      <button class="pb-step" type="button" data-step="1" aria-label="Add one" tabindex="-1">+</button>
+    </div>
+    <span class="pb-sr" data-status role="status" aria-live="polite"></span>
+  </div>
+</body>
+</html>

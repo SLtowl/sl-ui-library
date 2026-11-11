@@ -1,0 +1,13 @@
+{
+  "variant": "product-billing",
+  "category": "selection",
+  "global": "SLBilling",
+  "root": ".pb-billing",
+  "name": "Billing",
+  "description": "A well slides between Monthly and Yearly while the price rolls in its own window and the savings line changes in place.",
+  "motions": ["Sliding well", "Rolling price"],
+  "keywords": ["billing", "pricing", "monthly", "yearly", "annual", "plan", "subscription", "segmented"],
+  "size": [380, 300],
+  "connect": "Pass prices and notes for your plan and read onChange(period), which gives 'monthly' or 'yearly'. Set --bl-text and --bl-note on the root to match a dark page.",
+  "example": "SLBilling.mount(document.querySelector('.pb-billing'), {\n  prices: { monthly: '$15', yearly: '$12' },\n  notes: { monthly: 'Save 20% with Yearly', yearly: 'You save $36 a year' },\n  onChange: period => { document.querySelector('#plan').value = period; },\n});"
+}

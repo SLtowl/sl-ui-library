@@ -25,7 +25,7 @@ Every variant retains its vanilla HTML/CSS/JavaScript and adds source-preserving
 
 ## Claude
 
-Download [sl-ui-library-plugin.zip](https://sltowl.github.io/sl-ui-library/downloads/sl-ui-library-plugin.zip). In Claude, open **Customize → Plugins** and use the custom-plugin upload option. Enable the installed plugin and select **use-sl-ui**, or describe a relevant interface task. Availability and permissions depend on the client and workspace.
+Download [sl-ui-library-plugin.zip](https://sltowl.com/downloads/sl-ui-library-plugin.zip). In Claude, open **Customize → Plugins** and use the custom-plugin upload option. Enable the installed plugin and select **use-sl-ui**, or describe a relevant interface task. Availability and permissions depend on the client and workspace.
 
 In a chat, the agent can prepare files for download. It can integrate them into an existing application only when that application is available in its workspace. Uploading the plugin does not grant access to your computer.
 

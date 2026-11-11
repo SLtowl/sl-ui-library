@@ -1,0 +1,12 @@
+{
+  "variant": "product-promo",
+  "global": "SLPromo",
+  "root": ".pb-promo",
+  "name": "Promo code",
+  "description": "A quiet Have a code? opens into a field; a good code lands as the discount, a bad one shakes.",
+  "motions": ["Spring morph", "Fold-in", "Shake"],
+  "keywords": ["promo", "coupon", "discount", "code", "voucher", "checkout", "redeem"],
+  "size": [340, 52],
+  "connect": "Pass onApply(code, { signal }); resolve with { label: '−20%' } for a good code, throw for a bad one. Hovering an applied code offers Remove code; onRemove(code) runs then.",
+  "example": "SLPromo.mount(document.querySelector('.pb-promo'), {\n  // Check the code. Return the text to show, throw if it does not work.\n  onApply: async (code, { signal }) => {\n    const response = await fetch('/api/promo?code=' + encodeURIComponent(code), { signal });\n    if (!response.ok) throw new Error('Unknown code');\n    const { percent } = await response.json();\n    return { label: '−' + percent + '%' };\n  },\n  onRemove: code => fetch('/api/promo', { method: 'DELETE' }),\n});"
+}

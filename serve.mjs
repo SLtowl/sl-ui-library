@@ -4,14 +4,30 @@ import { createHash } from 'node:crypto';
 import { gzipSync } from 'node:zlib';
 import { categories, components } from './public/catalog-data.js';
 import {libraryShellFiles} from './public/experiments/library-shell/release-assets.mjs';
+import {names as previewNames} from './public/previews/index.js';
+import {names as productNames} from './public/previews-product/index.js';
 import {configurationReady} from './plugins/sl-ui-library/scripts/analytics-core.mjs';
 const port = Number(process.env.PORT || 4321);
 const root = new URL('./public/', import.meta.url);
 let analyticsOrigin='';
 try{const config=JSON.parse(await readFile(new URL('analytics/config.json',root),'utf8'));if(configurationReady(config))analyticsOrigin=' '+config.apiHost;}catch{}
-const types = { html: 'text/html; charset=utf-8', css: 'text/css; charset=utf-8', js: 'text/javascript; charset=utf-8', mjs: 'text/javascript; charset=utf-8', jsx: 'text/plain; charset=utf-8', json: 'application/json; charset=utf-8', md: 'text/plain; charset=utf-8', png: 'image/png', woff2: 'font/woff2', txt: 'text/plain; charset=utf-8', zip: 'application/zip' };
+const types = { html: 'text/html; charset=utf-8', css: 'text/css; charset=utf-8', js: 'text/javascript; charset=utf-8', mjs: 'text/javascript; charset=utf-8', jsx: 'text/plain; charset=utf-8', json: 'application/json; charset=utf-8', md: 'text/plain; charset=utf-8', png: 'image/png', svg: 'image/svg+xml', mp4: 'video/mp4', webm: 'video/webm', woff2: 'font/woff2', txt: 'text/plain; charset=utf-8', zip: 'application/zip' };
 // Explicit local asset allowlist. Menu contours are embedded SVG.
 const allowed = new Set(['index.html', 'library.css', 'library.js', 'component.html', 'category.html', 'catalog.css', 'catalog.js', 'catalog-data.js', 'assets/instrument-sans-variable.woff2']);
+for (const file of [
+  'intro.html', 'catalog.html', 'docs.html', 'home-page.mjs', 'catalog-page.mjs', 'docs-page.mjs',
+  'site-preview-data.js', 'site-preview-runtime.js', 'media/studio-motion.mp4', 'media/studio-motion.webm',
+  'previews/index.js', 'previews-product/index.js', 'previews-product/_shared.js',
+]) allowed.add(file);
+for (const file of ['catalog-entry.js', 'docs-entry.js', 'legacy-route.js', 'review-header.css', 'review-header.mjs', 'site.css', 'tokens.css', 'shell.mjs', 'dots.mjs', 'sizes.mjs']) allowed.add('site-shell/'+file);
+for (const file of [
+  'site-catalog-palettes.mjs', 'site-catalog-export.mjs', 'site-palette-export.mjs',
+  'batch-presentations.mjs', 'input-presentations.mjs', 'toggle-presentations.mjs', 'checkbox-presentations.mjs',
+  'slider-presentations.mjs', 'menu-presentations.mjs', 'navigation-presentations.mjs', 'overlay-presentations.mjs',
+  'save-review.css', 'save-custom-color.mjs', 'custom-palette.mjs',
+]) allowed.add('experiments/library-shell/'+file);
+for (const name of previewNames) allowed.add(`previews/${name}.js`);
+for (const name of productNames) allowed.add(`previews-product/${name}.js`);
 for(const file of libraryShellFiles)allowed.add('experiments/library-shell/'+file);
 for(const file of ['config.json','analytics-core.mjs','site-analytics.mjs','analytics.css','privacy.html'])allowed.add('analytics/'+file);
 allowed.add('downloads/sl-ui-library-plugin.zip');
@@ -58,7 +74,7 @@ createServer(async (req, res) => {
     if (!asset || asset.modified !== info.mtimeMs || asset.size !== info.size) {
       const body = await readFile(file);
       asset = { body, modified: info.mtimeMs, size: info.size, etag: 'W/"' + createHash('sha256').update(body).digest('hex').slice(0, 24) + '"' };
-      if (/\.(html|css|js|txt)$/.test(path)) asset.gzip = gzipSync(body);
+      if (/\.(html|css|m?js|txt)$/.test(path)) asset.gzip = gzipSync(body);
       cache.set(path, asset);
     }
     const type = types[path.split('.').pop()];

@@ -1,0 +1,12 @@
+{
+  "variant": "product-invite",
+  "global": "SLInvite",
+  "root": ".pb-invite",
+  "name": "Invite",
+  "description": "Opens into an email field with a role switch, sends, and reopens empty for the next person.",
+  "motions": ["Spring morph", "Fold-in", "Role roll"],
+  "keywords": ["invite", "team", "member", "share", "email", "role", "collaborate"],
+  "size": [420, 52],
+  "connect": "Pass onInvite({ email, role }, { signal }); resolve once the invitation is sent. Set roles to the choices your app has; the role pill cycles through them.",
+  "example": "SLInvite.mount(document.querySelector('.pb-invite'), {\n  roles: ['Editor', 'Viewer'],\n  // Send the invitation. Throw to show the error and keep the address.\n  onInvite: async ({ email, role }, { signal }) => {\n    const response = await fetch('/api/invites', { method: 'POST', body: JSON.stringify({ email, role }), signal });\n    if (!response.ok) throw new Error('Invite failed');\n  },\n});"
+}

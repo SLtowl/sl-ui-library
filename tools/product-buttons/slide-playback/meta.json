@@ -1,0 +1,27 @@
+{
+  "variant": "product-playback",
+  "category": "sliders",
+  "global": "SLPlayback",
+  "root": ".pb-playback",
+  "name": "Playback",
+  "description": "A thin timeline. A small bubble with the time rises above the thumb only while you drag.",
+  "motions": [
+    "Rising bubble",
+    "Following thumb"
+  ],
+  "keywords": [
+    "playback",
+    "video",
+    "audio",
+    "timeline",
+    "scrub",
+    "seek",
+    "slider"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Pass value and total in seconds and read onChange(value). Call set(value) as the media plays.",
+  "example": "SLPlayback.mount(document.querySelector('.pb-playback'), {\n  onChange: value => { video.currentTime = value; },\n});"
+}

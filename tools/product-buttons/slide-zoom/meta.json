@@ -1,0 +1,25 @@
+{
+  "variant": "product-zoom",
+  "category": "sliders",
+  "global": "SLZoom",
+  "root": ".pb-zoom",
+  "name": "Zoom",
+  "description": "Minus and plus on either side of the track. The buttons move the thumb in smooth steps.",
+  "motions": [
+    "Gliding steps"
+  ],
+  "keywords": [
+    "zoom",
+    "scale",
+    "map",
+    "canvas",
+    "editor",
+    "slider"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Pass value as a percentage from 25 to 200 and read onChange(value).",
+  "example": "SLZoom.mount(document.querySelector('.pb-zoom'), {\n  onChange: value => { canvas.style.scale = value / 100; },\n});"
+}

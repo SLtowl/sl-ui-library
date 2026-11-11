@@ -1,0 +1,1 @@
+{const u=new URL(location.href);if(u.searchParams.has('enter')&&!matchMedia('(prefers-reduced-motion:reduce)').matches){document.documentElement.classList.add('enter');setTimeout(()=>document.documentElement.classList.remove('enter'),3200)}if(u.searchParams.has('enter')){u.searchParams.delete('enter');history.replaceState(history.state,'',u)}}

@@ -1,0 +1,29 @@
+{
+  "variant": "product-transfer",
+  "category": "inputs",
+  "global": "SLTransfer",
+  "root": ".pb-transfer",
+  "name": "Transfer",
+  "description": "The amount to send fills its well toward your limit and turns red past it. Digits never shift while you type.",
+  "motions": [
+    "Limit meter",
+    "Sliding sheet",
+    "In-place format"
+  ],
+  "keywords": [
+    "transfer",
+    "amount",
+    "money",
+    "send",
+    "payment",
+    "currency",
+    "limit",
+    "balance"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Pass max for the available balance and read onChange({ amount, currency, valid, over }). Call setMax(value) whenever the balance changes. Without max there is no meter and no Max button.",
+  "example": "SLTransfer.mount(document.querySelector('.pb-transfer'), {\n  max: 2400,\n  onChange: ({ amount, currency, valid }) => {\n    document.querySelector('#send').disabled = !valid;\n  },\n});"
+}

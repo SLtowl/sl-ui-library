@@ -1,0 +1,13 @@
+/* Follow: the blue button pops into a quiet "Following". Coming back to it later offers "Unfollow" in red; right after following it does not. */
+.pb-follow { position: relative; display: inline-grid; }
+.pb-follow .pb-btn { width: var(--w0); }
+.pb-follow[data-state=idle] .pb-btn:hover { background: var(--pb-accent-hover); }
+.pb-follow .pb-btn:active { scale: .965; }
+.pb-follow[data-state=on] .pb-btn { width: var(--w1); color: var(--pb-field-text); background: var(--pb-field); box-shadow: 0 0 0 1px var(--pb-line), 0 1px 2px rgb(10 14 24 / .08); }
+.pb-follow[data-state=on]:not(.pb-fresh) .pb-btn:is(:hover, :focus-visible) { width: var(--w2); color: var(--pb-danger); background: color-mix(in oklab, var(--pb-danger) 8%, var(--pb-field)); box-shadow: 0 0 0 1px color-mix(in oklab, var(--pb-danger) 35%, transparent); }
+
+.pb-follow :is([data-label=on], [data-label=off]) { opacity: 0; translate: 0 7px; filter: blur(4px); }
+.pb-follow[data-state=on] [data-label=idle] { opacity: 0; translate: 0 -7px; filter: blur(4px); }
+.pb-follow[data-state=on] [data-label=on] { opacity: 1; translate: 0 0; filter: none; transition-delay: .08s; }
+.pb-follow[data-state=on]:not(.pb-fresh) .pb-btn:is(:hover, :focus-visible) [data-label=on] { opacity: 0; translate: 0 -7px; filter: blur(4px); transition-delay: 0s; }
+.pb-follow[data-state=on]:not(.pb-fresh) .pb-btn:is(:hover, :focus-visible) [data-label=off] { opacity: 1; translate: 0 0; filter: none; transition-delay: .06s; }

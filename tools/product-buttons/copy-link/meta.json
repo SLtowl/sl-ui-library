@@ -1,0 +1,12 @@
+{
+  "variant": "product-copy-link",
+  "global": "SLCopyLink",
+  "root": ".pb-copy",
+  "name": "Copy link",
+  "description": "Shows the link it copies, selects it, then lands as Copied.",
+  "motions": ["Spring morph", "Selection sweep"],
+  "keywords": ["copy", "link", "share", "clipboard", "url", "invite"],
+  "size": [300, 52],
+  "connect": "Put the address in data-link or pass link. The button writes it to the clipboard on click and shows Copy failed if the browser refuses.",
+  "example": "SLCopyLink.mount(document.querySelector('.pb-copy'), {\n  // The address to copy. data-link on the element works too.\n  link: 'https://example.com/invite/8fK2',\n});"
+}

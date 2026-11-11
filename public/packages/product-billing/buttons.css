@@ -1,0 +1,108 @@
+@font-face { font-family: 'Instrument Sans'; src: url('./instrument-sans-variable.woff2') format('woff2'); font-weight: 400 700; font-style: normal; font-display: swap; }
+/* Product buttons. Change the tokens on .pb to recolour one button, or on a parent to recolour all of them. */
+.pb {
+  --pb-accent: #2d6af6; --pb-accent-hover: #4a7ff8; --pb-on-accent: #ffffff;
+  /* The accent used as text, rings and outlines on light surfaces. Palettes darken it where the fill is white or pale. */
+  --pb-ink: var(--pb-accent);
+  --pb-field: #ffffff; --pb-field-text: #16181d; --pb-hint: #8a8f99; --pb-line: rgb(16 20 30 / .1);
+  --pb-success: #1e9e5a; --pb-danger: #e0484e; --pb-on-state: #ffffff;
+  --pb-spring: cubic-bezier(.3, 1.25, .5, 1); --pb-spring-time: .6s; --pb-out: cubic-bezier(.2, .8, .2, 1);
+  --h: 52px;
+  font-family: 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased;
+}
+.pb *, .pb *::before, .pb *::after { box-sizing: border-box; }
+.pb-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* The shared button body: a pill whose width springs between states. */
+.pb-btn {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; height: var(--h); padding: 0; border: 0; border-radius: calc(var(--h) / 2);
+  font-family: inherit; font-size: 15.5px; font-weight: 600; line-height: 1; letter-spacing: -.005em; white-space: nowrap; font-variant-numeric: tabular-nums;
+  color: var(--pb-on-accent); background: var(--pb-accent); cursor: pointer; -webkit-tap-highlight-color: transparent;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .22), 0 1px 2px rgb(10 14 24 / .14), 0 8px 20px -10px var(--pb-accent);
+  transition: width var(--pb-spring-time) var(--pb-spring), background .35s var(--pb-out), color .35s var(--pb-out), scale .2s var(--pb-out), box-shadow .35s var(--pb-out);
+}
+.pb-btn:focus-visible { outline: 2px solid var(--pb-ink); outline-offset: 3px; }
+.pb[data-state=done] .pb-btn { color: var(--pb-on-state); background: var(--pb-success); box-shadow: inset 0 1px 0 rgb(255 255 255 / .22), 0 1px 2px rgb(10 14 24 / .14), 0 8px 20px -10px var(--pb-success); cursor: default; }
+.pb[data-state=fail] .pb-btn { color: var(--pb-on-state); background: var(--pb-danger); box-shadow: inset 0 1px 0 rgb(255 255 255 / .22), 0 1px 2px rgb(10 14 24 / .14), 0 8px 20px -10px var(--pb-danger); cursor: default; }
+
+/* Stacked labels: one shows at a time, swapping with a short lift and blur. */
+.pb-t { grid-area: 1 / 1; position: relative; transition: opacity .22s var(--pb-out), translate .4s var(--pb-out), filter .3s var(--pb-out); }
+.pb-t.pb-hide-up { opacity: 0; translate: 0 -7px; filter: blur(4px); }
+.pb-t.pb-hide-down { opacity: 0; translate: 0 7px; filter: blur(4px); }
+
+/* A layer for one-off rings (Delete's warning pulse). Success lands quietly, without a ring. */
+.pb-btn::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; }
+
+/* Three dots that hop while something is working. */
+.pb-dots { display: flex; gap: 5px; }
+.pb-dots i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: pb-hop .9s ease-in-out infinite paused; }
+.pb-dots i:nth-child(2) { animation-delay: .13s; }
+.pb-dots i:nth-child(3) { animation-delay: .26s; }
+.pb[data-state=busy] .pb-dots i { animation-play-state: running; }
+@keyframes pb-hop { 0%, 60%, 100% { translate: 0 0; opacity: .45; } 30% { translate: 0 -5px; opacity: 1; } }
+
+/* A progress band that fills the button from the left. Clipped, not scaled, so its rounded end stays round. */
+.pb-fill { position: absolute; inset: 0; border-radius: inherit; background: color-mix(in oklab, currentColor 18%, transparent);
+  clip-path: inset(0 calc((1 - var(--p, 0)) * 100%) 0 0 round calc(var(--h) / 2)); opacity: 0; transition: opacity .3s var(--pb-out); pointer-events: none; }
+.pb[data-state=busy] .pb-fill { opacity: 1; }
+
+/* A quiet secondary pill, used for Cancel and for "on" states. */
+.pb-quiet { color: var(--pb-field-text); background: var(--pb-field); box-shadow: 0 0 0 1px var(--pb-line), 0 1px 2px rgb(10 14 24 / .08); }
+
+@media (prefers-reduced-motion: reduce) { .pb, .pb * , .pb-btn::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0s !important; } }
+
+/* ---- Fields (Product inputs) ---- */
+.pb-f { width: var(--pb-w, 320px); max-width: 100%; }
+/* Fields move smoothly and settle without overshoot; the bouncier spring is for buttons. */
+.pb-f { --pb-spring: cubic-bezier(.22, 1, .36, 1); --pb-spring-time: .42s; }
+.pb-label { display: block; margin: 0 0 8px 4px; font-size: 13.5px; font-weight: 600; color: inherit; }
+.pb-box { position: relative; display: flex; align-items: center; gap: 8px; min-height: var(--h); padding: 0 6px 0 16px; border-radius: 16px; color: var(--pb-field-text); background: var(--pb-field);
+  box-shadow: 0 0 0 1px var(--pb-line), 0 1px 2px rgb(10 14 24 / .06); transition: box-shadow .25s var(--pb-out), background .25s var(--pb-out); }
+.pb-box:focus-within { box-shadow: 0 0 0 1px var(--pb-accent), 0 0 0 4px color-mix(in oklab, var(--pb-accent) 20%, transparent); }
+.pb-f.pb-error .pb-box { box-shadow: 0 0 0 1px var(--pb-danger), 0 0 0 4px color-mix(in oklab, var(--pb-danger) 18%, transparent); }
+.pb-input { flex: 1; min-width: 0; height: var(--h); margin: 0; padding: 0; border: 0; background: none; outline: none; font-family: inherit; font-size: 16px; font-weight: 500; color: inherit; caret-color: var(--pb-accent); }
+.pb-input::placeholder { color: var(--pb-hint); font-weight: 400; }
+.pb-prefix { flex: none; font-size: 16px; font-weight: 500; color: var(--pb-hint); }
+/* A small pill inside a field: a toggle, a suggestion, a status. */
+.pb-chip { flex: none; display: inline-grid; place-items: center; height: 32px; padding: 0 11px; border: 0; border-radius: 10px; font-family: inherit; font-size: 13.5px; font-weight: 600;
+  color: inherit; background: color-mix(in oklab, var(--pb-field-text) 6%, var(--pb-field)); cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent; user-select: none;
+  transition: background .2s var(--pb-out), color .2s var(--pb-out), opacity .2s var(--pb-out), scale .3s var(--pb-spring), translate .3s var(--pb-out); }
+.pb-chip:hover { background: color-mix(in oklab, var(--pb-field-text) 11%, var(--pb-field)); }
+.pb-chip:active { scale: .94; transition: scale .08s var(--pb-out); }
+.pb-chip:focus-visible { outline: 2px solid var(--pb-ink); outline-offset: 2px; }
+/* The line under a field: a hint, a warning or a result. It changes with a short lift. */
+.pb-note { min-height: 20px; margin: 8px 0 0 4px; font-size: 13.5px; line-height: 20px; color: var(--pb-hint); transition: color .2s var(--pb-out); }
+.pb-note.pb-swap { animation: pb-note .3s var(--pb-out); }
+.pb-note:empty { min-height: 0; margin: 0; }
+.pb-f.pb-error .pb-note { color: var(--pb-danger); }
+@keyframes pb-note { from { opacity: 0; translate: 0 4px; } }
+.pb-roll { position: relative; display: inline-grid; overflow: hidden; height: 1.3em; line-height: 1.3em; vertical-align: middle; }
+.pb-roll > span { grid-area: 1 / 1; }
+
+/* A layer drawn exactly over an input's text, for letters that need to move (password reveal, rolling digits). */
+.pb-mirror { position: absolute; z-index: 1; display: flex; align-items: center; white-space: pre; pointer-events: none; font-variant-numeric: tabular-nums; }
+.pb-mirror > span { position: relative; display: inline-grid; overflow: hidden; height: 1.3em; line-height: 1.3em; }
+.pb-mirror > span > span { grid-area: 1 / 1; }
+.pb-quiet-text { color: transparent !important; }
+
+/* Billing: the well slides between two words while the price rolls in its own window, on the same curve. */
+.bl{--calm:cubic-bezier(.22,1,.36,1);--well:color-mix(in oklab,var(--pb-field-text) 9%,var(--pb-field));--bl-text:#16181d;--bl-note:#6b7280;display:inline-grid;justify-items:center;gap:18px;color:var(--bl-text);-webkit-tap-highlight-color:transparent}
+.bl *{box-sizing:border-box}
+.bl-price{display:flex;align-items:baseline;gap:7px;font-variant-numeric:tabular-nums}
+.bl-num{display:inline-grid;justify-items:end;overflow:clip;overflow-clip-margin:2px;font-size:44px;font-weight:600;line-height:1.14;letter-spacing:-.03em}
+.bl-num>span{grid-area:1/1;will-change:translate;transition:translate .5s var(--calm),opacity .28s var(--pb-out)}
+.bl[data-period=monthly] .bl-num>.yr{translate:0 105%;opacity:0}
+.bl[data-period=yearly] .bl-num>.mo{translate:0 -105%;opacity:0}
+.bl-per{font-size:15px;font-weight:500;color:var(--bl-note)}
+.bl-plate{padding:6px;border-radius:22px;background:var(--pb-field);box-shadow:0 0 0 1px var(--pb-line),0 1px 2px rgb(10 14 24 / .06),0 10px 24px -12px rgb(10 14 24 / .2)}
+.bl-seg{position:relative;display:grid;grid-template-columns:1fr 1fr;width:236px;height:52px}
+.bl-seg>i{position:absolute;left:0;top:0;width:50%;height:100%;border-radius:16px;background:var(--well);will-change:translate;transition:translate .5s var(--calm)}
+.bl[data-period=yearly] .bl-seg>i{translate:100% 0}
+.bl-opt{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;padding:0;border:0;border-radius:16px;background:none;font:inherit;font-size:15.5px;font-weight:500;color:var(--pb-hint);cursor:pointer;transition:color .28s var(--pb-out)}
+.bl-opt[aria-checked=true]{color:var(--pb-field-text);cursor:default}
+.bl-opt:focus-visible{outline:2px solid var(--pb-ink);outline-offset:2px}
+/* Both lines share one cell, so the switch never changes size; the old line leaves before the new one arrives. */
+.bl-note{display:grid;justify-items:center;margin-top:-4px;font-size:14px;font-weight:500;color:var(--bl-note)}
+.bl-note>span{grid-area:1/1;transition:opacity .26s var(--pb-out) .1s}
+.bl[data-period=monthly] .bl-note>.yr,.bl[data-period=yearly] .bl-note>.mo{opacity:0;transition:opacity .14s var(--pb-out)}
+@media(prefers-reduced-motion:reduce){.bl *{transition-duration:.01ms!important;transition-delay:0s!important}}

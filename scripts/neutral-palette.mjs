@@ -17,9 +17,10 @@ export function neutralCss(css) {
     // Successful validation, data series, avatar identities and online status.
     if (/\[data-result="success"\]|\.dd-avatar--sage\b|\.dd-series-3\b|\.status-dot\b/.test(selector)) return rule;
     const changed = body.replace(/([\w-]+)(\s*:\s*)([^;{}]+)/g, (declaration, property, colon, value) => {
-      if (/^--sl-stop-/.test(property)) return declaration;
+      if (/^--sl-stop-/.test(property) || property === '--pb-success') return declaration;
       if (/^(?:background|background-color)$/.test(property) &&
-          (/var\(--(?:chosen-color|mixed-color)/.test(value) || /\.sl-sage\b|\.mini-timeline.*\bb\b/.test(selector))) return declaration;
+          (/var\(--(?:chosen-color|mixed-color)/.test(value) || /\.sl-sage\b|\.mini-timeline.*\bb\b/.test(selector) ||
+           (/\.cl-more i\s*$/.test(selector) && value.startsWith('conic-gradient(')))) return declaration;
       return property + colon + value.replace(/#[\da-f]{6}(?:[\da-f]{2})?\b/gi, neutralHex);
     });
     return selector + '{' + changed + '}';

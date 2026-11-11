@@ -1,0 +1,29 @@
+{
+  "variant": "product-signin",
+  "category": "inputs",
+  "global": "SLSignIn",
+  "root": ".pb-signin",
+  "name": "Email sign-in",
+  "description": "The field pulls apart into six cells for the code from the email, then joins back as Signed in.",
+  "motions": [
+    "Spring split",
+    "Address flight",
+    "Close up"
+  ],
+  "keywords": [
+    "sign in",
+    "login",
+    "email",
+    "otp",
+    "code",
+    "magic",
+    "verification",
+    "auth"
+  ],
+  "size": [
+    380,
+    130
+  ],
+  "connect": "Pass onSend(email, { signal }) to email the code and onVerify(code, { signal }) to check it. Throw from onVerify for a wrong code.",
+  "example": "SLSignIn.mount(document.querySelector('.pb-signin'), {\n  // Email the code. Throw to show the error and keep the address.\n  onSend: async (email, { signal }) => {\n    const response = await fetch('/api/auth/send', { method: 'POST', body: JSON.stringify({ email }), signal });\n    if (!response.ok) throw new Error('Could not send');\n  },\n  // Check the code. Throw when it is wrong.\n  onVerify: async (code, { signal }) => {\n    const response = await fetch('/api/auth/verify', { method: 'POST', body: JSON.stringify({ code }), signal });\n    if (!response.ok) throw new Error('Wrong code');\n  },\n});"
+}

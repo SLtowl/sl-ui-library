@@ -1,0 +1,18 @@
+/* Do not disturb: a plain row. The row keeps its background; the moon fills from its middle. */
+.sr{--calm:cubic-bezier(.22,1,.36,1);display:block;width:fit-content;max-width:100%;margin-inline:auto;-webkit-tap-highlight-color:transparent}
+.sr-row{display:flex;align-items:center;gap:11px;box-sizing:border-box;width:300px;max-width:100%;height:62px;padding:0 16px;border:0;border-radius:20px;background:var(--pb-field);color:var(--pb-field-text);box-shadow:0 0 0 1px var(--pb-line),0 1px 2px rgb(10 14 24 / .06),0 10px 24px -12px rgb(10 14 24 / .2);font:inherit;font-size:15.5px;font-weight:500;text-align:left;cursor:pointer}
+.sr-row:focus-visible{outline:2px solid var(--pb-ink);outline-offset:3px}
+.sr-row svg{flex:none;width:21px;height:21px;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sr-label{flex:1}
+/* Only two things move: the knob slides and the colour fades. Nothing starts on press, so nothing can interrupt the slide. */
+.sr-sw{position:relative;flex:none;width:48px;height:30px;border-radius:15px;background:color-mix(in oklab,var(--pb-field-text) 14%,var(--pb-field))}
+.sr-sw::before{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--pb-field-text);opacity:0;will-change:opacity;transition:opacity .4s ease}
+.sr-sw::after{content:"";position:absolute;left:3px;top:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 5px rgb(10 14 24 / .25);will-change:translate;transition:translate .46s cubic-bezier(.3,.7,.2,1),background .4s ease}
+.sr-row[aria-checked=true] .sr-sw::before{opacity:1}
+.sr-row[aria-checked=true] .sr-sw::after{translate:18px 0;background:var(--pb-field)}
+.sr-status{display:grid;justify-items:end;font-size:13.5px;color:var(--pb-hint)}
+.sr-status>span{grid-area:1/1;opacity:0;transition:opacity .14s ease}
+.sr-row[aria-checked=true] [data-s=on]{opacity:1;transition:opacity .26s ease .1s}
+.moon-fill{fill:currentColor;stroke:none;transform-box:fill-box;transform-origin:center;scale:.3;opacity:0;transition:scale .5s var(--calm),opacity .24s ease}
+.sr-row[aria-checked=true] .moon-fill{scale:1;opacity:1}
+@media(prefers-reduced-motion:reduce){.sr *,.sr *::before,.sr *::after{transition-duration:.01ms!important;transition-delay:0s!important}}

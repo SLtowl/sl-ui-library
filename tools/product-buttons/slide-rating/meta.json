@@ -1,0 +1,26 @@
+{
+  "variant": "product-rating",
+  "category": "sliders",
+  "global": "SLRating",
+  "root": ".pb-rating",
+  "name": "Rating",
+  "description": "Five stops on a line. The thumb glides between them and the word above changes in place.",
+  "motions": [
+    "Gliding stops",
+    "In-place label"
+  ],
+  "keywords": [
+    "rating",
+    "review",
+    "score",
+    "feedback",
+    "steps",
+    "slider"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Pass value from 1 to 5 and read onChange(value).",
+  "example": "SLRating.mount(document.querySelector('.pb-rating'), {\n  onChange: value => { saveRating(value); },\n});"
+}

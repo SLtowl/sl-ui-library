@@ -1,0 +1,6 @@
+/* Demo only: previews show the field a little smaller, say what to type, and rise as the sheet opens so it stays inside the card. The line sits on the card, not on the field, so its colours stay fixed. */
+.pb-username { zoom: .85; transition: translate .62s var(--open); }
+.pb-username[data-sheet=open] { translate: 0 var(--rise, -59px); }
+.un-hint { display: flex; flex-wrap: wrap; gap: 0 12px; margin: 0; padding: 74px 0 0 2px; font-size: 13px; line-height: 20px; color: #1b1f26; }
+.un-hint i { font-style: normal; color: #6b7280; }
+.un-hint b { font-weight: 600; user-select: all; -webkit-user-select: all; cursor: text; }

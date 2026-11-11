@@ -37,7 +37,7 @@ test('page URL and traffic never include Unicode searches, tokens or paths',asyn
   const secret='личный поиск @example.com';
   assert.equal(await f.capture('$pageview',{page:'catalog',referrer:'https://github.com/private/repo?secret='+encodeURIComponent(secret),url:'https://example.com/?token='+secret,query:secret,text:secret}),true);
   const body=f.calls[0].options.body,p=f.calls[0].payload;
-  assert.equal(p.properties.$current_url,'https://sltowl.github.io/sl-ui-library/#catalog');
+  assert.equal(p.properties.$current_url,'https://sltowl.com/#catalog');
   assert.equal(p.properties.traffic_source,'github');
   for(const forbidden of [secret,'secret=','token=','private/repo','example.com'])assert.equal(body.includes(forbidden),false);
   assert.equal(p.properties.$process_person_profile,false);
@@ -84,7 +84,7 @@ test('website sends daily server-hash sentinel and no browser or session identit
     assert.equal(payload.distinct_id,'$posthog_cookieless');
     assert.equal(payload.properties.$cookieless_mode,true);
     assert.equal(payload.properties.collection_mode,'cookieless');
-    assert.equal(payload.properties.$host,'sltowl.github.io');
+    assert.equal(payload.properties.$host,'sltowl.com');
     assert.equal(payload.properties.$raw_user_agent,'Browser QA 1.0');
     assert.equal(payload.properties.$session_id,undefined);
     assert.equal(payload.properties.$ip,undefined);

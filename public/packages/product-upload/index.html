@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Upload · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <div class="pb pb-upload" data-state="idle">
+    <input class="pb-file" type="file" tabindex="-1" aria-hidden="true" hidden>
+    <button class="pb-btn" type="button">
+      <span class="pb-fill" aria-hidden="true"></span>
+      <span class="pb-t" data-label="idle">Upload file</span>
+      <span class="pb-t" data-label="drop" aria-hidden="true">Drop to upload</span>
+      <span class="pb-t pb-name" aria-hidden="true"><span class="pb-fname">file</span><span class="pb-pct">0%</span></span>
+      <span class="pb-t" data-label="done" aria-hidden="true">Uploaded</span>
+      <span class="pb-t" data-label="fail" aria-hidden="true">Upload failed</span>
+    </button>
+    <span class="pb-sr" data-status role="status" aria-live="polite"></span>
+  </div>
+</body>
+</html>

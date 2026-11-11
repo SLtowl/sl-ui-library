@@ -1,0 +1,27 @@
+/* Add to cart: the button widens into a stepper in the same blue, − and + grow out of its ends, and the number rolls up or down with each change. */
+.pb-cart { position: relative; display: inline-block; width: var(--w0); height: var(--h); border-radius: calc(var(--h) / 2); transition: width var(--pb-spring-time) var(--pb-spring); }
+.pb-cart[data-state=in] { width: var(--w1); }
+.pb-cart .pb-add { position: absolute; inset: 0; width: auto; height: auto; transition: opacity .2s var(--pb-out), background .35s var(--pb-out), scale .2s var(--pb-out); }
+.pb-cart[data-state=idle] .pb-add:hover { background: var(--pb-accent-hover); }
+.pb-cart[data-state=idle] .pb-add:active { scale: .965; }
+.pb-cart[data-state=in] .pb-add { opacity: 0; pointer-events: none; }
+.pb-cart[data-state=in] .pb-add [data-label=idle] { opacity: 0; translate: 0 -7px; filter: blur(4px); }
+
+.pb-cart .pb-stepper { user-select: none; -webkit-user-select: none; touch-action: manipulation; position: absolute; inset: 0; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; padding: 0 6px; border-radius: inherit;
+  color: var(--pb-on-accent); background: var(--pb-accent); box-shadow: inset 0 1px 0 rgb(255 255 255 / .22), 0 1px 2px rgb(10 14 24 / .14), 0 8px 20px -10px var(--pb-accent);
+  opacity: 0; pointer-events: none; transition: opacity .2s var(--pb-out); }
+.pb-cart[data-state=in] .pb-stepper { opacity: 1; pointer-events: auto; }
+.pb-cart .pb-step { display: grid; place-items: center; width: 40px; height: 40px; padding: 0 0 2px; border: 0; border-radius: 50%; font-family: inherit; font-size: 21px; font-weight: 500; line-height: 1;
+  color: inherit; background: color-mix(in oklab, currentColor 15%, transparent); cursor: pointer; -webkit-tap-highlight-color: transparent;
+  scale: .4; opacity: 0; transition: scale var(--pb-spring-time) var(--pb-spring), opacity .2s var(--pb-out), background .2s var(--pb-out); }
+.pb-cart[data-state=in] .pb-step { scale: 1; opacity: 1; transition-delay: .08s; }
+.pb-cart .pb-step:hover { background: color-mix(in oklab, currentColor 24%, transparent); }
+.pb-cart .pb-step:active { scale: .9; transition: scale .08s var(--pb-out), background .2s var(--pb-out); }
+.pb-cart .pb-step:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.pb-cart .pb-step[aria-disabled=true] { opacity: .45; cursor: default; }
+.pb-cart .pb-qty { justify-self: center; font-size: 15.5px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums;
+  opacity: 0; translate: 0 7px; filter: blur(4px); transition: opacity .22s var(--pb-out), translate .4s var(--pb-out), filter .3s var(--pb-out); }
+.pb-cart[data-state=in] .pb-qty { opacity: 1; translate: 0 0; filter: none; transition-delay: .1s; }
+/* The number is a small window; a new digit rolls in while the old one rolls out. */
+.pb-cart .pb-n { position: relative; display: inline-grid; overflow: hidden; height: 1.25em; line-height: 1.25em; vertical-align: bottom; text-align: center; min-width: 1ch; }
+.pb-cart .pb-n > span { grid-area: 1 / 1; }

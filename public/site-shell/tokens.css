@@ -1,0 +1,24 @@
+/* SL palette. Two 12-step scales and three status colours, built in OKLCH so every step is evenly spaced to the eye.
+   The grey carries a trace of the blue's hue, which is why the two always look related.
+   Steps by purpose: 1 page, 2 subtle surface, 3 element, 4 hover, 5 pressed, 6 quiet line, 7 line, 8 strong line or focus,
+   9 solid fill, 10 solid hover, 11 secondary text, 12 primary text. */
+:root{
+  --n1:oklch(99.3% .002 260);--n2:oklch(98.1% .004 260);--n3:oklch(96% .006 260);--n4:oklch(93.8% .008 260);--n5:oklch(91.5% .009 260);--n6:oklch(89% .011 260);
+  --n7:oklch(85.2% .013 260);--n8:oklch(78.5% .016 260);--n9:oklch(63.5% .018 260);--n10:oklch(59% .018 260);--n11:oklch(49.5% .018 260);--n12:oklch(22% .016 260);
+  --b1:oklch(99.2% .006 262);--b2:oklch(97.6% .016 262);--b3:oklch(95% .034 262);--b4:oklch(92.2% .054 262);--b5:oklch(89% .074 262);--b6:oklch(84.8% .094 262);
+  --b7:oklch(78.6% .118 262);--b8:oklch(70.5% .15 262);--b9:oklch(56.5% .215 263);--b10:oklch(52.5% .21 263);--b11:oklch(50% .19 263);--b12:oklch(31% .12 263);
+  --g3:oklch(95.6% .04 155);--g9:oklch(62% .16 152);--g11:oklch(47% .12 152);
+  --a3:oklch(96% .05 85);--a9:oklch(79% .16 75);--a11:oklch(52% .12 65);
+  --r3:oklch(95.6% .03 25);--r9:oklch(60% .2 27);--r11:oklch(50% .18 27);
+
+  /* Roles. The interface uses only these names. */
+  --page:var(--n1);--surface:#fff;--stage:var(--n4);--chip:var(--n3);--chip-hi:var(--n4);--pressed:var(--n5);
+  --line:var(--n6);--line-hi:var(--n7);--focus:var(--b8);
+  --ink:var(--n12);--name:var(--n12);--muted:var(--n11);--faint:var(--n9);
+  --accent:var(--b9);--accent-hi:var(--b10);--accent-ink:#fff;--accent-soft:var(--b3);--accent-line:var(--b6);--accent-text:var(--b11);
+  --knob:var(--accent);--knob-hi:var(--accent-hi);--knob-ink:var(--accent-ink);--soft:var(--accent-soft);
+  --sheet:#fff;--code:var(--n2);--veil:color-mix(in oklch,var(--n3) 82%,transparent);
+  --shadow-1:0 1px 2px oklch(22% .016 260 / .06),0 1px 1px oklch(22% .016 260 / .04);
+  --shadow-2:0 1px 2px oklch(22% .016 260 / .06),0 10px 24px -12px oklch(22% .016 260 / .18);
+  --shadow-3:0 2px 4px oklch(22% .016 260 / .06),0 30px 60px -24px oklch(22% .016 260 / .28);
+}

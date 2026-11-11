@@ -1,0 +1,35 @@
+/* Message: a white plate with one grey well. It grows downward under the text and folds to one line when sent. */
+.ms{--calm:cubic-bezier(.22,1,.36,1);--open:cubic-bezier(.32,.72,0,1);--well:color-mix(in oklab,var(--pb-field-text) 9%,var(--pb-field));--sheen:var(--pb-sheen,rgb(255 255 255 / .75));--full:110px;--h:52px;position:relative;width:380px;max-width:100%;min-height:64px}
+.ms *{box-sizing:border-box}
+.ms-plate{position:absolute;z-index:5;top:0;left:0;right:0;height:64px}
+/* The head never changes. Behind it a full-height sheet only slides, so growing needs no repainting of the plate. */
+.ms-head{position:relative;z-index:2;height:64px;padding:6px;border-radius:22px;background:var(--pb-field)}
+.ms-head::before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 1px var(--pb-line);clip-path:inset(-2px -2px 50% -2px);pointer-events:none}
+.ms-clip{position:absolute;z-index:1;top:32px;left:-70px;right:-70px;height:calc(var(--full) + 96px);overflow:hidden;pointer-events:none}
+.ms-sheet{position:absolute;top:0;left:70px;right:70px;height:calc(var(--full) + 32px);border-radius:22px;background:var(--pb-field);box-shadow:0 0 0 1px var(--pb-line),0 1px 2px rgb(10 14 24 / .06),0 10px 24px -12px rgb(10 14 24 / .2);translate:0 calc(var(--full) * -1);will-change:translate;transition:translate .42s var(--open)}
+.ms-well{position:relative;isolation:isolate;height:52px}
+.ms-bg{position:absolute;left:0;right:0;top:0;height:var(--h);border-radius:16px;background:var(--well);overflow:hidden;transition:height .42s var(--open)}
+/* While sending, a soft light runs along the field. */
+.ms-bg::after{content:"";position:absolute;inset:0;opacity:0;background:linear-gradient(100deg,transparent 32%,var(--sheen) 50%,transparent 68%) 130% 0/240% 100% no-repeat;transition:opacity .25s var(--pb-out)}
+.ms[data-state=sending] .ms-bg::after{opacity:1;animation:ms-sheen 1.15s linear infinite}
+@keyframes ms-sheen{to{background-position:-30% 0}}
+.ms-ring{position:absolute;left:-4px;right:-4px;top:-4px;height:calc(var(--h) + 8px);border-radius:20px;background:var(--pb-field);box-shadow:0 0 0 1.5px var(--pb-ink),0 0 0 4px color-mix(in oklab,var(--pb-ink) 18%,transparent),0 8px 18px -10px rgb(10 14 24 / .3);opacity:0;transition:opacity .42s var(--pb-out),height .42s var(--open),box-shadow .2s var(--pb-out)}
+.ms-well:focus-within .ms-ring{opacity:1}
+.ms-bad .ms-ring{box-shadow:0 0 0 1.5px var(--pb-danger),0 0 0 4px color-mix(in oklab,var(--pb-danger) 18%,transparent)}
+/* The text box takes its new height at once: its lines are pinned to the top and do not move. */
+.ms textarea{position:absolute;z-index:2;left:0;right:0;top:0;display:block;width:100%;height:52px;margin:0;padding:15px 84px 15px 16px;border:0;border-radius:16px;background:none;outline:none;resize:none;overflow:hidden;scrollbar-width:none;font-family:inherit;font-size:16px;font-weight:500;line-height:22px;color:var(--pb-field-text);caret-color:var(--pb-ink);transition:opacity .16s var(--pb-out)}
+.ms textarea::placeholder{color:var(--pb-hint);font-weight:400}
+.ms[data-state=sent] textarea{opacity:0;caret-color:transparent}
+.ms-mirror{position:absolute;left:0;top:0;visibility:hidden;font-size:16px;font-weight:500;line-height:22px;white-space:pre-wrap;overflow-wrap:break-word;pointer-events:none}
+.ms-send{position:absolute;z-index:3;right:6px;top:6px;height:40px;padding:0 15px;border:0;border-radius:11px;font:inherit;font-size:15px;font-weight:600;line-height:1;color:var(--pb-on-accent);background:var(--pb-accent);cursor:pointer;opacity:0;scale:.96;pointer-events:none;transition:opacity .22s var(--pb-out),scale .4s var(--calm)}
+.ms[data-state=typing] .ms-send{opacity:1;scale:1;pointer-events:auto}
+.ms-send:focus-visible{outline:2px solid var(--pb-ink);outline-offset:2px}
+/* Sent: the message as one line, on the very spot of its first line. */
+.ms-sent{position:absolute;z-index:3;left:16px;right:88px;top:0;height:52px;line-height:52px;font-size:16px;font-weight:500;color:var(--pb-field-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none;visibility:hidden}
+.ms[data-state=sent] .ms-sent{visibility:visible}
+.ms-done{position:absolute;z-index:3;right:16px;top:0;height:52px;display:flex;align-items:center;gap:5px;font-size:15px;font-weight:600;color:var(--pb-success);pointer-events:none;opacity:0;transition:opacity .2s var(--pb-out)}
+.ms[data-state=sent] .ms-done{opacity:1;transition-delay:.12s}
+.ms-done svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.ms-done path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .36s var(--calm)}
+.ms[data-state=sent] .ms-done path{stroke-dashoffset:0;transition-delay:.16s}
+@media(prefers-reduced-motion:reduce){.ms,.ms *{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}}

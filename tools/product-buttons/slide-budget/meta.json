@@ -1,0 +1,25 @@
+{
+  "variant": "product-budget",
+  "category": "sliders",
+  "global": "SLBudget",
+  "root": ".pb-budget",
+  "name": "Budget",
+  "description": "A large amount above the track, moving in steps of a hundred.",
+  "motions": [
+    "Stepped thumb"
+  ],
+  "keywords": [
+    "budget",
+    "amount",
+    "money",
+    "price",
+    "spend",
+    "slider"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Pass value and read onChange(value).",
+  "example": "SLBudget.mount(document.querySelector('.pb-budget'), {\n  onChange: value => { document.querySelector('#budget').value = value; },\n});"
+}

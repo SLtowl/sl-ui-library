@@ -1,0 +1,26 @@
+{
+  "variant": "product-select-all",
+  "category": "checkboxes",
+  "global": "SLSelectAll",
+  "root": ".pb-selectall",
+  "name": "Select all",
+  "description": "A parent box that shows a dash when only some items are chosen and ticks them one after another.",
+  "motions": [
+    "Dash to tick",
+    "Staggered ticks"
+  ],
+  "keywords": [
+    "select all",
+    "bulk",
+    "indeterminate",
+    "files",
+    "list",
+    "checkbox"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Read onChange(selected), a list of the chosen item names. Add or remove rows in the markup; keep --i counting from 0.",
+  "example": "SLSelectAll.mount(document.querySelector('.pb-selectall'), {\n  onChange: selected => { document.querySelector('#count').textContent = selected.length; },\n});"
+}

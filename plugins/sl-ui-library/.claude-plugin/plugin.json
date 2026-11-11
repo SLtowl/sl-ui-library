@@ -1,11 +1,11 @@
 {
   "name": "sl-ui-library",
-  "version": "1.2.4",
+  "version": "1.3.0",
   "description": "Find SL UI components with HTML, CSS, JavaScript, React and Next.js exports. Adapt their palette and preserve source behavior.",
   "author": {
     "name": "SLtowl"
   },
-  "homepage": "https://sltowl.github.io/sl-ui-library/",
+  "homepage": "https://sltowl.com/",
   "repository": "https://github.com/SLtowl/sl-ui-library",
   "keywords": [
     "ui",

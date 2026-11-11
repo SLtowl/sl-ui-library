@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Audience · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <div class="pb pb-f pb-audience au" data-private="false">
+    <button class="au-btn" type="button" role="switch" aria-checked="false" aria-label="Private">
+      <span class="au-faces" aria-hidden="true">
+        <span class="au-f me"><span class="au-c">You</span></span>
+        <span class="au-f" style="--i:1;--c:#e0784a"><span class="au-c">M</span></span>
+        <span class="au-f" style="--i:2;--c:#1e9e5a"><span class="au-c">K</span></span>
+        <span class="au-f" style="--i:3;--c:#8a5cf0"><span class="au-c">T</span></span>
+        <span class="au-f" style="--i:4;--c:#d94a7c"><span class="au-c">A</span></span>
+      </span>
+      <span class="au-note"><span class="v-pub">Anyone with the link</span><span class="v-prv" aria-hidden="true">Only you</span></span>
+    </button>
+  </div>
+</body>
+</html>

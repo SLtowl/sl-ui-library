@@ -1,0 +1,12 @@
+{
+  "variant": "product-follow",
+  "global": "SLFollow",
+  "root": ".pb-follow",
+  "name": "Follow",
+  "description": "Turns into a quiet Following, and offers Unfollow only when you come back to it.",
+  "motions": ["Spring morph", "Pop"],
+  "keywords": ["follow", "subscribe", "social", "toggle", "unfollow", "profile"],
+  "size": [180, 52],
+  "connect": "Pass onFollow(following, { signal }). The button changes at once; reject and it changes back with a shake.",
+  "example": "SLFollow.mount(document.querySelector('.pb-follow'), {\n  // Save the new state. Throw to undo it on the button.\n  onFollow: async (following, { signal }) => {\n    const response = await fetch('/api/follow', { method: following ? 'POST' : 'DELETE', signal });\n    if (!response.ok) throw new Error('Follow failed');\n  },\n});"
+}

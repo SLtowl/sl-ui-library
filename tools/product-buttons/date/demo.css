@@ -1,0 +1,6 @@
+/* Demo only: previews show the field a little smaller, say what to type, and shrink and rise as the calendar opens so it stays inside the card. The line sits on the card, not on the field, so its colours stay fixed. */
+.pb-date { zoom: var(--dt-zoom, .85); transform-origin: 50% 0; transition: translate .62s var(--open), scale .62s var(--open); }
+.pb-date[data-sheet=open] { scale: .8; translate: 0 var(--rise, -76px); }
+.dt-hint { display: flex; flex-wrap: wrap; gap: 0 12px; margin: 0; padding: 74px 0 0 2px; font-size: 13px; line-height: 20px; color: #1b1f26; }
+.dt-hint i { font-style: normal; color: #6b7280; }
+.dt-hint b { font-weight: 600; font-variant-numeric: tabular-nums; user-select: all; -webkit-user-select: all; cursor: text; }

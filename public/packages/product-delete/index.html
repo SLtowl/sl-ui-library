@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Delete · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <div class="pb pb-delete" data-state="idle">
+    <button class="pb-cancel pb-quiet" type="button" tabindex="-1" aria-hidden="true">Cancel</button>
+    <button class="pb-btn" type="button">
+      <span class="pb-t" data-label="idle">Delete project</span>
+      <span class="pb-t" data-label="confirm" aria-hidden="true">Yes, delete</span>
+      <span class="pb-t pb-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="pb-t" data-label="done" aria-hidden="true">Deleted</span>
+    </button>
+    <span class="pb-sr" data-status role="status" aria-live="polite"></span>
+  </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Date · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <div class="pb pb-f pb-date dt" data-sheet="closed">
+    <div class="dt-plate">
+      <div class="dt-clip dt-shade-clip" aria-hidden="true"><div class="dt-shade"></div></div>
+      <div class="dt-clip" aria-hidden="true"><div class="dt-sheet"></div></div>
+      <div class="dt-head"><div class="dt-well">
+        <span class="dt-ring" aria-hidden="true"></span>
+        <span class="dt-ghost" aria-hidden="true"><b></b><span></span></span>
+        <input type="text" inputmode="numeric" aria-label="Date, month day year" autocomplete="off" spellcheck="false" data-bwignore="true" data-1p-ignore="true" data-lpignore="true" data-form-type="other">
+        <span class="dt-rel" aria-hidden="true"></span>
+      </div></div>
+      <div class="dt-reveal"><div class="dt-pick">
+        <div class="dt-top"><span class="dt-title" aria-live="polite"></span>
+          <button class="dt-nav prev" type="button" aria-label="Previous month"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+          <button class="dt-nav next" type="button" aria-label="Next month"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+        </div>
+        <div class="dt-week" aria-hidden="true"></div>
+        <div class="dt-days" role="grid"><span class="dt-knob" aria-hidden="true"></span></div>
+      </div></div>
+    </div>
+    <span class="pb-sr" role="status" aria-live="polite"></span>
+  </div>
+</body>
+</html>

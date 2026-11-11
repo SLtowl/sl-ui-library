@@ -1,0 +1,5 @@
+/* Demo only: previews show the field a little smaller, say how to try it, and lift it by half of its growth so it stays inside the card. The line sits on the card, not on the field, so its colours stay fixed. */
+.pb-message { zoom: .85; translate: 0 calc((52px - var(--h)) / 2); transition: translate .42s var(--open); }
+.ms-hint { display: flex; flex-wrap: wrap; gap: 0 12px; margin: 0; padding: 74px 0 0 2px; font-size: 13px; line-height: 20px; color: #1b1f26; }
+.ms-hint i { font-style: normal; color: #6b7280; }
+.ms-hint b { font-weight: 600; }

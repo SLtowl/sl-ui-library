@@ -1,0 +1,12 @@
+{
+  "variant": "product-pay",
+  "global": "SLPay",
+  "root": ".pb-pay",
+  "name": "Pay",
+  "description": "Stretches into a payment bar, runs the amount down to zero and lands as Paid.",
+  "motions": ["Spring morph", "Count-down fill"],
+  "keywords": ["pay", "checkout", "payment", "purchase", "buy", "card", "billing"],
+  "size": [300, 52],
+  "connect": "Pass onPay({ amount, signal }); resolve once the payment is confirmed, reject when it is declined. The bar waits for your answer.",
+  "example": "SLPay.mount(document.querySelector('.pb-pay'), {\n  // Charge through your payment provider. Resolve when it is confirmed, throw when it is declined.\n  onPay: async ({ amount, signal }) => {\n    const response = await fetch('/api/pay', { method: 'POST', body: JSON.stringify({ amount }), signal });\n    if (!response.ok) throw new Error('Card declined');\n  },\n});"
+}

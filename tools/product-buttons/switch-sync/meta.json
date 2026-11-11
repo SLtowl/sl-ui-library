@@ -1,0 +1,13 @@
+{
+  "variant": "product-sync",
+  "category": "selection",
+  "global": "SLSync",
+  "root": ".pb-sync",
+  "name": "Sync",
+  "description": "A plain settings row. The arrows make a smooth turn while the status beside the switch goes from Syncing to Up to date.",
+  "motions": ["Turning arrows", "In-place status"],
+  "keywords": ["sync", "synchronize", "backup", "cloud", "refresh", "switch", "settings", "status"],
+  "size": [380, 300],
+  "connect": "Read onChange(on). Pass run, a function that returns a promise, and the status stays on Syncing until it finishes. If it rejects, the switch turns off.",
+  "example": "SLSync.mount(document.querySelector('.pb-sync'), {\n  on: true,\n  run: () => fetch('/api/sync', { method: 'POST' }),\n  onChange: on => { document.querySelector('#sync').checked = on; },\n});"
+}

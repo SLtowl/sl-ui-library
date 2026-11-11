@@ -1,0 +1,36 @@
+/* Username: a white plate with one grey well. A taken name opens a sheet of free ones. */
+.un{--calm:cubic-bezier(.22,1,.36,1);--open:cubic-bezier(.32,.72,0,1);--well:color-mix(in oklab,var(--pb-field-text) 9%,var(--pb-field));--sheen:var(--pb-sheen,rgb(255 255 255 / .75));--full:148px;position:relative;width:380px;max-width:100%;min-height:64px}
+.un *{box-sizing:border-box}
+.un-plate{position:absolute;z-index:5;top:0;left:0;right:0;height:64px}
+/* The head never changes. Behind it a full-height sheet only slides, so opening and folding need no repainting. */
+.un-head{position:relative;z-index:2;height:64px;padding:6px;border-radius:22px;background:var(--pb-field)}
+.un-head::before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 1px var(--pb-line);clip-path:inset(-2px -2px 50% -2px);pointer-events:none}
+.un-clip{position:absolute;z-index:1;top:32px;left:-70px;right:-70px;height:calc(var(--full) + 96px);overflow:hidden;pointer-events:none}
+.un-sheet{position:absolute;top:0;left:70px;right:70px;height:calc(var(--full) + 32px);border-radius:22px;background:var(--pb-field);box-shadow:0 0 0 1px var(--pb-line),0 1px 2px rgb(10 14 24 / .06),0 10px 24px -12px rgb(10 14 24 / .2);translate:0 calc(var(--full) * -1);pointer-events:auto;will-change:translate;transition:translate .62s var(--open)}
+/* The deep shadow lives on its own layer and fades in near the top, so it has no hard edge beside the field. */
+.un-shade-clip{z-index:0;-webkit-mask-image:linear-gradient(transparent,#000 46px);mask-image:linear-gradient(transparent,#000 46px)}
+.un-shade{position:absolute;top:0;left:70px;right:70px;height:calc(var(--full) + 32px);border-radius:22px;box-shadow:0 2px 4px rgb(10 14 24 / .06),0 22px 44px -18px rgb(10 14 24 / .32);translate:0 calc(var(--full) * -1);opacity:0;will-change:translate,opacity;transition:translate .62s var(--open),opacity .5s var(--pb-out)}
+.un[data-sheet=open] .un-shade{opacity:1}
+.un-well{position:relative;isolation:isolate;display:flex;align-items:center;height:52px;padding-left:16px;cursor:text}
+.un-well::before{content:"";position:absolute;inset:0;border-radius:16px;background:var(--well)}
+.un-ring{position:absolute;inset:-4px;border-radius:20px;background:var(--pb-field);box-shadow:0 0 0 1.5px var(--pb-ink),0 0 0 4px color-mix(in oklab,var(--pb-ink) 18%,transparent),0 8px 18px -10px rgb(10 14 24 / .3);opacity:0;scale:.975;will-change:opacity,scale;transition:opacity .42s var(--pb-out),scale .6s var(--open)}
+.un-well:focus-within .un-ring{opacity:1;scale:1}
+/* While the name is being checked, a soft light runs along the field. */
+.un-well::after{content:"";position:absolute;z-index:1;inset:0;border-radius:16px;pointer-events:none;opacity:0;background:linear-gradient(100deg,transparent 32%,var(--sheen) 50%,transparent 68%) 130% 0/240% 100% no-repeat;transition:opacity .25s var(--pb-out)}
+.un[data-state=checking] .un-well::after{opacity:1;animation:un-sheen 1.15s linear infinite}
+@keyframes un-sheen{to{background-position:-30% 0}}
+.un input{position:relative;z-index:2;flex:1;min-width:0;height:100%;margin:0;padding:0 76px 0 0;border:0;background:none;outline:none;font-family:inherit;font-size:16px;font-weight:500;color:var(--pb-field-text);caret-color:var(--pb-ink);will-change:opacity}
+.un input::placeholder{color:var(--pb-hint);font-weight:400}
+/* The verdict at the right edge: a drawn check or the word Taken. */
+.un-ok{position:absolute;z-index:3;right:15px;top:50%;width:18px;height:18px;margin-top:-9px;fill:none;stroke:var(--pb-success);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;opacity:0;transition:opacity .15s var(--pb-out)}
+.un-ok path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .36s var(--calm)}
+.un[data-state=free] .un-ok{opacity:1}
+.un[data-state=free] .un-ok path{stroke-dashoffset:0}
+.un-taken{position:absolute;z-index:3;right:16px;top:50%;margin-top:-10px;line-height:20px;font-size:14px;font-weight:600;color:var(--pb-danger);pointer-events:none;opacity:0;transition:opacity .2s var(--pb-out)}
+.un[data-state=taken] .un-taken{opacity:1}
+/* The window slides with the sheet and the rows counter-slide inside it, so they stay still and the sheet's edge reveals them. */
+.un-reveal{position:absolute;z-index:3;top:-2px;left:6px;right:6px;height:calc(var(--full) + 60px);overflow:hidden;translate:0 calc(var(--full) * -1);pointer-events:none;will-change:translate;transition:translate .62s var(--open)}
+.un-list{position:absolute;top:60px;left:0;right:0;height:0;translate:0 var(--full);will-change:translate;transition:translate .62s var(--open)}
+.un-knob{position:absolute;pointer-events:none;left:0;right:0;top:0;height:46px;border-radius:16px;background:var(--well);opacity:0;will-change:translate,opacity;transition:translate .32s var(--calm),opacity .18s var(--pb-out)}
+.un-row{pointer-events:auto;position:absolute;z-index:1;left:0;right:0;display:flex;align-items:center;height:46px;padding:0 16px;font-size:16px;font-weight:500;color:var(--pb-field-text);white-space:nowrap;cursor:pointer;user-select:none}
+@media(prefers-reduced-motion:reduce){.un,.un *{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}}

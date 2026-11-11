@@ -1,0 +1,13 @@
+{
+  "variant": "product-card",
+  "category": "inputs",
+  "global": "SLCardPlate",
+  "root": ".pb-cardplate",
+  "name": "Card",
+  "description": "A plate of three wells. The one you press grows and turns white; linking folds them into one line that fills with green.",
+  "motions": ["Growing well", "Fold", "Green sweep"],
+  "keywords": ["card", "credit card", "payment", "checkout", "cvc", "expiry", "visa", "billing"],
+  "size": [380, 130],
+  "connect": "Pass onLink({ number, expiry, cvc, brand, last4 }, { signal }); hand the values straight to your payment provider and never store them yourself. Throw to mark the card as refused.",
+  "example": "SLCardPlate.mount(document.querySelector('.pb-cardplate'), {\n  // Hand the card to your payment provider. Throw when it is refused.\n  onLink: async (card, { signal }) => {\n    const response = await fetch('/api/cards', { method: 'POST', body: JSON.stringify(card), signal });\n    if (!response.ok) throw new Error('Refused');\n  },\n});"
+}

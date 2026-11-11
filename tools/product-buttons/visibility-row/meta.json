@@ -1,0 +1,13 @@
+{
+  "variant": "product-privacy-row",
+  "category": "selection",
+  "global": "SLPrivacyRow",
+  "root": ".pb-privacyrow",
+  "name": "Project privacy",
+  "description": "A settings row with a small switch. The whole row is the control, and the line under the title says who can view.",
+  "motions": ["Sliding knob", "In-place label"],
+  "keywords": ["privacy", "private", "public", "settings", "row", "switch", "visibility", "access"],
+  "size": [380, 300],
+  "connect": "Read onChange(isPrivate). Pass private: true to start on and text to rename the two lines under the title.",
+  "example": "SLPrivacyRow.mount(document.querySelector('.pb-privacyrow'), {\n  private: false,\n  onChange: isPrivate => { document.querySelector('#private').checked = isPrivate; },\n});"
+}

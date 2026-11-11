@@ -4,21 +4,21 @@ An AI plugin and interactive UI library with HTML, CSS, JavaScript, React and Ne
 
 [English](README.md) · [Русский](README.ru.md)
 
-**Version 1.2.4** simplifies website analytics to cookieless daily visitor estimates and plugin ZIP clicks, removes the analytics popup, and styles the plugin download button. Plugin activation stays separately opt-in. All 388 components and palette-aware exports are unchanged. [Release notes](docs/releases/v1.2.4.md) · [Framework integration](docs/frameworks.md) · [Previous release](docs/releases/v1.2.3.md).
+**Version 1.3.0** redesigns the home page, catalog and documentation. Product collections add 51 components across five categories. [Release notes](docs/releases/v1.3.0.md) · [Framework integration](docs/frameworks.md) · [Previous release](docs/releases/v1.2.4.md).
 
 ![Graphite SL UI Library controls in a warm studio composition](docs/media/cover.png)
 
-**388 interactive components** with 390 export variants. Vanilla exports have no runtime dependencies, remote fonts or stock icon libraries. React and Next.js use your application's framework runtime and mount the same original controller as an isolated client widget. Preview components and download their complete source files.
+**439 interactive components** with 441 export variants. Vanilla exports have no runtime dependencies, remote fonts or stock icon libraries. React and Next.js use your application's framework runtime and mount the same original controller as an isolated client widget. Preview components and download their complete source files.
 
-[Open the library](https://sltowl.github.io/sl-ui-library/) · [Install the plugin](#plugin-installation) · [Components](#components) · [Integration guide](docs/integration.md) · [Quality notes](QA.md) · [MIT License](LICENSE)
+[Open the library](https://sltowl.com/) · [Catalog](https://sltowl.com/catalog.html) · [Docs](https://sltowl.com/docs.html) · [Install the plugin](#plugin-installation) · [Components](#components) · [Integration guide](docs/integration.md) · [Quality notes](QA.md) · [MIT License](LICENSE)
 
 ## Component demos
 
-[![Cursor-free 3D studio film of real component interactions](docs/media/studio-motion.gif)](https://sltowl.github.io/sl-ui-library/media/studio-motion.mp4)
+[![Cursor-free 3D studio film of real component interactions](docs/media/studio-motion.gif)](https://sltowl.com/media/studio-motion.mp4)
 
 The demo shows saving, liking, theme switching, rating and tab navigation. It uses the library's components with CSS 3D styling. No cursor.
 
-[Watch / download MP4](https://sltowl.github.io/sl-ui-library/media/studio-motion.mp4) · [WebM](https://sltowl.github.io/sl-ui-library/media/studio-motion.webm) · [Live 3D scene](https://sltowl.github.io/sl-ui-library/studio-motion.html) · [Interactive showcase](https://sltowl.github.io/sl-ui-library/showcase.html)
+[Watch / download MP4](https://sltowl.com/media/studio-motion.mp4) · [WebM](https://sltowl.com/media/studio-motion.webm) · [Live 3D scene](https://sltowl.com/studio-motion.html) · [Interactive showcase](https://sltowl.com/showcase.html)
 
 Studio photography is generated artwork; the film uses library components with CSS 3D styling.
 
@@ -26,18 +26,18 @@ Studio photography is generated artwork; the film uses library components with C
 
 | Category | Components |
 | --- | ---: |
-| Buttons | 79 |
-| Inputs | 51 |
-| Toggles | 52 |
-| Checkboxes | 36 |
-| Sliders | 35 |
+| Buttons | 89 |
+| Inputs | 62 |
+| Toggles | 62 |
+| Checkboxes | 46 |
+| Sliders | 45 |
 | Menus | 26 |
 | Navigation | 24 |
 | Overlays | 20 |
 | Feedback | 23 |
 | Data display | 42 |
 
-388 components, 390 export variants. Save & Cancel is available together or separately. All ten categories contain working previews and complete source packages. Each package retains its original vanilla files and adds React / Next.js entry points with their documented companions.
+439 components, 441 export variants. Save & Cancel is available together or separately. All ten categories contain working previews and complete source packages. Each package includes HTML, CSS and JavaScript sources, plus React and Next.js entry points. Supporting files depend on the collection.
 
 ## Plugin installation
 
@@ -100,7 +100,7 @@ Restart Hermes, then enter `/use-sl-ui` in a new conversation and describe your 
 
 ### Claude and ChatGPT without a terminal
 
-**Claude:** [download the plugin ZIP](https://sltowl.github.io/sl-ui-library/downloads/sl-ui-library-plugin.zip) and use **Customize → Plugins** to upload a custom plugin, where supported.
+**Claude:** [download the plugin ZIP](https://sltowl.com/downloads/sl-ui-library-plugin.zip) and use **Customize → Plugins** to upload a custom plugin, where supported.
 
 **ChatGPT web:** the terminal commands above do not install into an ordinary chat. A public ChatGPT Install link is not available yet; official directory publication is planned separately. Codex installation works without that publication.
 
@@ -141,7 +141,7 @@ claude plugin update sl-ui-library@sl-ui-library
 If Claude Code was installed at project or local scope, use the matching
 `--scope project` or `--scope local` on the plugin update command. Start a new
 session after updating. For an uploaded ZIP installation, download the current
-[plugin ZIP](https://sltowl.github.io/sl-ui-library/downloads/sl-ui-library-plugin.zip)
+[plugin ZIP](https://sltowl.com/downloads/sl-ui-library-plugin.zip)
 and replace it through the host's plugin manager.
 
 ### Versions and update checks
@@ -184,7 +184,7 @@ Each component archive includes HTML, CSS, JavaScript, React and Next.js exports
 | React | `Component.jsx` and `react-example.jsx` | Import the source-preserving adapter and own callbacks in your application. |
 | Next.js | `NextClient.jsx` and `next-page.jsx` | Use the Client Component boundary and the callback-owning example. |
 
-Download the complete ZIP. React and Next.js entries depend on `react-controller.mjs`, `react-font.mjs`, the bundled font and any documented supporting resources; copying one JSX file is not a complete integration. The examples and `framework-usage.md` describe props, refs and lifecycle behavior.
+Download the complete ZIP. In Matte packages, the React and Next.js entries use `react-controller.mjs`, `react-font.mjs` and the bundled resources described in `framework-usage.md`. Product entries use the package's `buttons.css`, `buttons.js` and font alongside `Component.jsx` and `NextClient.jsx`.
 
 React and Next.js exports are isolated client-widget adapters over the original controllers, not native React-state rewrites. Initial server output is a stable placeholder, not meaningful widget SSR. Keep host form ownership, callbacks, CSP and accessibility integration in mind. See the [framework guide](docs/frameworks.md) for the complete contract.
 

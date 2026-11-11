@@ -1,0 +1,36 @@
+/* Link: a white plate with one grey well. A pasted address folds into a badge, its domain and a quiet tail. */
+.lk{--calm:cubic-bezier(.22,1,.36,1);--open:cubic-bezier(.32,.72,0,1);--well:color-mix(in oklab,var(--pb-field-text) 9%,var(--pb-field));position:relative;width:380px;max-width:100%}
+.lk *{box-sizing:border-box}
+.lk-plate{position:relative;padding:6px;border-radius:22px;background:var(--pb-field);box-shadow:0 0 0 1px var(--pb-line),0 1px 2px rgb(10 14 24 / .06),0 10px 24px -12px rgb(10 14 24 / .2)}
+.lk-well{position:relative;isolation:isolate;display:flex;align-items:center;height:52px;cursor:text}
+.lk-well::before{content:"";position:absolute;inset:0;border-radius:16px;background:var(--well)}
+.lk-ring{position:absolute;inset:-4px;border-radius:20px;background:var(--pb-field);box-shadow:0 0 0 1.5px var(--pb-ink),0 0 0 4px color-mix(in oklab,var(--pb-ink) 18%,transparent),0 8px 18px -10px rgb(10 14 24 / .3);opacity:0;scale:.975;will-change:opacity,scale;transition:opacity .42s var(--pb-out),scale .6s var(--open),box-shadow .2s var(--pb-out)}
+.lk-focus .lk-ring{opacity:1;scale:1}
+.lk-bad .lk-ring{box-shadow:0 0 0 1.5px var(--pb-danger),0 0 0 4px color-mix(in oklab,var(--pb-danger) 18%,transparent)}
+.lk input{position:relative;z-index:2;width:100%;height:100%;min-width:0;margin:0;padding:0 48px 0 16px;border:0;border-radius:inherit;background:none;outline:none;font-family:inherit;font-size:16px;font-weight:500;color:var(--pb-field-text);caret-color:var(--pb-ink);will-change:opacity}
+.lk input::placeholder{color:var(--pb-hint);font-weight:400}
+.lk:not([data-state=edit]) input{color:transparent;caret-color:transparent}
+.lk[data-state=done] input{pointer-events:none}
+/* The address itself, in parts. It stands exactly over the field's text and stays until the next edit, so nothing is drawn twice. */
+.lk-row{position:absolute;z-index:3;left:0;right:44px;top:0;bottom:0;padding:0;border:0;border-radius:16px;overflow:hidden;background:none;font:inherit;font-size:16px;font-weight:500;color:var(--pb-field-text);text-align:left;cursor:text;pointer-events:none}
+.lk[data-state=edit] .lk-row{visibility:hidden}
+.lk[data-state=done] .lk-row{pointer-events:auto}
+.lk-row:focus-visible{outline:2px solid var(--pb-ink);outline-offset:-2px}
+.lk-line{position:absolute;left:16px;top:0;bottom:0;display:flex;align-items:center;white-space:pre;will-change:translate;transition:translate .5s var(--open)}
+.lk-pre{transition:opacity .18s var(--pb-out)}
+.lk[data-state=done] .lk-pre{opacity:0}
+.lk-run{display:flex;will-change:translate;transition:translate .5s var(--open)}
+.lk-tail{transition:color .3s var(--pb-out)}
+.lk[data-state=done] .lk-tail{color:var(--pb-hint)}
+.lk-still .lk-line,.lk-still .lk-run{transition:none}
+.lk-badge{position:absolute;left:16px;top:14px;display:grid;place-items:center;width:24px;height:24px;border-radius:8px;overflow:hidden;font-size:13px;font-weight:600;text-transform:uppercase;color:var(--pb-field-text);background:var(--pb-field);box-shadow:0 0 0 1px var(--pb-line);opacity:0;scale:.7;transition:opacity .2s var(--pb-out),scale .5s var(--calm)}
+.lk[data-state=done] .lk-badge{opacity:1;scale:1;transition-delay:.12s}
+/* The tail fades out before it reaches the cross. */
+.lk-row::after{content:"";position:absolute;right:0;top:0;bottom:0;width:32px;background:linear-gradient(90deg,transparent,var(--well));opacity:0;transition:opacity .3s var(--pb-out)}
+.lk[data-state=done] .lk-row::after{opacity:1}
+.lk-clear{position:absolute;z-index:4;right:8px;top:8px;display:grid;place-items:center;width:36px;height:36px;padding:0;border:0;border-radius:11px;color:var(--pb-hint);background:none;cursor:pointer;opacity:0;scale:.8;pointer-events:none;transition:opacity .2s var(--pb-out),scale .3s var(--calm),color .2s var(--pb-out)}
+.lk-has .lk-clear{opacity:1;scale:1;pointer-events:auto}
+.lk-clear:hover{color:var(--pb-field-text)}
+.lk-clear:focus-visible{outline:2px solid var(--pb-ink);outline-offset:-2px}
+.lk-clear svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+@media(prefers-reduced-motion:reduce){.lk,.lk *{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}}

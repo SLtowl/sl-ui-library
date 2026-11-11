@@ -1,0 +1,3 @@
+/* Demo only: previews show the field a little smaller, and it rises as it opens so the results stay inside the card. */
+.pb-search { zoom: .85; transition: translate .62s var(--open); }
+.pb-search[data-phase=open] { translate: 0 var(--rise, -74px); }

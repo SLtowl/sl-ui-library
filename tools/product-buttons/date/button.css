@@ -1,0 +1,47 @@
+/* Date: a white plate with one grey well. The whole date waits in grey and a calendar opens on a sheet. */
+.dt{--calm:cubic-bezier(.22,1,.36,1);--open:cubic-bezier(.32,.72,0,1);--well:color-mix(in oklab,var(--pb-field-text) 9%,var(--pb-field));--full:280px;--cell:36px;position:relative;width:380px;max-width:100%;min-height:64px}
+.dt *{box-sizing:border-box}
+.dt-plate{position:absolute;z-index:5;top:0;left:0;right:0;height:64px}
+/* The head never changes. Behind it a full-height sheet only slides, so opening and folding need no repainting. */
+.dt-head{position:relative;z-index:2;height:64px;padding:6px;border-radius:22px;background:var(--pb-field)}
+.dt-head::before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 1px var(--pb-line);clip-path:inset(-2px -2px 50% -2px);pointer-events:none}
+.dt-clip{position:absolute;z-index:1;top:32px;left:-70px;right:-70px;height:calc(var(--full) + 96px);overflow:hidden;pointer-events:none}
+.dt-sheet{position:absolute;top:0;left:70px;right:70px;height:calc(var(--full) + 32px);border-radius:22px;background:var(--pb-field);box-shadow:0 0 0 1px var(--pb-line),0 1px 2px rgb(10 14 24 / .06),0 10px 24px -12px rgb(10 14 24 / .2);translate:0 calc(var(--full) * -1);pointer-events:auto;will-change:translate;transition:translate .62s var(--open)}
+/* The deep shadow lives on its own layer and fades in near the top, so it has no hard edge beside the field. */
+.dt-shade-clip{z-index:0;-webkit-mask-image:linear-gradient(transparent,#000 46px);mask-image:linear-gradient(transparent,#000 46px)}
+.dt-shade{position:absolute;top:0;left:70px;right:70px;height:calc(var(--full) + 32px);border-radius:22px;box-shadow:0 2px 4px rgb(10 14 24 / .06),0 22px 44px -18px rgb(10 14 24 / .32);translate:0 calc(var(--full) * -1);opacity:0;will-change:translate,opacity;transition:translate .62s var(--open),opacity .5s var(--pb-out)}
+.dt[data-sheet=open] .dt-shade{opacity:1}
+.dt-well{position:relative;isolation:isolate;display:flex;align-items:center;height:52px;cursor:text}
+.dt-well::before{content:"";position:absolute;inset:0;border-radius:16px;background:var(--well)}
+.dt-ring{position:absolute;inset:-4px;border-radius:20px;background:var(--pb-field);box-shadow:0 0 0 1.5px var(--pb-ink),0 0 0 4px color-mix(in oklab,var(--pb-ink) 18%,transparent),0 8px 18px -10px rgb(10 14 24 / .3);opacity:0;scale:.975;will-change:opacity,scale;transition:opacity .42s var(--pb-out),scale .6s var(--open),box-shadow .2s var(--pb-out)}
+.dt-well:focus-within .dt-ring{opacity:1;scale:1}
+.dt-bad .dt-ring{box-shadow:0 0 0 1.5px var(--pb-danger),0 0 0 4px color-mix(in oklab,var(--pb-danger) 18%,transparent)}
+.dt input{position:relative;z-index:2;width:100%;height:100%;min-width:0;margin:0;padding:0 120px 0 16px;border:0;background:none;outline:none;font-family:inherit;font-size:16px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--pb-field-text);caret-color:var(--pb-ink);will-change:opacity}
+/* The whole date is already there in grey, so typing only darkens it: slashes never shift the digits. */
+.dt-ghost{position:absolute;z-index:1;left:0;top:0;bottom:0;display:flex;align-items:center;padding:0 16px;font-size:16px;font-weight:500;font-variant-numeric:tabular-nums;white-space:pre;color:var(--pb-hint);pointer-events:none}
+.dt-ghost b{font-weight:inherit;visibility:hidden}
+.dt-rel{position:absolute;z-index:3;right:16px;top:50%;margin-top:-10px;line-height:20px;font-size:14px;font-weight:500;color:var(--pb-hint);white-space:nowrap;pointer-events:none;will-change:opacity}
+/* The window slides with the sheet and the calendar counter-slides inside it, so it stays still and the sheet's edge reveals it. */
+.dt-reveal{position:absolute;z-index:3;top:-2px;left:6px;right:6px;height:calc(var(--full) + 60px);overflow:hidden;translate:0 calc(var(--full) * -1);pointer-events:none;will-change:translate;transition:translate .62s var(--open)}
+.dt-pick{position:absolute;top:66px;left:0;right:0;translate:0 var(--full);will-change:translate;transition:translate .62s var(--open)}
+.dt-top{display:flex;align-items:center;height:36px;padding-left:12px}
+.dt-title{flex:1;font-size:15px;font-weight:600;color:var(--pb-field-text);will-change:opacity}
+.dt-nav{display:grid;place-items:center;width:34px;height:34px;padding:0;border:0;border-radius:10px;color:var(--pb-hint);background:none;cursor:pointer;pointer-events:auto;transition:color .2s var(--pb-out),background .2s var(--pb-out)}
+.dt-nav:hover{color:var(--pb-field-text);background:var(--well)}
+.dt-nav:focus-visible{outline:2px solid var(--pb-ink);outline-offset:-2px}
+.dt-nav svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dt-week{display:grid;grid-template-columns:repeat(7,1fr);height:22px;font-size:12px;font-weight:500;line-height:22px;text-align:center;color:var(--pb-hint)}
+.dt-days{position:relative;display:grid;grid-template-columns:repeat(7,1fr);grid-auto-rows:var(--cell);will-change:opacity}
+/* One disc for the chosen day: it glides from number to number. */
+.dt-knob{position:absolute;left:0;top:0;width:calc(100% / 7);height:var(--cell);display:grid;place-items:center;pointer-events:none;opacity:0;will-change:translate,opacity;transition:translate .36s var(--calm),opacity .18s var(--pb-out)}
+.dt-knob::before{content:"";width:calc(var(--cell) - 4px);height:calc(var(--cell) - 4px);border-radius:50%;background:var(--pb-accent)}
+.dt-day{position:relative;z-index:1;display:grid;place-items:center;padding:0;border:0;background:none;font:inherit;font-size:14.5px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--pb-field-text);cursor:pointer;pointer-events:auto;transition:color .2s var(--pb-out)}
+.dt-day::before{content:"";position:absolute;z-index:-1;left:50%;top:50%;width:calc(var(--cell) - 4px);height:calc(var(--cell) - 4px);margin:calc((var(--cell) - 4px) / -2) 0 0 calc((var(--cell) - 4px) / -2);border-radius:50%;background:var(--well);opacity:0;transition:opacity .16s var(--pb-out)}
+.dt-day:hover::before{opacity:1}
+.dt-day.other{color:var(--pb-hint);opacity:.6}
+.dt-day.on{color:var(--pb-on-accent);opacity:1}
+.dt-day.on::before{opacity:0}
+.dt-day.today::after{content:"";position:absolute;left:50%;bottom:3px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:currentColor}
+.dt-day:disabled{opacity:.28;cursor:default;pointer-events:none}
+.dt-day:focus-visible{outline:2px solid var(--pb-ink);outline-offset:-3px;border-radius:50%}
+@media(prefers-reduced-motion:reduce){.dt,.dt *{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}}

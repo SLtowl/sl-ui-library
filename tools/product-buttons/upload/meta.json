@@ -1,0 +1,12 @@
+{
+  "variant": "product-upload",
+  "global": "SLUpload",
+  "root": ".pb-upload",
+  "name": "Upload",
+  "description": "Takes a file by click or drop, shows its name while it fills, then lands as Uploaded.",
+  "motions": ["Spring morph", "Drop target", "Progress fill"],
+  "keywords": ["upload", "file", "drop", "drag", "attach", "import", "progress"],
+  "size": [300, 52],
+  "connect": "Pass onUpload(file, { signal, progress }); call progress(0…1) while sending and resolve when the server has it. Set accept to limit file types.",
+  "example": "SLUpload.mount(document.querySelector('.pb-upload'), {\n  accept: 'image/*,.pdf',\n  // Send the file; report progress as it goes. Throw to show Upload failed.\n  onUpload: (file, { signal, progress }) => new Promise((resolve, reject) => {\n    const xhr = new XMLHttpRequest();\n    xhr.upload.onprogress = event => event.lengthComputable && progress(event.loaded / event.total);\n    xhr.onload = () => (xhr.status < 300 ? resolve() : reject(new Error('Upload failed')));\n    xhr.onerror = () => reject(new Error('Upload failed'));\n    signal.addEventListener('abort', () => xhr.abort());\n    xhr.open('POST', '/api/upload'); xhr.send(file);\n  }),\n});"
+}

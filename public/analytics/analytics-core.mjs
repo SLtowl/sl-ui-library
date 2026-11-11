@@ -2,7 +2,7 @@
 const allowedHosts = new Set(['https://eu.i.posthog.com','https://us.i.posthog.com']);
 const websiteEvents = new Set(['$pageview','plugin_zip_clicked']);
 const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-const canonicalURL = 'https://sltowl.github.io/sl-ui-library/';
+const canonicalURL = 'https://sltowl.com/';
 
 export function configurationReady(config) {
   return config?.enabled===true && config.privacyVerified===true &&
@@ -17,7 +17,7 @@ export function trafficSource(referrer) {
     const url = new URL(referrer);
     if (!['https:','http:'].includes(url.protocol)) return 'other';
     const host = url.hostname.toLowerCase();
-    if (host==='sltowl.github.io') return 'internal';
+    if (host==='sltowl.com'||host==='www.sltowl.com'||host==='sltowl.github.io') return 'internal';
     if (['github.com','www.github.com'].includes(host)) return 'github';
     if (['t.me','telegram.org','web.telegram.org'].includes(host)) return 'telegram';
     if (['google.com','www.google.com','google.ru','www.google.ru'].includes(host)) return 'google';
@@ -76,7 +76,7 @@ export function createAnalytics({config={},channel='website',fetcher=globalThis.
         // against posthog-js 1.438.21 and stored-event QA, not HTTP acceptance.
         properties.$cookieless_mode=true;
         properties.collection_mode='cookieless';
-        properties.$host='sltowl.github.io';
+        properties.$host=new URL(canonicalURL).hostname;
         if(typeof userAgent==='string'&&userAgent)properties.$raw_user_agent=userAgent.slice(0,1024);
       } else {
         distinctId??=randomUUID();

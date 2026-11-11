@@ -1,0 +1,26 @@
+{
+  "variant": "product-confirm-delete",
+  "category": "checkboxes",
+  "global": "SLConfirmDelete",
+  "root": ".pb-confirmdelete",
+  "name": "Confirm delete",
+  "description": "The red button only wakes up after the box is ticked.",
+  "motions": [
+    "Drawn tick",
+    "Waking button"
+  ],
+  "keywords": [
+    "confirm",
+    "delete",
+    "danger",
+    "destructive",
+    "undone",
+    "checkbox"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Pass onConfirm for the real deletion. Pass resetAfter in milliseconds if the form should return afterwards.",
+  "example": "SLConfirmDelete.mount(document.querySelector('.pb-confirmdelete'), {\n  onConfirm: () => deleteProject(),\n});"
+}

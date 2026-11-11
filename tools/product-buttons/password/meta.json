@@ -1,0 +1,29 @@
+{
+  "variant": "product-password",
+  "category": "inputs",
+  "global": "SLPassword",
+  "root": ".pb-password",
+  "name": "Password",
+  "description": "Conditions check themselves off and the list folds away. Three dots open into an eye to show what you typed.",
+  "motions": [
+    "Sliding sheet",
+    "Drawn checks",
+    "Dots into eye"
+  ],
+  "keywords": [
+    "password",
+    "new password",
+    "sign up",
+    "strength",
+    "rules",
+    "show password",
+    "reveal",
+    "security"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Read onChange({ value, valid }); send the password only when valid is true. Pass rules as { label, test(value) } to replace the built-in three.",
+  "example": "SLPassword.mount(document.querySelector('.pb-password'), {\n  onChange: ({ valid }) => {\n    document.querySelector('#create').disabled = !valid;\n  },\n});"
+}

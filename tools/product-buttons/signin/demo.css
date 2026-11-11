@@ -1,0 +1,7 @@
+/* Demo only: which values get through at this step and which do not. */
+.si-hint{display:grid;margin:10px 0 0 2px;font-size:13.5px;line-height:20px}
+.si-hint i{font-style:normal;color:var(--pb-hint)}
+.si-hint p{grid-area:1/1;display:flex;flex-wrap:wrap;gap:0 16px;margin:0;visibility:hidden;opacity:0;transition:opacity .25s var(--pb-out),visibility 0s .25s}
+/* One click selects the whole example, ready to copy. */
+.si-hint b{font-weight:600;user-select:all;-webkit-user-select:all;cursor:text}
+.si:is([data-state=email],[data-state=sending]) .si-hint [data-for=email],.si:is([data-state=split],[data-state=code],[data-state=checking]) .si-hint [data-for=code]{visibility:visible;opacity:1;transition-delay:0s}

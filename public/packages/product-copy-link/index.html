@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Copy link · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <div class="pb pb-copy" data-state="idle" data-link="https://sl-ui.dev/invite/8fK2">
+    <button class="pb-btn" type="button">
+      <span class="pb-t" data-label="idle">Copy link</span>
+      <span class="pb-t pb-link" aria-hidden="true"><span class="pb-select"></span><span class="pb-url">sl-ui.dev/invite/8fK2</span></span>
+      <span class="pb-t" data-label="done" aria-hidden="true">Copied</span>
+      <span class="pb-t" data-label="fail" aria-hidden="true">Copy failed</span>
+    </button>
+    <span class="pb-sr" data-status role="status" aria-live="polite"></span>
+  </div>
+</body>
+</html>

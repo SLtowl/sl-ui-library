@@ -1,0 +1,590 @@
+<!doctype html><html lang="en" data-ref="graphite" data-theme="light" data-layout="flow" data-card="raised"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Components · SL UI Library</title>
+<meta name="description" content="Interactive UI components with HTML, CSS, JavaScript, React and Next.js exports, plus tools for coding agents.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SL UI Library">
+<meta property="og:title" content="Components · SL UI Library">
+<meta property="og:description" content="Interactive UI components with HTML, CSS, JavaScript, React and Next.js exports, plus tools for coding agents.">
+<meta property="og:url" content="https://sltowl.com/catalog.html">
+<meta property="og:image" content="https://sltowl.com/assets/social-preview-v1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Components · SL UI Library">
+<meta name="twitter:description" content="Interactive UI components with HTML, CSS, JavaScript, React and Next.js exports, plus tools for coding agents.">
+<meta name="twitter:image" content="https://sltowl.com/assets/social-preview-v1.jpg">
+<link rel="canonical" href="https://sltowl.com/catalog.html">
+
+<link rel="stylesheet" href="./packages/search-input/buttons.css">
+<link rel="stylesheet" href="./experiments/library-shell/save-review.css"><style>
+/* One complete family everywhere: the old heading font only contained a few letters, so words mixed two fonts. */
+@font-face{font-family:'Instrument Sans';src:url('./assets/instrument-sans-variable.woff2') format('woff2');font-weight:400 700;font-display:swap}
+:root{--page:#f6f7f8;--ink:#2f3843;--muted:#6f7a87;--faint:#a3acb7;--line:#e0e5ea;
+  --card:0 1px 2px rgb(40 55 80 / .06),0 16px 34px -18px rgb(40 55 80 / .22);
+  --card-hi:0 2px 4px rgb(40 55 80 / .07),0 26px 46px -22px rgb(40 55 80 / .3);
+  --out:cubic-bezier(.2,.8,.2,1);--gutter:clamp(14px,3vw,44px)}
+*{box-sizing:border-box}
+html{background:var(--page);scrollbar-gutter:stable}
+html.modal{overflow:hidden}
+body{margin:0;color:var(--ink);font:500 15px/1.4 'Instrument Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;padding:0}
+a{color:inherit}
+:focus-visible{outline:2px solid #5474ed;outline-offset:2px}
+.sky{position:fixed;inset:0;z-index:-1;overflow:hidden;background:var(--page);pointer-events:none}
+/* Header */
+.top{position:sticky;top:0;z-index:6;display:flex;align-items:center;gap:clamp(8px,1.2vw,16px);height:76px;padding:0 var(--gutter);pointer-events:none}
+.top>*{pointer-events:auto}
+.pill{height:54px;border-radius:27px;background:#fff;box-shadow:var(--card)}
+.brand{flex:none;display:flex;align-items:center;padding:0 clamp(14px,1.4vw,20px)}
+.brand strong{font-size:16px;font-weight:600;line-height:1.15;letter-spacing:-.015em;white-space:nowrap}
+/* Telegram: its own circle. The nick slides out to the right over the header, so nothing else moves. */
+.tg-slot{position:relative;z-index:1;flex:none;display:flex;gap:8px;margin-left:calc(clamp(8px,1.2vw,16px)*-.5)}
+.tg{display:grid;place-items:center;width:54px;height:54px;border-radius:50%;background:#fff;box-shadow:var(--card);color:var(--ink);text-decoration:none;transition:box-shadow .35s var(--out)}
+.tg svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round;stroke-linecap:round}
+.tg:is(:hover,:focus-visible){box-shadow:var(--card-hi)}
+/* Search widens to both sides on focus. Its label is the library's own: it flies up and left and stays pinned. */
+.finder{flex:0 1 480px;min-width:0;margin:0 auto;transition:flex-basis .75s var(--out),box-shadow .5s var(--out)}
+.finder:focus-within{flex-basis:680px;box-shadow:var(--card-hi)}
+.finder .sl-field{--field-ink:transparent;--field-hover:transparent;--field-active:transparent;--field-text:var(--ink);--field-muted:var(--muted);width:100%;font-family:inherit}
+.finder .sl-field .sl-field__control{height:54px;border:0;border-radius:27px;background:none;box-shadow:none}
+.finder .sl-field .sl-field__label{top:17px;left:52px;color:var(--muted)}
+.finder .sl-field .sl-field__input:focus~.sl-field__label,.finder .sl-field .sl-field__input:not(:placeholder-shown)~.sl-field__label{color:var(--muted);transform:translateY(-10px) scale(.76)}
+.finder .sl-field .sl-field__leading{color:var(--muted)}
+.finder .sl-field .sl-field__input{color:var(--ink);background:none}
+.finder .sl-field .sl-field__action{color:var(--muted)}
+.finder .sl-field .sl-field__popup{top:62px;border:0;border-radius:20px;background:#fff;box-shadow:var(--card-hi)}
+.finder .sl-field .sl-field__option{color:var(--ink)}
+.finder .sl-field .sl-field__option:is(:hover,[aria-selected=true]){background:var(--page)}
+.finder .sl-field .sl-field__empty{color:var(--muted)}
+.finder .sl-field__helper{display:none}
+.sections{flex:none;display:flex;align-items:center;gap:2px;padding:0 6px;margin-left:clamp(0px,calc(100vw - 1105px),62px)}
+.sections button{height:42px;padding:0 clamp(9px,1vw,14px);border-radius:21px;font-size:14px;color:var(--muted);white-space:nowrap;transition:color .35s var(--out),background .35s var(--out)}
+.sections button:hover{color:var(--ink)}
+/* Docs sits in the switch as a plain link, styled like its buttons. */
+.sections .sec-link{position:relative;z-index:1;display:inline-flex;align-items:center;height:42px;padding:0 clamp(9px,1vw,14px);border-radius:21px;font-size:14px;color:var(--muted);text-decoration:none;white-space:nowrap;transition:color .35s var(--out)}
+.sections .sec-link:hover{color:var(--ink)}
+.brand{text-decoration:none;color:inherit;transition:box-shadow .35s var(--out)}
+.sections button[aria-current]{color:var(--ink);background:var(--page)}
+main{padding:14px 0 120px}
+/* Shelves */
+.shelf{margin:0 0 34px}
+.shelf-head{display:flex;align-items:baseline;gap:9px;padding:0 var(--gutter);margin:0 0 4px}
+h2{margin:0;font-size:clamp(19px,1.6vw,23px);font-weight:600;line-height:1.2;letter-spacing:-.015em}
+.shelf-head>span{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.more{align-self:center;margin-left:auto;height:34px;padding:0 14px;border-radius:17px;font-size:14px;background:#fff;box-shadow:var(--card);transition:transform .35s var(--out),box-shadow .5s var(--out)}
+.more:hover{box-shadow:var(--card-hi)}.more:active{transform:scale(.97);transition-duration:.1s}
+.track{display:flex;align-items:flex-start;gap:14px;padding:12px var(--gutter) 30px;overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-left:var(--gutter);-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent);scrollbar-width:none;overscroll-behavior-x:contain}
+.track::-webkit-scrollbar{display:none}
+/* See all: an even grid that always fills the row, whatever the window. */
+.shelf.all .track{display:grid;grid-template-columns:repeat(auto-fill,minmax(calc(var(--min,300)*1px),1fr));grid-auto-rows:calc(var(--rowh,300)*1px);grid-auto-flow:row dense;align-items:stretch;overflow:visible;-webkit-mask-image:none;mask-image:none}
+.shelf.all .card{width:auto;height:auto;grid-row:span var(--ay,1)}
+.card{position:relative;flex:none;display:flex;flex-direction:column;width:clamp(calc(var(--cw,300)*.82px),calc(var(--cw,300)*100vw/1440),calc(var(--cw,300)*1.08px));height:clamp(calc(var(--ch,330)*.86px),calc(var(--ch,330)*100vw/1440),calc(var(--ch,330)*1.08px));padding:8px;border-radius:26px;background:#fff;box-shadow:var(--card);scroll-snap-align:start;transition:transform .7s var(--out),box-shadow .7s var(--out)}
+@media(hover:hover){.card:hover{transform:translateY(-3px);box-shadow:var(--card-hi);z-index:2}}
+.stage{position:relative;flex:1;min-height:0;overflow:hidden;contain:layout paint;border-radius:19px;background:radial-gradient(ellipse at 25% 0%,#fafbfd,transparent 95%),linear-gradient(145deg,#f0f2f6,#e7ecf3);--shell-preview-min-height:100%}
+sl-preview{position:relative;display:block;height:100%}
+.foot{position:relative;display:flex;align-items:center;min-height:42px;padding:0 4px 0 10px}
+.foot b{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:14.5px;font-weight:600}
+.open{position:absolute;right:4px;top:50%;height:32px;padding:0 13px;border-radius:16px;font-size:13px;white-space:nowrap;color:#fff;background:var(--ink);transform:translateY(-50%);transition:opacity .4s var(--out),background .3s var(--out)}
+.open:hover{background:#3d4855}
+@media(hover:hover){.open{opacity:0}.card:is(:hover,:focus-within) .open{opacity:1}}
+/* Buttons: a two-row spread whose pieces tile exactly, so no holes open between them. */
+#s-buttons:not(.all) .track{display:grid;align-items:stretch;grid-auto-flow:column;grid-template-rows:repeat(2,clamp(180px,14.6vw,206px));grid-auto-columns:clamp(104px,8.8vw,130px)}
+#s-buttons:not(.all) .card{width:auto;height:auto;grid-column:span var(--sx,2);grid-row:span var(--sy,1)}
+/* Popular: one row. */
+#s-popular .track{display:grid;align-items:stretch;grid-template-columns:repeat(4,minmax(0,1fr));overflow:visible;-webkit-mask-image:none;mask-image:none}
+#s-popular .card{width:auto}
+@media(max-width:1100px){#s-popular sl-preview,#s-buttons sl-preview{zoom:.82}}
+@media(max-width:900px){#s-popular .track{grid-template-columns:repeat(3,minmax(0,1fr))}#s-popular .card:nth-child(n+4){display:none}}
+/* Palette: one quiet dot of the current colour; the others slide out when it is reached. */
+.palette-controls{position:absolute;right:10px;top:10px;z-index:3;display:flex;align-items:center;justify-content:flex-end;opacity:0;transition:opacity .6s var(--out)}
+.card:is(:hover,:focus-within) .palette-controls,.big .palette-controls{opacity:1}
+@media(hover:none){.palette-controls{opacity:1}}
+.palette-swatch{position:relative;display:grid;place-items:center;flex:none;width:24px;height:24px;overflow:hidden;--swatch:#fff;transition:width .55s var(--out),opacity .45s var(--out)}
+.palette-swatch::before{content:'';width:14px;height:14px;border-radius:50%;background:var(--swatch);box-shadow:inset 0 0 0 1px rgb(40 55 80 / .18);transition:box-shadow .4s var(--out)}
+.palette-swatch:not([aria-pressed=true]){width:0;opacity:0}
+.palette-controls:is(:hover,:has(:focus-visible)) .palette-swatch{width:24px;opacity:1}
+.palette-controls:is(:hover,:has(:focus-visible)) .palette-swatch[aria-pressed=true]::before{box-shadow:inset 0 0 0 1px rgb(40 55 80 / .18),0 0 0 1px #fff,0 0 0 2px rgb(40 55 80 / .55)}
+.palette-swatch[data-palette=black]{--swatch:#292d33}.palette-swatch[data-palette=white]{--swatch:#fbfcfd}.palette-swatch[data-palette=blue]{--swatch:#4b6f9e}
+.palette-swatch.palette-custom::before{background:conic-gradient(#d66f80,#d8bb73,#7cb6a0,#6b92cd,#a480bf,#d66f80);box-shadow:none}
+.palette-swatch.palette-custom[aria-pressed=true]::before{background:var(--custom-color,#55749a)}
+/* Touch users can choose a palette without a hover-only expansion. */
+@media(hover:none),(max-width:600px){
+  .card .open{opacity:1}
+  .card .foot b{padding-right:104px}
+  .palette-controls{opacity:1}
+  .palette-controls .palette-swatch,.palette-controls:is(:hover,:has(:focus-visible)) .palette-swatch{width:44px;height:44px;opacity:1}
+  .card>.palette-controls{position:static;justify-content:flex-start;margin-top:2px}
+  .big{display:grid;grid-template-rows:minmax(0,1fr) 44px}
+  .big>.palette-controls{position:static;justify-content:center}
+  .big:has(> sl-preview[data-preview-sizing="content"]){grid-template-rows:auto 44px;align-content:safe center}
+}
+/* Dialogs open over everything; the page underneath does not move. */
+dialog{padding:0;border:0;color:inherit;background:none}
+dialog::backdrop{background:rgb(232 236 243 / .82)}
+.sheet{width:min(1240px,calc(100vw - 32px));height:min(800px,calc(100dvh - 32px));margin:auto;border-radius:34px;background:#fff;box-shadow:0 2px 6px rgb(40 55 80 / .08),0 44px 90px -30px rgb(40 55 80 / .42);overflow:hidden}
+.sheet[open]{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:10px;padding:10px}
+/* The same anatomy as a card, only larger: the component, then its name under it. */
+.view{display:flex;flex-direction:column;min-width:0;min-height:0}
+.big{position:relative;flex:1;min-height:0;overflow:hidden;border-radius:25px;background:radial-gradient(ellipse at 25% 0%,#fafbfd,transparent 95%),linear-gradient(145deg,#f0f2f6,#e7ecf3);--shell-preview-min-height:100%}
+.big:has(> sl-preview[data-preview-sizing="content"]){display:grid;align-items:safe center;overflow:auto}
+.big.glyph{display:grid;place-items:center;color:var(--ink)}
+.versions{position:absolute;top:14px;left:14px;z-index:3;display:flex;gap:2px;padding:3px;border-radius:13px;background:rgb(255 255 255 / .94);box-shadow:0 0 0 1px rgb(30 40 60 / .07),0 4px 14px -6px rgb(30 40 60 / .2)}
+.versions button{height:30px;padding:0 12px;border-radius:10px;font-size:13.5px;font-weight:600;color:var(--muted);transition:background .25s var(--out),color .25s var(--out)}
+.versions button:hover{color:var(--ink)}
+.versions button[aria-pressed=true]{color:var(--ink);background:#fff;box-shadow:0 1px 2px rgb(30 40 60 / .12),0 0 0 1px rgb(30 40 60 / .06)}
+.big.glyph svg{width:112px;height:112px}
+.info{padding:16px 16px 12px}
+.info h3{margin:0;font-size:21px;font-weight:600;line-height:1.2;letter-spacing:-.015em}
+.info p{margin:3px 0 0;color:var(--muted);font-size:14.5px}
+.x{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--page);color:var(--muted);transition:color .3s var(--out),background .3s var(--out)}
+.x:hover{color:var(--ink)}
+.x svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.act{height:36px;padding:0 15px;border-radius:18px;font-size:13.5px;color:var(--ink);background:var(--page);text-decoration:none;display:inline-flex;align-items:center;white-space:nowrap;transition:background .3s var(--out),color .3s var(--out)}
+.act:hover{background:#eceef1}
+/* Code: one dark, quiet panel with the format switch on top and the two actions floating at the bottom. */
+.side{position:relative;display:flex;flex-direction:column;min-width:0;min-height:0;border-radius:25px;background:#272e38;color:#dbe1e9;overflow:hidden}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 10px 6px}
+.tabs{position:relative;display:flex;min-width:0;padding:3px;border-radius:21px;background:rgb(255 255 255 / .06);overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs-knob{position:absolute;left:0;top:3px;width:40px;height:32px;border-radius:16px;background:rgb(255 255 255 / .14);transition:transform .55s var(--out),width .55s var(--out)}
+.tabs button{position:relative;height:32px;padding:0 13px;border-radius:16px;font-size:13.5px;white-space:nowrap;color:rgb(255 255 255 / .58);transition:color .35s var(--out)}
+.tabs button:hover{color:rgb(255 255 255 / .85)}
+.tabs button[aria-selected=true]{color:#fff}
+.side .x{background:rgb(255 255 255 / .06);color:rgb(255 255 255 / .62)}
+.side .x:hover{background:rgb(255 255 255 / .12);color:#fff}
+/* Code wraps instead of scrolling sideways, and shows no scrollbar. */
+.side pre{flex:1;min-height:0;margin:0;overflow:auto;padding:12px 20px 78px;font:12.5px/1.72 'Cascadia Code',ui-monospace,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;scrollbar-width:none;outline-offset:-4px;contain:content;background:inherit;transform:translateZ(0)}
+.side pre::-webkit-scrollbar{display:none}
+.side pre .c{color:#7f8b9a}.side pre .s{color:#a9dcc6}.side pre .t{color:#9dbcff}.side pre .k{color:#c9b6ff}.side pre .a{color:#e6c79c}.side pre .n{color:#f0b3a8}
+.acts{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:flex-end;gap:6px;padding:34px 12px 12px;background:linear-gradient(transparent,#272e38 58%);pointer-events:none}
+.acts>*{pointer-events:auto}
+.side .act{color:#fff;background:rgb(255 255 255 / .1)}
+.side .act:hover{background:rgb(255 255 255 / .17)}
+.side .act-main{color:var(--ink);background:#fff}
+.side .act-main:hover{background:#eef1f5}
+
+.side .act[data-state=fail]{color:#ffc4c4}
+/* How to use */
+.help{width:min(880px,calc(100vw - 32px));max-height:calc(100dvh - 32px);margin:auto;padding:26px;border-radius:30px;background:#fff;box-shadow:0 40px 90px -30px rgb(40 55 80 / .45);overflow:auto;scrollbar-width:none}
+.help-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 18px}
+.help-head h3{margin:0;font-size:24px;font-weight:600;letter-spacing:-.02em}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:0 0 18px;padding:0;list-style:none}
+.steps li{padding:18px;border-radius:20px;background:linear-gradient(145deg,#f4f6f9,#eceff4)}
+.steps svg{display:block;width:100%;max-width:150px;height:auto;margin:0 0 14px}
+.steps h4{margin:0 0 4px;font-size:16px;font-weight:600}
+.steps p{margin:0;color:var(--muted)}
+.help-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted)}
+/* Dock */
+.dock{position:fixed;left:50%;bottom:16px;z-index:5;display:flex;align-items:center;max-width:calc(100vw - 20px);padding:5px;border-radius:25px;background:#fff;box-shadow:0 2px 6px rgb(40 55 80 / .1),0 24px 44px -14px rgb(40 55 80 / .36);transform:translateX(-50%);overflow-x:auto;scrollbar-width:none}
+.dock-knob{position:absolute;left:0;top:5px;height:40px;width:40px;border-radius:20px;background:var(--ink);will-change:transform,width}
+.dock button{position:relative;z-index:1;height:40px;min-width:40px;padding:0 clamp(7px,1vw,14px);border-radius:20px;font-size:clamp(12.5px,.98vw,14px);color:var(--muted);white-space:nowrap;transition:color .35s var(--out)}
+.dock button:hover{color:var(--ink)}
+.dock button.on,.dock button.on:hover{color:#fff}
+.none{padding:18vh 20px;text-align:center}
+.none h2{font-size:24px;margin-bottom:6px}
+.none p{margin:0;color:var(--muted)}
+[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation:none!important}}
+@media(max-width:860px){.sheet[open]{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,4fr) minmax(0,6fr)}.info{padding:10px 12px 6px}.info h3{font-size:18px}.info p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+@media(max-width:520px){.brand{display:none}.tg-slot{margin-left:0}}
+@media(max-width:600px){.tg-gh{display:none}}
+@media(max-width:700px){.sections button:first-child{display:none}}
+/* Three catalog references share one header and one dock. Only the catalog itself differs. */
+:root{--surface:#fff;--chip:#f6f7f8;--chip-hi:#eceef1;--stage:radial-gradient(ellipse at 25% 0%,#fafbfd,transparent 95%),linear-gradient(145deg,#f0f2f6,#e7ecf3);--knob:#2f3843;--knob-ink:#fff;--knob-hi:#3d4855;--veil:rgb(232 236 243 / .82);--code:#272e38;--gap:20px;--edge:var(--line)}
+html[data-theme=dark]{color-scheme:dark;--page:#121417;--ink:#e8ecf1;--muted:#98a2af;--faint:#6d7682;--line:rgb(255 255 255 / .08);--surface:#1c1f24;--chip:#272b31;--chip-hi:#31363d;--stage:radial-gradient(ellipse at 25% 0%,#2b2f36,transparent 95%),linear-gradient(145deg,#24272d,#1d2025);--knob:#eef1f5;--knob-ink:#20252c;--knob-hi:#fff;--veil:rgb(10 12 15 / .78);--code:#14171b;--edge:rgb(255 255 255 / .09);
+  --card:0 1px 0 rgb(255 255 255 / .05) inset,0 18px 36px -20px rgb(0 0 0 / .7);--card-hi:0 1px 0 rgb(255 255 255 / .08) inset,0 26px 46px -22px rgb(0 0 0 / .85)}
+.sky{background:var(--page)}
+.pill,.tg,.more,.card,.tile,.dock,.sheet,.help{background:var(--surface)}
+.stage,.big,.steps li{background:var(--stage)}
+.sections button[aria-current]{background:var(--chip)}
+.finder .sl-field .sl-field__popup{background:var(--surface)}
+.finder .sl-field .sl-field__option:is(:hover,[aria-selected=true]){background:var(--chip)}
+.x,.act{background:var(--chip)}.x:hover,.act:hover{background:var(--chip-hi)}
+.side{background:var(--code)}.acts{background:linear-gradient(transparent,var(--code) 58%)}
+.open{color:var(--knob-ink);background:var(--knob)}.open:hover{background:var(--knob-hi)}
+.dock-knob{background:var(--knob)}.dock button.on,.dock button.on:hover{color:var(--knob-ink)}
+dialog::backdrop{background:var(--veil)}
+html[data-theme=dark] .palette-swatch::before{box-shadow:inset 0 0 0 1px rgb(255 255 255 / .3)}
+html[data-theme=dark] .help-foot,html[data-theme=dark] .steps p{color:var(--muted)}
+/* Every shelf is one calm grid: no sideways scrolling, nothing to discover by accident. */
+.track,.shelf.all .track{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(calc(var(--min,300)*1px),46vw),1fr));grid-auto-rows:calc(var(--rowh,300)*1px);grid-auto-flow:row dense;align-items:stretch;gap:var(--gap);padding:12px var(--gutter) 30px;overflow:visible;-webkit-mask-image:none;mask-image:none}
+.card,.shelf.all .card{width:auto;height:auto;grid-row:span var(--ay,1)}
+html[data-card=flat] .card{padding:0;border-radius:20px;box-shadow:inset 0 0 0 1px var(--edge);overflow:hidden;transition:box-shadow .6s var(--out)}
+html[data-card=flat] .stage{border-radius:0;box-shadow:0 1px 0 var(--edge)}
+html[data-card=flat] .foot{min-height:54px;padding:0 10px 0 18px}
+html[data-card=flat] .open{right:10px}
+@media(hover:hover){html[data-card=flat] .card:hover{transform:none;box-shadow:inset 0 0 0 1px var(--faint)}}
+html[data-layout=single] main{padding-top:22px}
+html[data-layout=single] .shelf-head{margin-bottom:6px}
+/* Graphite, chosen by the owner. */
+html[data-theme=dark]{--surface:#20242a;--chip:#2b3037;--chip-hi:#363c45;--muted:#a7b0bb}
+/* Pills carry a fine edge, so they never melt into the dark page. */
+html[data-theme=dark] :is(.pill,.tg,.dock,.more,.tile){box-shadow:0 0 0 1px rgb(255 255 255 / .1),0 18px 36px -20px rgb(0 0 0 / .7)}
+html[data-theme=dark] .finder:focus-within{box-shadow:0 0 0 1px rgb(255 255 255 / .24),0 26px 46px -22px rgb(0 0 0 / .85)}
+html[data-theme=dark] .tg:is(:hover,:focus-visible){box-shadow:0 0 0 1px rgb(255 255 255 / .2),0 26px 46px -22px rgb(0 0 0 / .85)}
+.finder .sl-field .sl-field__label,.finder .sl-field .sl-field__leading{color:var(--muted)}
+.more{color:var(--ink);background:var(--chip-hi)}
+.more:hover{background:#414853}
+html[data-theme=dark] .more:hover{box-shadow:0 0 0 1px rgb(255 255 255 / .22)}
+/* The section switch moves like the dock, in a quiet tone. */
+.sections{position:relative}
+.sec-knob{position:absolute;left:0;top:6px;width:40px;height:42px;border-radius:21px;background:var(--chip);transition:transform .55s var(--out),width .55s var(--out)}
+.sections button{position:relative;z-index:1}
+.sections button[aria-current]{background:none}
+.dock{transition:opacity .45s var(--out),transform .55s var(--out)}
+.dock.away{opacity:0;transform:translate(-50%,24px);pointer-events:none}
+/* A measured mosaic: each card gets a slot that suits its component, placed so no gaps open. */
+.track,.shelf.all .track{grid-template-columns:repeat(var(--c,12),minmax(0,1fr));grid-auto-rows:130px;grid-auto-flow:row;gap:14px}
+.card,.shelf.all .card{grid-row:auto}
+/* A long name yields to Open code rather than running under it. */
+.foot b{transition:padding .3s var(--out)}
+.card:is(:hover,:focus-within) .foot b{padding-right:104px}
+@media(hover:none){.foot b{padding-right:104px}}
+/* Code window */
+.sheet{width:min(1160px,calc(100vw - 32px));height:min(760px,calc(100dvh - 32px))}
+@media(min-width:861px){.sheet[open]{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
+.side .act-main{color:#20252c;background:#fff}
+.side .act-main:hover{color:#20252c;background:#e9edf2}
+.side .act-main:disabled{color:#5d6672;background:#c9cfd7;cursor:default}
+.side .act[data-state=done]{color:#20252c;background:#fff}
+/* How to use: three cards with the same anatomy as the catalog. */
+.help{width:min(980px,calc(100vw - 32px));padding:10px;border-radius:34px}
+.help-head{padding:10px 8px 10px 18px;margin:0 0 4px}
+.help-head h3{font-size:21px;letter-spacing:-.015em}
+.steps{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin:0}
+.steps li{padding:0;border-radius:25px;background:none}
+.how{display:flex;flex-direction:column;justify-content:center;gap:9px;height:190px;padding:22px;border-radius:25px;background:var(--stage);overflow:hidden}
+.steps h4{margin:16px 16px 3px;font-size:16px;font-weight:600}
+.steps p{margin:0 16px 14px;font-size:14.5px;color:var(--muted)}
+.how-field{display:flex;align-items:center;gap:9px;height:42px;padding:0 15px;border-radius:21px;background:var(--surface);box-shadow:0 0 0 1px rgb(255 255 255 / .1);font-size:14px}
+.how-field svg{flex:none;width:16px;height:16px;fill:none;stroke:var(--muted);stroke-width:1.8;stroke-linecap:round}
+.how-field i{width:1.5px;height:16px;margin-left:-6px;background:var(--ink)}
+.how-hit{padding:0 15px;font-size:13.5px;color:var(--muted)}
+.how-hit b{font-weight:500;color:var(--ink)}
+.how-try{align-items:center;gap:16px}
+.how-button{display:inline-flex;align-items:center;gap:9px;height:44px;padding:0 20px;border-radius:13px;color:#20252c;background:#f4f6f9;font-size:14.5px}
+.how-button svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round}
+.how-dots{display:flex;gap:8px}
+.how-dots i{width:15px;height:15px;border-radius:50%;background:var(--d);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .28)}
+.how-dots i:first-child{box-shadow:0 0 0 2px #20242a,0 0 0 3.5px #dfe4ea}
+.how-code{position:relative;justify-content:flex-start;gap:7px;padding-top:24px;background:var(--code);font:12px/1.5 'Cascadia Code',ui-monospace,Consolas,monospace;color:#dbe1e9;white-space:nowrap}
+.how-code span{display:block}.how-code u{text-decoration:none;color:#9dbcff}.how-code s{text-decoration:none;color:#a9dcc6}
+.how-code em{position:absolute;right:12px;bottom:12px;display:inline-flex;align-items:center;height:30px;padding:0 13px;border-radius:15px;color:#20252c;background:#fff;font:500 12.5px 'Instrument Sans',sans-serif}
+.help-foot{margin:6px 0 0;padding:6px 6px 6px 18px;border-radius:24px;background:var(--chip);color:var(--muted);font-size:14.5px}
+.help-foot .act{color:#20252c;background:#fff}
+.help-foot .act:hover{background:#e9edf2}
+/* Painted once and left alone. */
+.sky{background:linear-gradient(115deg,rgb(131 180 255 / .07),transparent 38%,rgb(170 160 255 / .055) 62%,transparent 86%),var(--page)}
+/* Hover: the card rises by transform, and a ready-made shadow fades in. Nothing is repainted. */
+.card,.shelf.all .card{box-shadow:0 0 0 1px rgb(255 255 255 / .05);transition:transform .6s var(--out)}
+.card::after{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;box-shadow:0 26px 46px -22px rgb(0 0 0 / .85);opacity:0;pointer-events:none;transition:opacity .6s var(--out)}
+@media(hover:hover){.card:hover,.shelf.all .card:hover{box-shadow:0 0 0 1px rgb(255 255 255 / .1)}.card:hover::after{opacity:1}}
+.stage{background:linear-gradient(145deg,#272b31,#1d2025)}
+/* The chosen dock item is plainly larger than the rest. */
+.dock{height:50px;overflow:visible;contain:layout style}
+.dock-knob{top:-5px;height:60px;border-radius:30px;background:var(--knob);box-shadow:0 10px 24px -8px rgb(0 0 0 / .7);will-change:auto;transition:transform .5s var(--out),width .5s var(--out)}
+.dock button{flex-shrink:0;transition:color .35s var(--out),padding .5s var(--out)}
+.dock button span{display:inline-block;transition:transform .5s var(--out)}
+.dock button.on{padding-inline:calc(clamp(7px,1vw,14px) + 18px);font-weight:600}
+.dock button.on span{transform:scale(1.28)}
+.dock.still .dock-knob,.dock.still button,.dock.still button span{transition:none}
+@media(prefers-reduced-motion:reduce){.dock .dock-knob,.dock button,.dock button span{transition:none}}
+@media(max-width:760px){.dock{overflow-x:auto;overflow-y:hidden;height:62px;padding-block:11px}.dock-knob{top:1px}}
+/* Code window: lower, so it never fills the screen top to bottom. */
+.sheet{height:min(620px,calc(100dvh - 48px))}
+/* Copy code and Download ZIP answer with motion: the icon turns into a drawn check while the label rolls over. */
+.act-fx{position:relative;gap:8px;overflow:hidden;isolation:isolate;transition:background .5s var(--out),color .5s var(--out),transform .4s var(--out)}
+.act-fx:active{transform:scale(.96);transition-duration:.12s}
+.fx-ico{position:relative;flex:none;width:16px;height:16px}
+.fx-ico svg{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+.fx-main{transition:opacity .28s var(--out),transform .5s var(--out)}
+.fx-check path{stroke-width:2.2;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .5s var(--out)}
+.fx-front,.fx-back{transition:transform .45s var(--out)}
+.act-fx[data-state=done] .fx-main{opacity:0;transform:scale(.55)}
+.act-fx[data-state=done] .fx-check path{stroke-dashoffset:0;transition-delay:.1s}
+.act-fx[data-state=done] .fx-front{transform:translate(-2.5px,-2.5px)}
+.fx-text{display:grid;overflow:hidden;text-align:left}
+.fx-text span{grid-area:1/1;opacity:0;transform:translateY(105%);transition:transform .55s var(--out),opacity .35s var(--out)}
+@media(max-width:600px){
+  .acts{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;padding:24px 12px 12px}
+  .acts .act{width:100%;height:44px;justify-content:center}
+  .side pre{padding-bottom:134px}
+}
+.act-fx:not([data-state]) [data-s=idle],.act-fx[data-state=busy] [data-s=busy],.act-fx[data-state=done] [data-s=done],.act-fx[data-state=fail] [data-s=fail]{opacity:1;transform:none}
+.act-fx[data-state] [data-s=idle]{transform:translateY(-105%)}
+.act-fx[data-state=done] [data-s=busy]{transform:translateY(-105%)}
+/* A soft sheen crosses the button at the moment of success. */
+.act-fx::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,transparent 30%,rgb(32 37 44 / .1) 50%,transparent 70%);opacity:0;transform:translateX(-110%)}
+.act-fx[data-state=done]::after{opacity:1;transform:translateX(110%);transition:transform .9s var(--out) .05s,opacity .9s ease-in .05s}
+/* Preparing: the arrow keeps dropping while a fill creeps across the button. */
+.act-fx::before{content:'';position:absolute;inset:0;z-index:-1;background:rgb(255 255 255 / .16);opacity:0;transform:scaleX(0);transform-origin:left;transition:opacity .4s var(--out)}
+.act-fx[data-state=busy]::before{opacity:1;transform:scaleX(.88);transition:transform .9s cubic-bezier(.2,.7,.2,1),opacity .2s}
+.act-fx[data-state=busy] .fx-arrow{animation:fx-drop .8s cubic-bezier(.5,0,.3,1) infinite}
+@keyframes fx-drop{0%{transform:translateY(-4px);opacity:0}35%{opacity:1}70%{transform:translateY(1px);opacity:1}100%{transform:translateY(3px);opacity:0}}
+.side .act-fx:disabled{color:#20252c;background:#fff;cursor:default}
+/* The page scrolls without a visible scrollbar. */
+html{scrollbar-gutter:auto;scrollbar-width:none}
+html::-webkit-scrollbar,body::-webkit-scrollbar{display:none}
+/* Text on the site cannot be selected; only the code in Open code and fields can. */
+body{-webkit-user-select:none;user-select:none}
+/* Nothing on the shelves is selectable; everything in an opened component is, in the site's grey. */
+.sheet,input,textarea{-webkit-user-select:text;user-select:text}
+.sheet :is(button,[role=tab],a){-webkit-user-select:none;user-select:none}
+::selection{background:#dce4ed;color:#2e3b49;text-shadow:none}
+/* Depth. Everything here is painted once: light falls from above, cards stand on the page, stages sink into cards. */
+.sky{background:radial-gradient(120% 70% at 50% -8%,rgb(120 140 175 / .2),transparent 62%),radial-gradient(90% 60% at 50% 112%,rgb(0 0 0 / .5),transparent 70%),linear-gradient(115deg,rgb(131 180 255 / .05),transparent 38%,rgb(170 160 255 / .04) 62%,transparent 86%),var(--page)}
+.card,.shelf.all .card{background:linear-gradient(180deg,#272b32,#1d2026);box-shadow:inset 0 1px 0 rgb(255 255 255 / .1),inset 0 0 0 1px rgb(255 255 255 / .035),0 1px 2px rgb(0 0 0 / .5),0 16px 30px -16px rgb(0 0 0 / .85)}
+@media(hover:hover){.card:hover,.shelf.all .card:hover{transform:translateY(-4px);box-shadow:inset 0 1px 0 rgb(255 255 255 / .16),inset 0 0 0 1px rgb(255 255 255 / .06),0 1px 2px rgb(0 0 0 / .5),0 16px 30px -16px rgb(0 0 0 / .85)}}
+.card::after{box-shadow:0 34px 52px -22px rgb(0 0 0 / .95)}
+.stage,.big{background:radial-gradient(70% 62% at 50% 44%,rgb(255 255 255 / .075),transparent 72%),linear-gradient(180deg,#15171b,#1c1f24);box-shadow:inset 0 2px 5px rgb(0 0 0 / .6),inset 0 0 0 1px rgb(0 0 0 / .35),0 1px 0 rgb(255 255 255 / .06)}
+.foot b{text-shadow:0 1px 1px rgb(0 0 0 / .5)}
+/* Pills sit highest, with a lit top edge. */
+html[data-theme=dark] :is(.pill,.tg,.more,.tile){background:linear-gradient(180deg,#2b2f37,#1f2228);box-shadow:inset 0 1px 0 rgb(255 255 255 / .13),inset 0 0 0 1px rgb(255 255 255 / .04),0 2px 4px rgb(0 0 0 / .45),0 18px 32px -14px rgb(0 0 0 / .9)}
+html[data-theme=dark] .dock{background:linear-gradient(180deg,#2b2f37,#1f2228);box-shadow:inset 0 1px 0 rgb(255 255 255 / .13),inset 0 0 0 1px rgb(255 255 255 / .04),0 3px 6px rgb(0 0 0 / .5),0 26px 44px -14px rgb(0 0 0 / .95)}
+.more{background:linear-gradient(180deg,#414753,#32373f)}
+html[data-theme=dark] .more:hover{background:linear-gradient(180deg,#4b525f,#3a4049)}
+.sections button[aria-current]{background:none}
+.sec-knob{background:#15171b;box-shadow:inset 0 2px 4px rgb(0 0 0 / .55),0 1px 0 rgb(255 255 255 / .07)}
+.dock-knob{background:linear-gradient(180deg,#fff,#dfe4ea);box-shadow:inset 0 1px 0 #fff,0 2px 4px rgb(0 0 0 / .5),0 14px 26px -8px rgb(0 0 0 / .85)}
+.open{background:linear-gradient(180deg,#fff,#dfe4ea);box-shadow:inset 0 1px 0 #fff,0 2px 6px rgb(0 0 0 / .45)}
+.open:hover{background:linear-gradient(180deg,#fff,#eef1f5)}
+/* Windows stand above the page, and their panels sink in like the cards' stages. */
+.sheet,.help{background:linear-gradient(180deg,#2a2e35,#1e2126);box-shadow:inset 0 1px 0 rgb(255 255 255 / .12),0 4px 10px rgb(0 0 0 / .5),0 50px 90px -30px #000}
+.side{box-shadow:inset 0 2px 6px rgb(0 0 0 / .65),inset 0 0 0 1px rgb(0 0 0 / .4),0 1px 0 rgb(255 255 255 / .06)}
+.how{background:radial-gradient(70% 62% at 50% 44%,rgb(255 255 255 / .075),transparent 72%),linear-gradient(180deg,#15171b,#1c1f24);box-shadow:inset 0 2px 5px rgb(0 0 0 / .6),0 1px 0 rgb(255 255 255 / .06)}
+.how-code{background:var(--code)}
+.side .act-main,.side .act[data-state=done],.help-foot .act{background:linear-gradient(180deg,#fff,#e2e6ec);box-shadow:inset 0 1px 0 #fff,0 2px 6px rgb(0 0 0 / .45)}
+/* New palette: near-black, cool grey, white as the only accent. */
+html[data-theme=dark]{--page:#0c0d0f;--surface:#17191c;--chip:#222428;--chip-hi:#2c2f34;--ink:#f3f4f6;--muted:#8e939b;--faint:#5e636b;--line:rgb(255 255 255 / .08);--knob:#f3f4f6;--knob-ink:#111214;--knob-hi:#fff;--veil:rgb(6 7 8 / .8);--code:#0a0b0c;--stage:#17191c}
+.sky{background:var(--page)}
+/* Header and dock keep their shape; only the material is plainer. */
+html[data-theme=dark] :is(.pill,.tg,.tile),html[data-theme=dark] .dock{background:#17191c;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .08),0 16px 30px -18px #000}
+.sec-knob{background:#26282d;box-shadow:none}
+.dock-knob{background:#f3f4f6;box-shadow:0 10px 22px -10px #000}
+/* The catalog: a plain even grid. No card frames, the component and its name. */
+main{padding:22px 0 130px}
+.shelf,.shelf.all{margin:0}
+.shelf-head{padding:0 var(--gutter);margin:0 0 18px}
+.track,.shelf.all .track{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(calc(var(--min,300)*1px),44vw),1fr));grid-auto-rows:auto;grid-auto-flow:row;gap:26px 18px;padding:0 var(--gutter)}
+@media(max-width:600px){.track,.shelf.all .track{grid-template-columns:minmax(0,1fr)}}
+.card,.shelf.all .card{display:block;width:auto;height:auto;padding:0;border-radius:0;background:none;box-shadow:none;transition:none}
+.card:hover,.shelf.all .card:hover{transform:none;box-shadow:none}
+.card::after{display:none}
+.stage{flex:none;aspect-ratio:4/3;border-radius:14px;background:#17191c;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .06);transition:box-shadow .35s var(--out)}
+.card:is(:hover,:focus-within) .stage{box-shadow:inset 0 0 0 1px rgb(255 255 255 / .16)}
+/* Our own touch: the light comes up under the component you point at. */
+.stage::before{content:'';position:absolute;inset:0;background:radial-gradient(60% 62% at 50% 50%,rgb(255 255 255 / .1),transparent 72%);opacity:0;transition:opacity .5s var(--out);pointer-events:none}
+.card:is(:hover,:focus-within) .stage::before{opacity:1}
+.foot{min-height:42px;padding:0 2px}
+.foot b{font-size:13.5px;font-weight:500;color:#c7cad0;text-shadow:none}
+.card:is(:hover,:focus-within) .foot b{color:var(--ink)}
+.open{right:0;height:30px;padding:0 12px;border-radius:15px;font-size:12.5px;color:#111214;background:#f3f4f6;box-shadow:none}
+.open:hover{background:#fff}
+.palette-controls{top:9px;right:9px}
+/* Windows: flat and quiet. */
+.sheet,.help{background:#131416;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .08),0 50px 90px -30px #000}
+.big{background:#17191c;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .05)}
+.side{background:var(--code);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .05)}
+.side .act-main,.side .act[data-state=done],.help-foot .act{background:#f3f4f6;box-shadow:none}
+.side .act-main:hover,.help-foot .act:hover{background:#fff}
+.how{background:#17191c;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .05)}
+.help-foot{background:#1c1e21}
+.tile{border-radius:14px}
+html[data-theme=dark] .tile:hover{transform:none;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .18)}
+.sky{background:var(--page)}
+html[data-theme=dark] :is(.pill,.tg,.tile),html[data-theme=dark] .dock{background:var(--surface)}
+.more{background:var(--chip-hi)}
+.sec-knob{background:var(--chip-hi)}
+.dock-knob{background:var(--knob)}
+.dock button.on,.dock button.on:hover{color:var(--knob-ink)}
+.stage,.big,.how{background:var(--stage)}
+.foot b{color:var(--name)}
+.open{color:var(--knob-ink);background:var(--knob)}
+.open:hover{background:var(--knob-hi)}
+.sheet,.help{background:var(--sheet)}
+.side{background:var(--code)}
+.acts{background:linear-gradient(transparent,var(--code) 58%)}
+.side .act-main,.side .act[data-state=done],.side .act-fx:disabled,.help-foot .act{color:var(--knob-ink);background:var(--knob)}
+.side .act-main:hover,.help-foot .act:hover{color:var(--knob-ink);background:var(--knob-hi)}
+.fx-front{fill:var(--knob)}
+.help-foot{background:var(--chip)}
+.how-code{background:var(--code)}
+.how-field{background:var(--surface)}
+.how-button{color:#15161a;background:var(--ink)}
+:focus-visible{outline-color:var(--knob)}
+.finder:focus-within{box-shadow:inset 0 0 0 1px var(--knob),0 16px 30px -18px #000!important}
+.how-code em{color:var(--knob-ink);background:var(--knob)}
+.x{background:var(--chip)}
+.x:hover{background:var(--chip-hi)}
+.finder .sl-field .sl-field__popup{background:var(--surface)}
+.finder .sl-field .sl-field__option:is(:hover,[aria-selected=true]){background:var(--chip)}
+/* Selected states use the accent's soft step with its text step; only the dock's choice and the main buttons are solid. */
+html[data-theme=light] .sec-knob{background:var(--accent-soft)}
+html[data-theme=light] .sections button[aria-current]{color:var(--accent-text)}
+html[data-theme=light] .finder:focus-within{box-shadow:0 0 0 1px var(--accent),0 0 0 4px var(--accent-soft)}
+html[data-theme=light] :is(.pill,.tg,.tile,.dock,.more){box-shadow:0 0 0 1px var(--line),var(--shadow-2)}
+html[data-theme=light] .sheet,html[data-theme=light] .help{box-shadow:0 0 0 1px var(--line),var(--shadow-3)}
+html[data-theme=light] .shelf-head>span{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:11px;font-size:12.5px;font-weight:600;color:var(--muted);background:var(--chip)}
+html[data-theme=light] .dock-knob{box-shadow:0 6px 16px -8px var(--accent)}
+html[data-theme=light] .open{box-shadow:0 4px 12px -6px var(--accent)}
+/* Light code panel: the same surfaces as the rest of the window, with syntax colours taken from the palette. */
+html[data-theme=light] .side{color:var(--ink);background:var(--code);box-shadow:inset 0 0 0 1px var(--line)}
+html[data-theme=light] .side pre{color:var(--ink)}
+html[data-theme=light] .side pre .c{color:var(--n9)}
+html[data-theme=light] .side pre .s{color:var(--g11)}
+html[data-theme=light] .side pre .t{color:var(--b11)}
+html[data-theme=light] .side pre .k{color:oklch(50% .19 305)}
+html[data-theme=light] .side pre .a{color:var(--a11)}
+html[data-theme=light] .side pre .n{color:var(--r11)}
+html[data-theme=light] .side .tabs{background:var(--n4)}
+html[data-theme=light] .side .tabs button{color:var(--muted)}
+html[data-theme=light] .side .tabs button:hover{color:var(--ink)}
+html[data-theme=light] .side .tabs button[aria-selected=true]{color:var(--ink)}
+html[data-theme=light] .side .tabs-knob{background:var(--surface);box-shadow:var(--shadow-1)}
+html[data-theme=light] .side .x{color:var(--muted);background:var(--n4)}
+html[data-theme=light] .side .x:hover{color:var(--ink);background:var(--n5)}
+html[data-theme=light] .side .act:not(.act-main){color:var(--ink);background:var(--surface);box-shadow:inset 0 0 0 1px var(--line-hi)}
+html[data-theme=light] .side .act:not(.act-main):hover{background:var(--chip)}
+html[data-theme=light] .side .act[data-state=done]:not(.act-main){color:var(--ink);background:var(--surface)}
+html[data-theme=light] .how-code{color:var(--ink);background:var(--code);box-shadow:inset 0 0 0 1px var(--line)}
+html[data-theme=light] .how-code u{color:var(--b11)}
+html[data-theme=light] .how-code s{color:var(--g11)}
+html.peek,html.peek body{overflow:hidden}
+html.peek .dock,html.peek .palette-controls,html.peek .open{display:none!important}
+html.peek .stage::before{display:none}
+/* Arriving from the home page (?enter): the interface assembles like a kit. Header pieces fly in from their own sides,
+   each card snaps into place in a wave, then its component pops onto the stage, its name slides in, and the dock rises last. */
+@keyframes kit-left{from{opacity:0;translate:-60px 0}}
+@keyframes kit-right{from{opacity:0;translate:60px 0}}
+@keyframes kit-top{from{opacity:0;translate:0 -40px;scale:.9}}
+@keyframes kit-card{from{opacity:0;translate:0 60px;scale:.82}}
+@keyframes kit-pop{from{opacity:0;scale:.6}}
+@keyframes kit-name{from{opacity:0;translate:-16px 0}}
+@keyframes kit-dock{from{opacity:0;translate:0 90px}}
+html.enter .top>*{animation:kit-top .7s cubic-bezier(.34,1.4,.64,1) .05s both}
+html.enter .top>:first-child{animation-name:kit-left;animation-delay:0s}
+html.enter .top>:nth-child(2){animation-name:kit-left;animation-delay:.08s}
+html.enter .top>:last-child{animation-name:kit-right;animation-delay:.12s}
+html.enter .shelf-head>*{animation:kit-left .6s cubic-bezier(.34,1.4,.64,1) both;animation-delay:.2s}
+html.enter .shelf-head>:nth-child(2){animation-name:kit-pop;animation-delay:.32s}
+html.enter .card{--d:calc(.28s + var(--i,12) * 70ms);animation:kit-card .75s cubic-bezier(.3,1.35,.6,1) var(--d) both}
+html.enter .card .stage>*{animation:kit-pop .6s cubic-bezier(.34,1.6,.64,1) calc(var(--d) + .3s) both}
+html.enter .card .foot>*{animation:kit-name .5s var(--out) calc(var(--d) + .4s) both}
+/* Leaving for Docs: the same drop as the home page. */
+html.going #main{scale:.78;translate:0 16vh;opacity:0;transition:scale .42s cubic-bezier(.6,0,.85,.3),translate .42s cubic-bezier(.6,0,.85,.3),opacity .32s cubic-bezier(.6,0,.85,.3) .08s}
+html.going .top{translate:0 -40px;opacity:0;transition:translate .42s cubic-bezier(.6,0,.85,.3),opacity .32s cubic-bezier(.6,0,.85,.3) .08s}
+html.going .dock{translate:0 90px;opacity:0;transition:translate .42s cubic-bezier(.6,0,.85,.3),opacity .32s cubic-bezier(.6,0,.85,.3) .08s}
+html.enter .collection{--i:0;animation:kit-card .75s cubic-bezier(.3,1.35,.6,1) calc(.28s + var(--i) * 90ms) both}
+html.enter .collection:nth-child(2){--i:1}
+html.enter .collection:nth-child(3){--i:2}
+html.enter .dock{animation:kit-dock .8s cubic-bezier(.3,1.3,.6,1) 1.05s both}
+/* Component collection cards. */
+.collections{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:10px var(--gutter) 26px}
+.collection{display:grid;gap:14px;padding:12px 12px 16px;border-radius:22px;text-align:left;background:#fff;box-shadow:var(--card);color:var(--ink);transition:box-shadow .35s var(--out),transform .35s var(--out)}
+.collection:hover{transform:translateY(-2px)}
+.collection:hover{box-shadow:0 0 0 1px var(--accent-line),var(--card)}
+.collection .peek{transition:background .35s var(--out)}
+.collection:hover .peek{--icon-bg:var(--n3)}
+/* Back to the shelf of collections. Its row centres everything on one line instead of the usual text baseline. */
+.shelf-head:has(.back){align-items:center}
+.shelf-head:has(.back) h2{line-height:1}
+.back{display:grid;place-items:center;align-self:center;width:34px;height:34px;margin-right:2px;border-radius:50%;color:var(--ink);background:var(--chip);transition:background .25s var(--out)}
+.back:hover{background:var(--chip-hi)}
+.back svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.collection .peek{--icon-bg:var(--n2);display:flex;align-items:center;justify-content:space-evenly;height:132px;padding:0 10px;border-radius:14px;background:var(--icon-bg)}
+.collection .peek svg{width:30px;height:30px}
+.collection .about{display:grid;gap:3px;padding:0 6px}
+.collection .about b{font-size:17px;font-weight:600;letter-spacing:-.01em}
+.collection .about i{font-style:normal;font-size:14px;color:var(--muted)}
+@media(max-width:1100px){.collections{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.collections{grid-template-columns:minmax(0,1fr)}}
+/* Component collection previews: a small staged scene in each collection's own look, quietly playing its signature motion. */
+.collection .peek.art{display:grid;place-items:center;height:176px;padding:0 16px;overflow:hidden}
+.pa{display:grid;justify-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:-.005em;white-space:nowrap}
+/* Sliders covers. */
+.pa-field.st-field{padding-right:15px;font-weight:500;color:#16181d}
+.st-rail{position:relative;flex:none;display:block;width:130px;height:6px;border-radius:3px;background:#e3e6eb}
+.st-rail::before{content:"";position:absolute;inset:0;border-radius:inherit;background:#2d6af6;transform-origin:0 50%;animation:st-fill 6s cubic-bezier(.45,0,.2,1) infinite}
+.st-rail u{position:absolute;left:0;top:-7px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px rgb(16 20 30 / .1),0 3px 7px rgb(10 14 24 / .25);animation:st-thumb 6s cubic-bezier(.45,0,.2,1) infinite}
+@keyframes st-fill{0%,12%,92%,100%{scale:.24 1}38%,54%{scale:.85 1}72%,82%{scale:.5 1}}
+@keyframes st-thumb{0%,12%,92%,100%{translate:21px 0}38%,54%{translate:100px 0}72%,82%{translate:55px 0}}
+/* Checkboxes covers. */
+.pa-field.ct-field{justify-content:flex-start;padding-left:13px;font-weight:500;color:#16181d}
+.ct-box{position:relative;flex:none;display:block;width:22px;height:22px;border-radius:7px;background:#e3e6eb}
+.ct-box::before{content:"";position:absolute;inset:0;border-radius:inherit;background:#2d6af6;animation:ct-fill 5s ease-in-out infinite}
+.ct-box svg{position:absolute;inset:0;width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.ct-box path{stroke-dasharray:1 1;animation:ct-tick 5s ease-in-out infinite}
+@keyframes ct-fill{0%,18%,88%,100%{opacity:0;scale:.55}30%,78%{opacity:1;scale:1}}
+@keyframes ct-tick{0%,22%,84%,100%{stroke-dashoffset:1}36%,76%{stroke-dashoffset:0}}
+.ct-text{position:relative}
+.ct-text::after{content:"";position:absolute;left:-2px;right:-2px;top:50%;height:1.5px;background:currentColor;scale:0 1;transform-origin:0 50%;animation:ct-strike 5s ease-in-out infinite}
+@keyframes ct-strike{0%,30%,84%,100%{scale:0 1}46%,76%{scale:1 1}}
+.mc{position:relative;display:block;width:30px;height:30px;border-radius:9px;background:#dfe3e9}
+.mc::before{content:"";position:absolute;inset:0;border-radius:inherit;background:#2d6af6;animation:ct-fill 5s ease-in-out infinite;animation-delay:calc(var(--k) * .5s)}
+.mc svg{position:absolute;inset:4px;width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.mc path{stroke-dasharray:1 1;animation:ct-tick 5s ease-in-out infinite;animation-delay:calc(var(--k) * .5s)}
+/* Toggles cover: the same two pieces as the Buttons cover, a white field and a blue bar. */
+.pa-field.pt-field{padding-right:9px;font-weight:500;color:#16181d}
+.pt-sw{position:relative;flex:none;width:40px;height:24px;border-radius:12px;background:#e3e6eb}
+.pt-sw::before{content:"";position:absolute;inset:0;border-radius:inherit;background:#2d6af6;opacity:0;animation:pt-on 5s ease-in-out infinite}
+.pt-sw::after{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgb(10 14 24 / .28);animation:pt-knob 5s cubic-bezier(.3,.7,.2,1) infinite}
+@keyframes pt-on{0%,18%,88%,100%{opacity:0}32%,76%{opacity:1}}
+@keyframes pt-knob{0%,18%,88%,100%{translate:0 0}32%,76%{translate:16px 0}}
+.pa-bar.pt-bar{grid-template-columns:1fr 1fr;width:168px;place-items:stretch}
+.pt-bar::before{display:none}
+.pt-bar i{position:absolute;left:3px;top:3px;width:calc(50% - 3px);height:26px;border-radius:13px;background:rgb(255 255 255 / .22);animation:pt-seg 5s cubic-bezier(.45,0,.2,1) infinite}
+.pt-bar b{display:grid;place-items:center;font-weight:500}
+@keyframes pt-seg{0%,44%,96%,100%{translate:0 0}58%,84%{translate:100% 0}}
+.mt{position:relative;display:block;width:50px;height:30px;border-radius:15px;background:#dfe3e9}
+.mt::before{content:"";position:absolute;inset:0;border-radius:inherit;background:#2d6af6;animation:mt-fill 5s ease-in-out infinite}
+.mt::after{content:"";position:absolute;left:3px;top:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgb(10 14 24 / .2);animation:mt-knob 5s cubic-bezier(.3,.7,.2,1) infinite}
+.mt.on::before,.mt.on::after{animation-delay:-2.5s}
+@keyframes mt-fill{0%,38%,92%,100%{opacity:0}50%,80%{opacity:1}}
+@keyframes mt-knob{0%,38%,92%,100%{translate:0 0}50%,80%{translate:20px 0}}
+.pa-row{display:flex;align-items:center;gap:8px}
+.pa-pill{display:inline-grid;place-items:center;height:32px;padding:0 15px;border-radius:16px;color:#fff;background:#2d6af6;box-shadow:inset 0 1px 0 rgb(255 255 255 / .22),0 6px 14px -8px #2d6af6}
+/* Subscribe, opened: an address types itself into the field. */
+.pa-field{display:flex;align-items:center;justify-content:space-between;gap:10px;width:236px;height:42px;padding:0 5px 0 15px;border-radius:21px;background:#fff;box-shadow:0 0 0 1px rgb(16 20 30 / .08),0 8px 22px -12px rgb(10 14 24 / .3)}
+.pa-type{font-weight:500;color:#16181d;clip-path:inset(0 100% 0 0);animation:pa-type 5s steps(14,end) infinite}
+@keyframes pa-type{0%,8%{clip-path:inset(0 100% 0 0)}40%,92%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 100% 0 0)}}
+/* Pay as a bar that fills. */
+.pa-bar{position:relative;display:grid;place-items:center;width:142px;height:32px;border-radius:16px;color:#fff;background:#2d6af6;overflow:hidden;box-shadow:inset 0 1px 0 rgb(255 255 255 / .22),0 6px 14px -8px #2d6af6}
+.pa-bar::before{content:"";position:absolute;inset:0 auto 0 0;width:20%;border-radius:inherit;background:rgb(255 255 255 / .2);animation:pa-fill 5s cubic-bezier(.5,0,.3,1) infinite}
+.pa-bar b{position:relative;font-weight:600}
+@keyframes pa-fill{0%,30%{width:14%}55%{width:52%}62%{width:56%}86%,100%{width:100%}}
+/* Product inputs: a username that checks itself, and a code being typed into six cells. */
+.pi{display:flex;align-items:center;gap:2px;width:236px;height:42px;padding:0 14px;border-radius:14px;background:#fff;box-shadow:0 0 0 1px #1e9e5a8c,0 8px 22px -12px rgb(10 14 24 / .25);font-weight:500;color:#16181d}
+.pi-at{font-style:normal;color:#8a8f99}
+.pi .pa-type{flex:1;text-align:left}
+.pi-ok{font-size:12.5px;font-weight:600;color:#1e9e5a;animation:pi-ok 5s var(--out) infinite}
+@keyframes pi-ok{0%,46%{opacity:0;translate:0 5px}54%,92%{opacity:1;translate:0 0}100%{opacity:0}}
+.pi-cells{display:grid;grid-template-columns:repeat(6,30px);gap:6px}
+.pi-cells i{display:grid;place-items:center;height:38px;border-radius:10px;font-style:normal;font-size:16px;font-weight:600;color:#16181d;background:#fff;box-shadow:0 0 0 1px rgb(16 20 30 / .1)}
+.pi-cells .pi-on{box-shadow:0 0 0 1px #2d6af6,0 0 0 3px rgb(45 106 246 / .18);animation:pi-caret 1.1s steps(1) infinite}
+@keyframes pi-caret{50%{box-shadow:0 0 0 1px rgb(16 20 30 / .1)}}
+/* Matte inputs: two quiet labelled fields. */
+.mi{display:grid;gap:3px;width:236px;padding:7px 14px;border-radius:12px;text-align:left;background:#fafafa;box-shadow:0 0 0 1px rgb(0 0 0 / .08)}
+.mi small{font-size:11.5px;font-weight:600;color:#6b6f76}
+.mi span{font-weight:500;color:#222}
+.mi .mi-ph{color:#9a9ea5}
+/* Matte: the calm everyday set, one key gently pressed at a time. */
+.pm{display:inline-grid;place-items:center;height:34px;padding:0 16px;border-radius:10px}
+.pm.paper{color:#222;background:#fafafa;box-shadow:0 0 0 1px rgb(0 0 0 / .08),0 1px 2px rgb(0 0 0 / .06)}
+.pm.ink{color:#f4f4f4;background:#2b2b2b;box-shadow:0 1px 2px rgb(0 0 0 / .2)}
+.pm.wide{min-width:150px}
+.pa-matte .pm{animation:pm-press 6s ease-in-out infinite;animation-delay:calc(var(--k) * 1s)}
+@keyframes pm-press{0%,10%,100%{scale:1}4%{scale:.94}}
+@media(prefers-reduced-motion:reduce){.pa *{animation:none!important;clip-path:none!important}}
+.collection .formats{justify-self:start;margin:0 6px;padding:4px 10px;border-radius:99px;font-size:12.5px;color:var(--muted);background:var(--chip)}
+</style><link rel="stylesheet" href="./site-shell/tokens.css">
+<script src="./site-shell/catalog-entry.js"></script><script type="module" src="./analytics/site-analytics.mjs"></script><link rel="stylesheet" href="./site-shell/review-header.css" data-review-header></head><body data-journey="catalog">
+<div class="sky" aria-hidden="true"></div>
+
+<main id="main"></main>
+<nav class="dock" id="dock" aria-label="Categories"><span class="dock-knob" id="dockKnob"></span></nav>
+<dialog class="sheet" id="sheet" aria-labelledby="sheet-title"><div class="view"><div class="big" id="sheet-big"></div><div class="info"><h3 id="sheet-title"></h3><p id="sheet-desc"></p></div></div><div class="side"><div class="bar"><div class="tabs" id="sheet-tabs" role="tablist" aria-label="Source format"></div><button class="x" type="button" id="sheet-close" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><pre id="sheet-code" tabindex="0" role="tabpanel"></pre><div class="acts"><button class="act act-main act-fx" type="button" id="sheet-copy"><span class="fx-ico" aria-hidden="true"><svg class="fx-main" viewBox="0 0 24 24"><rect class="fx-back" x="4" y="4" width="11.5" height="13" rx="3"/><rect class="fx-front" x="8.5" y="7.5" width="11.5" height="13" rx="3" fill="#fff"/></svg><svg class="fx-check" viewBox="0 0 24 24"><path pathLength="1" d="M4.5 12.8 9.8 18 19.5 6.8"/></svg></span><span class="fx-text" aria-live="polite"><span data-s="idle">Copy code</span><span data-s="done">Copied</span><span data-s="fail">Failed</span></span></button><button class="act act-fx" type="button" id="sheet-zip"><span class="fx-ico" aria-hidden="true"><svg class="fx-main" viewBox="0 0 24 24"><g class="fx-arrow"><path d="M12 4v11"/><path d="m7.5 11 4.5 4.5 4.5-4.5"/></g><path d="M4.5 19.500h15"/></svg><svg class="fx-check" viewBox="0 0 24 24"><path pathLength="1" d="M4.5 12.8 9.8 18 19.5 6.8"/></svg></span><span class="fx-text" aria-live="polite"><span data-s="idle">Download ZIP</span><span data-s="busy">Preparing</span><span data-s="done">Started</span><span data-s="fail">Failed</span></span></button></div></div></dialog>
+<dialog class="help" id="help" aria-labelledby="help-title"><div class="help-head"><h3 id="help-title">How to use</h3><button class="x" type="button" id="help-close" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+<ol class="steps">
+<li><div class="how" aria-hidden="true"><div class="how-field"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>Hold<i></i></div><div class="how-hit"><b>Hold</b> to confirm</div><div class="how-hit"><b>Hold</b> to archive</div></div><h4>Find a component</h4><p>Search by name or explore the categories to find what you need.</p></li>
+<li><div class="how how-try" aria-hidden="true"><span class="how-button"><svg viewBox="0 0 24 24"><path d="M12 20.5 4.6 13a4.7 4.7 0 0 1 6.7-6.6l.7.7.7-.7a4.7 4.7 0 0 1 6.7 6.6Z"/></svg>Like</span><span class="how-dots"><i style="--d:#fbfcfd"></i><i style="--d:#292d33"></i><i style="--d:#4b6f9e"></i></span></div><h4>Try it out</h4><p>Click, type and switch palettes. Explore the interaction before taking the code.</p></li>
+<li><div class="how how-code" aria-hidden="true"><span>&lt;<u>button</u> class=<s>"sl-copy"</s>&gt;</span><span>&nbsp;&nbsp;&lt;<u>span</u>&gt;Copy&lt;/<u>span</u>&gt;</span><span>&lt;/<u>button</u>&gt;</span><em>Copy code</em></div><h4>Make it yours</h4><p>Open code to inspect HTML, CSS, JavaScript, React and Next.js. Download the ZIP for the complete package.</p></li>
+</ol>
+<div class="help-foot"><span>Connect demo actions to your own app.</span><a class="act" href="./downloads/sl-ui-library-plugin.zip" download>Download plugin ZIP</a></div></dialog>
+<script type="module" src="./catalog-page.mjs"></script></body></html>

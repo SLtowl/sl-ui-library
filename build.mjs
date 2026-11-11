@@ -1,8 +1,10 @@
 import {readFile,writeFile,readdir,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-import {components,categories} from './public/catalog-data.js';
 import {zip} from './zip.mjs';
+await import('./tools/product-buttons/build.mjs');
+const {components,categories}=await import('./public/catalog-data.js');
 await import('./build-previews.mjs');
+await import('./tools/split-previews.mjs');
 await import('./build-views.mjs');
 const {buildAnalytics}=await import('./build-analytics.mjs');
 await buildAnalytics();

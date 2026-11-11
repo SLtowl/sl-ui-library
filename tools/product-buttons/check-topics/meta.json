@@ -1,0 +1,25 @@
+{
+  "variant": "product-topics",
+  "category": "checkboxes",
+  "global": "SLTopics",
+  "root": ".pb-topics",
+  "name": "Topics",
+  "description": "Pick several topics. Each chip fills with colour from its middle.",
+  "motions": [
+    "Swelling fill"
+  ],
+  "keywords": [
+    "topics",
+    "interests",
+    "chips",
+    "tags",
+    "multi select",
+    "checkbox"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Read onChange(selected), a list of the chosen topic names. Add or remove chips in the markup.",
+  "example": "SLTopics.mount(document.querySelector('.pb-topics'), {\n  onChange: selected => { saveTopics(selected); },\n});"
+}

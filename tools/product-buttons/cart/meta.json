@@ -1,0 +1,12 @@
+{
+  "variant": "product-cart",
+  "global": "SLCart",
+  "root": ".pb-cart",
+  "name": "Add to cart",
+  "description": "Becomes a quantity stepper in place; the number rolls with each change.",
+  "motions": ["Spring morph", "Number roll"],
+  "keywords": ["cart", "add", "shop", "quantity", "stepper", "ecommerce", "basket"],
+  "size": [220, 52],
+  "connect": "Pass onChange(quantity) to update the cart; 0 means removed. Set max to limit the quantity.",
+  "example": "SLCart.mount(document.querySelector('.pb-cart'), {\n  max: 9,\n  // Called after every change. 0 means the item left the cart.\n  onChange: quantity => fetch('/api/cart/42', { method: 'PUT', body: JSON.stringify({ quantity }) }),\n});"
+}

@@ -1,4 +1,5 @@
 import approvedLocal91 from './catalog-batches/approved-local-91.js';
+import productComponents from './catalog-batches/product-buttons.js';
 // Component types are separate from motion treatments and export variants.
 // Add a ready component here only when its preview, source and download exist.
 import batch0 from './catalog-batches/buttons.js';
@@ -633,3 +634,4 @@ export function filterComponents(category = 'all', query = '') {
 
 // Owner-approved additions; generated candidate remains gated on release QA.
 components.push(...approvedLocal91);
+components.push(...productComponents);

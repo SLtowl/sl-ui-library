@@ -1,0 +1,13 @@
+{
+  "variant": "product-do-not-disturb",
+  "category": "selection",
+  "global": "SLDoNotDisturb",
+  "root": ".pb-dnd",
+  "name": "Do not disturb",
+  "description": "A plain settings row. The moon fills from its middle and the word Silenced appears beside the switch.",
+  "motions": ["Filling moon", "Sliding knob"],
+  "keywords": ["do not disturb", "silent", "mute", "focus", "quiet", "switch", "settings", "moon"],
+  "size": [380, 300],
+  "connect": "Read onChange(on). Pass on: true to start silenced.",
+  "example": "SLDoNotDisturb.mount(document.querySelector('.pb-dnd'), {\n  on: false,\n  onChange: on => { document.querySelector('#quiet').checked = on; },\n});"
+}

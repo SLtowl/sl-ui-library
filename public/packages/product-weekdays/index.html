@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weekdays · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <div class="pb pb-f pb-weekdays ck">
+    <div class="ck-days" role="group" aria-label="Days of the week">
+      <label class="ck-day"><input type="checkbox" checked aria-label="Monday"><i></i><b aria-hidden="true">M</b></label>
+      <label class="ck-day"><input type="checkbox" checked aria-label="Tuesday"><i></i><b aria-hidden="true">T</b></label>
+      <label class="ck-day"><input type="checkbox" checked aria-label="Wednesday"><i></i><b aria-hidden="true">W</b></label>
+      <label class="ck-day"><input type="checkbox" checked aria-label="Thursday"><i></i><b aria-hidden="true">T</b></label>
+      <label class="ck-day"><input type="checkbox" checked aria-label="Friday"><i></i><b aria-hidden="true">F</b></label>
+      <label class="ck-day"><input type="checkbox" aria-label="Saturday"><i></i><b aria-hidden="true">S</b></label>
+      <label class="ck-day"><input type="checkbox" aria-label="Sunday"><i></i><b aria-hidden="true">S</b></label>
+    </div>
+    <div class="ck-swap" aria-live="polite"><span class="on">Every weekday</span><span></span></div>
+  </div>
+</body>
+</html>

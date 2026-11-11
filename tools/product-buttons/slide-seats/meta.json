@@ -1,0 +1,26 @@
+{
+  "variant": "product-seats",
+  "category": "sliders",
+  "global": "SLSeats",
+  "root": ".pb-seats",
+  "name": "Seats",
+  "description": "Team size sets the price, and the line below says when the rate gets better.",
+  "motions": [
+    "Following thumb",
+    "In-place note"
+  ],
+  "keywords": [
+    "seats",
+    "team",
+    "pricing",
+    "plan",
+    "users",
+    "slider"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Pass value, rate, betterRate and betterFrom, then read onChange({ seats, price }).",
+  "example": "SLSeats.mount(document.querySelector('.pb-seats'), {\n  onChange: ({ seats, price }) => { updatePlan(seats, price); },\n});"
+}

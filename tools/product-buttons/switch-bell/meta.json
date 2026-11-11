@@ -1,0 +1,13 @@
+{
+  "variant": "product-notifications",
+  "category": "selection",
+  "global": "SLNotifications",
+  "root": ".pb-notifications",
+  "name": "Notifications",
+  "description": "A plain settings row. The bell swings and gets a dot when on; turning it off draws a line through it.",
+  "motions": ["Swinging bell", "Drawn line"],
+  "keywords": ["notifications", "alerts", "bell", "mute", "switch", "settings"],
+  "size": [380, 300],
+  "connect": "Read onChange(on). Pass on: false to start muted.",
+  "example": "SLNotifications.mount(document.querySelector('.pb-notifications'), {\n  on: true,\n  onChange: on => { document.querySelector('#alerts').checked = on; },\n});"
+}

@@ -1,0 +1,17 @@
+/* Dark mode: a big knob on a thin rail. One number, --p from 0 to 1, drives everything, so the whole change follows the hand. */
+/* The knob flips quickly in a narrow part of the way, so it is never a dull grey for long. The night keeps following the hand. */
+.dk{--t:clamp(0,calc((var(--p) - .42) / .16),1);--mix:calc(var(--t) * 100%);--plate:color-mix(in oklab,#23272f var(--mix),var(--pb-field));--track:color-mix(in oklab,#2a2e35 calc(var(--p) * 100%),color-mix(in oklab,var(--pb-field-text) 9%,var(--pb-field)));--fi:color-mix(in oklab,#f2f4f7 var(--mix),var(--pb-field-text));--edge:color-mix(in oklab,rgb(255 255 255 / .12) var(--mix),var(--pb-line));display:grid;place-items:center;-webkit-tap-highlight-color:transparent}
+.dk *{box-sizing:border-box}
+.dk-switch{display:block;padding:0;border:0;background:none;color:var(--fi);cursor:grab;touch-action:none}
+.dk-switch:focus-visible{outline:2px solid #2d6af6;outline-offset:8px;border-radius:40px}
+.dk.held .dk-switch{cursor:grabbing}
+.dk .rail{position:relative;display:block;width:126px;height:18px;margin:25px 0;border-radius:9px;background:var(--track);box-shadow:inset 0 0 0 1px var(--edge)}
+.dk .ball{position:absolute;left:-6px;top:-25px;display:grid;place-items:center;width:68px;height:68px;border-radius:50%;background:var(--plate);box-shadow:0 0 0 1px var(--edge),0 16px 26px -10px rgb(10 14 24 / .3);translate:calc(var(--p) * 70px) 0;will-change:translate}
+.dk .grip{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;transition:scale .3s cubic-bezier(.22,1,.36,1)}
+.dk.held .grip{scale:1.05}
+.dk .roll{position:relative;display:block;width:24px;height:24px;rotate:calc(var(--p) * 360deg);will-change:rotate}
+.dk .roll svg{position:absolute;inset:0;width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.dk .roll .s{opacity:calc(1 - var(--t))}
+.dk .roll .m{opacity:var(--t)}
+.dk-sky{position:absolute;z-index:-1;inset:0;overflow:hidden;border-radius:inherit;pointer-events:none}
+.dk-night{position:absolute;border-radius:50%;background:#0d1017;scale:var(--p);will-change:scale}

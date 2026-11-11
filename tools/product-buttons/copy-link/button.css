@@ -1,0 +1,21 @@
+/* Copy link: the button opens to show the address it is copying, a selection sweeps across it, then it lands as "Copied". */
+.pb-copy { position: relative; display: inline-grid; }
+.pb-copy .pb-btn { width: var(--w0); }
+.pb-copy[data-state=idle] .pb-btn:hover { background: var(--pb-accent-hover); }
+.pb-copy[data-state=idle] .pb-btn:active { scale: .965; }
+.pb-copy[data-state=show] .pb-btn { width: var(--w1); cursor: default; }
+.pb-copy[data-state=done] .pb-btn { width: var(--w2); }
+.pb-copy[data-state=fail] .pb-btn { width: var(--w3); }
+
+/* The address, with a selection highlight that grows from its first letter to its last, the way select-all looks. */
+.pb-copy .pb-link { max-width: calc(var(--w1) - 44px); font-weight: 500; letter-spacing: 0; }
+.pb-copy .pb-url { position: relative; display: block; overflow: hidden; text-overflow: ellipsis; }
+.pb-copy .pb-select { position: absolute; inset: -6px -7px; border-radius: 8px; background: color-mix(in oklab, currentColor 24%, transparent);
+  clip-path: inset(0 100% 0 0 round 8px); transition: clip-path .38s cubic-bezier(.6, 0, .2, 1); }
+.pb-copy[data-state=show] .pb-select { clip-path: inset(0 0 0 0 round 8px); transition-delay: .2s; }
+
+.pb-copy .pb-link, .pb-copy [data-label=done], .pb-copy [data-label=fail] { opacity: 0; translate: 0 7px; filter: blur(4px); }
+.pb-copy:not([data-state=idle]) [data-label=idle] { opacity: 0; translate: 0 -7px; filter: blur(4px); }
+.pb-copy[data-state=show] .pb-link { opacity: 1; translate: 0 0; filter: none; transition-delay: .08s; }
+.pb-copy:is([data-state=done], [data-state=fail]) .pb-link { opacity: 0; translate: 0 -7px; }
+.pb-copy[data-state=done] [data-label=done], .pb-copy[data-state=fail] [data-label=fail] { opacity: 1; translate: 0 0; filter: none; transition-delay: .14s; }

@@ -1,0 +1,15 @@
+/* Project privacy: the whole row presses; the knob slides and the line under the title changes in place. */
+.pr{--calm:cubic-bezier(.22,1,.36,1);display:inline-block;width:fit-content;max-width:100%;margin-inline:auto;-webkit-tap-highlight-color:transparent}
+.pr *{box-sizing:border-box}
+.pr-btn{display:flex;align-items:center;justify-content:space-between;gap:14px;width:290px;max-width:100%;padding:16px;border:0;border-radius:20px;background:var(--pb-field);color:var(--pb-field-text);box-shadow:0 0 0 1px var(--pb-line),0 1px 2px rgb(10 14 24 / .06),0 10px 24px -12px rgb(10 14 24 / .2);text-align:left;font:inherit;cursor:pointer}
+.pr-btn:focus-visible{outline:2px solid var(--pb-ink);outline-offset:3px}
+.pr-text{display:block;min-width:0}
+.pr-text strong{display:block;font-size:15.5px;font-weight:600}
+.pr-sub{display:grid;margin-top:2px;font-size:13.5px;font-weight:500;color:var(--pb-hint)}
+.pr-sub>span{grid-area:1/1;transition:opacity .26s var(--pb-out) .1s}
+.pr[data-private=false] .v-prv,.pr[data-private=true] .v-pub{opacity:0;transition:opacity .14s var(--pb-out)}
+.pr-sw{position:relative;flex:none;width:48px;height:30px;border-radius:15px;background:color-mix(in oklab,var(--pb-field-text) 14%,var(--pb-field));transition:background .3s var(--pb-out)}
+.pr-sw::after{content:"";position:absolute;left:3px;top:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 5px rgb(10 14 24 / .25);will-change:translate;transition:translate .42s var(--calm),background .3s var(--pb-out)}
+.pr[data-private=true] .pr-sw{background:var(--pb-field-text)}
+.pr[data-private=true] .pr-sw::after{translate:18px 0;background:var(--pb-field)}
+@media(prefers-reduced-motion:reduce){.pr *,.pr-sw::after{transition-duration:.01ms!important;transition-delay:0s!important}}

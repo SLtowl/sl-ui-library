@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Message · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <div class="pb pb-f pb-message ms" data-state="empty">
+    <div class="ms-plate">
+      <div class="ms-clip" aria-hidden="true"><div class="ms-sheet"></div></div>
+      <div class="ms-head"><div class="ms-well">
+        <span class="ms-bg" aria-hidden="true"></span>
+        <span class="ms-ring" aria-hidden="true"></span>
+        <textarea rows="1" aria-label="Message" autocomplete="off" placeholder="Write a message" data-bwignore="true" data-1p-ignore="true" data-lpignore="true" data-form-type="other"></textarea>
+        <span class="ms-mirror" aria-hidden="true"></span>
+        <span class="ms-sent" aria-hidden="true"></span>
+        <span class="ms-done" aria-hidden="true"><svg viewBox="0 0 24 24"><path pathLength="1" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Sent</span>
+        <button class="ms-send" type="button">Send</button>
+      </div></div>
+    </div>
+    <span class="pb-sr" role="status" aria-live="polite"></span>
+  </div>
+</body>
+</html>

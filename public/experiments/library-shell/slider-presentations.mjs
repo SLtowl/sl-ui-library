@@ -1,0 +1,14 @@
+export const sliderBatch=[{"base":"volume-slider","name":"Volume","modes":["text","combined","icon"]},{"base":"brightness-slider","name":"Brightness","modes":["text","combined","icon"]},{"base":"scrub-slider","name":"Playback scrubber","modes":["text","combined","icon"]},{"base":"speed-slider","name":"Playback speed","modes":["text","combined","icon"]},{"base":"zoom-slider","name":"Zoom","modes":["text","combined","icon"]},{"base":"temperature-slider","name":"Temperature","modes":["text","combined","icon"]},{"base":"balance-slider","name":"Stereo balance","modes":["text","combined","icon"]},{"base":"exposure-slider","name":"Exposure","modes":["text","combined","icon"]},{"base":"segments-slider","name":"Segmented level","modes":["text","combined","icon"]},{"base":"distance-slider","name":"Distance bubble","modes":["text","combined","icon"]},{"base":"type-size-slider","name":"Type size","modes":["text","combined","icon"]},{"base":"radius-slider","name":"Corner radius","modes":["text","combined","icon"]},{"base":"opacity-slider","name":"Opacity","modes":["text","combined","icon"]},{"base":"sliders-crossfade-v11","name":"Source crossfade","modes":["text","combined","icon"]},{"base":"sliders-gain-v11","name":"Logarithmic gain","modes":["text","combined","icon"]},{"base":"sliders-quantity-v11","name":"Cart quantity","modes":["text","combined","icon"]},{"base":"sliders-line-height-v11","name":"Reading spacing","modes":["text","combined","icon"]},{"base":"sliders-content-width-v11","name":"Content width","modes":["text","combined","icon"]},{"base":"sliders-card-gap-v11","name":"Card spacing","modes":["text","combined","icon"]},{"base":"sliders-thumbnails-v11","name":"Thumbnail size","modes":["text","combined","icon"]}];
+export function sliderMarkup(markup,base,mode){
+ if(base.startsWith('sliders-')){
+  let result=markup.replace('class="sl-component"',`class="sl-component sl-variant-${mode}"`);
+  return result.replace(/(<h2\b[^>]*>)([\s\S]*?)(<\/h2>)/,(_all,open,inside,close)=>open+inside.replace(/(<\/svg>)([\s\S]*)$/,(_tail,svg,title)=>svg+'<span class="sp-caption">'+title+'</span>')+close);
+ }
+ let result=markup.replace('class="sl-slider ',`class="sl-variant-${mode} sl-slider `);
+ // Labels retain their association with the native input even in compact mode.
+ result=result.replace(/(<label\b[^>]*>)([\s\S]*?)(<\/label>)/,(_all,open,inside,close)=>{
+  if(inside.includes('<svg'))return open+inside.replace(/<span>([^<]*)<\/span>/,'<span class="sp-caption">$1</span>')+close;
+  return open+'<span class="sp-glyph" aria-hidden="true"></span><span class="sp-caption">'+inside+'</span>'+close;
+ });
+ return result;
+}

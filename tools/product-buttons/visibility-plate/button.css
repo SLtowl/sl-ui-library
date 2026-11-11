@@ -1,0 +1,11 @@
+/* Public / Private: a plate with two icon words and a well that slides between them. */
+.vp{--calm:cubic-bezier(.22,1,.36,1);display:inline-block;width:fit-content;margin-inline:auto;padding:6px;border-radius:22px;background:var(--pb-field);box-shadow:0 0 0 1px var(--pb-line),0 1px 2px rgb(10 14 24 / .06),0 10px 24px -12px rgb(10 14 24 / .2);-webkit-tap-highlight-color:transparent}
+.vp *{box-sizing:border-box}
+.vp-seg{position:relative;display:grid;grid-template-columns:1fr 1fr;width:252px;height:52px}
+.vp-seg>i{position:absolute;left:0;top:0;width:50%;height:100%;border-radius:16px;background:color-mix(in oklab,var(--pb-field-text) 9%,var(--pb-field));will-change:translate;transition:translate .5s var(--calm)}
+.vp[data-value=private] .vp-seg>i{translate:100% 0}
+.vp-opt{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:0;border:0;border-radius:16px;background:none;font:inherit;font-size:15.5px;font-weight:500;color:var(--pb-hint);cursor:pointer;transition:color .28s var(--pb-out)}
+.vp-opt[aria-checked=true]{color:var(--pb-field-text);cursor:default}
+.vp-opt:focus-visible{outline:2px solid var(--pb-ink);outline-offset:2px}
+.vp-opt svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(prefers-reduced-motion:reduce){.vp *{transition-duration:.01ms!important}}

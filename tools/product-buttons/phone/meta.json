@@ -1,0 +1,29 @@
+{
+  "variant": "product-phone",
+  "category": "inputs",
+  "global": "SLPhone",
+  "root": ".pb-phone",
+  "name": "Phone",
+  "description": "The whole number waits in grey, so typing only darkens it. Paste one with a plus and the country follows.",
+  "motions": [
+    "Sliding sheet",
+    "In-place mask",
+    "Drawn check"
+  ],
+  "keywords": [
+    "phone",
+    "telephone",
+    "mobile",
+    "country code",
+    "mask",
+    "format",
+    "tel",
+    "international"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Read onChange({ country, code, number, e164, complete }) to get the number. Pass countries as { iso, name, code, mask } to replace the built-in list, common for the short list, country for the starting country.",
+  "example": "SLPhone.mount(document.querySelector('.pb-phone'), {\n  country: 'GB',\n  onChange: phone => {\n    // phone.e164 is ready to send when phone.complete is true.\n    document.querySelector('#send').disabled = !phone.complete;\n  },\n});"
+}

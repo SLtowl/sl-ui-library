@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phone · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <div class="pb pb-f pb-phone ph" data-phase="idle">
+    <div class="ph-plate">
+      <div class="ph-clip ph-shade-clip" aria-hidden="true"><div class="ph-shade"></div></div>
+      <div class="ph-clip" aria-hidden="true"><div class="ph-sheet"></div></div>
+      <div class="ph-head">
+        <label class="ph-well code"><span class="ph-ring" aria-hidden="true"></span><input class="ph-cc" type="text" role="combobox" aria-label="Country or code" aria-expanded="false" aria-autocomplete="list" aria-controls="pb-phone-list" autocomplete="off" spellcheck="false" data-bwignore="true" data-1p-ignore="true" data-lpignore="true" data-form-type="other"></label>
+        <label class="ph-well"><span class="ph-ring" aria-hidden="true"></span><span class="ph-ghost" aria-hidden="true"><b></b><span></span></span><input class="ph-n" type="text" inputmode="tel" aria-label="Phone number" autocomplete="off" spellcheck="false" data-bwignore="true" data-1p-ignore="true" data-lpignore="true" data-form-type="other"><svg class="ph-ok" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="m5 12.5 4.5 4.5L19 7.5"/></svg></label>
+      </div>
+      <div class="ph-reveal"><div class="ph-list" id="pb-phone-list" role="listbox" aria-label="Countries"><span class="ph-knob" aria-hidden="true"></span><p class="ph-none"></p></div></div>
+    </div>
+    <span class="pb-sr" role="status" aria-live="polite"></span>
+  </div>
+</body>
+</html>

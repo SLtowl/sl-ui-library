@@ -1,0 +1,25 @@
+{
+  "variant": "product-task",
+  "category": "checkboxes",
+  "global": "SLTask",
+  "root": ".pb-task",
+  "name": "Task",
+  "description": "Ticking a task draws a line through its text, from left to right.",
+  "motions": [
+    "Drawn tick",
+    "Strikethrough"
+  ],
+  "keywords": [
+    "task",
+    "todo",
+    "done",
+    "strikethrough",
+    "checkbox"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Read onChange(checked) to save the task.",
+  "example": "SLTask.mount(document.querySelector('.pb-task'), {\n  onChange: checked => { saveTask(checked); },\n});"
+}

@@ -1,0 +1,6 @@
+/* Demo only: what passes at this step and what does not. */
+.cp-hint{display:grid;margin:10px 0 0 2px;font-size:13px;line-height:20px}
+.cp-hint i{font-style:normal;color:var(--pb-hint)}
+.cp-hint p{grid-area:1/1;display:flex;flex-wrap:wrap;gap:0 12px;margin:0;visibility:hidden;opacity:0;transition:opacity .25s var(--pb-out),visibility 0s .25s}
+.cp-hint b{font-weight:600;user-select:all;-webkit-user-select:all;cursor:text}
+.cp[data-step=number] [data-for=number],.cp[data-step=details] [data-for=details]{visibility:visible;opacity:1;transition-delay:0s}

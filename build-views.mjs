@@ -2,7 +2,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { components } from './public/catalog-data.js';
 const root = new URL('./public/', import.meta.url);
 const views = {};
-for (const [name, file] of [['home', 'index.html'], ['category', 'category.html'], ['component', 'component.html']]) {
+for (const [name, file] of [['home', 'intro.html'], ['category', 'category.html'], ['component', 'component.html']]) {
   const html = await readFile(new URL(file, root), 'utf8');
   const main = html.match(/<main\b[\s\S]*?<\/main>/)?.[0];
   const dialog = html.match(/<dialog\b[\s\S]*?<\/dialog>/)?.[0];

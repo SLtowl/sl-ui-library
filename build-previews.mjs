@@ -20,7 +20,10 @@ for (const component of components) {
 }
 const includedApproved = components.filter(component => contentAllowlist.has(component.id));
 if ((sizing.size || includedApproved.length) && (sizing.size !== 91 || includedApproved.length !== 91)) throw new Error('Content sizing requires the complete approved 91');
+const productVariants = components.filter(component => component.collection === 'product').flatMap(component => component.variants);
+const productVariantSet = new Set(productVariants);
 for (const variant of components.flatMap(component => component.variants)) {
+  if (productVariantSet.has(variant)) continue;
   // Keep the native-dialog viewport, but compile its content and code once.
   // No iframe navigation, script loading or per-package font request at runtime.
   if (variant.endsWith('-overlay')) {
@@ -100,5 +103,7 @@ for (const variant of components.flatMap(component => component.variants)) {
   }
   definitions.push(`${JSON.stringify(variant)}: { markup: ${JSON.stringify(markup.trim())}, css: ${styles.get(css)}, mount: ${api}.mount${demo}${sizing.has(variant) ? ', contentSizing: true' : ''} }`);
 }
-await writeFile(new URL('preview-data.js', root), `// Generated from the standalone packages by build-previews.mjs.\n${modules.join('\n')}\nexport const previews = {\n${definitions.join(',\n')}\n};\n`.replace(/^[\t ]+$/gm, ''));
+const productImports = productVariants.map((variant, i) => `import product${i} from './previews-product/${variant}.js';`);
+const productEntries = productVariants.map((variant, i) => `${JSON.stringify(variant)}:product${i}`);
+await writeFile(new URL('preview-data.js', root), `// Generated from the standalone packages by build-previews.mjs.\n${productImports.join('\n')}\n${modules.join('\n')}\nexport const previews = {\n${definitions.join(',\n')}\n};\nObject.assign(previews, {${productEntries.join(',')}});\n`.replace(/^[\t ]+$/gm, ''));
 console.log('Built shared previews from the catalog variants.');

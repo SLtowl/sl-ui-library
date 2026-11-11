@@ -1,0 +1,13 @@
+{
+  "variant": "product-dark-mode",
+  "category": "selection",
+  "global": "SLDarkMode",
+  "root": ".pb-darkmode",
+  "name": "Dark mode",
+  "description": "Drag the big knob and the night spreads exactly as far as your hand has moved. Let go and it rolls the rest of the way.",
+  "motions": ["Follows the hand", "Spreading night", "Rolling knob"],
+  "keywords": ["dark mode", "theme", "toggle", "switch", "light", "night", "appearance"],
+  "size": [380, 300],
+  "connect": "Pass target for the surface the night spreads over and read onChange(on) to apply your theme. Pass on to start in dark mode.",
+  "example": "SLDarkMode.mount(document.querySelector('.pb-darkmode'), {\n  target: document.body,\n  onChange: on => { document.documentElement.dataset.theme = on ? 'dark' : 'light'; },\n});"
+}

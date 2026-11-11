@@ -1,0 +1,16 @@
+/* Pay: stretches into a payment bar, the amount runs down to zero, then it lands as "Paid". A declined card stops the bar and shakes. */
+.pb-pay { --p: 0; position: relative; display: inline-grid; }
+.pb-pay .pb-btn { width: var(--w0); }
+.pb-pay[data-state=idle] .pb-btn:hover { background: var(--pb-accent-hover); }
+.pb-pay[data-state=idle] .pb-btn:active { scale: .965; }
+.pb-pay[data-state=busy] .pb-btn { width: var(--w1); cursor: default; }
+.pb-pay[data-state=done] .pb-btn { width: var(--w2); }
+.pb-pay[data-state=fail] .pb-btn { width: var(--w3); }
+
+.pb-pay[data-state=busy] .pb-fill { opacity: 1; }
+
+.pb-pay [data-label=amount], .pb-pay [data-label=done], .pb-pay [data-label=fail] { opacity: 0; translate: 0 7px; filter: blur(4px); }
+.pb-pay:not([data-state=idle]) [data-label=idle] { opacity: 0; translate: 0 -7px; filter: blur(4px); }
+.pb-pay[data-state=busy] [data-label=amount] { opacity: 1; translate: 0 0; filter: none; transition-delay: .12s; }
+.pb-pay:is([data-state=done], [data-state=fail]) [data-label=amount] { opacity: 0; translate: 0 -7px; }
+.pb-pay[data-state=done] [data-label=done], .pb-pay[data-state=fail] [data-label=fail] { opacity: 1; translate: 0 0; filter: none; transition-delay: .14s; }

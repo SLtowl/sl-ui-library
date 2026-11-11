@@ -1,0 +1,47 @@
+/* Phone: a white plate with two grey wells. The code well opens a sheet of countries; the number never moves. */
+.ph{--calm:cubic-bezier(.22,1,.36,1);--open:cubic-bezier(.32,.72,0,1);--well:color-mix(in oklab,var(--pb-field-text) 9%,var(--pb-field));position:relative;width:380px;max-width:100%;height:64px}
+.ph *{box-sizing:border-box}
+.ph-plate{position:absolute;z-index:5;top:0;left:0;right:0;height:64px}
+/* The head never changes. Behind it a full-height sheet only slides, so opening and folding need no repainting. */
+.ph-head{position:relative;z-index:2;display:flex;gap:6px;height:64px;padding:6px;border-radius:22px;background:var(--pb-field)}
+.ph-head::before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 1px var(--pb-line);clip-path:inset(-2px -2px 50% -2px);pointer-events:none}
+.ph-clip{position:absolute;z-index:1;top:32px;left:-70px;right:-70px;height:340px;overflow:hidden;pointer-events:none}
+.ph-sheet{position:absolute;top:0;left:70px;right:70px;height:276px;border-radius:22px;background:var(--pb-field);box-shadow:0 0 0 1px var(--pb-line),0 1px 2px rgb(10 14 24 / .06),0 10px 24px -12px rgb(10 14 24 / .2);translate:0 -244px;pointer-events:auto;will-change:translate;transition:translate .62s var(--open)}
+/* The deep shadow lives on its own layer and fades in near the top, so it has no hard edge beside the field. */
+.ph-shade-clip{z-index:0;-webkit-mask-image:linear-gradient(transparent,#000 46px);mask-image:linear-gradient(transparent,#000 46px)}
+.ph-shade{position:absolute;top:0;left:70px;right:70px;height:276px;border-radius:22px;box-shadow:0 2px 4px rgb(10 14 24 / .06),0 22px 44px -18px rgb(10 14 24 / .32);translate:0 -244px;opacity:0;will-change:translate,opacity;transition:translate .62s var(--open),opacity .5s var(--pb-out)}
+.ph[data-phase=open] .ph-shade{opacity:1}
+.ph-well{position:relative;isolation:isolate;flex:1 1 0;min-width:0;display:flex;align-items:center;height:52px;cursor:text}
+/* A code is two or three digits, so its well never changes size. */
+.ph-well.code{flex:0 0 78px}
+.ph-well::before{content:"";position:absolute;inset:0;border-radius:16px;background:var(--well)}
+.ph-ring{position:absolute;inset:0;border-radius:16px;background:var(--pb-field);box-shadow:0 0 0 1.5px var(--pb-ink),0 0 0 4px color-mix(in oklab,var(--pb-ink) 18%,transparent),0 8px 18px -10px rgb(10 14 24 / .3);opacity:0;scale:.975;will-change:opacity,scale;transition:opacity .42s var(--pb-out),scale .6s var(--open)}
+.ph-well:focus-within{z-index:1}
+.ph-well:focus-within .ph-ring{opacity:1;scale:1}
+.ph input{position:relative;z-index:2;width:100%;height:100%;min-width:0;margin:0;padding:0 16px;border:0;border-radius:inherit;background:none;outline:none;font-family:inherit;font-size:16px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--pb-field-text);caret-color:var(--pb-ink);will-change:opacity}
+.ph input::placeholder{color:var(--pb-hint);font-weight:400}
+.ph-n{padding-right:44px!important}
+/* The whole number is already there in grey, so typing only darkens it: brackets and spaces never shift the digits. */
+.ph-ghost{position:absolute;z-index:1;left:0;top:0;bottom:0;display:flex;align-items:center;padding:0 16px;font-size:16px;font-weight:500;font-variant-numeric:tabular-nums;white-space:pre;color:var(--pb-hint);pointer-events:none}
+.ph-ghost b{font-weight:inherit;visibility:hidden}
+.ph-ghost[hidden]{display:none}
+/* A drawn check when the number is whole. */
+.ph-ok{position:absolute;z-index:3;right:15px;top:50%;width:18px;height:18px;margin-top:-9px;fill:none;stroke:var(--pb-success);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;pointer-events:none;opacity:0;transition:opacity .15s var(--pb-out)}
+.ph-ok path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .36s var(--calm)}
+.ph-whole .ph-ok{opacity:1}
+.ph-whole .ph-ok path{stroke-dashoffset:0}
+/* The window slides with the sheet and the rows counter-slide inside it, so they stay still and the sheet's edge reveals them. */
+.ph-reveal{position:absolute;z-index:3;top:-2px;left:6px;right:6px;height:304px;overflow:hidden;translate:0 -244px;pointer-events:none;will-change:translate;transition:translate .62s var(--open)}
+.ph-list{position:absolute;top:60px;left:0;right:0;height:0;translate:0 244px;will-change:translate;transition:translate .62s var(--open)}
+.ph-knob{position:absolute;pointer-events:none;left:0;right:0;top:0;height:46px;border-radius:16px;background:var(--well);opacity:0;will-change:translate,opacity;transition:translate .32s var(--calm),opacity .18s var(--pb-out)}
+.ph-row{pointer-events:auto;position:absolute;z-index:1;left:0;right:0;top:0;display:flex;align-items:center;height:46px;padding:0 16px;font-size:16px;font-weight:500;color:var(--pb-field-text);white-space:nowrap;cursor:pointer;user-select:none;font-variant-numeric:tabular-nums;transition:opacity .16s var(--pb-out)}
+.ph-row.out{opacity:0;pointer-events:none}
+.ph-row.out i{transition:none}
+.ph-rc{flex:0 0 66px}
+.ph-rn{min-width:0;overflow:hidden;text-overflow:ellipsis;transition:opacity .14s var(--pb-out)}
+.ph-row i{font-style:normal;transition:color .2s var(--pb-out)}
+.ph-q .ph-row i{color:var(--pb-hint)}
+.ph-q .ph-row i.on{color:var(--pb-field-text)}
+.ph-none{position:absolute;pointer-events:none;left:16px;right:16px;top:6px;margin:0;height:46px;line-height:46px;font-size:15.5px;color:var(--pb-hint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:0;transition:opacity .2s var(--pb-out)}
+.ph-empty .ph-none{opacity:1}
+@media(prefers-reduced-motion:reduce){.ph,.ph *{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}}

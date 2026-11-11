@@ -1,0 +1,24 @@
+{
+  "variant": "product-terms",
+  "category": "checkboxes",
+  "global": "SLTerms",
+  "root": ".pb-terms",
+  "name": "Terms",
+  "description": "A plain consent row. The colour swells from the middle of the box and the tick draws itself.",
+  "motions": [
+    "Drawn tick"
+  ],
+  "keywords": [
+    "terms",
+    "agree",
+    "consent",
+    "legal",
+    "checkbox"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Read onChange(checked), or state.checked before sending the form.",
+  "example": "SLTerms.mount(document.querySelector('.pb-terms'), {\n  onChange: checked => { document.querySelector('#continue').disabled = !checked; },\n});"
+}

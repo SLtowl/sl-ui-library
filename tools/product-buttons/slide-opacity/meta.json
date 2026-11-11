@@ -1,0 +1,26 @@
+{
+  "variant": "product-opacity",
+  "category": "sliders",
+  "global": "SLOpacity",
+  "root": ".pb-opacity",
+  "name": "Opacity",
+  "description": "A checkered track and a swatch that really goes see-through as you drag.",
+  "motions": [
+    "Live swatch",
+    "Following thumb"
+  ],
+  "keywords": [
+    "opacity",
+    "alpha",
+    "transparency",
+    "color",
+    "design",
+    "slider"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Pass value from 0 to 100, set --sd-color on the root and read onChange(value).",
+  "example": "SLOpacity.mount(document.querySelector('.pb-opacity'), {\n  onChange: value => { layer.style.opacity = value / 100; },\n});"
+}

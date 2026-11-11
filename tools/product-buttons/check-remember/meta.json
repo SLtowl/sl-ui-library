@@ -1,0 +1,25 @@
+{
+  "variant": "product-remember",
+  "category": "checkboxes",
+  "global": "SLRemember",
+  "root": ".pb-remember",
+  "name": "Remember me",
+  "description": "A sign-in row. How long you stay signed in appears beside the text once it is ticked.",
+  "motions": [
+    "Drawn tick",
+    "In-place note"
+  ],
+  "keywords": [
+    "remember me",
+    "stay signed in",
+    "login",
+    "sign in",
+    "checkbox"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Read onChange(checked) or state.checked when the form is sent.",
+  "example": "SLRemember.mount(document.querySelector('.pb-remember'), {\n  onChange: checked => { document.querySelector('#remember').value = checked; },\n});"
+}

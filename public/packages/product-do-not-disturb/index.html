@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Do not disturb · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <div class="pb pb-f pb-dnd sr">
+    <button class="sr-row" type="button" role="switch" aria-checked="false" aria-label="Do not disturb">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path class="moon-fill" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+      <span class="sr-label">Do not disturb</span>
+      <span class="sr-status"><span data-s="on">Silenced</span></span>
+      <span class="sr-sw" aria-hidden="true"></span>
+    </button>
+  </div>
+</body>
+</html>

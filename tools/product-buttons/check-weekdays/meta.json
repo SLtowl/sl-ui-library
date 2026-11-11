@@ -1,0 +1,26 @@
+{
+  "variant": "product-weekdays",
+  "category": "checkboxes",
+  "global": "SLWeekdays",
+  "root": ".pb-weekdays",
+  "name": "Weekdays",
+  "description": "Seven round days. The line below reads your choice in words: Every weekday, Weekends, Every day.",
+  "motions": [
+    "Swelling fill",
+    "In-place label"
+  ],
+  "keywords": [
+    "weekdays",
+    "days",
+    "schedule",
+    "repeat",
+    "calendar",
+    "checkbox"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Read onChange(days), a list of the chosen day names.",
+  "example": "SLWeekdays.mount(document.querySelector('.pb-weekdays'), {\n  onChange: days => { saveSchedule(days); },\n});"
+}

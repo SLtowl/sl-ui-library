@@ -1,0 +1,26 @@
+{
+  "variant": "product-checklist",
+  "category": "checkboxes",
+  "global": "SLChecklist",
+  "root": ".pb-checklist",
+  "name": "Checklist",
+  "description": "Onboarding steps with a progress bar and a count that changes in place.",
+  "motions": [
+    "Drawn tick",
+    "Progress bar"
+  ],
+  "keywords": [
+    "checklist",
+    "onboarding",
+    "progress",
+    "steps",
+    "tasks",
+    "checkbox"
+  ],
+  "size": [
+    380,
+    300
+  ],
+  "connect": "Read onChange({ done, total }). Keep one line per number in the heading when you change the number of steps.",
+  "example": "SLChecklist.mount(document.querySelector('.pb-checklist'), {\n  onChange: ({ done, total }) => { if (done === total) finishSetup(); },\n});"
+}

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Public / Private · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <div class="pb pb-f pb-publicprivate vp" data-value="public">
+    <div class="vp-seg" role="radiogroup" aria-label="Visibility"><i></i>
+      <button class="vp-opt" type="button" role="radio" aria-checked="true" data-value="public"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>Public</button>
+      <button class="vp-opt" type="button" role="radio" aria-checked="false" tabindex="-1" data-value="private"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2.6"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></svg>Private</button>
+    </div>
+  </div>
+</body>
+</html>

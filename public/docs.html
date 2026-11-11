@@ -1,0 +1,189 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Docs · SL UI Library</title>
+<meta name="description" content="Interactive UI components with HTML, CSS, JavaScript, React and Next.js exports, plus tools for coding agents.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SL UI Library">
+<meta property="og:title" content="Docs · SL UI Library">
+<meta property="og:description" content="Interactive UI components with HTML, CSS, JavaScript, React and Next.js exports, plus tools for coding agents.">
+<meta property="og:url" content="https://sltowl.com/docs.html">
+<meta property="og:image" content="https://sltowl.com/assets/social-preview-v1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Docs · SL UI Library">
+<meta name="twitter:description" content="Interactive UI components with HTML, CSS, JavaScript, React and Next.js exports, plus tools for coding agents.">
+<meta name="twitter:image" content="https://sltowl.com/assets/social-preview-v1.jpg">
+<link rel="canonical" href="https://sltowl.com/docs.html">
+<link rel="stylesheet" href="./site-shell/site.css"><link rel="stylesheet" href="./site-shell/tokens.css"><style>
+body{background:var(--page)}
+/* Hidden parts stay hidden even where a rule sets their display. */
+[hidden]{display:none!important}
+#field{position:fixed;inset:0;z-index:0;width:100%;height:100%}
+.docs{position:relative;z-index:1}
+/* Docs: a sticky outline on the left, one reading column on the right. */
+.docs{display:grid;grid-template-columns:200px minmax(0,720px);justify-content:center;gap:clamp(32px,6vw,88px);width:min(1120px,calc(100vw - 40px));margin:auto;padding:clamp(108px,14vh,136px) 0 120px}
+.toc{position:sticky;top:104px;align-self:start;display:grid;gap:2px}
+.toc b{margin:0 0 8px 12px;font-size:12.5px;font-weight:600;color:var(--faint)}
+.toc a{position:relative;padding:7px 12px;border-radius:10px;font-size:14.5px;color:var(--muted);transition:color .2s var(--out),background .2s var(--out)}
+.toc a:hover{color:var(--ink);background:var(--chip)}
+.toc a[aria-current]{color:var(--accent-text);background:var(--accent-soft)}
+h1{margin:0;font-size:clamp(36px,4.2vw,52px);font-weight:600;line-height:1.05;letter-spacing:-.04em}
+.lead{margin:14px 0 0;max-width:34em;font-size:18px;line-height:1.55;color:var(--muted)}
+/* Three ways in, as cards that jump to their section. */
+.ways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:34px 0 0}
+.ways a{display:grid;gap:8px;padding:16px 16px 18px;border-radius:18px;background:var(--surface);box-shadow:0 0 0 1px var(--line),var(--shadow-1);transition:box-shadow .3s var(--out),transform .3s var(--out)}
+.ways a:hover{transform:translateY(-2px);box-shadow:0 0 0 1px var(--accent-line),var(--shadow-2)}
+.ways i{display:grid;place-items:center;width:36px;height:36px;border-radius:11px;color:var(--accent-text);background:var(--accent-soft)}
+.ways i svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.ways b{font-size:15.5px;font-weight:600}
+.ways span{font-size:14px;line-height:1.45;color:var(--muted)}
+section{margin-top:72px;scroll-margin-top:110px}
+h2{margin:0;font-size:26px;font-weight:600;letter-spacing:-.025em}
+section>p{margin:8px 0 22px;font-size:16px;line-height:1.6;color:var(--muted)}
+/* The terminal: a light window with the agent tabs in its bar and the command on a prompt line. */
+.term{overflow:hidden;border-radius:18px;background:var(--surface);box-shadow:0 0 0 1px var(--line),var(--shadow-2)}
+.term-bar{display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;background:var(--n2);box-shadow:inset 0 -1px 0 var(--line)}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:var(--n6)}
+.tabs{position:relative;display:flex;gap:2px;margin-left:8px;padding:3px;border-radius:11px;background:var(--chip)}
+.tab-plate{position:absolute;top:3px;left:0;height:30px;border-radius:8px;background:var(--surface);box-shadow:var(--shadow-1);transition:translate .4s cubic-bezier(.3,1.2,.4,1),width .4s cubic-bezier(.3,1.2,.4,1)}
+.tabs button{position:relative;z-index:1;height:30px;padding:0 12px;border-radius:8px;font-size:13.5px;color:var(--muted);transition:color .2s var(--out),background .2s var(--out),box-shadow .2s var(--out)}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-selected=true]{color:var(--ink)}
+.copy{margin-left:auto;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:84px;height:34px;padding:0 12px;border-radius:10px;color:var(--accent-ink);background:var(--accent);font-size:13.5px;font-weight:600;transition:background .25s var(--out),transform .25s var(--out)}
+.copy:hover{background:var(--accent-hi)}
+.copy:active{transform:scale(.97);transition-duration:.08s}
+.copy svg{display:none;width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.copy[data-state=done] svg{display:block}
+.copy[data-state=done] svg path{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .45s var(--out) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.term-body{display:flex;gap:12px;padding:20px 22px 22px;font:14px/1.75 'Cascadia Code',ui-monospace,Consolas,monospace;font-variant-ligatures:none}
+.term-body .prompt{color:var(--faint);user-select:none}
+.term-body .cmd{flex:1;min-width:0;overflow-wrap:anywhere;color:var(--ink)}
+.zip{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:20px 22px 22px}
+.zip p{margin:0;font-size:15px;color:var(--muted)}
+.zip .btn{height:42px;padding:0 18px;border-radius:11px;font-size:14.5px}
+.note{display:flex;gap:10px;align-items:flex-start;margin:14px 0 0;padding:12px 14px;border-radius:14px;font-size:14px;line-height:1.5;color:var(--muted);background:var(--n2);box-shadow:inset 0 0 0 1px var(--line)}
+.note svg{flex:none;width:17px;height:17px;margin-top:1px;fill:none;stroke:var(--faint);stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+/* The request, shown the way it looks in a chat with the agent. */
+.chat{display:grid;gap:12px;padding:22px;border-radius:20px;background:var(--n2);box-shadow:inset 0 0 0 1px var(--line)}
+.msg{max-width:84%;padding:13px 16px;border-radius:18px;font-size:15.5px;line-height:1.5}
+.msg.you{justify-self:end;border-bottom-right-radius:6px;color:var(--b12);background:var(--accent-soft)}
+.msg.agent{justify-self:start;border-bottom-left-radius:6px;color:var(--ink);background:var(--surface);box-shadow:0 0 0 1px var(--line)}
+.msg small{display:block;margin-bottom:4px;font-size:12.5px;font-weight:600;color:var(--faint)}
+/* Taking a component by hand: numbered steps joined by a thin line. */
+.steps{position:relative;display:grid;gap:4px;margin:0;padding:0;list-style:none;counter-reset:step}
+.steps li{position:relative;display:grid;grid-template-columns:40px minmax(0,1fr);gap:16px;padding:0 0 26px;counter-increment:step}
+.steps li::before{content:counter(step);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;font-weight:600;color:var(--accent-text);background:var(--accent-soft);box-shadow:0 0 0 6px var(--page)}
+.steps li:not(:last-child)::after{content:"";position:absolute;left:19.5px;top:44px;bottom:0;width:1px;background:var(--line)}
+.steps b{display:block;margin-top:8px;font-size:16.5px;font-weight:600}
+.steps span{display:block;margin-top:4px;font-size:15px;line-height:1.55;color:var(--muted)}
+/* What each component comes with. */
+.formats{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.formats div{padding:16px 16px 18px;border-radius:16px;background:var(--surface);box-shadow:0 0 0 1px var(--line)}
+.formats b{display:block;font-size:15.5px;font-weight:600}
+.formats span{display:block;margin-top:5px;font-size:14px;line-height:1.5;color:var(--muted)}
+.formats code{font:12.5px 'Cascadia Code',ui-monospace,Consolas,monospace;font-variant-ligatures:none;color:var(--accent-text)}
+/* Motion. Each block plays once as it comes into view; nothing moves for people who turned motion off. */
+.cmd{position:relative;display:block}
+.cmd .ghost{visibility:hidden}
+.cmd .typed{position:absolute;inset:0}
+.caret{display:inline-block;width:.55em;height:1.15em;margin-left:1px;vertical-align:-.2em;background:var(--accent);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.chat .msg{opacity:0;translate:0 10px;scale:.97}
+.chat.in .you{animation:pop .45s var(--out) forwards}
+.chat .typing{display:flex;gap:4px;align-items:center;width:max-content;padding:14px 16px}
+.chat .typing i{width:7px;height:7px;border-radius:50%;background:var(--faint);animation:dot 1s ease-in-out infinite}
+.chat .typing i:nth-child(2){animation-delay:.15s}.chat .typing i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,60%,100%{translate:0 0;opacity:.5}30%{translate:0 -4px;opacity:1}}
+.chat .shown{animation:pop .4s var(--out) forwards}
+@keyframes pop{to{opacity:1;translate:0 0;scale:1}}
+.steps li::before{scale:.4;opacity:0}
+.steps li>div{opacity:0;translate:10px 0}
+.steps li:not(:last-child)::after{transform-origin:top;scale:1 0}
+.steps.in li::before{animation:pop .45s cubic-bezier(.3,1.6,.5,1) forwards;animation-delay:calc(var(--i) * .35s)}
+.steps.in li>div{animation:pop .45s var(--out) forwards;animation-delay:calc(var(--i) * .35s + .08s)}
+.steps.in li:not(:last-child)::after{animation:grow .4s var(--out) forwards;animation-delay:calc(var(--i) * .35s + .2s)}
+@keyframes grow{to{scale:1 1}}
+.formats div{opacity:0;translate:0 14px}
+.formats.in div{animation:pop .5s var(--out) forwards;animation-delay:calc(var(--i) * .07s)}
+.ways i *{transition:translate .35s var(--out),scale .35s var(--out)}
+.ways a:hover .w-caret{animation:blink .8s steps(1) infinite}
+.ways a:hover .w-bubble{animation:hop .5s cubic-bezier(.3,1.6,.5,1)}
+.ways a:hover .w-front{translate:2px 2px}
+@keyframes hop{40%{translate:0 -2px}}
+.ways i svg *{transform-box:fill-box;transform-origin:center}
+@media(prefers-reduced-motion:reduce){.chat .msg,.steps li::before,.steps li>div,.formats div{opacity:1;translate:0 0;scale:1}.steps li:not(:last-child)::after{scale:1 1}.caret{animation:none}}
+@media(max-width:900px){.docs{grid-template-columns:minmax(0,1fr)}.toc{display:none}.ways{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:560px){.tabs{margin-left:0}.dots{display:none}.term-body{padding:16px}}
+::selection{background:#dce4ed;color:#2e3b49;text-shadow:none}
+/* Going to the catalog: the same drop as the home page. */
+body>:not(#field):not(.top),.top,#field{transition:transform .42s cubic-bezier(.6,0,.85,.3),opacity .32s cubic-bezier(.6,0,.85,.3) .08s}
+html.going body>:not(#field):not(.top){transform:translateY(16vh) scale(.78);opacity:0}
+html.going .top{transform:translateY(-40px);opacity:0}
+html.going #field{opacity:0}
+/* Arriving from another section: the page builds itself in, piece by piece, and settles without a bounce. */
+@keyframes in-rise{from{opacity:0;translate:0 34px}}
+@keyframes in-left{from{opacity:0;translate:-40px 0}}
+@keyframes in-right{from{opacity:0;translate:40px 0}}
+@keyframes in-fade{from{opacity:0}}
+html.enter{--in:cubic-bezier(.22,1,.36,1)}
+html.enter #field{animation:in-fade .9s ease-out both}
+html.enter .top-in>*{animation:in-left .7s var(--in) both}
+html.enter .top-in>:nth-child(2){animation-delay:.07s}
+html.enter .top-in>:last-child{animation-name:in-right;animation-delay:.12s}
+html.enter .toc{animation:in-left .7s var(--in) .22s both}
+html.enter main>h1{animation:in-rise .75s var(--in) .14s both}
+html.enter main>.lead{animation:in-rise .75s var(--in) .22s both}
+html.enter .ways a{animation:in-rise .75s var(--in) calc(.3s + var(--w) * 80ms) both}
+html.enter .ways a:nth-child(1){--w:0}html.enter .ways a:nth-child(2){--w:1}html.enter .ways a:nth-child(3){--w:2}
+html.enter main>section:first-of-type{animation:in-rise .8s var(--in) .56s both}
+</style><script src="./site-shell/docs-entry.js"></script><script type="module" src="./analytics/site-analytics.mjs"></script><link rel="stylesheet" href="./packages/search-input/buttons.css"><link rel="stylesheet" href="./site-shell/review-header.css" data-review-header></head><body data-journey="docs">
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="docs push">
+  <nav class="toc" aria-label="On this page"><b>On this page</b><a href="#agent">Connect your agent</a><a href="#ask">Ask for a component</a><a href="#hand">Take one by hand</a><a href="#formats">What you get</a></nav>
+  <main>
+    <h1>Docs</h1>
+    <p class="lead">Use the 439 components through your AI agent, or copy them into any project by hand</p>
+    <div class="ways">
+      <a href="#agent"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17.5 9.5 12 4 6.5"/><path class="w-caret" d="M12 18h8"/></svg></i><b>Connect your agent</b><span>One command for Claude Code or Codex</span></a>
+      <a href="#ask"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path class="w-bubble" d="M4.5 7A2.5 2.5 0 0 1 7 4.5h10A2.5 2.5 0 0 1 19.5 7v7.5A2.5 2.5 0 0 1 17 17h-6.5l-4.2 3.1a.5.5 0 0 1-.8-.4V17H7a2.5 2.5 0 0 1-2.5-2.5Z"/></svg></i><b>Ask in your words</b><span>Name the component and how it should look</span></a>
+      <a href="#hand"><i><svg viewBox="0 0 24 24" aria-hidden="true"><rect class="w-front" x="8.5" y="8.5" width="11" height="11" rx="2.5"/><path d="M15.5 5.5V5A1.5 1.5 0 0 0 14 3.5H6A2.5 2.5 0 0 0 3.5 6v8A1.5 1.5 0 0 0 5 15.5h.5"/></svg></i><b>Take one by hand</b><span>Open the code, copy it or download the ZIP</span></a>
+    </div>
+
+    <section id="agent"><h2>Connect your agent</h2><p>No account or official marketplace listing is required. Run the command once, then start a new task</p>
+      <div class="term">
+        <div class="term-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <div class="tabs" role="tablist" aria-label="Agent"><span class="tab-plate" aria-hidden="true"></span><button type="button" role="tab" data-t="claude" aria-selected="true">Claude Code</button><button type="button" role="tab" data-t="codex" aria-selected="false">Codex</button><button type="button" role="tab" data-t="zip" aria-selected="false">ZIP</button></div>
+          <button class="copy" type="button" id="copy"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M5 12.8 10 18 19 7"/></svg><span id="copyText">Copy</span></button>
+        </div>
+        <div class="term-body" id="cmdBox"><span class="prompt" aria-hidden="true">$</span><code class="cmd"><span class="ghost" id="ghost"></span><span class="typed" id="cmd"></span></code></div>
+        <div class="zip" id="zipBox" hidden><p>Upload the ZIP in Claude under Customize, then Plugins</p><a class="btn btn-main" href="./downloads/sl-ui-library-plugin.zip" download>Download ZIP</a></div>
+      </div>
+      <p class="note"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.75"/><path d="M12 11v5M12 8h.01"/></svg><span id="note"></span></p>
+    </section>
+
+    <section id="ask"><h2>Ask for a component</h2><p>Start a new task after installing and ask in your own words. The agent picks the component and fits it to your design</p>
+      <div class="chat">
+        <div class="msg you">Add a like button from SL UI Library. Use a violet background and light text, and keep its animation and keyboard interaction.</div>
+        <div class="msg agent typing" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="msg agent reply" hidden><small>Agent</small>Added the Like button with your violet palette. The heart animation and keyboard support are kept as they are in the library.</div>
+      </div>
+    </section>
+
+    <section id="hand"><h2>Take one by hand</h2><p>Every component also works without an agent</p>
+      <ol class="steps">
+        <li><div><b>Find a component</b><span>Search by name, or browse the categories in the catalog</span></div></li>
+        <li><div><b>Try it</b><span>Click, type and switch palettes. Everything you see is the real component</span></div></li>
+        <li><div><b>Take the code</b><span>Press Open code to copy a file, or download the ZIP to keep all its files together</span></div></li>
+      </ol>
+    </section>
+
+    <section id="formats"><h2>What you get</h2><p>Each component comes as plain files with no runtime dependencies</p>
+      <div class="formats">
+        <div><b>HTML</b><span>The markup, ready to paste. <code>index.html</code></span></div>
+        <div><b>CSS</b><span>Scoped styles with palette and motion tokens you can edit</span></div>
+        <div><b>JavaScript</b><span>The interaction and keyboard support, no framework needed</span></div>
+        <div><b>React</b><span>A component wrapper around the same behaviour. <code>react-controller.mjs</code></span></div>
+        <div><b>Next.js</b><span>A page example for the App Router. <code>next-page.jsx</code></span></div>
+      </div>
+    </section>
+  </main>
+</div>
+<script type="module" src="./docs-page.mjs"></script></body></html>

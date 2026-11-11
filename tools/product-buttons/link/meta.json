@@ -1,0 +1,28 @@
+{
+  "variant": "product-link",
+  "category": "inputs",
+  "global": "SLLink",
+  "root": ".pb-link",
+  "name": "Link",
+  "description": "A pasted address folds into a badge, its domain and a quiet tail. Press it to get the whole address back.",
+  "motions": [
+    "Domain glide",
+    "Fading prefix",
+    "Soft tail"
+  ],
+  "keywords": [
+    "link",
+    "url",
+    "website",
+    "address",
+    "paste",
+    "domain",
+    "web"
+  ],
+  "size": [
+    380,
+    200
+  ],
+  "connect": "Read onChange({ url, host, valid }); url always includes https://. Pass icon(url) to return an image for the site badge.",
+  "example": "SLLink.mount(document.querySelector('.pb-link'), {\n  onChange: ({ url, valid }) => {\n    if (valid) document.querySelector('#website').value = url;\n  },\n});"
+}

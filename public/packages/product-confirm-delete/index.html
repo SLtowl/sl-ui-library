@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Confirm delete · SL UI Library</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./buttons.css">
+  <script src="./buttons.js" defer></script>
+  <script src="./example.js" defer></script>
+  <style>body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px 16px; box-sizing: border-box; background: #f5f4f2; }</style>
+</head>
+<body>
+  <div class="pb pb-f pb-confirmdelete ck ck-plate" data-done="false">
+    <label class="ck-row"><input type="checkbox"><span class="ck-box"><svg viewBox="0 0 22 22" aria-hidden="true"><path class="ck-tick" pathLength="1" d="M6 11.5l3.5 3.5L16 7.5"/></svg></span><span class="ck-text">I know this can't be undone</span></label>
+    <button class="ck-go" type="button" disabled><span class="ck-idle">Delete project</span><span class="ck-done">Deleted</span></button>
+  </div>
+</body>
+</html>
