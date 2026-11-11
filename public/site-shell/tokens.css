@@ -17,6 +17,7 @@
   --ink:var(--n12);--name:var(--n12);--muted:var(--n11);--faint:var(--n9);
   --accent:var(--b9);--accent-hi:var(--b10);--accent-ink:#fff;--accent-soft:var(--b3);--accent-line:var(--b6);--accent-text:var(--b11);
   --knob:var(--accent);--knob-hi:var(--accent-hi);--knob-ink:var(--accent-ink);--soft:var(--accent-soft);
+  --radius-card:22px;--radius-panel:24px;--radius-pill:999px;
   --sheet:#fff;--code:var(--n2);--veil:color-mix(in oklch,var(--n3) 82%,transparent);
   --shadow-1:0 1px 2px oklch(22% .016 260 / .06),0 1px 1px oklch(22% .016 260 / .04);
   --shadow-2:0 1px 2px oklch(22% .016 260 / .06),0 10px 24px -12px oklch(22% .016 260 / .18);
