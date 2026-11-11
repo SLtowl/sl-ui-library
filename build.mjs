@@ -6,6 +6,7 @@ const {components,categories}=await import('./public/catalog-data.js');
 await import('./build-previews.mjs');
 await import('./tools/split-previews.mjs');
 await import('./build-views.mjs');
+await import('./build-site-pages.mjs');
 const {buildAnalytics}=await import('./build-analytics.mjs');
 await buildAnalytics();
 const publicRoot=new URL('./public/',import.meta.url);

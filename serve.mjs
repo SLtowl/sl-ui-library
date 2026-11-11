@@ -19,7 +19,7 @@ for (const file of [
   'site-catalog-data.js', 'site-preview-data.js', 'site-preview-runtime.js', 'media/studio-motion.mp4', 'media/studio-motion.webm',
   'previews/index.js', 'previews-product/index.js', 'previews-product/_shared.js',
 ]) allowed.add(file);
-for (const file of ['catalog-entry.js', 'docs-entry.js', 'legacy-route.js', 'review-header.css', 'review-header.mjs', 'site.css', 'tokens.css', 'shell.mjs', 'dots.mjs', 'sizes.mjs']) allowed.add('site-shell/'+file);
+for (const file of ['catalog-entry.js', 'docs-entry.js', 'legacy-route.js', 'routes.mjs', 'review-header.css', 'review-header.mjs', 'site.css', 'tokens.css', 'shell.mjs', 'dots.mjs', 'sizes.mjs']) allowed.add('site-shell/'+file);
 for (const file of [
   'site-catalog-palettes.mjs', 'site-catalog-export.mjs', 'site-palette-export.mjs',
   'batch-presentations.mjs', 'input-presentations.mjs', 'toggle-presentations.mjs', 'checkbox-presentations.mjs',
@@ -61,11 +61,19 @@ for (const variant of components.flatMap(component => component.variants)) {
   allowed.add(`downloads/matte-${variant}.zip`);
   for (const file of ['index.html', 'buttons.css', 'buttons.js', 'example.js', 'Component.jsx', 'NextClient.jsx', 'react-controller.mjs', 'react-font.mjs', 'react-example.jsx', 'next-page.jsx', 'framework-usage.md', 'framework.json', 'preview.js', 'overlays.js', 'genie.js', 'next.js', 'pin.js', 'menu-icons-v1.png', 'instrument-sans-variable.woff2', 'OFL.txt', 'LICENSE']) allowed.add(`packages/${variant}/${file}`);
 }
+const directories = new Set(['catalog', 'docs', 'showcase', 'studio-motion', 'analytics/privacy']);
+for (const directory of directories) allowed.add(directory+'/index.html');
 const cache = new Map();
 createServer(async (req, res) => {
   if (![`127.0.0.1:${port}`, `localhost:${port}`].includes(req.headers.host)) { res.writeHead(403).end(); return; }
   if (!['GET', 'HEAD'].includes(req.method)) { res.writeHead(405, { Allow: 'GET, HEAD' }).end(); return; }
-  const path = new URL(req.url, `http://127.0.0.1:${port}`).pathname.slice(1) || 'index.html';
+  const requested = new URL(req.url, `http://127.0.0.1:${port}`);
+  let path = requested.pathname.slice(1);
+  if (directories.has(path)) {
+    res.writeHead(308, {Location: requested.pathname+'/'+requested.search}).end();
+    return;
+  }
+  if (!path || (path.endsWith('/') && directories.has(path.slice(0,-1)))) path += 'index.html';
   if (!allowed.has(path)) { res.writeHead(404).end(); return; }
   try {
     const file = new URL(path, root);

@@ -1,18 +1,32 @@
-// Preserve existing catalog bookmarks and keep the homepage URL canonical.
 (() => {
+  const script = document.currentScript;
+  const root = new URL('../', script.src);
   const current = new URL(location.href);
-  const category = current.searchParams.get('category');
-  const component = current.searchParams.get('component');
-  if (current.hash !== '#catalog' && !category && !component) {
-    if (current.pathname.endsWith('/index.html')) {
-      current.pathname = current.pathname.slice(0, -'index.html'.length);
-      history.replaceState(history.state, '', current.href);
+  const route = script.dataset.route || '';
+  const target = new URL(route, root);
+  target.search = current.search;
+  target.hash = current.hash;
+
+  if (route) {
+    if (current.pathname === target.pathname + 'index.html') {
+      history.replaceState(history.state, '', target);
+    } else if (current.pathname !== target.pathname) {
+      location.replace(target);
     }
     return;
   }
-  const target = new URL('./catalog.html', current);
-  for (const [key, value] of [['cat', category], ['open', component], ['q', current.searchParams.get('q')]]) {
-    if (value) target.searchParams.set(key, value);
+
+  const category = current.searchParams.get('category');
+  const component = current.searchParams.get('component');
+  if (current.hash === '#catalog' || category || component) {
+    target.pathname += 'catalog/';
+    if (target.hash === '#catalog') target.hash = '';
+    for (const [oldName, newName, value] of [['category', 'cat', category], ['component', 'open', component]]) {
+      target.searchParams.delete(oldName);
+      if (value) target.searchParams.set(newName, value);
+    }
+    location.replace(target);
+  } else if (current.pathname === target.pathname + 'index.html') {
+    history.replaceState(history.state, '', target);
   }
-  location.replace(target.href);
 })();

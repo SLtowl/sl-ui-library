@@ -10,7 +10,7 @@ An AI plugin and interactive UI library with HTML, CSS, JavaScript, React and Ne
 
 **439 interactive components** with 441 export variants. Vanilla exports have no runtime dependencies, remote fonts or stock icon libraries. React and Next.js use your application's framework runtime and mount the same original controller as an isolated client widget. Preview components and download their complete source files.
 
-[Open the library](https://sltowl.com/) · [Catalog](https://sltowl.com/catalog.html) · [Docs](https://sltowl.com/docs.html) · [Install the plugin](#plugin-installation) · [Components](#components) · [Integration guide](docs/integration.md) · [Quality notes](QA.md) · [MIT License](LICENSE)
+[Open the library](https://sltowl.com/) · [Catalog](https://sltowl.com/catalog/) · [Docs](https://sltowl.com/docs/) · [Install the plugin](#plugin-installation) · [Components](#components) · [Integration guide](docs/integration.md) · [Quality notes](QA.md) · [MIT License](LICENSE)
 
 ## Component demos
 
@@ -18,7 +18,7 @@ An AI plugin and interactive UI library with HTML, CSS, JavaScript, React and Ne
 
 The demo shows saving, liking, theme switching, rating and tab navigation. It uses the library's components with CSS 3D styling. No cursor.
 
-[Watch / download MP4](https://sltowl.com/media/studio-motion.mp4) · [WebM](https://sltowl.com/media/studio-motion.webm) · [Live 3D scene](https://sltowl.com/studio-motion.html) · [Interactive showcase](https://sltowl.com/showcase.html)
+[Watch / download MP4](https://sltowl.com/media/studio-motion.mp4) · [WebM](https://sltowl.com/media/studio-motion.webm) · [Live 3D scene](https://sltowl.com/studio-motion/) · [Interactive showcase](https://sltowl.com/showcase.html)
 
 Studio photography is generated artwork; the film uses library components with CSS 3D styling.
 

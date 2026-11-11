@@ -1,16 +1,16 @@
-<!doctype html><html lang="en" data-ref="graphite" data-theme="light" data-layout="flow" data-card="raised"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Components · SL UI Library</title>
+<!doctype html><html lang="en" data-ref="graphite" data-theme="light" data-layout="flow" data-card="raised"><head><meta charset="utf-8"><script src="./site-shell/legacy-route.js" data-route="catalog/"></script><meta name="viewport" content="width=device-width,initial-scale=1"><title>Components · SL UI Library</title>
 <meta name="description" content="Interactive UI components with HTML, CSS, JavaScript, React and Next.js exports, plus tools for coding agents.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SL UI Library">
 <meta property="og:title" content="Components · SL UI Library">
 <meta property="og:description" content="Interactive UI components with HTML, CSS, JavaScript, React and Next.js exports, plus tools for coding agents.">
-<meta property="og:url" content="https://sltowl.com/catalog.html">
+<meta property="og:url" content="https://sltowl.com/catalog/">
 <meta property="og:image" content="https://sltowl.com/assets/social-preview-v1.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Components · SL UI Library">
 <meta name="twitter:description" content="Interactive UI components with HTML, CSS, JavaScript, React and Next.js exports, plus tools for coding agents.">
 <meta name="twitter:image" content="https://sltowl.com/assets/social-preview-v1.jpg">
-<link rel="canonical" href="https://sltowl.com/catalog.html">
+<link rel="canonical" href="https://sltowl.com/catalog/">
 <link rel="modulepreload" href="./site-catalog-data.js">
 <link rel="modulepreload" href="./catalog-page.mjs">
 
@@ -153,6 +153,7 @@ dialog::backdrop{background:rgb(232 236 243 / .82)}
 .side .x:hover{background:rgb(255 255 255 / .12);color:#fff}
 /* Code wraps instead of scrolling sideways, and shows no scrollbar. */
 .side pre{flex:1;min-height:0;margin:0;overflow:auto;padding:12px 20px 78px;font:12.5px/1.72 'Cascadia Code',ui-monospace,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;scrollbar-width:none;outline-offset:-4px;contain:content;background:inherit;transform:translateZ(0)}
+.source-note{margin:0 16px 2px;font-size:12px;color:var(--muted)}
 .side pre::-webkit-scrollbar{display:none}
 .side pre .c{color:#7f8b9a}.side pre .s{color:#a9dcc6}.side pre .t{color:#9dbcff}.side pre .k{color:#c9b6ff}.side pre .a{color:#e6c79c}.side pre .n{color:#f0b3a8}
 .acts{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:flex-end;gap:6px;padding:34px 12px 12px;background:linear-gradient(transparent,#272e38 58%);pointer-events:none}
@@ -581,7 +582,7 @@ html.enter .dock{animation:kit-dock .8s cubic-bezier(.3,1.3,.6,1) 1.05s both}
 
 <main id="main"></main>
 <nav class="dock" id="dock" aria-label="Categories"><span class="dock-knob" id="dockKnob"></span></nav>
-<dialog class="sheet" id="sheet" aria-labelledby="sheet-title"><div class="view"><div class="big" id="sheet-big"></div><div class="info"><h3 id="sheet-title"></h3><p id="sheet-desc"></p></div></div><div class="side"><div class="bar"><div class="tabs" id="sheet-tabs" role="tablist" aria-label="Source format"></div><button class="x" type="button" id="sheet-close" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><pre id="sheet-code" tabindex="0" role="tabpanel"></pre><div class="acts"><button class="act act-main act-fx" type="button" id="sheet-copy"><span class="fx-ico" aria-hidden="true"><svg class="fx-main" viewBox="0 0 24 24"><rect class="fx-back" x="4" y="4" width="11.5" height="13" rx="3"/><rect class="fx-front" x="8.5" y="7.5" width="11.5" height="13" rx="3" fill="#fff"/></svg><svg class="fx-check" viewBox="0 0 24 24"><path pathLength="1" d="M4.5 12.8 9.8 18 19.5 6.8"/></svg></span><span class="fx-text" aria-live="polite"><span data-s="idle">Copy code</span><span data-s="done">Copied</span><span data-s="fail">Failed</span></span></button><button class="act act-fx" type="button" id="sheet-zip"><span class="fx-ico" aria-hidden="true"><svg class="fx-main" viewBox="0 0 24 24"><g class="fx-arrow"><path d="M12 4v11"/><path d="m7.5 11 4.5 4.5 4.5-4.5"/></g><path d="M4.5 19.500h15"/></svg><svg class="fx-check" viewBox="0 0 24 24"><path pathLength="1" d="M4.5 12.8 9.8 18 19.5 6.8"/></svg></span><span class="fx-text" aria-live="polite"><span data-s="idle">Download ZIP</span><span data-s="busy">Preparing</span><span data-s="done">Started</span><span data-s="fail">Failed</span></span></button></div></div></dialog>
+<dialog class="sheet" id="sheet" aria-labelledby="sheet-title"><div class="view"><div class="big" id="sheet-big"></div><div class="info"><h3 id="sheet-title"></h3><p id="sheet-desc"></p></div></div><div class="side"><div class="bar"><div class="tabs" id="sheet-tabs" role="tablist" aria-label="Source format"></div><button class="x" type="button" id="sheet-close" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><p class="source-note" id="sheet-source-note" hidden>Code and ZIP for the base version</p><pre id="sheet-code" tabindex="0" role="tabpanel"></pre><div class="acts"><button class="act act-main act-fx" type="button" id="sheet-copy"><span class="fx-ico" aria-hidden="true"><svg class="fx-main" viewBox="0 0 24 24"><rect class="fx-back" x="4" y="4" width="11.5" height="13" rx="3"/><rect class="fx-front" x="8.5" y="7.5" width="11.5" height="13" rx="3" fill="#fff"/></svg><svg class="fx-check" viewBox="0 0 24 24"><path pathLength="1" d="M4.5 12.8 9.8 18 19.5 6.8"/></svg></span><span class="fx-text" aria-live="polite"><span data-s="idle">Copy code</span><span data-s="done">Copied</span><span data-s="fail">Failed</span></span></button><button class="act act-fx" type="button" id="sheet-zip"><span class="fx-ico" aria-hidden="true"><svg class="fx-main" viewBox="0 0 24 24"><g class="fx-arrow"><path d="M12 4v11"/><path d="m7.5 11 4.5 4.5 4.5-4.5"/></g><path d="M4.5 19.500h15"/></svg><svg class="fx-check" viewBox="0 0 24 24"><path pathLength="1" d="M4.5 12.8 9.8 18 19.5 6.8"/></svg></span><span class="fx-text" aria-live="polite"><span data-s="idle">Download ZIP</span><span data-s="busy">Preparing</span><span data-s="done">Started</span><span data-s="fail">Failed</span></span></button></div></div></dialog>
 <dialog class="help" id="help" aria-labelledby="help-title"><div class="help-head"><h3 id="help-title">How to use</h3><button class="x" type="button" id="help-close" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
 <ol class="steps">
 <li><div class="how" aria-hidden="true"><div class="how-field"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>Hold<i></i></div><div class="how-hit"><b>Hold</b> to confirm</div><div class="how-hit"><b>Hold</b> to archive</div></div><h4>Find a component</h4><p>Search by name or explore the categories to find what you need.</p></li>

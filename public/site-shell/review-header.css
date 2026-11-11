@@ -45,3 +45,8 @@ body:has(#site-header)>main#main{padding-top:98px}
   body:has(#site-header) .docs{padding-top:144px}
 }
 @media(prefers-reduced-motion:reduce){#site-header *{transition:none!important}}
+#site-header:not(:has(.finder)) .sections{margin-inline-start:auto}
+@media(max-width:600px){
+  #site-header:not(:has(.finder)){grid-template-rows:44px;height:60px}
+  body:has(#site-header:not(:has(.finder))) :is(.split,.docs){padding-top:92px}
+}

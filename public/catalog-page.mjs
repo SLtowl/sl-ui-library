@@ -1,6 +1,8 @@
 import './site-preview-runtime.js';
+import {previewBase} from './site-preview-data.js';
 import {mountReviewHeader} from './site-shell/review-header.mjs';
-mountReviewHeader({current:'Components',catalog:'./catalog.html',docs:'./docs.html',catalogSearch:true});
+import {goDocs} from './site-shell/shell.mjs';
+mountReviewHeader({current:'Components',onDocs:goDocs,catalogSearch:true});
 import './packages/search-input/buttons.js';
 import {components,categories} from './site-catalog-data.js';
 import {loadPalettePackage,loadPaletteSource} from './experiments/library-shell/site-catalog-export.mjs';
@@ -9,10 +11,15 @@ const PEEK=new URLSearchParams(location.search).has('peek');if(PEEK)document.doc
 import {setPreviewPalette,paletteControls} from './experiments/library-shell/site-catalog-palettes.mjs';
 const $=s=>document.querySelector(s),calm=matchMedia('(prefers-reduced-motion:reduce)'),byId=new Map(components.map(c=>[c.id,c])),params=new URLSearchParams(location.search);
 const FORMATS=[['HTML','index.html'],['CSS','buttons.css'],['JavaScript','example.js'],['React','Component.jsx'],['Next.js','NextClient.jsx']];
-// Icon / text versions of a component, as the earlier component window offered them. The choice follows into the card, the code and the ZIP.
+// The selected presentation follows into the card. Code and ZIP follow the packaged source.
 const OWN_VERSIONS={'matte-save-cancel':[['pair','Save & Cancel'],['save','Save'],['save-icon','Icon']],'matte-copy':[['copy-text','Text'],['copy','Icon + text'],['copy-icon','Icon']],'matte-like':[['like','Icon + text'],['like-icon','Icon']]};
 const versionsOf=c=>OWN_VERSIONS[c.id]||c.versions||[];
-const chosen=new Map(),variantOf=c=>chosen.get(c.id)||c.variants[0],asChosen=c=>({...c,variants:[variantOf(c),...c.variants.filter(v=>v!==variantOf(c))]});
+const chosen=new Map(),variantOf=c=>chosen.get(c.id)||c.variants[0];
+function exportComponent(component) {
+  let variant=variantOf(component);
+  while(variant && !component.variants.includes(variant)) variant=previewBase(variant);
+  return {...component,variants:[variant || component.variants[0]]};
+}
 const palettes=new Map(components.filter(c=>c.collection==='product').map(c=>[c.id,'white'])),state={q:params.get('q')||'',file:'index.html',cat:params.get('cat')||'popular',coll:params.get('coll')||''};
 const hay=new Map(components.map(c=>[c.id,[c.name,c.description,...(c.keywords||[]),...(c.motions||[])].join(' ').toLowerCase()]));
 const words=()=>state.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
@@ -132,7 +139,13 @@ addEventListener('resize',refreshDock,{passive:true});
 
 // Code sheet
 const sheet=$('#sheet'),big=$('#sheet-big'),tabsEl=$('#sheet-tabs'),code=$('#sheet-code'),copyBtn=$('#sheet-copy'),zipBtn=$('#sheet-zip');
+const sourceNote=$('#sheet-source-note');
 let sheetSource=null,shown=0,opened=0;
+function updateExport(component) {
+  const source=exportComponent(component);
+  sheetSource.component=source;
+  if (sourceNote) sourceNote.hidden=source.variants[0]===variantOf(component);
+}
 function showDialog(d){document.documentElement.classList.add('modal');d.showModal();if(calm.matches)return;const timing={duration:460,easing:'cubic-bezier(.2,.8,.2,1)'};d.animate([{opacity:0,transform:'translateY(14px) scale(.985)'},{opacity:1,transform:'none'}],timing);d.animate([{opacity:0},{opacity:1}],{...timing,pseudoElement:'::backdrop'})}
 function hideDialog(d){if(d._closing||!d.open)return;if(calm.matches){d.close();return}d._closing=true;const timing={duration:240,easing:'ease-in',fill:'forwards'};const a=d.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(8px) scale(.99)'}],timing),b=d.animate([{opacity:1},{opacity:0}],{...timing,pseudoElement:'::backdrop'});// A tab that is not drawing never finishes its animation, so a timer closes the dialog as well.
   const done=()=>{if(!d._closing)return;d._closing=false;d.close();a.cancel();b.cancel()};a.finished.finally(done);setTimeout(done,320)}
@@ -142,10 +155,11 @@ function drawTabs(list,current){const knob=document.createElement('span');knob.c
 const TOKENS=/(<!--[\s\S]*?-->|\/\*[\s\S]*?\*\/|\/\/[^\n]*)|("(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*'|`(?:[^`\\]|\\.)*`)|(<\/?[a-zA-Z][\w:-]*|\/?>)|\b(import|export|default|from|const|let|var|function|return|if|else|for|while|new|class|async|await|this|true|false|null|undefined)\b|([\w-]+(?==["'{]|\s*:\s))|(#[0-9a-fA-F]{3,8}\b|\b\d+(?:\.\d+)?(?:px|rem|em|ms|s|%|vh|vw|deg)?)/g,TOKEN_CLASS=['c','s','t','k','a','n'];
 const esc=t=>t.replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'})[m]);
 function paintCode(text){if(text.length>240000){code.textContent=text;return}let html='',at=0;for(const m of text.matchAll(TOKENS)){const kind=m.slice(1).findIndex(Boolean);if(kind<0)continue;html+=esc(text.slice(at,m.index))+`<span class="${TOKEN_CLASS[kind]}">${esc(m[0])}</span>`;at=m.index+m[0].length}code.innerHTML=html+esc(text.slice(at))}
-function showSource(file,instant){const mine=++shown;for(const b of tabsEl.querySelectorAll('button'))b.setAttribute('aria-selected',String(b.dataset.file===file));moveKnob(instant);copyBtn.disabled=true;const slow=setTimeout(()=>{if(mine===shown)code.textContent='Preparing source…'},200);Promise.resolve(sheetSource.load(file)).then(text=>{clearTimeout(slow);if(mine!==shown)return;paintCode(text);code.scrollTop=0;copyBtn.disabled=false;if(!calm.matches)code.animate([{opacity:0},{opacity:1}],{duration:260,easing:'ease-out'})}).catch(()=>{clearTimeout(slow);if(mine===shown)code.textContent='This file is not available in this package.'})}
+function showSource(file,instant){const mine=++shown;for(const b of tabsEl.querySelectorAll('button'))b.setAttribute('aria-selected',String(b.dataset.file===file));moveKnob(instant);copyBtn.disabled=true;const slow=setTimeout(()=>{if(mine===shown)code.textContent='Preparing source…'},200);Promise.resolve(sheetSource.load(file)).then(text=>{clearTimeout(slow);if(mine!==shown)return;paintCode(text);code.scrollTop=0;copyBtn.disabled=false;if(!calm.matches)code.animate([{opacity:0},{opacity:1}],{duration:260,easing:'ease-out'})}).catch(()=>{clearTimeout(slow);if(mine===shown)code.textContent='Could not load this file. Please try again.'})}
 function openComponent(c){
   setFx(copyBtn);setFx(zipBtn);const mine=++opened;sheet.dataset.id=c.id;$('#sheet-title').textContent=c.name;$('#sheet-desc').textContent=c.description||'';big.className='big';big.replaceChildren();code.textContent='';
-  sheetSource={component:asChosen(c),load:file=>loadPaletteSource(asChosen(c),palettes.get(c.id)||'white',file),current:state.file};
+  sheetSource={load:file=>loadPaletteSource(sheetSource.component,palettes.get(c.id)||'white',file),current:state.file};
+  updateExport(c);
   drawTabs(FORMATS,state.file);showDialog(sheet);showSource(state.file,true);saveUrl();
   // Let the dialog start rendering before mounting its live preview.
   requestAnimationFrame(()=>{if(mine!==opened||!sheet.open)return;mountBig(c,true)});
@@ -160,7 +174,7 @@ function mountBig(c,first){
   group.innerHTML=list.map(([v,label])=>`<button type="button" data-version="${v}" aria-pressed="${v===variantOf(c)}">${label}</button>`).join('');
   group.addEventListener('click',e=>{const b=e.target.closest('[data-version]');if(!b||b.dataset.version===variantOf(c))return;chosen.set(c.id,b.dataset.version);
     // Swap the window preview and the card preview, then the code and the ZIP follow.
-    mountBig(c,false);sheetSource.component=asChosen(c);showSource(sheetSource.current);
+    updateExport(c);mountBig(c,false);showSource(sheetSource.current);
     const card=document.querySelector(`.card[data-id="${c.id}"]`),old=card?.querySelector('sl-preview');if(old){old.remove();card.querySelector('.palette-controls')?.remove();wakeCard(card)}});
   big.append(group);
 }
@@ -198,7 +212,6 @@ document.addEventListener('focusin',event=>{
 // Copying stays where it is useful: the code and the fields.
 document.addEventListener('copy',e=>{if(!e.target.closest?.('.sheet,input,textarea'))e.preventDefault()});
 search.value=state.q;build(true);moveSectionKnob(true);document.fonts.ready.then(()=>{if(groupIds.length){measureDock();setDock(groupIds.indexOf(state.cat),true)}moveSectionKnob(true)});
-document.querySelector('.sec-link').addEventListener('click',e=>{if(e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;e.preventDefault();const to='./docs.html?enter';if(calm.matches){location.href=to;return}document.documentElement.classList.add('going');setTimeout(()=>{location.href=to},400)});
 addEventListener('pageshow',e=>{if(e.persisted)document.documentElement.classList.remove('going')});
 let resizing;addEventListener('resize',()=>{clearTimeout(resizing);resizing=setTimeout(()=>{moveSectionKnob(true);if(sheet.open&&sheetSource?.component){const f=big.querySelector('sl-preview');if(f)fitPreview(f,big,sheetSource.component.id)}for(const s of document.querySelectorAll('.shelf'))for(const c of s.querySelectorAll('.card')){const f=c.querySelector('sl-preview');if(f)fitPreview(f,c.querySelector('.stage'),c.dataset.id)}},180)},{passive:true});
 const deep=byId.get(params.get('open')||params.get('component'));if(deep)customElements.whenDefined('sl-preview').then(()=>openComponent(deep));

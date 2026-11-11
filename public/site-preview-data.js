@@ -8,6 +8,7 @@ const raw=new Map(),done=new Map();
 const fetchRaw=v=>{if(!raw.has(v))raw.set(v,import(`./previews/${v}.js`).then(m=>m.default));return raw.get(v)};
 // Hand-made variants that start from another preview.
 const BASE={'save-icon':'save','copy-text':'copy','copy-icon':'copy','like-icon':'like'};
+export const previewBase = variant => batch[variant] || BASE[variant];
 // Missing previews read as empty, so the original patch statements below can run on a small set.
 const EMPTY={markup:'',css:''};
 // The local review patches, unchanged, applied to just the previews one variant needs.
@@ -22,7 +23,7 @@ for(const entry of batchVariants)previews[entry.variant]={...previews[entry.base
 export function loadPreview(variant){
   if(!done.has(variant)&&productNames.has(variant))done.set(variant,import(`./previews-product/${variant}.js`).then(m=>(previews[variant]=m.default)));
   if(!done.has(variant))done.set(variant,(async()=>{
-    const chain=[];for(let v=variant;v&&!chain.includes(v);v=batch[v]||BASE[v])chain.push(v);
+    const chain=[];for(let v=variant;v&&!chain.includes(v);v=previewBase(v))chain.push(v);
     const need=chain.filter(v=>names.has(v));if(!need.length)return null;
     const set={};await Promise.all(need.map(async v=>{set[v]=await fetchRaw(v)}));
     let kit=[],variantMarkup=null;
