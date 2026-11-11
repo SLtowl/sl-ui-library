@@ -31,9 +31,10 @@ function pbMeasure(button, text) {
   const probe = document.createElement('span');
   probe.className = 'pb-t'; probe.style.cssText = 'position:absolute;visibility:hidden'; probe.textContent = text;
   button.append(probe);
-  const width = probe.getBoundingClientRect().width;
+  // Layout width stays in CSS pixels even while a preview or its ancestors scale.
+  const width = probe.offsetWidth;
   probe.remove();
-  return Math.ceil(width);
+  return width;
 }
 function pbShake(element) {
   if (pbCalm()) return;

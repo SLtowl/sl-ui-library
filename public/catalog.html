@@ -11,6 +11,8 @@
 <meta name="twitter:description" content="Interactive UI components with HTML, CSS, JavaScript, React and Next.js exports, plus tools for coding agents.">
 <meta name="twitter:image" content="https://sltowl.com/assets/social-preview-v1.jpg">
 <link rel="canonical" href="https://sltowl.com/catalog.html">
+<link rel="modulepreload" href="./site-catalog-data.js">
+<link rel="modulepreload" href="./catalog-page.mjs">
 
 <link rel="stylesheet" href="./packages/search-input/buttons.css">
 <link rel="stylesheet" href="./experiments/library-shell/save-review.css"><style>
@@ -462,18 +464,18 @@ html.enter .top>*{animation:kit-top .7s cubic-bezier(.34,1.4,.64,1) .05s both}
 html.enter .top>:first-child{animation-name:kit-left;animation-delay:0s}
 html.enter .top>:nth-child(2){animation-name:kit-left;animation-delay:.08s}
 html.enter .top>:last-child{animation-name:kit-right;animation-delay:.12s}
-html.enter .shelf-head>*{animation:kit-left .6s cubic-bezier(.34,1.4,.64,1) both;animation-delay:.2s}
-html.enter .shelf-head>:nth-child(2){animation-name:kit-pop;animation-delay:.32s}
-html.enter .card{--d:calc(.28s + var(--i,12) * 70ms);animation:kit-card .75s cubic-bezier(.3,1.35,.6,1) var(--d) both}
-html.enter .card .stage>*{animation:kit-pop .6s cubic-bezier(.34,1.6,.64,1) calc(var(--d) + .3s) both}
-html.enter .card .foot>*{animation:kit-name .5s var(--out) calc(var(--d) + .4s) both}
+html.enter .shelf[data-enter] .shelf-head>*{animation:kit-left .6s cubic-bezier(.34,1.4,.64,1) both;animation-delay:.2s}
+html.enter .shelf[data-enter] .shelf-head>:nth-child(2){animation-name:kit-pop;animation-delay:.32s}
+html.enter .shelf[data-enter] .card{--d:calc(.28s + var(--i,12) * 70ms);animation:kit-card .75s cubic-bezier(.3,1.35,.6,1) var(--d) both}
+html.enter .shelf[data-enter] .card .stage>*{animation:kit-pop .6s cubic-bezier(.34,1.6,.64,1) calc(var(--d) + .3s) both}
+html.enter .shelf[data-enter] .card .foot>b{animation:kit-name .5s var(--out) calc(var(--d) + .4s) both}
 /* Leaving for Docs: the same drop as the home page. */
 html.going #main{scale:.78;translate:0 16vh;opacity:0;transition:scale .42s cubic-bezier(.6,0,.85,.3),translate .42s cubic-bezier(.6,0,.85,.3),opacity .32s cubic-bezier(.6,0,.85,.3) .08s}
 html.going .top{translate:0 -40px;opacity:0;transition:translate .42s cubic-bezier(.6,0,.85,.3),opacity .32s cubic-bezier(.6,0,.85,.3) .08s}
 html.going .dock{translate:0 90px;opacity:0;transition:translate .42s cubic-bezier(.6,0,.85,.3),opacity .32s cubic-bezier(.6,0,.85,.3) .08s}
-html.enter .collection{--i:0;animation:kit-card .75s cubic-bezier(.3,1.35,.6,1) calc(.28s + var(--i) * 90ms) both}
-html.enter .collection:nth-child(2){--i:1}
-html.enter .collection:nth-child(3){--i:2}
+html.enter .shelf[data-enter] .collection{--i:0;animation:kit-card .75s cubic-bezier(.3,1.35,.6,1) calc(.28s + var(--i) * 90ms) both}
+html.enter .shelf[data-enter] .collection:nth-child(2){--i:1}
+html.enter .shelf[data-enter] .collection:nth-child(3){--i:2}
 html.enter .dock{animation:kit-dock .8s cubic-bezier(.3,1.3,.6,1) 1.05s both}
 /* Component collection cards. */
 .collections{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:10px var(--gutter) 26px}

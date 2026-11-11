@@ -16,7 +16,7 @@ const types = { html: 'text/html; charset=utf-8', css: 'text/css; charset=utf-8'
 const allowed = new Set(['index.html', 'library.css', 'library.js', 'component.html', 'category.html', 'catalog.css', 'catalog.js', 'catalog-data.js', 'assets/instrument-sans-variable.woff2']);
 for (const file of [
   'intro.html', 'catalog.html', 'docs.html', 'assets/home-catalog-preview.webp', 'home-page.mjs', 'catalog-page.mjs', 'docs-page.mjs',
-  'site-preview-data.js', 'site-preview-runtime.js', 'media/studio-motion.mp4', 'media/studio-motion.webm',
+  'site-catalog-data.js', 'site-preview-data.js', 'site-preview-runtime.js', 'media/studio-motion.mp4', 'media/studio-motion.webm',
   'previews/index.js', 'previews-product/index.js', 'previews-product/_shared.js',
 ]) allowed.add(file);
 for (const file of ['catalog-entry.js', 'docs-entry.js', 'legacy-route.js', 'review-header.css', 'review-header.mjs', 'site.css', 'tokens.css', 'shell.mjs', 'dots.mjs', 'sizes.mjs']) allowed.add('site-shell/'+file);
